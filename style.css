@@ -197,6 +197,8 @@ background-color:#e8eff2;
 }
 .copyright{
 float:left;
+color:black;
+font-style:bold;
 padding:10px 0 0 10px;
 }
 .center_footer{
