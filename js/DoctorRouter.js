@@ -10,7 +10,7 @@ scotchApp.config(function($routeProvider) {
 	
 	// route for the home page
 	.when('/login', {
-		templateUrl : 'http://srydada.96.lt/html/Login.html',
+		templateUrl : '/html/Login.html',
 		controller : 'login'
 	})
 
@@ -22,13 +22,13 @@ scotchApp.config(function($routeProvider) {
 
 	// route for the About page
 	.when('/about', {
-		templateUrl : 'http://srydada.96.lt/html/about.html',
+		templateUrl : '/html/about.html',
 		controller : 'about'
 	})
 
 	// route for the Contact page	
 	.when('/contact', {
-		templateUrl : 'http://srydada.96.lt/html/contact.html',
+		templateUrl : '/html/contact.html',
 		controller : 'contact'
 	});
 });
