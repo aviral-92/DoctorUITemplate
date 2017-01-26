@@ -3,26 +3,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Doctor Home Page</title>
-<link rel="stylesheet"
-	href="/Users/Aviral/Desktop/Template/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/Users/Aviral/Desktop/Template/css/style.css"
-	media="screen" />
-<!--[if IE 6]> <link rel="stylesheet" type="text/css" href="iecss.css" /> <![endif]-->
-<script type="text/javascript" src="/Users/Aviral/Desktop/Template/js/angular.min.js"></script>
-<script type="text/javascript" src="/Users/Aviral/Desktop/Template/js/jquery.min.js"></script>
-<script type="text/javascript" src="/Users/Aviral/Desktop/Template/js/angular-route.js"></script>
-<script type="text/javascript src="/Users/Aviral/Desktop/Template/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css" media="screen" />
+<!--[if IE 6]> <link rel="stylesheet" type="text/css" href="/css/iecss.css" /> <![endif]-->
+<script type="text/javascript" src="/js/angular.min.js"></script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/angular-route.js"></script>
+<script type="text/javascript src="/js/bootstrap.min.js"></script>
 <!-- Image Preloader -->
-<script type="text/javascript" src="/Users/Aviral/Desktop/Template/js/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="/Users/Aviral/Desktop/Template/js/DoctorRouter.js"></script>
-<script type="text/javascript" src="/Users/Aviral/Desktop/Template/js/Doctorcontrol.js"></script>
-<script type="text/javascript" src="/Users/Aviral/Desktop/Template/js/DoctorValidation.js"></script>
+<script type="text/javascript" src="/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/js/DoctorRouter.js"></script>
+<script type="text/javascript" src="/js/Doctorcontrol.js"></script>
+<script type="text/javascript" src="/js/DoctorValidation.js"></script>
 </head>
 <body>
 	<div id="main_container">
 		<div class="header">
 			<div id="logo">
-				<a href="/index.html"><img src="/Users/Aviral/Desktop/Template/images/logo.png"
+				<a href="/index.html"><img src="/images/logo.png"
 					alt="" title="" border="0" height="54" width="162" /></a>
 			</div>
 			<div class="right_header">
@@ -32,9 +30,9 @@
 				<div id="menu">
 					<ul>
 						<li><a class="current" href="#" title="">Home</a></li>
-						<li><a href="#" title="">About Us</a></li>
+						<li><a href="#/about" title="">About Us</a></li>
 						<li><a href="#" title="">Services</a></li>
-						<li><a href="#" title="">Contact Us</a></li>
+						<li><a href="#/contact" title="">Contact Us</a></li>
 					</ul>
 				</div>
 			</div>
@@ -42,7 +40,7 @@
 		<div ng-view=""></div>
 		<div id="footer">
 			<div class="copyright">
-				<img src="/Users/Aviral/Desktop/Template/images/footer_logo.gif" alt="" title="" />
+				<img src="/images/footer_logo.gif" alt="" title="" />
 			</div>
 			<div class="center_footer">
 				<br />

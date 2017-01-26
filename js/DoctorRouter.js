@@ -4,32 +4,32 @@ scotchApp.config(function($routeProvider) {
 	$routeProvider
 
 	.when('/', {
-		templateUrl : '/Users/Aviral/Desktop/Template/html/Container.html',
+		templateUrl : '/html/Container.html',
 		controller : 'middleContent'
 	})
 	
 	// route for the home page
 	.when('/login', {
-		templateUrl : '/Users/Aviral/Desktop/Template/html/Login.html',
+		templateUrl : 'http://srydada.96.lt/html/Login.html',
 		controller : 'login'
 	})
 
-	// route for the about page
+	// route for the SignUp page
 	.when('/signUp', {
-		templateUrl : '/html/Template/DoctorSignUp.html',
+		templateUrl : '/html/DoctorSignUp.html',
 		controller : 'signUp'
 	})
 
-	// route for the contact page
-	.when('/deletePatient', {
-		templateUrl : '/html/testDoctor/deletePatient.html',
-		controller : 'deleteDoctorController'
+	// route for the About page
+	.when('/about', {
+		templateUrl : 'http://srydada.96.lt/html/about.html',
+		controller : 'about'
 	})
 
-	
-	.when('/updatePatient', {
-		templateUrl : '/html/testDoctor/updatePatient.html',
-		controller : 'updateDoctorController'
+	// route for the Contact page	
+	.when('/contact', {
+		templateUrl : 'http://srydada.96.lt/html/contact.html',
+		controller : 'contact'
 	});
 });
 

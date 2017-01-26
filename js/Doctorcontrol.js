@@ -6,6 +6,14 @@ scotchApp.controller('login',function($scope){
 	
 });
 
+scotchApp.controller('about',function($scope){
+	
+});
+
+scotchApp.controller('contact',function($scope){
+	
+});
+
 scotchApp.controller('signUp',function($scope, $http){
 	console.log("Hello");
 	
