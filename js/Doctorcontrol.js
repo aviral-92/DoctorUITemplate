@@ -27,7 +27,7 @@ scotchApp.controller('signUp',function($scope, $http){
 			   alert("test");
 			   var res = $http
 				.post(
-						'http://localhost:9090/doctor-management/adddoctor',
+						'https://doctor-service.cfapps.io/doctor-management/adddoctor',
 						doctor);
 		res.success(function(data) {
 			alert(data.message);
