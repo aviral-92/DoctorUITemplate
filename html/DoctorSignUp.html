@@ -1,0 +1,191 @@
+<div class="container">
+	<h3 style="margin-left: 31%;">Doctor SignUp</h3>
+	<br />
+
+	<form name="doctorForm" class="form form-horizontal"
+		novalidate="novalidate">
+
+		<div class="form-group" ng-class="{error:!doctorForm.name.$valid}">
+			<label class="control-label col-sm-2" for="name"> Name:</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" id="name" name="name"
+					ng-model="doctor.doctorName" placeholder="Enter name" valid-Name />
+
+				<div class="help-inline">
+					<span ng-show="!!doctorForm.name.$error.isBlank">Doctor Name
+						Required.</span> <span ng-show="!!doctorForm.name.$error.invalidChars">Doctor
+						Name must contain letters &amp; spaces only.</span> <span
+						ng-show="!!doctorForm.name.$error.invalidLen">Doctor Name
+						must be 3-20 characters.</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group" ng-class="{error:!doctorForm.mobile.$valid}">
+			<label class="control-label col-sm-2" for="name"> Mobile
+				Number :</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" id="mobile" name="mobile"
+					ng-model="doctor.doctorNumber" placeholder="Enter Mobile Number"
+					valid-Mobile />
+
+				<div class="help-inline">
+					<span ng-show="!!doctorForm.mobile.$error.isBlank">Doctor
+						mobile number Required.</span> <span
+						ng-show="!!doctorForm.mobile.$error.invalidChars">Doctor
+						mobile number must contain numbers only.</span> <span
+						ng-show="!!doctorForm.mobile.$error.invalidLen">Doctor
+						mobile number must be 10 digits.</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group" ng-class="{error:!doctorForm.adhar.$valid}">
+			<label class="control-label col-sm-2" for="name"> Adhar
+				Number:</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" id="adhar" name="adhar"
+					ng-model="doctor.doctorAdhaarNumber"
+					placeholder="Enter Adhar Number" valid-Adhar />
+
+				<div class="help-inline">
+					<span ng-show="!!doctorForm.adhar.$error.isBlank">Doctor
+						adhar number Required.</span> <span
+						ng-show="!!doctorForm.adhar.$error.invalidChars">Doctor
+						adhar number must contain numbers only.</span> <span
+						ng-show="!!doctorForm.adhar.$error.invalidLen">Doctor adhar
+						number must be 12 digits.</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group" ng-class="{error:!doctorForm.address.$valid}">
+			<label class="control-label col-sm-2" for="name"> Home
+				Address:</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" id="address" name="address"
+					ng-model="doctor.doctorHomeAddress"
+					placeholder="Enter  Home Address" valid-Address />
+
+				<div class="help-inline">
+					<span ng-show="!!doctorForm.address.$error.isBlank">Doctor
+						address Required.</span> <span
+						ng-show="!!doctorForm.address.$error.invalidChars">Doctor
+						address must contain Alphabets and spaces only.</span> <span
+						ng-show="!!doctorForm.address.$error.invalidLen">Doctor
+						address must be 3 to 30 characters.</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group" ng-class="{error:!doctorForm.degree.$valid}">
+			<label class="control-label col-sm-2" for="name"> Highest
+				Degree:</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" id="degree" name="degree"
+					ng-model="doctor.doctorHighestDegree"
+					placeholder="Enter Highest Degree" valid-Degree />
+
+				<div class="help-inline">
+					<span ng-show="!!doctorForm.degree.$error.isBlank">Doctor
+						degree Required.</span> <span
+						ng-show="!!doctorForm.degree.$error.invalidChars">Doctor
+						degree must contain Alphabets and spaces only.</span> <span
+						ng-show="!!doctorForm.degree.$error.invalidLen">Doctor
+						degree must be 3 to 15 characters.</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group" ng-class="{error:!doctorForm.degree.$valid}">
+			<label class="control-label col-sm-2" for="name"> Expertise:</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" id="expertise"
+					name="expertise" ng-model="doctor.doctorExpertized"
+					placeholder="Enter Expertise" valid-Expertise />
+
+				<div class="help-inline">
+					<span ng-show="!!doctorForm.expertise.$error.isBlank">Doctor
+						expertise Required.</span> <span
+						ng-show="!!doctorForm.expertise.$error.invalidChars">Doctor
+						expertise must contain Alphabets and spaces only.</span> <span
+						ng-show="!!doctorForm.expertise.$error.invalidLen">Doctor
+						expertise must be 3 to 15 characters.</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="name"> Government:</label>
+			<div class="control-label col-sm-2" style="margin-top: -1%;">
+				<label class="radio-inline"> <input type="radio"
+					name="optradio" ng-model="doctor.doctorGovtServent" ng-value='1' />Yes
+				</label> <label class="radio-inline"> <input type="radio"
+					name="optradio" ng-model="doctor.doctorGovtServent" ng-value='0' />No
+				</label>
+			</div>
+		</div>
+
+		<div class="form-group" ng-class="{error:!doctorForm.shop.$valid}">
+			<label class="control-label col-sm-2" for="name"> Shop
+				Address:</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" id="shop" name="shop"
+					ng-model="doctor.shopAddress" placeholder="Enter Shop Address"
+					valid-Shop />
+
+				<div class="help-inline">
+					<span ng-show="!!doctorForm.shop.$error.isBlank">Doctor shop
+						Required.</span> <span ng-show="!!doctorForm.shop.$error.invalidChars">Doctor
+						shop must contain Alphabets and spaces only.</span> <span
+						ng-show="!!doctorForm.shop.$error.invalidLen">Doctor shop
+						must be 3 to 15 characters.</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group" ng-class="{error:!doctorForm.fees.$valid}">
+			<label class="control-label col-sm-2" for="name">Consulting
+				Fees:</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" id="fees"
+					ng-model="doctor.OneTimeConsultingFee"
+					placeholder="Enter one time Consulting Fees" name="fees" valid-Fees />
+
+				<div class="help-inline">
+					<span ng-show="!!doctorForm.fees.$error.isBlank">Doctor fees
+						Required.</span> <span ng-show="!!doctorForm.fees.$error.invalidChars">Doctor
+						fees must contain numbers only.</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group"
+			ng-class="{error:!doctorForm.consulting.$valid}">
+			<label class="control-label col-sm-2" for="name"> Free days:</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" id="consulting"
+					name="consulting" ng-model="doctor.consultingFee"
+					placeholder="Enter days to check Free" valid-Consulting />
+
+				<div class="help-inline">
+					<span ng-show="!!doctorForm.consulting.$error.isBlank">Doctor
+						consulting Required.</span> <span
+						ng-show="!!doctorForm.consulting.$error.invalidChars">Doctor
+						consulting fees must contain numbers only.</span> <span
+						ng-show="!!doctorForm.consulting.$error.invalidLen">Doctor
+						consulting must be 2 to 5 digits.</span>
+				</div>
+			</div>
+		</div>
+		<div class="form-group" ng-show="formAllGood()"></div>
+		<div class="form-group">
+			<div class="control-label col-sm-5">
+				<button class="btn btn-primary"
+					ng-click="doctorAdd(doctor, 'doctorForm')">
+					<span class="glyphicon glyphicon-ok-circle"></span> Register
+				</button>
+			</div>
+		</div>
+	</form>
+</div>
