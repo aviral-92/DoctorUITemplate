@@ -8,11 +8,9 @@ signUp = function($scope) {
 angular.module('UserValidation', []).directive('validName', function () {
     return {
         require: 'ngModel',
+        restrict: 'A',
         link: function (scope, elm, attrs, ctrl) {
             ctrl.$parsers.unshift(function (viewValue) {
-            	//console.log(">>>>>>>>" +viewValue);
-                // Any way to read the results of a "required" angular validator
-				// here?
                 var isBlank = viewValue === ''
                 var invalidChars = !isBlank && !/^[a-zA-Z][a-zA-Z ]+[a-zA-Z]$/.test(viewValue)
                 var invalidLen = !isBlank && !invalidChars && (viewValue.length < 3 || viewValue.length > 20)
@@ -21,11 +19,11 @@ angular.module('UserValidation', []).directive('validName', function () {
                 ctrl.$setValidity('invalidLen', !invalidLen)
                 scope.nameGood = !isBlank && !invalidChars && !invalidLen
                 if(scope.nameGood == true){
-                	//console.log(">>>>>>>>" +scope.nameGood);
                 	return viewValue;
                 }
-                else 
-                	return false;
+                else { 
+                		 return false;
+                }
             })
         }
     }
@@ -52,8 +50,6 @@ angular.module('UserValidation', []).directive('validName', function () {
         require: 'ngModel',
         link: function (scope, elm, attrs, ctrl) {
             ctrl.$parsers.unshift(function (viewValue) {
-                // Any way to read the results of a "required" angular validator
-				// here?
                 var isBlank = viewValue === ''
                 var invalidChars = !isBlank && !/^\d+$/.test(viewValue)
                 var invalidLen = !isBlank && !invalidChars && (viewValue.length < 10 || viewValue.length > 10)
@@ -75,8 +71,6 @@ angular.module('UserValidation', []).directive('validName', function () {
         require: 'ngModel',
         link: function (scope, elm, attrs, ctrl) {
             ctrl.$parsers.unshift(function (viewValue) {
-                // Any way to read the results of a "required" angular validator
-				// here?
                 var isBlank = viewValue === ''
                 var invalidChars = !isBlank && !/^\d+$/.test(viewValue)
                 var invalidLen = !isBlank && !invalidChars && (viewValue.length < 12 || viewValue.length > 12)
@@ -98,8 +92,6 @@ angular.module('UserValidation', []).directive('validName', function () {
         require: 'ngModel',
         link: function (scope, elm, attrs, ctrl) {
             ctrl.$parsers.unshift(function (viewValue) {
-                // Any way to read the results of a "required" angular validator
-				// here?
                 var isBlank = viewValue === ''
                 var invalidChars = !isBlank && !/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/.test(viewValue)
                 var invalidLen = !isBlank && !invalidChars && (viewValue.length < 3 || viewValue.length > 30)
@@ -108,7 +100,6 @@ angular.module('UserValidation', []).directive('validName', function () {
                 ctrl.$setValidity('invalidLen', !invalidLen)
                 scope.addressGood = !isBlank && !invalidChars && !invalidLen
                 if(scope.addressGood == true){
-                	//console.log(">>>>>>>>" +scope.nameGood);
                 	return viewValue;
                 }
                 else 
@@ -121,17 +112,14 @@ angular.module('UserValidation', []).directive('validName', function () {
         require: 'ngModel',
         link: function (scope, elm, attrs, ctrl) {
             ctrl.$parsers.unshift(function (viewValue) {
-                // Any way to read the results of a "required" angular validator
-				// here?
                 var isBlank = viewValue === ''
                 var invalidChars = !isBlank && !/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/.test(viewValue)
-                var invalidLen = !isBlank && !invalidChars && (viewValue.length < 0 || viewValue.length > 30)
+                var invalidLen = !isBlank && !invalidChars && (viewValue.length < 3 || viewValue.length > 30)
                 ctrl.$setValidity('isBlank', !isBlank)
                 ctrl.$setValidity('invalidChars', !invalidChars)
                 ctrl.$setValidity('invalidLen', !invalidLen)
                 scope.degreeGood = !isBlank && !invalidChars && !invalidLen
                 if(scope.degreeGood == true){
-                	//console.log(">>>>>>>>" +scope.nameGood);
                 	return viewValue;
                 }
                 else 
@@ -144,17 +132,14 @@ angular.module('UserValidation', []).directive('validName', function () {
         require: 'ngModel',
         link: function (scope, elm, attrs, ctrl) {
             ctrl.$parsers.unshift(function (viewValue) {
-                // Any way to read the results of a "required" angular validator
-				// here?
                 var isBlank = viewValue === ''
                 var invalidChars = !isBlank && !/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/.test(viewValue)
-                var invalidLen = !isBlank && !invalidChars && (viewValue.length < 0 || viewValue.length > 30)
+                var invalidLen = !isBlank && !invalidChars && (viewValue.length < 3 || viewValue.length > 30)
                 ctrl.$setValidity('isBlank', !isBlank)
                 ctrl.$setValidity('invalidChars', !invalidChars)
                 ctrl.$setValidity('invalidLen', !invalidLen)
                 scope.expertiseGood = !isBlank && !invalidChars && !invalidLen
                 if(scope.expertiseGood == true){
-                	//console.log(">>>>>>>>" +scope.nameGood);
                 	return viewValue;
                 }
                 else 
@@ -167,17 +152,14 @@ angular.module('UserValidation', []).directive('validName', function () {
         require: 'ngModel',
         link: function (scope, elm, attrs, ctrl) {
             ctrl.$parsers.unshift(function (viewValue) {
-                // Any way to read the results of a "required" angular validator
-				// here?
                 var isBlank = viewValue === ''
                 var invalidChars = !isBlank && !/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/.test(viewValue)
-                var invalidLen = !isBlank && !invalidChars && (viewValue.length < 0 || viewValue.length > 30)
+                var invalidLen = !isBlank && !invalidChars && (viewValue.length < 5 || viewValue.length > 30)
                 ctrl.$setValidity('isBlank', !isBlank)
                 ctrl.$setValidity('invalidChars', !invalidChars)
                 ctrl.$setValidity('invalidLen', !invalidLen)
                 scope.shopGood = !isBlank && !invalidChars && !invalidLen
                 if(scope.shopGood == true){
-                	//console.log(">>>>>>>>" +scope.nameGood);
                 	return viewValue;
                 }
                 else 
@@ -190,8 +172,6 @@ angular.module('UserValidation', []).directive('validName', function () {
         require: 'ngModel',
         link: function (scope, elm, attrs, ctrl) {
             ctrl.$parsers.unshift(function (viewValue) {
-                // Any way to read the results of a "required" angular validator
-				// here?
                 var isBlank = viewValue === ''
                 	var invalidChars = !isBlank && !/^\d+$/.test(viewValue)
                 var invalidLen = !isBlank && !invalidChars && (viewValue.length < 0 || viewValue.length > 6)
@@ -200,7 +180,6 @@ angular.module('UserValidation', []).directive('validName', function () {
                 ctrl.$setValidity('invalidLen', !invalidLen)
                 scope.feesGood = !isBlank && !invalidChars && !invalidLen
                 if(scope.feesGood == true){
-                	//console.log(">>>>>>>>" +scope.nameGood);
                 	return viewValue;
                 }
                 else 
@@ -213,8 +192,6 @@ angular.module('UserValidation', []).directive('validName', function () {
         require: 'ngModel',
         link: function (scope, elm, attrs, ctrl) {
             ctrl.$parsers.unshift(function (viewValue) {
-                // Any way to read the results of a "required" angular validator
-				// here?
                 var isBlank = viewValue === ''
                 	var invalidChars = !isBlank && !/^\d+$/.test(viewValue)
                 var invalidLen = !isBlank && !invalidChars && (viewValue.length < 0 || viewValue.length > 5)
@@ -223,7 +200,6 @@ angular.module('UserValidation', []).directive('validName', function () {
                 ctrl.$setValidity('invalidLen', !invalidLen)
                 scope.consultingGood = !isBlank && !invalidChars && !invalidLen
                 if(scope.consultingGood == true){
-                	//console.log(">>>>>>>>" +scope.nameGood);
                 	return viewValue;
                 }
                 else 
