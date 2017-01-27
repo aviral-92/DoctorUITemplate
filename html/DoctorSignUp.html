@@ -1,116 +1,150 @@
 <div class="container">
-	<h3 style="margin-left: 31%;">Doctor SignUp</h3>
-	<br />
+	<h3 style="margin-left: 32%;">Doctor SignUp</h3>
 
 	<form name="doctorForm" class="form form-horizontal"
 		novalidate="novalidate">
-
-		<div class="form-group" ng-class="{error:!doctorForm.name.$valid}">
-			<label class="control-label col-sm-2" for="name"> Name:</label>
-			<div class="col-sm-6">
-				<input type="text" class="form-control" id="name" name="name"
-					ng-model="doctor.doctorName" placeholder="Enter name" valid-Name />
+		<!-- 'has-error' : side = 'left' , 'has-success' : side = 'right'-->
+		<div class="form-group has-feedback "
+			ng-class="{'has-success' : doctorForm.name.$dirty && doctorForm.name.$valid ,
+			 'has-error' : doctorForm.name.$dirty && doctorForm.name.$invalid}">
+			<label class="control-label col-sm-2" for="inputError2">
+				Name:</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" id="inputError2" name="name"
+					ng-model="doctor.doctorName" placeholder="Enter name"
+					ng-blur="doBlurName($event)" valid-Name>
 
 				<div class="help-inline">
-					<span ng-show="!!doctorForm.name.$error.isBlank">Doctor Name
-						Required.</span> <span ng-show="!!doctorForm.name.$error.invalidChars">Doctor
-						Name must contain letters &amp; spaces only.</span> <span
-						ng-show="!!doctorForm.name.$error.invalidLen">Doctor Name
-						must be 3-20 characters.</span>
+					<span ng-show="!!doctorForm.name.$error.isBlank"><b
+						style="color: red;">Doctor Name Required.</b></span> <span
+						ng-show="!!doctorForm.name.$error.invalidChars"><b
+						style="color: red;">Doctor Name must contain letters &amp;
+							spaces only.</b></span> <span ng-show="!!doctorForm.name.$error.invalidLen"><b
+						style="color: red;">Doctor Name must be 3-20 characters.</b></span> <span
+						class="glyphicon glyphicon-ok form-control-feedback"
+						style="color: green;" ng-show="doctorForm.name.$valid"></span>
 				</div>
 			</div>
 		</div>
 
-		<div class="form-group" ng-class="{error:!doctorForm.mobile.$valid}">
-			<label class="control-label col-sm-2" for="name"> Mobile
-				Number :</label>
-			<div class="col-sm-6">
+		<div class="form-group has-feedback "
+			ng-class="{'has-success' : doctorForm.mobile.$dirty && doctorForm.mobile.$valid ,
+			 'has-error' : doctorForm.mobile.$dirty && doctorForm.mobile.$invalid}">
+			<label class="control-label col-sm-2" for="inputError2">
+				Mobile Number :</label>
+			<div class="col-sm-3">
 				<input type="text" class="form-control" id="mobile" name="mobile"
 					ng-model="doctor.doctorNumber" placeholder="Enter Mobile Number"
-					valid-Mobile />
+					ng-blur="doBlurMobile($event)" valid-Mobile />
 
 				<div class="help-inline">
-					<span ng-show="!!doctorForm.mobile.$error.isBlank">Doctor
-						mobile number Required.</span> <span
-						ng-show="!!doctorForm.mobile.$error.invalidChars">Doctor
-						mobile number must contain numbers only.</span> <span
-						ng-show="!!doctorForm.mobile.$error.invalidLen">Doctor
-						mobile number must be 10 digits.</span>
+					<span ng-show="!!doctorForm.mobile.$error.isBlank"><b
+						style="color: red;">Doctor mobile number Required.</b></span> <span
+						ng-show="!!doctorForm.mobile.$error.invalidChars"><b
+						style="color: red;">Doctor mobile number must contain numbers
+							only.</b></span> <span ng-show="!!doctorForm.mobile.$error.invalidLen"><b
+						style="color: red;">Doctor mobile number must be 10 digits.</b></span><span
+						class="glyphicon glyphicon-ok form-control-feedback"
+						style="color: green;" ng-show="doctorForm.mobile.$valid"></span>
 				</div>
 			</div>
 		</div>
 
-		<div class="form-group" ng-class="{error:!doctorForm.adhar.$valid}">
+		<div class="form-group has-feedback "
+			ng-class="{'has-success' : doctorForm.adhar.$dirty && doctorForm.adhar.$valid ,
+			 'has-error' : doctorForm.adhar.$dirty && doctorForm.adhar.$invalid}">
 			<label class="control-label col-sm-2" for="name"> Adhar
 				Number:</label>
-			<div class="col-sm-6">
+			<div class="col-sm-3">
 				<input type="text" class="form-control" id="adhar" name="adhar"
 					ng-model="doctor.doctorAdhaarNumber"
-					placeholder="Enter Adhar Number" valid-Adhar />
+					placeholder="Enter Adhar Number" ng-blur="doBlurAdhar($event)"
+					valid-Adhar />
 
 				<div class="help-inline">
-					<span ng-show="!!doctorForm.adhar.$error.isBlank">Doctor
-						adhar number Required.</span> <span
-						ng-show="!!doctorForm.adhar.$error.invalidChars">Doctor
-						adhar number must contain numbers only.</span> <span
-						ng-show="!!doctorForm.adhar.$error.invalidLen">Doctor adhar
-						number must be 12 digits.</span>
+					<span ng-show="!!doctorForm.adhar.$error.isBlank"><b
+						style="color: red;">Doctor adhar number Required.</b></span> <span
+						ng-show="!!doctorForm.adhar.$error.invalidChars"><b
+						style="color: red;">Doctor adhar number must contain numbers
+							only.</b></span> <span ng-show="!!doctorForm.adhar.$error.invalidLen"><b
+						style="color: red;">Doctor adhar number must be 12 digits.</b></span><span
+						class="glyphicon glyphicon-ok form-control-feedback"
+						style="color: green;" ng-show="doctorForm.adhar.$valid"></span>
 				</div>
 			</div>
 		</div>
 
-		<div class="form-group" ng-class="{error:!doctorForm.address.$valid}">
+		<div class="form-group has-feedback "
+			ng-class="{'has-success' : doctorForm.address.$dirty && doctorForm.address.$valid ,
+			 'has-error' : doctorForm.address.$dirty && doctorForm.address.$invalid}">
 			<label class="control-label col-sm-2" for="name"> Home
 				Address:</label>
-			<div class="col-sm-6">
+			<div class="col-sm-3">
 				<input type="text" class="form-control" id="address" name="address"
 					ng-model="doctor.doctorHomeAddress"
-					placeholder="Enter  Home Address" valid-Address />
+					placeholder="Enter  Home Address"
+					ng-blur="doBlurHomeAddress($event)" valid-Address />
 
 				<div class="help-inline">
-					<span ng-show="!!doctorForm.address.$error.isBlank">Doctor
-						address Required.</span> <span
-						ng-show="!!doctorForm.address.$error.invalidChars">Doctor
-						address must contain Alphabets and spaces only.</span> <span
-						ng-show="!!doctorForm.address.$error.invalidLen">Doctor
-						address must be 3 to 30 characters.</span>
+					<span ng-show="!!doctorForm.address.$error.isBlank"><b
+						style="color: red;">Doctor address Required.</b></span> <span
+						ng-show="!!doctorForm.address.$error.invalidChars"><b
+						style="color: red;">Doctor address must contain Alphabets and
+							spaces only.</b></span> <span
+						ng-show="!!doctorForm.address.$error.invalidLen"><b
+						style="color: red;">Doctor address must be 3 to 30 characters.</b></span><span
+						class="glyphicon glyphicon-ok form-control-feedback"
+						style="color: green;" ng-show="doctorForm.address.$valid"></span>
 				</div>
 			</div>
 		</div>
 
-		<div class="form-group" ng-class="{error:!doctorForm.degree.$valid}">
+		<div class="form-group has-feedback "
+			ng-class="{'has-success' : doctorForm.degree.$dirty && doctorForm.degree.$valid ,
+			 'has-error' : doctorForm.degree.$dirty && doctorForm.degree.$invalid}">
 			<label class="control-label col-sm-2" for="name"> Highest
 				Degree:</label>
-			<div class="col-sm-6">
+			<div class="col-sm-3">
 				<input type="text" class="form-control" id="degree" name="degree"
 					ng-model="doctor.doctorHighestDegree"
-					placeholder="Enter Highest Degree" valid-Degree />
+					placeholder="Enter Highest Degree" ng-blur="doBlurDegree($event)"
+					valid-Degree />
 
 				<div class="help-inline">
-					<span ng-show="!!doctorForm.degree.$error.isBlank">Doctor
-						degree Required.</span> <span
-						ng-show="!!doctorForm.degree.$error.invalidChars">Doctor
-						degree must contain Alphabets and spaces only.</span> <span
-						ng-show="!!doctorForm.degree.$error.invalidLen">Doctor
-						degree must be 3 to 15 characters.</span>
+					<span ng-show="!!doctorForm.degree.$error.isBlank"><b
+						style="color: red;">Doctor degree Required.</b></span> <span
+						ng-show="!!doctorForm.degree.$error.invalidChars"><b
+						style="color: red;">Doctor degree must contain Alphabets and
+							spaces only.</b></span> <span
+						ng-show="!!doctorForm.degree.$error.invalidLen"><b
+						style="color: red;">Doctor degree must be 3 to 15 characters.</b></span><span
+						class="glyphicon glyphicon-ok form-control-feedback"
+						style="color: green;" ng-show="doctorForm.degree.$valid"></span>
 				</div>
 			</div>
 		</div>
 
-		<div class="form-group" ng-class="{error:!doctorForm.degree.$valid}">
+		<div class="form-group has-feedback "
+			ng-class="{'has-success' : doctorForm.expertise.$dirty && doctorForm.expertise.$valid ,
+			 'has-error' : doctorForm.expertise.$dirty && doctorForm.expertise.$invalid}">
 			<label class="control-label col-sm-2" for="name"> Expertise:</label>
-			<div class="col-sm-6">
+			<div class="col-sm-3">
 				<input type="text" class="form-control" id="expertise"
 					name="expertise" ng-model="doctor.doctorExpertized"
-					placeholder="Enter Expertise" valid-Expertise />
+					placeholder="Enter Expertise" ng-blur="doBlurExpertise($event)"
+					valid-Expertise />
 
 				<div class="help-inline">
-					<span ng-show="!!doctorForm.expertise.$error.isBlank">Doctor
-						expertise Required.</span> <span
-						ng-show="!!doctorForm.expertise.$error.invalidChars">Doctor
-						expertise must contain Alphabets and spaces only.</span> <span
-						ng-show="!!doctorForm.expertise.$error.invalidLen">Doctor
-						expertise must be 3 to 15 characters.</span>
+					<span ng-show="!!doctorForm.expertise.$error.isBlank"><b
+						style="color: red;">Doctor expertise Required.</b></span> <span
+						ng-show="!!doctorForm.expertise.$error.invalidChars"><b
+						style="color: red;">Doctor expertise must contain Alphabets
+							and spaces only.</b></span> <span
+						ng-show="!!doctorForm.expertise.$error.invalidLen"><b
+						style="color: red;">Doctor expertise must be 3 to 30
+							characters.</b></span><span
+						class="glyphicon glyphicon-ok form-control-feedback"
+						style="color: green;" ng-show="doctorForm.expertise.$valid"></span>
 				</div>
 			</div>
 		</div>
@@ -126,61 +160,79 @@
 			</div>
 		</div>
 
-		<div class="form-group" ng-class="{error:!doctorForm.shop.$valid}">
+		<div class="form-group has-feedback "
+			ng-class="{'has-success' : doctorForm.shop.$dirty && doctorForm.shop.$valid ,
+			 'has-error' : doctorForm.shop.$dirty && doctorForm.shop.$invalid}">
 			<label class="control-label col-sm-2" for="name"> Shop
 				Address:</label>
-			<div class="col-sm-6">
+			<div class="col-sm-3">
 				<input type="text" class="form-control" id="shop" name="shop"
-					ng-model="doctor.doctorShopAddress" placeholder="Enter Shop Address"
-					valid-Shop />
+					ng-model="doctor.doctorShopAddress"
+					placeholder="Enter Shop Address"
+					ng-blur="doBlurShopAddress($event)" valid-Shop />
 
 				<div class="help-inline">
-					<span ng-show="!!doctorForm.shop.$error.isBlank">Doctor shop
-						Required.</span> <span ng-show="!!doctorForm.shop.$error.invalidChars">Doctor
-						shop must contain Alphabets and spaces only.</span> <span
-						ng-show="!!doctorForm.shop.$error.invalidLen">Doctor shop
-						must be 3 to 15 characters.</span>
+					<span ng-show="!!doctorForm.shop.$error.isBlank"><b
+						style="color: red;">Doctor shop Required.</b></span> <span
+						ng-show="!!doctorForm.shop.$error.invalidChars"><b
+						style="color: red;">Doctor shop must contain Alphabets and
+							spaces only.</b></span> <span ng-show="!!doctorForm.shop.$error.invalidLen"><b
+						style="color: red;">Doctor shop must be 5 to 30 characters.</b></span><span
+						class="glyphicon glyphicon-ok form-control-feedback"
+						style="color: green;" ng-show="doctorForm.shop.$valid"></span>
 				</div>
 			</div>
 		</div>
 
-		<div class="form-group" ng-class="{error:!doctorForm.fees.$valid}">
+		<div class="form-group has-feedback "
+			ng-class="{'has-success' : doctorForm.fees.$dirty && doctorForm.fees.$valid ,
+			 'has-error' : doctorForm.fees.$dirty && doctorForm.fees.$invalid}">
 			<label class="control-label col-sm-2" for="name">Consulting
 				Fees:</label>
-			<div class="col-sm-6">
+			<div class="col-sm-3">
 				<input type="text" class="form-control" id="fees"
 					ng-model="doctor.doctorOneTimeConsultingFee"
-					placeholder="Enter one time Consulting Fees" name="fees" valid-Fees />
+					placeholder="Enter one time Consulting Fees" name="fees"
+					ng-blur="doBlurFees($event)" valid-Fees />
 
 				<div class="help-inline">
-					<span ng-show="!!doctorForm.fees.$error.isBlank">Doctor fees
-						Required.</span> <span ng-show="!!doctorForm.fees.$error.invalidChars">Doctor
-						fees must contain numbers only.</span>
+					<span ng-show="!!doctorForm.fees.$error.isBlank"><b
+						style="color: red;">Doctor fees Required.</b></span> <span
+						ng-show="!!doctorForm.fees.$error.invalidChars"><b
+						style="color: red;">Doctor fees must contain numbers only.</b></span><span
+						class="glyphicon glyphicon-ok form-control-feedback"
+						style="color: green;" ng-show="doctorForm.fees.$valid"></span>
 				</div>
 			</div>
 		</div>
 
-		<div class="form-group"
-			ng-class="{error:!doctorForm.consulting.$valid}">
+		<div class="form-group has-feedback "
+			ng-class="{'has-success' : doctorForm.consulting.$dirty && doctorForm.consulting.$valid ,
+			 'has-error' : doctorForm.consulting.$dirty && doctorForm.consulting.$invalid}">
 			<label class="control-label col-sm-2" for="name"> Free days:</label>
-			<div class="col-sm-6">
+			<div class="col-sm-3">
 				<input type="text" class="form-control" id="consulting"
-					name="consulting" ng-model="doctor.doctorDaystoCheckFreeInConsultingFee"
-					placeholder="Enter days to check Free" valid-Consulting />
+					name="consulting"
+					ng-model="doctor.doctorDaystoCheckFreeInConsultingFee"
+					placeholder="Enter days to check Free"
+					ng-blur="doBlurConsulting($event)" valid-Consulting />
 
 				<div class="help-inline">
-					<span ng-show="!!doctorForm.consulting.$error.isBlank">Doctor
-						consulting Required.</span> <span
-						ng-show="!!doctorForm.consulting.$error.invalidChars">Doctor
-						consulting fees must contain numbers only.</span> <span
-						ng-show="!!doctorForm.consulting.$error.invalidLen">Doctor
-						consulting must be 2 to 5 digits.</span>
+					<span ng-show="!!doctorForm.consulting.$error.isBlank"><b
+						style="color: red;">Doctor consulting Required.</b></span> <span
+						ng-show="!!doctorForm.consulting.$error.invalidChars"><b
+						style="color: red;">Doctor consulting fees must contain
+							numbers only.</b></span> <span
+						ng-show="!!doctorForm.consulting.$error.invalidLen"><b
+						style="color: red;">Doctor consulting must be 2 to 5 digits.</b></span><span
+						class="glyphicon glyphicon-ok form-control-feedback"
+						style="color: green;" ng-show="doctorForm.consulting.$valid"></span>
 				</div>
 			</div>
 		</div>
 		<div class="form-group" ng-show="formAllGood()"></div>
 		<div class="form-group">
-			<div class="control-label col-sm-5">
+			<div class="control-label col-sm-4">
 				<button class="btn btn-primary"
 					ng-click="doctorAdd(doctor, 'doctorForm')">
 					<span class="glyphicon glyphicon-ok-circle"></span> Register
