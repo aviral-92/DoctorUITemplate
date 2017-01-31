@@ -2,9 +2,95 @@ scotchApp.controller('middleContent',function($scope){
 	
 });
 
-scotchApp.controller('login',function($scope){
-	
+scotchApp.controller('login',function($scope, $rootScope){
+	alert("ddd");
+	$scope.doctorLogin = function(loginDetail){
+		console.log(loginDetail);
+		if(loginDetail.password == 'admin'){
+			$scope.message = 'Successfully Logged in...!!!';
+			$rootScope.login = loginDetail;
+			window.location = "#/drLoginSuccess";
+		}else{
+			$scope.message = 'Invalid Credentials...!!!';
+		}
+	}
 });
+
+scotchApp.controller('drLoginSuccess', function($scope, $rootScope, $http){
+	
+// $scope.message = 'Hi '+$rootScope.login.email+ ', Login successful...';
+	$scope.drUpdate = false;
+	$scope.newValue = function(value){
+		console.log(value);
+		if(value == 'update'){
+			$scope.drUpdate = true;
+			$scope.demo = function(doctor){
+				console.log(">>>>>>>>>>>> Demo" +doctor.doctorId);
+				var doctorGet = null;
+				if(doctor != null && doctor.doctorId != null && doctor.doctorId != ""){
+					// Ajax on basis of doctorId.
+					doctorGet = $http.get('https://doctor-service.cfapps.io/doctor-management/getdoctorbyid/'+doctor.doctorId);
+					// Function called
+					doctorUpdateAjax(doctorGet, $scope, $http);
+					$scope.modalBody = true;
+				}
+				else if(doctor != null && doctor.doctorMobileNumber != null && doctor.doctorMobileNumber != ""){
+					// Ajax on basis of doctorMobileNumber.
+					doctorGet = $http.get('https://doctor-service.cfapps.io/doctor-management/getdoctorbymobilenumber/'+doctor.doctorMobileNumber);
+					// Function called
+					doctorUpdateAjax(doctorGet, $scope, $http);
+					$scope.modalBody = true;
+				}else if(doctor != null && doctor.doctorAdharNumber != null && doctor.doctorAdharNumber != ""){
+					// Ajax on basis of doctorAdhaarNumber.
+					doctorGet = $http.get('https://doctor-service.cfapps.io/doctor-management/getdoctorbyadharNumber/'+doctor.doctorAdharNumber);
+					// Function called
+					doctorUpdateAjax(doctorGet, $scope, $http);
+					$scope.modalBody = true;
+				}else{
+					$scope.modalBody = false;
+					$scope.modalBodyMsg = " Please provide input";
+				}
+			}
+		}else{
+			$scope.drUpdate = false;
+		}
+	}
+});
+
+function doctorUpdateAjax(doctorGet, $scope, $http){
+	
+	// Get before update...
+	doctorGet.success(function(data) {
+		$scope.doctors = data;
+		console.log($scope.doctors);
+		
+		// if no value found then it will display this
+		if(data.doctorId == null){
+			$scope.modalBody = false;
+			$scope.modalBodyMsg = " Please provide correct value.";
+		}
+		// Update function calls
+		$scope.doctorUpdate = function(doctorUpdateValue){
+			console.log(doctorUpdateValue);
+			// Update Ajax hit
+			var updateDoctor = $http.put('https://doctor-service.cfapps.io/doctor-management/updatedoctor', doctorUpdateValue);
+			// For success
+			updateDoctor.success(function(updateResponse) {
+				$scope.doctorUpdate = updateResponse.message;
+			});
+			// For error
+			doctorGet.error(function(updateResponse, status, headers, config) {
+				alert("failure message: " + updateResponse.message);
+			});
+		}
+	});
+	doctorGet.error(function(data, status, headers, config) {
+		alert("failure message: " + data.message);
+		$scope.modalBody = false;
+		$scope.modalBodyMsg = " Please provide correct value.";
+	});
+	return;
+}
 
 scotchApp.controller('about',function($scope){
 	
