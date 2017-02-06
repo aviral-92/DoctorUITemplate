@@ -10,7 +10,7 @@
 				Name:</label>
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="inputError2" name="name"
-					ng-model="doctor.doctorName" placeholder="Enter name"
+					ng-model="doctor.name" placeholder="Enter name"
 					ng-blur="doBlurName($event)" valid-Name>
 
 				<div class="help-inline">
@@ -33,7 +33,7 @@
 				Mobile Number :</label>
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="mobile" name="mobile"
-					ng-model="doctor.doctorNumber" placeholder="Enter Mobile Number"
+					ng-model="doctor.mobile" placeholder="Enter Mobile Number"
 					ng-blur="doBlurMobile($event)" valid-Mobile />
 
 				<div class="help-inline">
@@ -56,7 +56,7 @@
 				Number:</label>
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="adhar" name="adhar"
-					ng-model="doctor.doctorAdhaarNumber"
+					ng-model="doctor.aadhaarNumber"
 					placeholder="Enter Adhar Number" ng-blur="doBlurAdhar($event)"
 					valid-Adhar />
 
@@ -72,7 +72,37 @@
 				</div>
 			</div>
 		</div>
+		<!-- Email -->
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="pwd">Email:</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" id="email"
+					ng-model="doctor.email" placeholder="Enter Email">
+			</div>
+		</div>
+		<!-- Email -->
 
+		<!-- Age -->
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="pwd">Age:</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" id="email"
+					ng-model="doctor.age" placeholder="Enter Age">
+			</div>
+		</div>
+		<!-- Age -->
+		<!-- Gender -->
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="name"> Gender:</label>
+			<div class="control-label col-sm-2" style="margin-top: -1%;">
+				<label class="radio-inline"> <input type="radio"
+					name="optradio1" ng-model="doctor.gender" ng-value='1' />Male
+				</label> <label class="radio-inline"> <input type="radio"
+					name="optradio1" ng-model="doctor.gender" ng-value='0' />Female
+				</label>
+			</div>
+		</div>
+		<!-- Gender -->
 		<div class="form-group has-feedback "
 			ng-class="{'has-success' : doctorForm.address.$dirty && doctorForm.address.$valid ,
 			 'has-error' : doctorForm.address.$dirty && doctorForm.address.$invalid}">
@@ -80,7 +110,7 @@
 				Address:</label>
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="address" name="address"
-					ng-model="doctor.doctorHomeAddress"
+					ng-model="doctor.homeAddress"
 					placeholder="Enter  Home Address"
 					ng-blur="doBlurHomeAddress($event)" valid-Address />
 
@@ -105,7 +135,7 @@
 				Degree:</label>
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="degree" name="degree"
-					ng-model="doctor.doctorHighestDegree"
+					ng-model="doctor.highestDegree"
 					placeholder="Enter Highest Degree" ng-blur="doBlurDegree($event)"
 					valid-Degree />
 
@@ -129,7 +159,7 @@
 			<label class="control-label col-sm-2" for="name"> Expertise:</label>
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="expertise"
-					name="expertise" ng-model="doctor.doctorExpertized"
+					name="expertise" ng-model="doctor.expertized"
 					placeholder="Enter Expertise" ng-blur="doBlurExpertise($event)"
 					valid-Expertise />
 
@@ -152,9 +182,9 @@
 			<label class="control-label col-sm-2" for="name"> Government:</label>
 			<div class="control-label col-sm-2" style="margin-top: -1%;">
 				<label class="radio-inline"> <input type="radio"
-					name="optradio" ng-model="doctor.doctorGovtServent" ng-value='1' />Yes
+					name="optradio" ng-model="doctor.isGovernmentServent" ng-value='1' />Yes
 				</label> <label class="radio-inline"> <input type="radio"
-					name="optradio" ng-model="doctor.doctorGovtServent" ng-value='0' />No
+					name="optradio" ng-model="doctor.isGovernmentServent" ng-value='0' />No
 				</label>
 			</div>
 		</div>
@@ -162,12 +192,12 @@
 		<div class="form-group has-feedback "
 			ng-class="{'has-success' : doctorForm.shop.$dirty && doctorForm.shop.$valid ,
 			 'has-error' : doctorForm.shop.$dirty && doctorForm.shop.$invalid}">
-			<label class="control-label col-sm-2" for="name"> Shop
+			<label class="control-label col-sm-2" for="name"> Clinic
 				Address:</label>
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="shop" name="shop"
-					ng-model="doctor.doctorShopAddress"
-					placeholder="Enter Shop Address"
+					ng-model="doctor.clinicAddress"
+					placeholder="Enter Clinic Address"
 					ng-blur="doBlurShopAddress($event)" valid-Shop />
 
 				<div class="help-inline">
@@ -190,7 +220,7 @@
 				Fees:</label>
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="fees"
-					ng-model="doctor.doctorOneTimeConsultingFee"
+					ng-model="doctor.oneTimeFee"
 					placeholder="Enter one time Consulting Fees" name="fees"
 					ng-blur="doBlurFees($event)" valid-Fees />
 
@@ -212,7 +242,7 @@
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="consulting"
 					name="consulting"
-					ng-model="doctor.doctorDaystoCheckFreeInConsultingFee"
+					ng-model="doctor.daysCheckFree"
 					placeholder="Enter days to check Free"
 					ng-blur="doBlurConsulting($event)" valid-Consulting />
 

@@ -1,0 +1,60 @@
+<!-- -----------------------------About Image Starts------------------------------------ -->
+<div id="middle_box">
+	<img src="/images/doctor-contact.jpg" alt="Patient Login"
+		title="Patient Login" style="width: 900px; height: 208px;" />
+</div>
+<!-- -------------------------------About Image Ends------------------------------------ -->
+<!--------------------------------------Middle Box Starts---------------------------------->
+
+<div
+	style="width: 900px; height: 400px; background: linear-gradient(#c4dafc, #f6f6f6);">
+	<!-- ---------------------Icon Image------------------------- -->
+	<div class="box_title">
+		<div class="title_icon">
+			<img src="/images/mini_icon1.gif" alt="" title="" />
+		</div>
+		<h2>
+			Patient <span class="dark_blue">Sign In</span>
+		</h2>
+	</div>
+	<!-- ---------------------Icon Image------------------------- -->
+	<br /> <br /> <br />
+	<!-- -------------------Inline form position formatting ------------------------------- -->
+	<div class="box_text_content" style="margin-left: 15%;">
+		<div
+			style="width: 700px; margin-left: -10%; font-size: 110%; font-style: oblique;">
+			<div class="container">
+				<!-- -------------------Inline form position formatting ------------------------------- -->
+				<form class="form form-horizontal">
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="email"> Email:</label>
+						<div class="col-sm-4">
+							<input type="text" rows="5" maxlength="500" class="form-control"
+								ng-model="loginDetails.email" placeholder="Enter Email" />
+
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="pwd"> Password:</label>
+						<div class="col-sm-4">
+							<input type="password" class="form-control" id="pwd"
+								ng-model="loginDetails.password" placeholder="Enter Password" />
+
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="control-label col-sm-4">
+							<button class="btn btn-primary"
+								ng-click="patientLogin(loginDetails)">
+								<span class="glyphicon glyphicon-ok-circle"></span> Login
+							</button>
+							{{message}}
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="clear"></div>
+<!--------------------------------------Middle Box Ends---------------------------------->
