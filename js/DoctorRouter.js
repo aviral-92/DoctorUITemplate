@@ -61,11 +61,19 @@ scotchApp.config(function($routeProvider) {
 		templateUrl : '/html/contact.html',
 		controller : 'contact'
 	})
+	
+	// route for the Dashboard page
+	.when('/dashboard', {
+		templateUrl : '/html/Dashboard/WelcomeDashboard.html',
+		controller : 'dashboard'
+	})
+	
 	//route for dashboard update profile
 	.when('/updateProfile', {
 		templateUrl : '/html/Dashboard/updateProfile.html',
 		controller : 'updateProfile'
 	})
+	
 	//route for dashboard home page
 	.when('/afterLogin', {
 		templateUrl : '/html/Dashboard/AfterLogin.html',

@@ -11,7 +11,7 @@
 	<div class="container" style="margin-top: 5%;">
 		<form class="form form-horizontal">
 			<div class="form-group">
-				<label class="control-label col-sm-3" for="inputError2">
+				<label class="control-label col-sm-1" for="inputError2">
 					Name :</label>
 				<div class="col-sm-3">
 					<!-- <input type="text" class="form-control" id="mobile" name="mobile"
@@ -51,8 +51,8 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-3" for="inputError2">
-					Age :</label>
+				<label class="control-label col-sm-3" for="inputError2"> Age
+					:</label>
 				<div class="col-sm-3">
 					<!-- <input type="text" class="form-control" id="mobile" name="mobile"
 					ng-model="" placeholder="Enter Email"/> -->
@@ -60,9 +60,10 @@
 						{{doctor.age}}</label>
 				</div>
 			</div>
-				<div class="form-group">
-				<label class="control-label col-sm-3" for="name">
-					Gender:</label>
+
+			<!-- .................Need to remove in code refactoring...................... -->
+			<!-- <div class="form-group">
+				<label class="control-label col-sm-3" for="name"> Gender:</label>
 				<div class="control-label col-sm-2" style="margin-top: -1%;">
 					<label class="radio-inline"> <input type="radio"
 						name="optradio1" ng-model="doctor.gender" ng-value='1' />Male
@@ -70,7 +71,16 @@
 						name="optradio1" ng-model="doctor.gender" ng-value='0' />Female
 					</label>
 				</div>
+			</div> -->
+			<!-- .................Need to remove in code refactoring...................... -->
+
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="name"> Gender:</label>
+				<div class="control-label col-sm-1">
+					<label>{{doctor.gender}}</label>
+				</div>
 			</div>
+
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="inputError2">
 					Clinic Address :</label>
@@ -114,11 +124,8 @@
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="name">
 					Government:</label>
-				<div class="control-label col-sm-2" style="margin-top: -1%;">
-					<label class="radio-inline"> <input type="radio"
-						name="optradio" ng-model="doctor.isGovernmentServent" ng-value='1' />Yes
-					</label> <label class="radio-inline"> <input type="radio"
-						name="optradio" ng-model="doctor.isGovernmentServent" ng-value='0' />No
+				<div class="control-label col-sm-1">
+					<label class="control-label col-sm-3">{{doctor.isGovernmentServent}}
 					</label>
 				</div>
 			</div>
@@ -144,10 +151,4 @@
 			</div>
 		</form>
 	</div>
-
-
-
-	<br> <br> <br> <br> <br> <br> <br> <br>
-	<br> <br> <br> <br> <br> <br> <br> <br>
-	<br> <br> <br> <br> <br> <br> <br> <br>
 </div>
