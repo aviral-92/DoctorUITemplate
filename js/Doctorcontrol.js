@@ -4,31 +4,35 @@ scotchApp.controller('middleContent',function($scope){
 
 scotchApp.controller('login',function($scope, $rootScope, $http, $cookieStore, $window){
 
-	$scope.doctorLogin = function(loginDetail){
-		console.log(loginDetail);
-		$cookieStore.put('email', loginDetail.email);
-		//TODO need to change with email.
-		var loginSuccessful = $http.get('https://doctor-service.cfapps.io/doctor/get/'+loginDetail.email+'/email');
-		console.log(">>>>>>>>>" + loginSuccessful.success);
-		
-		loginSuccessful.success(function(getDoctorDetails) {
-			alert("ddd");
-			if(getDoctorDetails.doctorId != null){
-				$scope.message = 'Successfully Logged in...!!!';
-				$rootScope.getDoctorByMobile = getDoctorDetails; //TODO need to change by Email...
-				$cookieStore.put('loginData', getDoctorDetails);
-				
-				/*$window.location.href = "/html/Dashboard/DoctorDashboard.html";*/
-				window.location = "#/afterLogin";
-			}else{
+	if($cookieStore.get('loginData') == undefined || $cookieStore.get('email') == undefined){
+		$scope.doctorLogin = function(loginDetail){
+			console.log(loginDetail);
+			$cookieStore.put('email', loginDetail.email);
+			//TODO need to change with email.
+			var loginSuccessful = $http.get('https://doctor-service.cfapps.io/doctor/get/'+loginDetail.email+'/email');
+			console.log(">>>>>>>>>" + loginSuccessful.success);
+			
+			loginSuccessful.success(function(getDoctorDetails) {
+				alert("ddd");
+				if(getDoctorDetails.doctorId != null){
+					$scope.message = 'Successfully Logged in...!!!';
+					$rootScope.getDoctorByMobile = getDoctorDetails; //TODO need to change by Email...
+					$cookieStore.put('loginData', getDoctorDetails);
+					
+					/*$window.location.href = "/html/Dashboard/DoctorDashboard.html";*/
+					window.location = "#/afterLogin";
+				}else{
+					$scope.message = 'Invalid Credentials...!!!';
+				}
+			});
+			loginSuccessful.error(function(data, status, headers, config) {
+				alert("failure message: " + data.message);
 				$scope.message = 'Invalid Credentials...!!!';
-			}
-		});
-		loginSuccessful.error(function(data, status, headers, config) {
-			alert("failure message: " + data.message);
-			$scope.message = 'Invalid Credentials...!!!';
-		});
-		
+			});
+			
+		}
+	}else{
+		$window.location.href = "#/afterLogin";
 	}
 });
 
@@ -36,11 +40,12 @@ scotchApp.controller('logout',function($scope, $rootScope, $http, $cookieStore, 
 	
 	$cookieStore.remove('email');
 	$cookieStore.remove('loginData');
+	window.location = "#/login";
 });
 
+//TODO need to remove................................................................
 scotchApp.controller('drLoginSuccess', function($scope, $rootScope, $http){
 	
-// $scope.message = 'Hi '+$rootScope.login.email+ ', Login successful...';
 	$scope.drUpdate = false;
 	$scope.drDelete = false;
 	$scope.newValue = function(value){
