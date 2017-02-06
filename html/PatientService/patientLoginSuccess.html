@@ -1,0 +1,25 @@
+<div class="control-label">{{message}}</div>
+<div class=" control-label" style = "margin-left:20%;"><h2>What you want to do...!!!</h2></div>
+<br>
+<div class="control-label" style = "float:left;"><h2>
+	<label class="radio-inline"><input type="radio"
+		ng-change="newValue('update')" name="patientDeleteUpdate"
+		value="update" ng-model="value">Update</label><label
+		class="radio-inline"><input type="radio"
+		ng-change="newValue('delete')" name="patientDeleteUpdate"
+		value="delete" ng-model="value">Delete</label></h2>
+</div>
+
+
+<div ng-show="patientUpdate">
+
+	<br> <br>
+	<div ng-include="'/html/PatientService/updatePatient.html'"></div>
+
+</div>
+
+<div ng-show="patientDelete">
+<br> <br>
+		<div ng-include="'/html/PatientService/deletePatient.html'"></div>
+	</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
