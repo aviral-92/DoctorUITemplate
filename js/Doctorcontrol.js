@@ -8,7 +8,7 @@ scotchApp.controller('login',function($scope, $rootScope, $http, $cookieStore, $
 		$scope.doctorLogin = function(loginDetail){
 			console.log(loginDetail);
 			$cookieStore.put('email', loginDetail.email);
-			//TODO need to change with email.
+			// TODO need to change with email.
 			var loginSuccessful = $http.get('https://doctor-service.cfapps.io/doctor/get/'+loginDetail.email+'/email');
 			console.log(">>>>>>>>>" + loginSuccessful.success);
 			
@@ -16,11 +16,19 @@ scotchApp.controller('login',function($scope, $rootScope, $http, $cookieStore, $
 				alert("ddd");
 				if(getDoctorDetails.doctorId != null){
 					$scope.message = 'Successfully Logged in...!!!';
-					$rootScope.getDoctorByMobile = getDoctorDetails; //TODO need to change by Email...
+					$rootScope.getDoctorByMobile = getDoctorDetails; // TODO
+																		// need
+																		// to
+																		// change
+																		// by
+																		// Email...
 					$cookieStore.put('loginData', getDoctorDetails);
 					
-					/*$window.location.href = "/html/Dashboard/DoctorDashboard.html";*/
-					window.location = "#/afterLogin";
+					/*
+					 * $window.location.href =
+					 * "/html/Dashboard/DoctorDashboard.html";
+					 */
+					window.location = "#/dashboard";
 				}else{
 					$scope.message = 'Invalid Credentials...!!!';
 				}
@@ -32,7 +40,7 @@ scotchApp.controller('login',function($scope, $rootScope, $http, $cookieStore, $
 			
 		}
 	}else{
-		$window.location.href = "#/afterLogin";
+		$window.location.href = "#/dashboard";
 	}
 });
 
@@ -43,7 +51,8 @@ scotchApp.controller('logout',function($scope, $rootScope, $http, $cookieStore, 
 	window.location = "#/login";
 });
 
-//TODO need to remove................................................................
+// TODO need to
+// remove................................................................
 scotchApp.controller('drLoginSuccess', function($scope, $rootScope, $http){
 	
 	$scope.drUpdate = false;
@@ -464,6 +473,11 @@ scotchApp.controller('updateCustomerController', function($scope, $http) {
 
 
 /** **********************Dashboard Starts*********************** */
+
+scotchApp.controller('dashboard',function($scope, $rootScope){
+	
+});
+
 scotchApp.controller('updateProfile',function($scope, $rootScope, $http){
 	
 	$scope.doctors = $rootScope.getDoctorByMobile;
@@ -485,11 +499,24 @@ scotchApp.controller('updateProfile',function($scope, $rootScope, $http){
 
 scotchApp.controller('afterLogin',function($scope, $rootScope, $cookieStore){
 	
+	
 	if($cookieStore.get('loginData') != undefined && $cookieStore.get('email') != undefined){
-		console.log(">>>>>>>"+$rootScope.getDoctorByMobile);
-		console.log("........." +$cookieStore.get('email'));
+		// console.log(">>>>>>>"+$rootScope.getDoctorByMobile);
+		// console.log("........." +$cookieStore.get('email'));
 		console.log("<<<<<<<<<<<<" +$cookieStore.get('loginData'));
-		$scope.doctor = $cookieStore.get('loginData');
+		var getLoginDetails = $cookieStore.get('loginData');
+		if(getLoginDetails.gender == '0'){
+			getLoginDetails.gender = 'Female';
+		}else{
+			getLoginDetails.gender = 'Male';
+		}
+		if(getLoginDetails.isGovernmentServent == '0'){
+			getLoginDetails.isGovernmentServent = 'Yes';
+		}else{
+			getLoginDetails.isGovernmentServent = 'No';
+		}
+		$scope.doctor = getLoginDetails;
+		
 	}else{
 		window.location = "#/login";
 	}
