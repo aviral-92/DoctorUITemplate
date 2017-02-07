@@ -13,6 +13,17 @@
 	border-bottom: 2px solid #eee;
 }
 
+.content-box-small {
+	/* margin-bottom: 30px; */
+	background: #EFF0F3;
+	border-radius: 10px;
+	/*padding:10px;*/
+	border-left: 1px solid #eee;
+	border-top: 1px solid #eee;
+	border-right: 2px solid #eee;
+	border-bottom: 2px solid #eee;
+}
+
 .sidebar ul.nav, .sidebar ul.nav ul {
 	list-style: none;
 	padding: 0px;
@@ -174,6 +185,7 @@
 }
 
 .content-box-large {
+	
 	padding: 20px;
 }
 

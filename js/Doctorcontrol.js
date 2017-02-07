@@ -13,7 +13,6 @@ scotchApp.controller('login',function($scope, $rootScope, $http, $cookieStore, $
 			console.log(">>>>>>>>>" + loginSuccessful.success);
 			
 			loginSuccessful.success(function(getDoctorDetails) {
-				alert("ddd");
 				if(getDoctorDetails.doctorId != null){
 					$scope.message = 'Successfully Logged in...!!!';
 					$rootScope.getDoctorByMobile = getDoctorDetails; // TODO
@@ -23,11 +22,6 @@ scotchApp.controller('login',function($scope, $rootScope, $http, $cookieStore, $
 																		// by
 																		// Email...
 					$cookieStore.put('loginData', getDoctorDetails);
-					
-					/*
-					 * $window.location.href =
-					 * "/html/Dashboard/DoctorDashboard.html";
-					 */
 					window.location = "#/dashboard";
 				}else{
 					$scope.message = 'Invalid Credentials...!!!';
@@ -185,54 +179,31 @@ scotchApp.controller('signUp',function($scope, $http){
 				target.focus();
 			}
 		}
-		$scope.doBlurHomeAddress = function($event){
-			var target = $event.target;
-			if($scope.doctor != null && $scope.doctor.homeAddress != null && $scope.doctor.homeAddress.length > 0){
-				target.blur();	
-			}else{
-				target.focus();
-			}
-		}
-		$scope.doBlurDegree = function($event){
-			var target = $event.target;
-			if($scope.doctor != null && $scope.doctor.highestDegree != null && $scope.doctor.highestDegree.length > 0){
-				target.blur();	
-			}else{
-				target.focus();
-			}
-		}
-		$scope.doBlurExpertise = function($event){
-			var target = $event.target;
-			if($scope.doctor != null && $scope.doctor.expertized != null && $scope.doctor.expertized.length > 0){
-				target.blur();	
-			}else{
-				target.focus();
-			}
-		}
-		$scope.doBlurShopAddress = function($event){
-			var target = $event.target;
-			if($scope.doctor != null && $scope.doctor.clinicAddress != null && $scope.doctor.clinicAddress.length > 0){
-				target.blur();	
-			}else{
-				target.focus();
-			}
-		}
-		$scope.doBlurFees = function($event){
-			var target = $event.target;
-			if($scope.doctor != null && $scope.doctor.oneTimeFee != null && $scope.doctor.oneTimeFee.length > 0){
-				target.blur();	
-			}else{
-				target.focus();
-			}
-		}
-		$scope.doBlurConsulting = function($event){
-			var target = $event.target;
-			if($scope.doctor != null && $scope.doctor.daysCheckFree != null && $scope.doctor.daysCheckFree.length > 0){
-				target.blur();	
-			}else{
-				target.focus();
-			}
-		}
+		/*
+		 * $scope.doBlurHomeAddress = function($event){ var target =
+		 * $event.target; if($scope.doctor != null && $scope.doctor.homeAddress !=
+		 * null && $scope.doctor.homeAddress.length > 0){ target.blur(); }else{
+		 * target.focus(); } } $scope.doBlurDegree = function($event){ var
+		 * target = $event.target; if($scope.doctor != null &&
+		 * $scope.doctor.highestDegree != null &&
+		 * $scope.doctor.highestDegree.length > 0){ target.blur(); }else{
+		 * target.focus(); } } $scope.doBlurExpertise = function($event){ var
+		 * target = $event.target; if($scope.doctor != null &&
+		 * $scope.doctor.expertized != null && $scope.doctor.expertized.length >
+		 * 0){ target.blur(); }else{ target.focus(); } }
+		 * $scope.doBlurShopAddress = function($event){ var target =
+		 * $event.target; if($scope.doctor != null &&
+		 * $scope.doctor.clinicAddress != null &&
+		 * $scope.doctor.clinicAddress.length > 0){ target.blur(); }else{
+		 * target.focus(); } } $scope.doBlurFees = function($event){ var target =
+		 * $event.target; if($scope.doctor != null && $scope.doctor.oneTimeFee !=
+		 * null && $scope.doctor.oneTimeFee.length > 0){ target.blur(); }else{
+		 * target.focus(); } } $scope.doBlurConsulting = function($event){ var
+		 * target = $event.target; if($scope.doctor != null &&
+		 * $scope.doctor.daysCheckFree != null &&
+		 * $scope.doctor.daysCheckFree.length > 0){ target.blur(); }else{
+		 * target.focus(); } }
+		 */
 });
 
 scotchApp
@@ -474,11 +445,67 @@ scotchApp.controller('updateCustomerController', function($scope, $http) {
 
 /** **********************Dashboard Starts*********************** */
 
-scotchApp.controller('dashboard',function($scope, $rootScope){
+scotchApp.controller('dashboard',function($scope, $rootScope, $http, $cookieStore){
 	
+	var doctorDetail = $cookieStore.get('loginData');
+// var doctors =
+// $http.get('https://doctor-service.cfapps.io/doctor/get/'+doctorDetail.email+'/email');
+	// For success
+// doctors.success(function(progressBar) {
+		var fieldCounter = checkDoctorField(doctorDetail);
+		$scope.percent = parseInt((fieldCounter /13)*100)+'%';
+		
+// });
+	// For error
+	/*
+	 * doctors.error(function(progressBar, status, headers, config) { //
+	 * alert("failure message: " + updateResponse.message); });
+	 */
 });
 
-scotchApp.controller('updateProfile',function($scope, $rootScope, $http){
+function checkDoctorField(doctors){
+	
+	if(doctors != null){
+		var field = 6;
+		if(doctors.homeAddress != null){
+			field++;
+		}
+		if(doctors.highestDegree != null){
+			field++;
+		}
+		if(doctors.expertized != null){
+			field++;
+		}
+		if(doctors.isGovernmentServent != null){
+			field++;
+		}
+		if(doctors.clinicAddress != null){
+			field++;
+		}
+		if(doctors.oneTimeFee != null && doctors.oneTimeFee != ''){
+			field++;
+		}
+		if(doctors.daysCheckFree != null){
+			field++;
+		}
+		return field;
+	}
+}
+
+function getByEmail($http, $cookieStore){
+	
+	alert($cookieStore.get('email'));
+	var doctors = $http.get('https://doctor-service.cfapps.io/doctor/get/'+$cookieStore.get('email')+'/email');
+	doctors.success(function(data) {
+		return data;
+	});
+	// For error
+	doctors.error(function(data, status, headers, config) {
+		// alert("failure message: " + updateResponse.message);
+	});
+}
+
+scotchApp.controller('updateProfile',function($scope, $rootScope, $http, $cookieStore){
 	
 	$scope.doctors = $rootScope.getDoctorByMobile;
 	
@@ -489,11 +516,97 @@ scotchApp.controller('updateProfile',function($scope, $rootScope, $http){
 		// For success
 		updateDoctor.success(function(updateResponse) {
 			$scope.successMessage = "Successfully Updated...!!!";
+
+			// Rest hit to get data and refresh cookies......Strats
+			var doctorSuccess = $http.get('https://doctor-service.cfapps.io/doctor/get/'+$cookieStore.get('email')+'/email');
+			doctorSuccess.success(function(data) {
+				$cookieStore.remove('loginData');
+				$cookieStore.put('loginData', data);
+			});
+			// For error
+			doctorSuccess.error(function(data, status, headers, config) {
+				// alert("failure message: " + updateResponse.message);
+			});
+			// Rest hit to get data and refresh cookies......Ends
 		});
 		// For error
 		updateDoctor.error(function(updateResponse, status, headers, config) {
 			alert("failure message: " + updateResponse.message);
 		});
+	}
+	
+	// validation Added......................
+	$scope.doBlurName = function($event){
+		var target = $event.target;
+		if($scope.doctor != null && $scope.doctor.name.length > 0){
+			target.blur();	
+		}else{
+			target.focus();
+		}
+	}
+	$scope.doBlurMobile = function($event){
+		var target = $event.target;
+		if($scope.doctor != null && $scope.doctor.mobile != null && $scope.doctor.mobile.length == 10){
+			target.blur();	
+		}else{
+			target.focus();
+		}
+	}
+	$scope.doBlurDegree = function($event){
+		var target = $event.target;
+		if($scope.doctor != null && $scope.doctor.highestDegree != null && $scope.doctor.highestDegree.length > 0){
+			target.blur();	
+		}else{
+			target.focus();
+		}
+	}
+	$scope.doBlurHomeAddress = function($event){
+		var target = $event.target;
+		if($scope.doctor != null && $scope.doctor.homeAddress != null && $scope.doctor.homeAddress.length > 0){
+			target.blur();	
+		}else{
+			target.focus();
+		}
+	}
+	$scope.doBlurExpertise = function($event){
+		var target = $event.target;
+		if($scope.doctor != null && $scope.doctor.expertized != null && $scope.doctor.expertized.length > 0){
+			target.blur();	
+		}else{
+			target.focus();
+		}
+	}
+	$scope.doBlurShopAddress = function($event){
+		var target = $event.target;
+		if($scope.doctor != null && $scope.doctor.clinicAddress != null && $scope.doctor.clinicAddress.length > 0){
+			target.blur();	
+		}else{
+			target.focus();
+		}
+	}
+	$scope.doBlurFees = function($event){
+		var target = $event.target;
+		if($scope.doctor != null && $scope.doctor.oneTimeFee != null && $scope.doctor.oneTimeFee.length > 0){
+			target.blur();	
+		}else{
+			target.focus();
+		}
+	}
+	$scope.doBlurConsulting = function($event){
+		var target = $event.target;
+		if($scope.doctor != null && $scope.doctor.daysCheckFree != null && $scope.doctor.daysCheckFree.length > 0){
+			target.blur();	
+		}else{
+			target.focus();
+		}
+	}
+	// check validation
+});
+
+scotchApp.controller('retrievePassword',function($scope, $rootScope){
+	$scope.submit = function(){
+        /* $scope.message = "Password send to your E-mail Id"; */
+        alert("Password send to your E-mail Id");
 	}
 });
 
@@ -501,8 +614,7 @@ scotchApp.controller('afterLogin',function($scope, $rootScope, $cookieStore){
 	
 	
 	if($cookieStore.get('loginData') != undefined && $cookieStore.get('email') != undefined){
-		// console.log(">>>>>>>"+$rootScope.getDoctorByMobile);
-		// console.log("........." +$cookieStore.get('email'));
+
 		console.log("<<<<<<<<<<<<" +$cookieStore.get('loginData'));
 		var getLoginDetails = $cookieStore.get('loginData');
 		if(getLoginDetails.gender == '0'){
