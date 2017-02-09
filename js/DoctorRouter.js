@@ -9,6 +9,12 @@ scotchApp.config(function($routeProvider) {
 		templateUrl : '/html/Container.html',
 		controller : 'middleContent'
 	})
+	
+	// route for Search
+	.when('/search', {
+		templateUrl : '/html/DoctorSearch.html',
+		controller : 'doctorSearch'
+	})
 
 	// route for the login page
 	.when('/login', {
@@ -28,27 +34,10 @@ scotchApp.config(function($routeProvider) {
 		controller : 'drLoginSuccess'
 	})
 
-	// route for the patient login page
-	.when('/patientlogin', {
-		templateUrl : '/html/PatientService/PatientLogin.html',
-		controller : 'patientlogin'
-	})
-
-	// route for the patient login Success page
-	.when('/patientLoginSuccess', {
-		templateUrl : '/html/PatientService/patientLoginSuccess.html',
-		controller : 'patientLoginSuccess'
-	})
 	// route for the SignUp page
 	.when('/signUp', {
 		templateUrl : '/html/DoctorSignUp.html',
 		controller : 'signUp'
-	})
-
-	// route for the patient signup page
-	.when('/patientsignup', {
-		templateUrl : '/html/PatientService/PatientSignUp.html',
-		controller : 'patientsignup'
 	})
 
 	// route for the About page

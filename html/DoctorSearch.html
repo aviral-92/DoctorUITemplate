@@ -1,0 +1,107 @@
+<div class="container">
+	<br> <br>
+	<div>
+		<form class="form-horizontal" role="form">
+
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="name">Doctor Id:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="name"
+						ng-model="doctor.doctorId" placeholder="Enter Id">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="name">Doctor
+					Name:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="name"
+						ng-model="doctor.name" placeholder="Enter Id">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="pwd">Mobile
+					Number:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="mobile"
+						ng-model="doctor.mobile" placeholder="Enter mobile number">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="pwd">Adhaar
+					Number:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="adhaar"
+						ng-model="doctor.aadhaarNumber" placeholder="Enter adhaar number">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="pwd">Email:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="adhaar"
+						ng-model="doctor.email" placeholder="Enter adhaar number">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="button" ng-click="searchDoctor(doctor)"
+						class="btn btn-success" data-toggle="modal" data-target="#myModal">
+						<span class="glyphicon glyphicon-search"></span> Search Doctor
+					</button>
+				</div>
+			</div>
+			<br> <br> <br> <br> <br> <br> <br>
+			<br>
+		</form>
+
+		<!-- -------------MODEL------- -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
+				<div style="width: 130%; margin-left: -10%;" class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" ng-click="close()">&times;</button>
+						<h4 class="modal-title">Doctor Update</h4>
+					</div>
+					<center>
+						<div class="overlay-content">
+							<div ng-show="loader" class="loader"></div>
+						</div>
+					</center>
+					<div class="modal-body">
+						<div ng-show="modalBody">
+							<table class="table table-bordered">
+								<tr>
+									<th>Id</th>
+									<th>Name</th>
+									<th>Email</th>
+									<th>Gender</th>
+									<th>Age</th>
+									<th>Mobile</th>
+									<th>Govt Servant</th>
+									<th>Expertise</th>
+									<th>Clinic</th>
+									<th>Consulting Fees</th>
+								</tr>
+								<tr ng-repeat="doctorObj in doctors" class="active">
+									<td>{{doctorObj.doctorId}}</td>
+									<td>{{doctorObj.name}}</td>
+									<td>{{doctorObj.email}}</td>
+									<td>{{doctorObj.gender}}</td>
+									<td>{{doctorObj.age}}</td>
+									<td>{{doctorObj.mobile}}</td>
+									<td>{{doctorObj.isGovernmentServent}}</td>
+									<td>{{doctorObj.expertized}}</td>
+									<td>{{doctorObj.clinicAddress}}</td>
+									<td>{{doctorObj.oneTimeFee}}</td>
+								</tr>
+							</table>
+						</div>
+						{{message}}
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
