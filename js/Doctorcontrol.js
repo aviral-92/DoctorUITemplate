@@ -189,15 +189,12 @@ scotchApp.controller('updateProfile', function($scope, $rootScope, $http,
 		console.log(doctorUpdateValue);
 
 		if (getDoctors.mobile == doctorUpdateValue.mobile) {
-			alert("Hello");
 			delete doctorUpdateValue.mobile;
 		}
 		if (getDoctors.email == doctorUpdateValue.email) {
-			alert("Hello");
 			delete doctorUpdateValue.email;
 		}
 		if (getDoctors.aadhaarNumber == doctorUpdateValue.aadhaarNumber) {
-			alert("Hello");
 			delete doctorUpdateValue.aadhaarNumber;
 		}
 		// console.log(doctorUpdateValue);
