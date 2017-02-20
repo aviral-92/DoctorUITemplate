@@ -1,48 +1,90 @@
 <div class="container">
 	<br> <br>
 	<div>
-		<form class="form-horizontal" role="form">
+		<form class="form-horizontal" role="form" style="margin-left: 30%;">
 
-			<div class="form-group">
+		<!-- 	<div class="form-group">
 				<label class="control-label col-sm-2" for="name">Doctor Id:</label>
 				<div class="col-sm-5">
 					<input type="text" class="form-control" id="name"
 						ng-model="doctor.doctorId" placeholder="Enter Id">
 				</div>
-			</div>
+			</div> -->
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="name">Doctor
-					Name:</label>
+				<!-- <label class="control-label col-sm-2" for="name">Doctor
+					Name:</label> -->
 				<div class="col-sm-5">
 					<input type="text" class="form-control" id="name"
-						ng-model="doctor.name" placeholder="Enter Id">
+						ng-model="doctor.name" placeholder="Enter Doctor Name">
 				</div>
 			</div>
+			
 			<div class="form-group">
+			<!-- 	<label class="control-label col-sm-2" for="name">Clinic
+					Name:</label> -->
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="name"
+						ng-model="doctor.clinicName" placeholder="Enter Clinic Name">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<!-- <label class="control-label col-sm-2" for="name">Clinic
+					Address:</label> -->
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="name"
+						ng-model="doctor.clinicAddress" placeholder="Enter Clinic Address">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<!-- <label class="control-label col-sm-2" for="name">State:</label>-->
+				<div class="col-sm-5"> 
+					<input type="text" class="form-control" id="name"
+						ng-model="doctor.state" placeholder="Enter State">
+				</div>
+			</div>
+			
+			<div class="form-group">
+			<!-- 	<label class="control-label col-sm-2" for="name">City:</label>-->
+				<div class="col-sm-5"> 
+					<input type="text" class="form-control" id="name"
+						ng-model="doctor.city" placeholder="Enter City">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<!-- <label class="control-label col-sm-2" for="name">PinCode:</label> -->
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="name"
+						ng-model="doctor.pin" placeholder="Enter Pin Code">
+				</div>
+			</div>
+			<!-- <div class="form-group">
 				<label class="control-label col-sm-2" for="pwd">Mobile
 					Number:</label>
 				<div class="col-sm-5">
 					<input type="text" class="form-control" id="mobile"
 						ng-model="doctor.mobile" placeholder="Enter mobile number">
 				</div>
-			</div>
-			<div class="form-group">
+			</div> -->
+		<!-- 	<div class="form-group">
 				<label class="control-label col-sm-2" for="pwd">Adhaar
 					Number:</label>
 				<div class="col-sm-5">
 					<input type="text" class="form-control" id="adhaar"
 						ng-model="doctor.aadhaarNumber" placeholder="Enter adhaar number">
 				</div>
-			</div>
-			<div class="form-group">
+			</div> -->
+			<!-- <div class="form-group">
 				<label class="control-label col-sm-2" for="pwd">Email:</label>
 				<div class="col-sm-5">
 					<input type="text" class="form-control" id="adhaar"
 						ng-model="doctor.email" placeholder="Enter adhaar number">
 				</div>
-			</div>
+			</div> -->
 			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
+				<div class="col-sm-offset-1 col-sm-10">
 					<button type="button" ng-click="searchDoctor(doctor)"
 						class="btn btn-success" data-toggle="modal" data-target="#myModal">
 						<span class="glyphicon glyphicon-search"></span> Search Doctor
@@ -58,13 +100,12 @@
 			<div class="modal-dialog">
 				<div style="width: 130%; margin-left: -10%;" class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" ng-click="close()">&times;</button>
+						<button type="button" class="close" data-dismiss="modal"
+							ng-click="close()">&times;</button>
 						<h4 class="modal-title">Doctor Update</h4>
 					</div>
 					<center>
-						<div class="overlay-content">
-							<div ng-show="loader" class="loader"></div>
-						</div>
+						<div ng-show="loader" class="loader"></div>
 					</center>
 					<div class="modal-body">
 						<div ng-show="modalBody">
@@ -98,7 +139,8 @@
 						{{message}}
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Close</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal"
+							ng-click="close()">Close</button>
 					</div>
 				</div>
 			</div>

@@ -1,13 +1,19 @@
-var scotchApp = angular.module('myApp', [ 'ngCookies', 'ngRoute',
-		'UserValidation' ]);
+var scotchApp = angular.module('myApp', [ 'ngCookies', 'ngRoute', 'ui.bootstrap',
+		'UserValidation', 'angularUtils.directives.dirPagination', 'ngSanitize', 'MassAutoComplete' ]);
 
 scotchApp.config(function($routeProvider) {
 	$routeProvider
-
+	
 	// route for the home page
 	.when('/', {
-		templateUrl : '/html/Container.html',
-		controller : 'middleContent'
+		templateUrl : '/html/Index_Slider.html',
+		controller : 'indexSlider'
+	})
+	
+	// route for the home page
+	.when('/home', {
+		templateUrl : '/html/Index_Slider.html',
+		controller : 'indexSlider'
 	})
 	
 	// route for Search
@@ -15,19 +21,18 @@ scotchApp.config(function($routeProvider) {
 		templateUrl : '/html/DoctorSearch.html',
 		controller : 'doctorSearch'
 	})
+	
+	// route for LoginPage
+	.when('/loginPage', {
+		templateUrl : '/html/LoginPage.html',
+		controller : 'loginPage'
+	})
 
 	// route for the login page
 	.when('/login', {
 		templateUrl : '/html/Login.html',
 		controller : 'login'
 	})
-
-	// route for the logout page
-	.when('/logout', {
-		templateUrl : '/html/Login.html',
-		controller : 'logout'
-	})
-
 	// route for the login Success page
 	.when('/drLoginSuccess', {
 		templateUrl : '/html/Dashboard/AfterLogin.html',
@@ -58,21 +63,15 @@ scotchApp.config(function($routeProvider) {
 		controller : 'dashboard'
 	})
 
-	// route for dashboard update profile
-	.when('/updateProfile', {
-		templateUrl : '/html/Dashboard/updateProfile.html',
-		controller : 'updateProfile'
-	})
-
 	// route for dashboard retrieve password
 	.when('/retrievePassword', {
 		templateUrl : '/html/Dashboard/RetrievePassword.html',
 		controller : 'retrievePassword'
 	})
-
-	// route for dashboard home page
-	.when('/afterLogin', {
-		templateUrl : '/html/Dashboard/AfterLogin.html',
-		controller : 'afterLogin'
+	
+	.when('/searchFunctionality', {
+		templateUrl : '/html/SearchFunctionality/DoctorSearch.html',
+		controller : 'functionalitySearch'
 	});
+
 });

@@ -1,72 +1,73 @@
-<div class="dashboard">
-	<br>
-	<div ng-include="'/html/Dashboard/dashboard.html'"></div>
-	<!-- <div class="span2">
+<section id="page-keeper">
+	<div class="container-fluid">
+		<br>
+		<!-- <div ng-include="'/html/Dashboard/dashboard.html'"></div> -->
+		<!-- <div class="span2">
 		<img
 			src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm"
 			class="img-circle">
 	</div> -->
-	<br />
+		<br />
 
-	<div class="container" style="margin-top: -5%;">
-		<div class="col-md-6">
-			<div class="content-box-large">
+		<div class="container" style="margin-top: -5%;">
+			<div class="col-md-6">
+				<div class="content-box-large">
 
-				<div class="panel-body">
-					<form class="form form-horizontal">
-						<div class="form-group">
-							<label class="control-label col-sm-4" for="inputError2">
-								Name :</label>
-							<div class="col-sm-3">
-								<!-- <input type="text" class="form-control" id="mobile" name="mobile"
+					<div class="panel-body">
+						<form class="form form-horizontal">
+							<div class="form-group">
+								<label class="control-label col-sm-4" for="inputError2">
+									Name :</label>
+								<div class="col-sm-3">
+									<!-- <input type="text" class="form-control" id="mobile" name="mobile"
 					ng-model="" placeholder="Enter Name"/> -->
-								<label class="control-label col-sm-3" for="inputError2">{{doctor.name}}
-								</label>
+									<label class="control-label col-sm-3" for="inputError2">{{doctor.name}}
+									</label>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-4" for="inputError2">
-								Mobile :</label>
-							<div class="col-sm-3">
-								<!-- <input type="text" class="form-control" id="mobile" name="mobile"
+							<div class="form-group">
+								<label class="control-label col-sm-4" for="inputError2">
+									Mobile :</label>
+								<div class="col-sm-3">
+									<!-- <input type="text" class="form-control" id="mobile" name="mobile"
 					ng-model="" placeholder="Enter Mobile"/> -->
-								<label class="control-label col-sm-3" for="inputError2">
-									{{doctor.mobile}}</label>
+									<label class="control-label col-sm-3" for="inputError2">
+										{{doctor.mobile}}</label>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-4" for="inputError2">
-								Adhaar :</label>
-							<div class="col-sm-3">
-								<!-- 	<input type="text" class="form-control" id="mobile" name="mobile"
+							<div class="form-group">
+								<label class="control-label col-sm-4" for="inputError2">
+									Adhaar :</label>
+								<div class="col-sm-3">
+									<!-- 	<input type="text" class="form-control" id="mobile" name="mobile"
 					ng-model="" placeholder="Enter Adhaar"/> -->
-								<label class="control-label col-sm-3" for="inputError2">
-									{{doctor.aadhaarNumber}}</label>
+									<label class="control-label col-sm-3" for="inputError2">
+										{{doctor.aadhaarNumber}}</label>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-4" for="inputError2">
-								Email :</label>
-							<div class="col-sm-3">
-								<!-- <input type="text" class="form-control" id="mobile" name="mobile"
+							<div class="form-group">
+								<label class="control-label col-sm-4" for="inputError2">
+									Email :</label>
+								<div class="col-sm-3">
+									<!-- <input type="text" class="form-control" id="mobile" name="mobile"
 					ng-model="" placeholder="Enter Email"/> -->
-								<label class="control-label col-sm-3" for="inputError2">
-									{{doctor.email}}</label>
+									<label class="control-label col-sm-3" for="inputError2">
+										{{doctor.email}}</label>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-4" for="inputError2">
-								Age :</label>
-							<div class="col-sm-3">
-								<!-- <input type="text" class="form-control" id="mobile" name="mobile"
+							<div class="form-group">
+								<label class="control-label col-sm-4" for="inputError2">
+									Age :</label>
+								<div class="col-sm-3">
+									<!-- <input type="text" class="form-control" id="mobile" name="mobile"
 					ng-model="" placeholder="Enter Email"/> -->
-								<label class="control-label col-sm-3" for="inputError2">
-									{{doctor.age}}</label>
+									<label class="control-label col-sm-3" for="inputError2">
+										{{doctor.age}}</label>
+								</div>
 							</div>
-						</div>
 
-						<!-- .................Need to remove in code refactoring...................... -->
-						<!-- <div class="form-group">
+							<!-- .................Need to remove in code refactoring...................... -->
+							<!-- <div class="form-group">
 				<label class="control-label col-sm-3" for="name"> Gender:</label>
 				<div class="control-label col-sm-2" style="margin-top: -1%;">
 					<label class="radio-inline"> <input type="radio"
@@ -76,88 +77,91 @@
 					</label>
 				</div>
 			</div> -->
-						<!-- .................Need to remove in code refactoring...................... -->
+							<!-- .................Need to remove in code refactoring...................... -->
 
-						<div class="form-group">
-							<label class="control-label col-sm-4" for="name"> Gender:</label>
-							<div class="control-label col-sm-2">
-								<label>{{doctor.gender}}</label>
+							<div class="form-group">
+								<label class="control-label col-sm-4" for="name">
+									Gender:</label>
+								<div class="control-label col-sm-2">
+									<label>{{doctor.gender}}</label>
+								</div>
 							</div>
-						</div>
 
-						<div class="form-group">
-							<label class="control-label col-sm-4" for="inputError2">
-								Clinic Address :</label>
-							<div class="col-sm-3">
-								<!-- <input type="text" class="form-control" id="mobile" name="mobile"
+							<div class="form-group">
+								<label class="control-label col-sm-4" for="inputError2">
+									Clinic Address :</label>
+								<div class="col-sm-3">
+									<!-- <input type="text" class="form-control" id="mobile" name="mobile"
 					ng-model="" placeholder="Enter Clinic Address"/> -->
-								<label class="control-label col-sm-3" for="inputError2">
-									{{doctor.clinicAddress}}</label>
+									<label class="control-label col-sm-3" for="inputError2">
+										{{doctor.clinicAddress}}</label>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-4" for="inputError2">
-								Home Address :</label>
-							<div class="col-sm-3">
-								<!-- <input type="text" class="form-control" id="mobile" name="mobile"
+							<div class="form-group">
+								<label class="control-label col-sm-4" for="inputError2">
+									Home Address :</label>
+								<div class="col-sm-3">
+									<!-- <input type="text" class="form-control" id="mobile" name="mobile"
 					ng-model="" placeholder="Enter Home Address"/> -->
-								<label class="control-label col-sm-3" for="inputError2">
-									{{doctor.homeAddress}}</label>
+									<label class="control-label col-sm-3" for="inputError2">
+										{{doctor.homeAddress}}</label>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-4" for="inputError2">
-								Expertise :</label>
-							<div class="col-sm-3">
-								<!-- 	<input type="text" class="form-control" id="mobile" name="mobile"
+							<div class="form-group">
+								<label class="control-label col-sm-4" for="inputError2">
+									Expertise :</label>
+								<div class="col-sm-3">
+									<!-- 	<input type="text" class="form-control" id="mobile" name="mobile"
 					ng-model="" placeholder="Enter Expertise"/> -->
-								<label class="control-label col-sm-3" for="inputError2">
-									{{doctor.expertized}}</label>
+									<label class="control-label col-sm-3" for="inputError2">
+										{{doctor.expertized}}</label>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-4" for="inputError2">
-								Highest Degree :</label>
-							<div class="col-sm-3">
-								<!-- 	<input type="text" class="form-control" id="mobile" name="mobile"
+							<div class="form-group">
+								<label class="control-label col-sm-4" for="inputError2">
+									Highest Degree :</label>
+								<div class="col-sm-3">
+									<!-- 	<input type="text" class="form-control" id="mobile" name="mobile"
 					ng-model="" placeholder="Enter Highest Degree"/> -->
-								<label class="control-label col-sm-3" for="inputError2">
-									{{doctor.highestDegree}}</label>
+									<label class="control-label col-sm-3" for="inputError2">
+										{{doctor.highestDegree}}</label>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-4" for="name">
-								Government:</label>
-							<div class="control-label col-sm-1">
-								<label class="control-label col-sm-3">{{doctor.isGovernmentServent}}
-								</label>
+							<div class="form-group">
+								<label class="control-label col-sm-4" for="name">
+									Government:</label>
+								<div class="control-label col-sm-1">
+									<label class="control-label col-sm-3">{{doctor.isGovernmentServent}}
+									</label>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-4" for="inputError2">
-								Fees :</label>
-							<div class="col-sm-3">
-								<!-- <input type="text" class="form-control" id="mobile" name="mobile"
+							<div class="form-group">
+								<label class="control-label col-sm-4" for="inputError2">
+									Fees :</label>
+								<div class="col-sm-3">
+									<!-- <input type="text" class="form-control" id="mobile" name="mobile"
 					ng-model="" placeholder="Enter Fees"/> -->
-								<label class="control-label col-sm-3" for="inputError2">
-									{{doctor.oneTimeFee}} </label>
+									<label class="control-label col-sm-3" for="inputError2">
+										{{doctor.oneTimeFee}} </label>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-4" for="inputError2">
-								Days to Check :</label>
-							<div class="col-sm-3">
-								<!-- <input type="text" class="form-control" id="mobile" name="mobile"
+							<div class="form-group">
+								<label class="control-label col-sm-4" for="inputError2">
+									Days to Check :</label>
+								<div class="col-sm-3">
+									<!-- <input type="text" class="form-control" id="mobile" name="mobile"
 					ng-model="" placeholder="EnterDays to Check"/> -->
-								<label class="control-label col-sm-3" for="inputError2">
-									{{doctor.daysCheckFree}}</label>
+									<label class="control-label col-sm-3" for="inputError2">
+										{{doctor.daysCheckFree}}</label>
+								</div>
 							</div>
-						</div>
-					</form><br> <br>
-					<a href="#/updateProfile" style = "margin-left: 35%; font-weight: bold;"><i
-						class="glyphicon glyphicon-pencil"></i>&nbsp Edit Profile</a>
+						</form>
+						<br> <br> <a href="#/updateProfile"
+							style="margin-left: 35%; font-weight: bold;"><i
+							class="glyphicon glyphicon-pencil"></i>&nbsp Edit Profile</a>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
+</section>

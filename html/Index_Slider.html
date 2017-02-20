@@ -1,0 +1,47 @@
+<!-- 1st Image Slider Starts -->
+<div class="container" style="margin-left: 12%;">
+	<div class="offsetspan6">
+		<carousel interval="myInterval"> <slide
+			ng-repeat="slider in sliders" active="slider.active"> <img
+			class="image-circle" ng-src="{{slider.image}}"
+			style="margin: auto; height: 250px; width: 900px;" /> <!-- <div class="carousel-caption">
+			            <h4>Slide {{$index}}</h4>
+			            <p>{{slide.text}}</p>
+          			</div> --> </slide> </carousel>
+	</div>
+</div>
+<!-- 1st Image Slider Ends -->
+
+<div class=".d-inline" style="margin-left: 13%;">
+	<!-- 2nd Image Slider Starts -->
+	<div class="">
+		<div class="offsetspan6">
+			<carousel interval="myInterval"> <slide
+				ng-repeat="slide in slides" active="slide.active"> <img
+				class="image-circle" ng-src="{{slide.image}}"
+				style="margin: auto; height: 250px; width: 440px;" />
+			<div class="carousel-caption">
+				<h4>Slide {{$index}}</h4>
+				<p>{{slide.text}}</p>
+			</div>
+			</slide> </carousel>
+		</div>
+	</div>
+	<!-- 2nd Image Slider Ends -->
+
+	<!-- 3rd Image Slider Starts -->
+	<div class="">
+		<div class="offsetspan6">
+			<carousel interval="myInterval"> <slide
+				ng-repeat="slide in slides" active="slide.active"> <img
+				class="image-circle" ng-src="{{slide.image}}"
+				style="margin: auto; height: 250px; width: 440px;" />
+			<div class="carousel-caption">
+				<h4>Slide {{$index}}</h4>
+				<p>{{slide.text}}</p>
+			</div>
+			</slide> </carousel>
+		</div>
+	</div>
+</div>
+<!-- 3rd Image Slider Ends -->
