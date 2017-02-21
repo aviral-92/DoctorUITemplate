@@ -1,88 +1,74 @@
 <div class="container">
 	<br> <br>
-	<div>
-		<form class="form-horizontal" role="form" style="margin-left: 30%;">
+	<div
+		style="margin-left: 12%; margin-right: 12%; background: url(/images/12.jpg) no-repeat center; margin-top: -3%;">
 
-		<!-- 	<div class="form-group">
-				<label class="control-label col-sm-2" for="name">Doctor Id:</label>
-				<div class="col-sm-5">
-					<input type="text" class="form-control" id="name"
-						ng-model="doctor.doctorId" placeholder="Enter Id">
-				</div>
-			</div> -->
-			<div class="form-group">
-				<!-- <label class="control-label col-sm-2" for="name">Doctor
-					Name:</label> -->
-				<div class="col-sm-5">
-					<input type="text" class="form-control" id="name"
-						ng-model="doctor.name" placeholder="Enter Doctor Name">
+
+		<!-- <h1 style="background: url(/images/background.jpg) no-repeat center;">Search</h1> -->
+
+		<form class="form-horizontal" role="form" style="margin-left: 50%;">
+			<div class="col-sm-12" style="margin-top: 10%;">
+				<div class="form-group">
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="name"
+							ng-model="doctor.name" placeholder="Search by Doctor Name">
+					</div>
 				</div>
 			</div>
-			
-			<div class="form-group">
-			<!-- 	<label class="control-label col-sm-2" for="name">Clinic
-					Name:</label> -->
-				<div class="col-sm-5">
-					<input type="text" class="form-control" id="name"
-						ng-model="doctor.clinicName" placeholder="Enter Clinic Name">
+
+			<div class="col-sm-12">
+				<div class="form-group">
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="name"
+							ng-model="doctor.clinicName" placeholder="Search by Clinic Name">
+					</div>
 				</div>
 			</div>
-			
-			<div class="form-group">
-				<!-- <label class="control-label col-sm-2" for="name">Clinic
-					Address:</label> -->
-				<div class="col-sm-5">
-					<input type="text" class="form-control" id="name"
-						ng-model="doctor.clinicAddress" placeholder="Enter Clinic Address">
+
+			<div class="col-sm-12">
+				<div class="form-group">
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="name"
+							ng-model="doctor.clinicAddress"
+							placeholder="Search by Clinic Address">
+					</div>
 				</div>
 			</div>
-			
-			<div class="form-group">
-				<!-- <label class="control-label col-sm-2" for="name">State:</label>-->
-				<div class="col-sm-5"> 
-					<input type="text" class="form-control" id="name"
-						ng-model="doctor.state" placeholder="Enter State">
+
+			<div class="col-sm-12">
+				<div class="form-group">
+					<div class="col-sm-8">
+						<div class="input-group">
+							<div class="input-group-btn search-panel"></div>
+							<div mass-autocomplete>
+								<input class="form-control" name="x"
+									placeholder="Search by States" ng-model="dirty.value"
+									mass-autocomplete-item="autocomplete_options">
+								<div></div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			
-			<div class="form-group">
-			<!-- 	<label class="control-label col-sm-2" for="name">City:</label>-->
-				<div class="col-sm-5"> 
-					<input type="text" class="form-control" id="name"
-						ng-model="doctor.city" placeholder="Enter City">
+
+			<div class="col-sm-12">
+				<div class="form-group">
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="name"
+							ng-model="doctor.city" placeholder="Search by City">
+					</div>
 				</div>
 			</div>
-			
-			<div class="form-group">
-				<!-- <label class="control-label col-sm-2" for="name">PinCode:</label> -->
-				<div class="col-sm-5">
-					<input type="text" class="form-control" id="name"
-						ng-model="doctor.pin" placeholder="Enter Pin Code">
+
+			<div class="col-sm-12">
+				<div class="form-group">
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="name"
+							ng-model="doctor.pin" placeholder="Search by Pin Code">
+					</div>
 				</div>
 			</div>
-			<!-- <div class="form-group">
-				<label class="control-label col-sm-2" for="pwd">Mobile
-					Number:</label>
-				<div class="col-sm-5">
-					<input type="text" class="form-control" id="mobile"
-						ng-model="doctor.mobile" placeholder="Enter mobile number">
-				</div>
-			</div> -->
-		<!-- 	<div class="form-group">
-				<label class="control-label col-sm-2" for="pwd">Adhaar
-					Number:</label>
-				<div class="col-sm-5">
-					<input type="text" class="form-control" id="adhaar"
-						ng-model="doctor.aadhaarNumber" placeholder="Enter adhaar number">
-				</div>
-			</div> -->
-			<!-- <div class="form-group">
-				<label class="control-label col-sm-2" for="pwd">Email:</label>
-				<div class="col-sm-5">
-					<input type="text" class="form-control" id="adhaar"
-						ng-model="doctor.email" placeholder="Enter adhaar number">
-				</div>
-			</div> -->
+
 			<div class="form-group">
 				<div class="col-sm-offset-1 col-sm-10">
 					<button type="button" ng-click="searchDoctor(doctor)"

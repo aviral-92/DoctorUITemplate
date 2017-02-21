@@ -5,10 +5,55 @@
 			<div class="panel-heading">
 				<div class="panel-title">Sign In</div>
 				<div
-					style="float: right; font-size: 80%; position: relative; top: -10px">
-					<a href="#/retrievePassword">Forgot password?</a>
+					style="float: right; font-size: 80%; position: relative; top: -10px"
+					data-toggle="modal" data-target="#myModal">
+					<a href="">Forgot password?</a>
 				</div>
 			</div>
+
+<!-- ----------------------------POP UP----------------------------------- -->
+			<div class="modal fade" id="myModal" role="dialog">
+				<div class="modal-dialog">
+					<div style="width: 90%; margin-left: 10%;" class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								ng-click="close()">&times;</button>
+							<h4 class="modal-title">Forget Password</h4>
+						</div>
+
+						<div class="modal-body">
+
+							<form class="form-horizontal" role="form"
+								style="margin-left: 20%;">
+								<div class="form-group">
+									<div class="col-sm-6">
+										<input type="text" class="form-control" id="name"
+											ng-model="doctor.pin" placeholder="Enter your Adhaar Number">
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<div class="col-sm-offset-1 col-sm-10">
+										<button type="button" ng-click="searchDoctor(doctor)"
+											class="btn btn-success" data-toggle="modal"
+											data-target="#myModal">
+											<span class="glyphicon glyphicon-search"></span> Submit
+										</button>
+									</div>
+								</div>
+							</form>
+
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal" ng-click="close()">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+<!-- ----------------------------POP UP----------------------------------- -->
 
 			<div style="padding-top: 30px" class="panel-body">
 

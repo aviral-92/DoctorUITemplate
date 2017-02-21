@@ -1,47 +1,110 @@
-<!-- 1st Image Slider Starts -->
-<div class="container" style="margin-left: 12%;">
-	<div class="offsetspan6">
-		<carousel interval="myInterval"> <slide
-			ng-repeat="slider in sliders" active="slider.active"> <img
-			class="image-circle" ng-src="{{slider.image}}"
-			style="margin: auto; height: 250px; width: 900px;" /> <!-- <div class="carousel-caption">
+<div class="container">
+	<marquee direction="down" behavior="scroll" scrollamount="2" onmouseover="this.stop();"
+		onmouseout="this.start();"
+		style="z-index: 2; top: 97px; position: fixed; margin-left: 79%; height: 79%;">
+		<b>Dr name :</b> Aviral<br><b>Clinic Name: </b> ABC <br> <b>Clinic
+		Address: </b> XYZ
+	</marquee>
+</div>
+
+<div class="container">
+	<!-- 1st Image Slider Starts -->
+	<div class="container" style="margin-left: 6%;">
+		<div class="offsetspan6">
+			<carousel interval="firstSliderInterval"> <slide
+				ng-repeat="slider in sliders" active="slider.active"> <img
+				class="image-circle" ng-src="{{slider.image}}"
+				style="margin: auto; height: 250px; width: 900px;" /> <!-- <div class="carousel-caption">
 			            <h4>Slide {{$index}}</h4>
 			            <p>{{slide.text}}</p>
           			</div> --> </slide> </carousel>
-	</div>
-</div>
-<!-- 1st Image Slider Ends -->
-
-<div class=".d-inline" style="margin-left: 13%;">
-	<!-- 2nd Image Slider Starts -->
-	<div class="">
-		<div class="offsetspan6">
-			<carousel interval="myInterval"> <slide
-				ng-repeat="slide in slides" active="slide.active"> <img
-				class="image-circle" ng-src="{{slide.image}}"
-				style="margin: auto; height: 250px; width: 440px;" />
-			<div class="carousel-caption">
-				<h4>Slide {{$index}}</h4>
-				<p>{{slide.text}}</p>
-			</div>
-			</slide> </carousel>
 		</div>
 	</div>
-	<!-- 2nd Image Slider Ends -->
+	<!-- 1st Image Slider Ends -->
 
-	<!-- 3rd Image Slider Starts -->
-	<div class="">
-		<div class="offsetspan6">
-			<carousel interval="myInterval"> <slide
-				ng-repeat="slide in slides" active="slide.active"> <img
-				class="image-circle" ng-src="{{slide.image}}"
-				style="margin: auto; height: 250px; width: 440px;" />
-			<div class="carousel-caption">
-				<h4>Slide {{$index}}</h4>
-				<p>{{slide.text}}</p>
+	<div class="panel panel-default"
+		style="margin-left: 9.5%; width: 80%; background-color: #000;"></div>
+
+	<div class=".d-inline" style="margin-left: 7%;">
+		<!-- 2nd Image Slider Starts -->
+		<div class="">
+			<div class="offsetspan6">
+				<carousel interval="myInterval"> <slide
+					ng-repeat="slide in slides" active="slide.active"> <img
+					class="image-circle" ng-src="{{slide.image}}"
+					style="margin: auto; height: 250px; width: 440px;" />
+				<div class="carousel-caption">
+					<h4>Slide {{$index}}</h4>
+					<p>{{slide.text}}</p>
+				</div>
+				</slide> </carousel>
 			</div>
-			</slide> </carousel>
+		</div>
+		<!-- 2nd Image Slider Ends -->
+
+		<!-- 3rd Image Slider Starts -->
+		<div class="">
+			<div class="offsetspan6">
+				<carousel interval="myInterval"> <slide
+					ng-repeat="slide in slider3" active="slide.active"> <img
+					class="image-circle" ng-src="{{slide.image}}"
+					style="margin: auto; height: 250px; width: 440px;" />
+				<div class="carousel-caption">
+					<h4>Slide {{$index}}</h4>
+					<p>{{slide.text}}</p>
+				</div>
+				</slide> </carousel>
+			</div>
+		</div>
+
+	</div>
+	<!-- 3rd Image Slider Ends -->
+</div>
+<div class="container">
+	<div class="offsetspan10">
+		<div class="panel panel-default" style="margin-left: 7%; width: 40%;">
+			<div class="panel-heading">Who we are:</div>
+
+			<div class="panel-body">
+				This page is temporarily disabled by the site administrator for some
+				reason. This page is temporarily disabled by the site administrator
+				for some reason. This page is temporarily disabled by the site
+				administrator for some reason. This page is temporarily disabled by
+				the site administrator for some reason. This page is temporarily
+				disabled by the site administrator for some reason.<br> <a
+					href="#">Click here</a> to enable the page.
+			</div>
+		</div>
+	</div>
+	<div class="offsetspan10">
+		<div class="panel panel-default"
+			style="margin-top: -22.5%; margin-left: 49.7%; width: 40%;">
+			<div class="panel-heading">What we do:</div>
+
+			<div class="panel-body">
+				This page is temporarily disabled by the site administrator for some
+				reason. This page is temporarily disabled by the site administrator
+				for some reason. This page is temporarily disabled by the site
+				administrator for some reason. This page is temporarily disabled by
+				the site administrator for some reason. This page is temporarily
+				disabled by the site administrator for some reason.<br> <a
+					href="#">Click here</a> to enable the page.
+			</div>
 		</div>
 	</div>
 </div>
-<!-- 3rd Image Slider Ends -->
+<div class="container">
+	<div class="panel panel-default" style="margin-left: 9.8%; width: 80%;">
+		<div class="panel-heading">What we do:</div>
+
+		<div class="panel-body">
+			This page is temporarily disabled by the site administrator for some
+			reason. This page is temporarily disabled by the site administrator
+			for some reason. This page is temporarily disabled by the site
+			administrator for some reason. This page is temporarily disabled by
+			the site administrator for some reason. This page is temporarily
+			disabled by the site administrator for some reason.<br> <a
+				href="#">Click here</a> to enable the page.
+		</div>
+	</div>
+</div>

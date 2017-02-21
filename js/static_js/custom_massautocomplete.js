@@ -38,7 +38,7 @@ angular.module('MassAutoComplete', [])
         scrollTop = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset,
         scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft || window.pageXOffset;
 
-    container[0].style.top = rect.top + rect.height + scrollTop + 'px';
+    container[0].style.top = '33' + 'px';
     container[0].style.left = '0' + 'px';
     container[0].style.width = rect.width + 'px';
   };
