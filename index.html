@@ -58,11 +58,11 @@
 	src="/js/ImageSlider/ui-bootstrap-tpls-0.6.0.js"></script>
 
 <script type="text/javascript">
-$(document).ready(function() {
-$('#datePicker').datepicker({
-	format : 'mm/dd/yyyy'
-});
-});
+	$(document).ready(function() {
+		$('#datePicker').datepicker({
+			format : 'mm/dd/yyyy'
+		});
+	});
 </script>
 
 <script type="text/javascript">
@@ -86,7 +86,7 @@ $('#datePicker').datepicker({
 <body style="background-color: #F5F5F5;">
 	<div data-ng-controller="index">
 		<nav role="navigation" class="navbar navbar-inverse"
-			style="background-color: #434343; ">
+			style="background-color: #434343;">
 			<div id="navbarCollapse" class="collapse navbar-collapse"
 				style="margin-left: 16.5%; margin-right: 16.5%;">
 				<ul class="nav navbar-nav">
@@ -127,9 +127,16 @@ $('#datePicker').datepicker({
 			</div>
 		</nav>
 		<div ng-view=""></div>
-		<div class="footer">
-			<b class="copyright">@Copyright</b> <b style="float: right;">All
-				Rights Reserved.</b>
+		<div class="footer ">
+			<b class="copyright ">@Copyright</b> <b style="float: right;"> <a
+				class="btn btn-social-icon btn-twitter" style="font-size: x-large;">
+					<span class="fa fa-twitter"></span>
+			</a><a class="btn btn-social-icon btn-facebook"
+				style="font-size: x-large;"> <span class="fa fa-facebook"></span>
+			</a><a class="btn btn-social-icon btn-google" style="font-size: x-large;">
+					<span class="fa fa-google"></span>
+			</a> All Rights Reserved.
+			</b>
 		</div>
 	</div>
 </body>
