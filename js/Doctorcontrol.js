@@ -229,7 +229,24 @@ scotchApp.controller('doctorSearch', function($scope, $http) {
 });*/
 
 scotchApp.controller('about', function($scope) {
-
+	 // initializing the time Interval
+    $scope.firstSliderInterval = 3000;
+    // Initializing slide array
+ var slides = $scope.slides;
+    
+    $scope.sliders = [{
+        image: '/images/Slider 1/orthopaedic.jpg',
+        text: 'Cute Fish'
+    }, {
+        image: '/images/Slider 1/sliderImage1.jpg',
+        text: 'Image2'
+    }, {
+        image: '/images/Slider 1/sliderImage2.jpg',
+        text: 'Image3'
+    }, {
+        image: '/images/Slider 1/sliderImage3.png',
+        text: 'Image4'
+    }];
 });
 
 scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieStore,

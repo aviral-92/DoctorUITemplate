@@ -1,143 +1,131 @@
 <!DOCTYPE html>
 <html ng-app="myApp" xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-<title>Doctor Home Page</title>
+    <title>Doctor Home Page</title>
 
-<link rel="stylesheet" type="text/css"
-	href="/css/bootstrap-combined.min.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="/css/style.css"
-	media="screen" />
-<link rel="stylesheet" type="text/css" href="/css/Loader.css"
-	media="screen" />
-<link rel="stylesheet" type="text/css" href="/css/Sidebar.css"
-	media="screen" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-combined.min.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/css/Loader.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/css/Sidebar.css" media="screen" />
 
-<link rel="stylesheet" type="text/css" href="/css/index.css"
-	media="screen" />
-<link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css" media="screen" />
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="/css/datepicker.min.css" />
-<link rel="stylesheet" href="/css/datepicker3.min.css" />
+    <link rel="stylesheet" href="/css/datepicker.min.css" />
+    <link rel="stylesheet" href="/css/datepicker3.min.css" />
 
-<link rel="stylesheet" type="text/css"
-	href="/html/SearchFunctionality/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/html/SearchFunctionality/css/bootstrap.min.css">
 
-<link rel="stylesheet" type="text/css"
-	href="/html/SearchFunctionality/css/bootstrap-theme.min.css">
-<link rel="stylesheet" type="text/css"
-	href="/html/SearchFunctionality/css/table.css">
+    <link rel="stylesheet" type="text/css" href="/html/SearchFunctionality/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="/html/SearchFunctionality/css/table.css">
 
-<link rel="stylesheet" type="text/css"
-	href="/css/massautocomplete.theme.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/css/massautocomplete.theme.css" media="screen" />
 
-<script type="text/javascript" src="/js/static_js/angular.min.js"></script>
-<script type="text/javascript" src="/js/static_js/jquery.min.js"></script>
-<script type="text/javascript" src="/js/static_js/angular-route.js"></script>
-<script type="text/javascript" src="/js/static_js/angular-sanitize.js"></script>
-<script type="text/javascript"
-	src="/js/static_js/custom_massautocomplete.js"></script>
+    <script type="text/javascript" src="/js/static_js/angular.min.js"></script>
+    <script type="text/javascript" src="/js/static_js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/static_js/angular-route.js"></script>
+    <script type="text/javascript" src="/js/static_js/angular-sanitize.js"></script>
+    <script type="text/javascript" src="/js/static_js/custom_massautocomplete.js"></script>
 
-<!-- <script type="text/javascript" src="/js/ImageSlider/angular.js"></script> -->
-<script type="text/javascript" src="/js/static_js/jquery.min-3.1.1.js"></script>
-<script type="text/javascript"
-	src="/js/static_js/bootstrap.min-3.3.7.js"></script>
-<script type="text/javascript" src="/js/static_js/angular-cookies.js"></script>
+    <!-- <script type="text/javascript" src="/js/ImageSlider/angular.js"></script> -->
+    <script type="text/javascript" src="/js/static_js/jquery.min-3.1.1.js"></script>
+    <script type="text/javascript" src="/js/static_js/bootstrap.min-3.3.7.js"></script>
+    <script type="text/javascript" src="/js/static_js/angular-cookies.js"></script>
 
-<script type="text/javascript" src="/js/DoctorRouter.js"></script>
-<script type="text/javascript" src="/js/PatientRouter.js"></script>
-<script type="text/javascript" src="/js/Doctorcontrol.js"></script>
-<script type="text/javascript" src="/js/Patientcontrol.js"></script>
-<script type="text/javascript" src="/js/DoctorValidation.js"></script>
-<script type="text/javascript" src="/js/PatientValidation.js"></script>
+    <script type="text/javascript" src="/js/DoctorRouter.js"></script>
+    <script type="text/javascript" src="/js/PatientRouter.js"></script>
+    <script type="text/javascript" src="/js/Doctorcontrol.js"></script>
+    <script type="text/javascript" src="/js/Patientcontrol.js"></script>
+    <script type="text/javascript" src="/js/DoctorValidation.js"></script>
+    <script type="text/javascript" src="/js/PatientValidation.js"></script>
 
-<script src="/html/SearchFunctionality/lib/dirPagination.js"></script>
+    <script src="/html/SearchFunctionality/lib/dirPagination.js"></script>
 
-<script src="/js/static_js/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript" src="/js/DatePicker.js"></script>
-<script type="text/javascript"
-	src="/js/ImageSlider/ui-bootstrap-tpls-0.6.0.js"></script>
+    <script src="/js/static_js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="/js/DatePicker.js"></script>
+    <script type="text/javascript" src="/js/ImageSlider/ui-bootstrap-tpls-0.6.0.js"></script>
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#datePicker').datepicker({
-			format : 'mm/dd/yyyy'
-		});
-	});
-</script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#datePicker').datepicker({
+                format: 'mm/dd/yyyy'
+            });
+        });
+    </script>
 
-<script type="text/javascript">
-	$(document).ready(function(e) {
-		$('.search-panel .dropdown-menu').find('a').click(function(e) {
-			e.preventDefault();
-			var param = $(this).attr("href").replace("#", "");
-			var concept = $(this).text();
-			$('.search-panel span#search_concept').text(concept);
-			$('.input-group #search_param').val(param);
-		});
-	});
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            $('.search-panel .dropdown-menu').find('a').click(function(e) {
+                e.preventDefault();
+                var param = $(this).attr("href").replace("#", "");
+                var concept = $(this).text();
+                $('.search-panel span#search_concept').text(concept);
+                $('.input-group #search_param').val(param);
+            });
+        });
 
-	$(document).ready(function() {
-		$('[data-toggle="offcanvas"]').click(function() {
-			$("#navigation").toggleClass("hidden-xs");
-		});
-	});
-</script>
+        $(document).ready(function() {
+            $('[data-toggle="offcanvas"]').click(function() {
+                $("#navigation").toggleClass("hidden-xs");
+            });
+        });
+    </script>
 </head>
+
 <body style="background-color: #F5F5F5;">
-	<div data-ng-controller="index">
-		<nav role="navigation" class="navbar navbar-inverse"
-			style="background-color: #434343;">
-			<div id="navbarCollapse" class="collapse navbar-collapse"
-				style="margin-left: 16.5%; margin-right: 16.5%;">
-				<ul class="nav navbar-nav">
-					<li><a href="#/home">Home</a></li>
-					<li><a href="#/about">About Us</a></li>
-					<li><a href="#/search"> Advance Search</a></li>
-					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="#">Services <b class="caret"></b></a>
-						<ul role="menu" class="dropdown-menu">
-							<li><a href="#">Service 1</a></li>
-							<li><a href="#">Service 2</a></li>
-							<li><a href="#">Service 3</a></li>
-						</ul></li>
-					<li><a href="#/contact">Contact Us</a></li>
-				</ul>
-				<form role="search" class="navbar-form navbar-left">
-					<div class="input-group">
-						<div class="input-group-btn search-panel"></div>
-						<div mass-autocomplete>
-							<input class="form-control" name="x"
-								placeholder="Search by expertise" ng-model="dirty.value"
-								mass-autocomplete-item="autocomplete_options">
-							<div></div>
-						</div>
-						<span class="input-group-btn">
+    <div data-ng-controller="index">
+        <nav role="navigation" class="navbar navbar-inverse" style="background-color: #434343;">
+            <div id="navbarCollapse" class="collapse navbar-collapse" style="margin-left: 16.5%; margin-right: 16.5%;">
+                <ul class="nav navbar-nav">
+                    <li><a href="#/home">Home</a></li>
+                    <li><a href="#/about">About Us</a></li>
+                    <li><a href="#/search"> Advance Search</a></li>
+                    <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#">Services <b class="caret"></b></a>
+                        <ul role="menu" class="dropdown-menu">
+                            <li><a href="#">Service 1</a></li>
+                            <li><a href="#">Service 2</a></li>
+                            <li><a href="#">Service 3</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#/contact">Contact Us</a></li>
+                </ul>
+                <form role="search" class="navbar-form navbar-left">
+                    <div class="input-group">
+                        <div class="input-group-btn search-panel"></div>
+                        <div mass-autocomplete>
+                            <input class="form-control" name="x" placeholder="Search by expertise" ng-model="dirty.value" mass-autocomplete-item="autocomplete_options">
+                            <div></div>
+                        </div>
+                        <span class="input-group-btn">
 							<button class="btn btn-default"
 								style="background-color: #f9f9f9;" type="button"
 								ng-click="btnClick()">
 								<span class="glyphicon glyphicon-search"></span>
-							</button>
-						</span>
+                        </button>
+                        </span>
 
-					</div>
-				</form>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#/loginPage">Login</a></li>
-				</ul>
-			</div>
-		</nav>
-		<div ng-view=""></div>
-		<div class="footer ">
-			<b class="copyright ">@Copyright</b> <b style="float: right;"> <a
-				class="btn btn-social-icon btn-twitter" style="font-size: x-large;">
-					<span class="fa fa-twitter"></span>
-			</a><a class="btn btn-social-icon btn-facebook"
-				style="font-size: x-large;"> <span class="fa fa-facebook"></span>
-			</a><a class="btn btn-social-icon btn-google" style="font-size: x-large;">
-					<span class="fa fa-google"></span>
-			</a> All Rights Reserved.
-			</b>
-		</div>
-	</div>
+                    </div>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/loginPage"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div ng-view=""></div>
+        <footer>
+            <b class="navbar-btn btn-primary btn btn-block pull-right">
+			
+			<!-- -------------------------Icon For Whatsapp and Linkdin------------------------ -->
+                <b>@Copyright 2017</b> &nbsp;
+            <i class="fa fa-linkedin" aria-hidden="true" style="font-size: x-large;"></i> &nbsp;
+            <i class="fa fa-facebook" aria-hidden="true" style="font-size: x-large;"></i> &nbsp;
+            <i class="fa fa-twitter" aria-hidden="true" style="font-size: x-large;"></i> &nbsp;
+            <i class="fa fa-google" aria-hidden="true" style="font-size: x-large;"></i>
+            <!-- -------------------------Icon For Whatsapp and Linkdin------------------------ -->
+            All Rights Reserved. </b>
+        </footer>
+    </div>
 </body>
+
 </html>

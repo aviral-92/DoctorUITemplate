@@ -254,12 +254,21 @@ a.details {
 }
 /*-----------------------------footer------------------*/
 
+/*
 .footer{
 	
-	/* margin-top: 10%; */
+	 margin-top: 10%; 
 	background-color: #434343;
 	height: 35px;
 	color: #fff;
+}
+*/
+
+.footer {
+      background-color: #434343;
+      color: white;
+      padding: 5px;
+      margin-bottom:  -50%;
 }
 
 #footer {
