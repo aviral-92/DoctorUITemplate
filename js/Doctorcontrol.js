@@ -98,6 +98,78 @@ scotchApp.controller('indexSlider', function($scope) {
 	
 });
 
+scotchApp.controller('registration', function($scope) {
+	 $scope.doBlurName = function($event) {
+	        var target = $event.target;
+	        if ($scope.doctor != null && $scope.doctor.name.length > 0) {
+	            target.blur();
+	        } else {
+	            target.focus();
+	        }
+	    }
+	 
+	   $scope.doBlurMobile = function($event) {
+	        var target = $event.target;
+	        if ($scope.doctor != null && $scope.doctor.mobile != null &&
+	            $scope.doctor.mobile.length == 10) {
+	            target.blur();
+	        } else {
+	            target.focus();
+	        }
+	    }
+	   
+	   $scope.doBlurAdhar = function($event) {
+	        var target = $event.target;
+	        if ($scope.doctor != null && $scope.doctor.aadhaarNumber != null &&
+	            $scope.doctor.aadhaarNumber.length == 12) {
+	            target.blur();
+	        } else {
+	            target.focus();
+	        }
+	    }
+});
+
+scotchApp.controller('registrationUser', function($scope) {
+	 $scope.doBlurName = function($event) {
+	        var target = $event.target;
+	        if ($scope.patient != null && $scope.patient.name.length > 0) {
+	            target.blur();
+	        } else {
+	            target.focus();
+	        }
+	    }
+	 
+	   $scope.doBlurMobile = function($event) {
+	        var target = $event.target;
+	        if ($scope.patient != null && $scope.patient.mobile != null &&
+	            $scope.patient.mobile.length == 10) {
+	            target.blur();
+	        } else {
+	            target.focus();
+	        }
+	    }
+	   
+	   $scope.doBlurAdhar = function($event) {
+	        var target = $event.target;
+	        if ($scope.patient != null && $scope.patient.aadhaarNumber != null &&
+	            $scope.patient.aadhaarNumber.length == 12) {
+	            target.blur();
+	        } else {
+	            target.focus();
+	        }
+	    }
+	   //TODO for Email Validation
+	   $scope.doBlurEmail = function($event) {
+	        var target = $event.target;
+	        if ($scope.patient != null && $scope.patient.email != null &&
+	            $scope.patient.email.length == 12) {
+	            target.blur();
+	        } else {
+	            target.focus();
+	        }
+	    }
+});
+
 scotchApp.controller('functionalitySearch', function($scope, $http) {
 
     $scope.users = []; //declare an empty array
@@ -286,7 +358,67 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
     } else {
         $window.location.href = "#/loginPage";
     }
+    // add validation for adhaar number
+    $scope.doBlurAdhar = function($event) {
+        var target = $event.target;
+        if ($scope.doctor != null && $scope.doctor.aadhaarNumber != null &&
+            $scope.doctor.aadhaarNumber.length == 12) {
+            target.blur();
+        } else {
+            target.focus();
+        }
+    }
 });
+
+
+scotchApp.controller('userLogin', function($scope, $rootScope, $http, $cookieStore,
+	    $window) {
+	    $scope.loader = false;
+	    if ($cookieStore.get('loginData') == undefined ||
+	        $cookieStore.get('email') == undefined) {
+
+
+	        $scope.doctorLogin = function(loginDetail) {
+	            console.log(loginDetail);
+	            $cookieStore.put('email', loginDetail.email);
+	            var loginSuccessful = $http
+	                .get('https://doctor-service.cfapps.io/doctor/get/' +
+	                    loginDetail.email + '/email');
+	            $scope.loader = true;
+	            console.log(">>>>>>>>>" + loginSuccessful.success);
+	            loginSuccessful.success(function(getDoctorDetails) {
+	                if (getDoctorDetails.doctorId != null) {
+	                    $scope.message = 'Successfully Logged in...!!!';
+	                    $rootScope.getDoctorByMobile = getDoctorDetails;
+	                    $cookieStore.put('loginData', getDoctorDetails);
+	                    $window.location.href = "/View/DoctorDashboard.html";
+	                } else {
+	                    $scope.message = 'Invalid Credentials...!!!';
+	                }
+	                $scope.loader = false;
+	            });
+	            loginSuccessful.error(function(data, status, headers, config) {
+	                alert("failure message: " + data.message);
+	                $scope.message = 'Invalid Credentials...!!!';
+	            });
+	        }
+	        $scope.showSelectValue = function(mySelect) {
+	            console.log(mySelect);
+	        }
+	    } else {
+	        $window.location.href = "#/userLogin";
+	    }
+	    // add validation for adhaar number
+	    $scope.doBlurAdhar = function($event) {
+	        var target = $event.target;
+	        if ($scope.doctor != null && $scope.doctor.aadhaarNumber != null &&
+	            $scope.doctor.aadhaarNumber.length == 12) {
+	            target.blur();
+	        } else {
+	            target.focus();
+	        }
+	    }
+	});
 
 scotchApp.controller('contact', function($scope) {});
 
