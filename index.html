@@ -71,16 +71,26 @@
             });
         });
     </script>
+
+
 </head>
 
-<body style="background-color: #F5F5F5;">
+<body style="background: linear-gradient(#9ad4ed, #f4fafd, #deeff7, #fff, #f4fafd, #deeff7, #fff, #9ad4ed, #9ad4ed);">
     <div data-ng-controller="index">
-        <nav role="navigation" class="navbar navbar-inverse" style="background-color: #434343;">
-            <div id="navbarCollapse" class="collapse navbar-collapse" style="margin-left: 16.5%; margin-right: 16.5%;">
+        <nav role="navigation" class="navbar navbar-inverse navbar-custom" style="background-image:linear-gradient(to bottom,#428bca 0,#2d6ca2 100%);">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+            </div>
+            <div id="myNavbar" class="collapse navbar-collapse" style="margin-left: 16.5%; margin-right: 16.5%;">
                 <ul class="nav navbar-nav">
                     <li><a href="#/home">Home</a></li>
                     <li><a href="#/about">About Us</a></li>
                     <li><a href="#/search"> Advance Search</a></li>
+                    <!--
                     <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#">Services <b class="caret"></b></a>
                         <ul role="menu" class="dropdown-menu">
                             <li><a href="#">Service 1</a></li>
@@ -88,6 +98,7 @@
                             <li><a href="#">Service 3</a></li>
                         </ul>
                     </li>
+-->
                     <li><a href="#/contact">Contact Us</a></li>
                 </ul>
                 <form role="search" class="navbar-form navbar-left">
@@ -113,7 +124,7 @@
             </div>
         </nav>
         <div ng-view=""></div>
-        <footer>
+        <footer class="navbar-fixed-bottom">
             <b class="navbar-btn btn-primary btn btn-block pull-right">
 			
 			<!-- -------------------------Icon For Whatsapp and Linkdin------------------------ -->
