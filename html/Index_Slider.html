@@ -1,62 +1,95 @@
 <div class="container-fluid text-center">
-    <div class="row content">
-        <div class="col-sm-2 sidenav">
-            <div>
-                <marquee direction="up" behavior="scroll" scrollamount="2" onmouseover="this.stop();" onmouseout="this.start();" style="z-index: 2; top: 97px; position: fixed; margin-left: 77%; height: 79%;">
-                    <b>Dr name :</b> Aviral<br> <b>Clinic Name: </b> ABC <br> <b>Clinic
-                    Address: </b> XYZ
-                </marquee>
-            </div>
-        </div>
-    </div>
+	<div class="row content">
+		<div class="col-sm-2 sidenav">
+			<div>
+				<marquee direction="up" behavior="scroll" scrollamount="2"
+					onmouseover="this.stop();" onmouseout="this.start();"
+					style="z-index: 2; top: 97px; position: fixed; margin-left: 77%; height: 79%;">
+					<b>Dr name :</b> Aviral<br> <b>Clinic Name: </b> ABC <br>
+					<b>Clinic Address: </b> XYZ
+				</marquee>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="col-sm-10 text-left">
-    <div class="container">
-        <!-- 1st Image Slider Starts -->
-        <div class="container" style="margin-left: 12%;">
-            <div class="offsetspan6">
-                <carousel interval="firstSliderInterval">
-                    <slide ng-repeat="slider in sliders" active="slider.active">
-                        <img class="image-circle" ng-src="{{slider.image}}" style="margin: auto; height: 250px; width: 900px;" />
-                        <!-- <div class="carousel-caption">
+	<div class="container">
+		<!-- 1st Image Slider Starts -->
+		<div class="container" style="margin-left: 12%;">
+			<div class="offsetspan6">
+				<carousel interval="firstSliderInterval"> <slide
+					ng-repeat="slider in sliders" active="slider.active"> <img
+					class="image-circle" ng-src="{{slider.image}}"
+					style="margin: auto; height: 250px; width: 900px;" /> <!-- <div class="carousel-caption">
                             <h4>Slide {{$index}}</h4>
                             <p>{{slide.text}}</p>
-                        </div> -->
-                    </slide>
-                </carousel>
-            </div>
-        </div>
-        <div class="panel panel-default" style="margin-left: 16%; width: 79%; background-color: #000;">
-        </div>
-    </div>
+                        </div> --> </slide> </carousel>
+			</div>
+		</div>
+		<div class="panel panel-default"
+			style="margin-left: 16%; width: 79%; background-color: #000;">
+		</div>
+	</div>
 
-    <div class="row" style="margin-left: 17%;">
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">Who we are:</div>
-                <div class="panel-body">
-                    This page is temporarily disabled by the site administrator for some reason. This page is temporarily disabled by the site administrator for some reason. This page is temporarily disabled by the site administrator for some reason. This page is temporarily disabled by the site administrator for some reason. This page is temporarily disabled by the site administrator for some reason.<br> <a href="#">Click here</a> to enable the page.
-                </div>
-
-            </div>
-        </div>
-        <div class="col-md-6" style="margin-left: 0%;">
-            <div class="panel panel-default">
-                <div class="panel-heading">What we do:</div>
-                <div class="panel-body">
-                    This page is temporarily disabled by the site administrator for some reason. This page is temporarily disabled by the site administrator for some reason. This page is temporarily disabled by the site administrator for some reason. This page is temporarily disabled by the site administrator for some reason. This page is temporarily disabled by the site administrator for some reason.<br> <a href="#">Click here</a> to enable the page.
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="panel panel-default" style="margin-left: 18%; width: 81%;">
+	<div class="row" style="margin-left: 17%;">
+		<div class=" col-sm-6 mobile-pull-left">
+			<div class="panel panel-info">
+				<div class="panel-heading">What we are:</div>
+				<article role="login1">
+					<div class="panel-body">
+						This page is temporarily disabled by the site administrator for
+						some reason. This page is temporarily disabled by the site
+						administrator for some reason.This page is
+						temporarily disabled by the site administrator for some
+						reason.This page is temporarily disabled by the site administrator
+						for some reason. This page is temporarily disabled by the site
+						administrator for some reason.<br> <a href="#">Click here</a>
+						to enable the page.
+					</div>
+				</article>
+			</div>
+		</div>
+		<div class=" col-sm-6 mobile-pull-left">
+			<div class="panel panel-info">
+				<div class="panel-heading">What we do:</div>
+				<article role="login1">
+					<div class="panel-body">
+						This page is temporarily disabled by the site administrator for
+						some reason. This page is temporarily disabled by the site
+						administrator for some reason.This page is
+						temporarily disabled by the site administrator for some
+						reason.This page is temporarily disabled by the site administrator
+						for some reason. This page is temporarily disabled by the site
+						administrator for some reason.<br> <a href="#">Click here</a>
+						to enable the page.
+					</div>
+				</article>
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-info row" style="margin-left: 18%;">
+		<div class="panel-heading col-sm-12 mobile-pull-left">What we
+			do:</div>
+		<article role="login1">
+			<div class="panel-body">
+				This page is temporarily disabled by the site administrator for some
+				reason. This page is temporarily disabled by the site administrator
+				for some reason. This page is temporarily disabled by the site
+				administrator for some reason. This page is temporarily disabled by
+				the site administrator for some reason. This page is temporarily
+				disabled by the site administrator for some reason.This page is
+				temporarily disabled by the site administrator for some reason. This
+				page is temporarily disabled by the site administrator for some
+				reason.<br> <a href="#">Click here</a> to enable the page.
+			</div>
+		</article>
+	</div><br><br>
+	<!--   <div class="panel panel-default" style="margin-left: 18%; width: 81%;">
             <div class="panel-heading">What we do:</div>
 
             <div class="panel-body">
                 This page is temporarily disabled by the site administrator for some reason. This page is temporarily disabled by the site administrator for some reason. This page is temporarily disabled by the site administrator for some reason. This page is temporarily disabled by the site administrator for some reason. This page is temporarily disabled by the site administrator for some reason.<br> <a href="#">Click here</a> to enable the page.
             </div>
-        </div>
-    </div><br><br>
+        </div> -->
 </div>

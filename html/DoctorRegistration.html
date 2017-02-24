@@ -4,10 +4,11 @@
 			<div class="col-sm-6 nav-tab-holder">
 				<ul class="nav nav-tabs row" role="tablist">
 					<li role="presentation" class="active col-sm-6"><a
-						href="#registration" aria-controls="home" role="tab"
+						href="#doctorRegistration" aria-controls="home" role="tab"
 						data-toggle="tab">Doctor</a></li>
-					<li role="presentation" class="col-sm-6"><a href="#profile"
-						aria-controls="profile" role="tab" data-toggle="tab">Patient</a></li>
+					<li role="presentation" class="col-sm-6"><a
+						href="#patientRegistration" aria-controls="patientRegistration"
+						role="tab" data-toggle="tab">Patient</a></li>
 				</ul>
 			</div>
 		</div>
@@ -19,8 +20,10 @@
 							<h3 class="text-center">
 								<i class="fa fa-user"></i> Register Yourself
 							</h3>
+							<!-- --------------Form Name----------------------- -->
 							<form class="signup" name="doctorRegistrationForm"
 								novalidate="novalidate">
+								<!-- Input type Name Field-->
 								<div class="form-group has-feedback "
 									ng-class="{'has-success' : doctorRegistrationForm.name.$dirty && doctorRegistrationForm.name.$valid ,
                         'has-error' : doctorRegistrationForm.name.$dirty && doctorRegistrationForm.name.$invalid}">
@@ -48,10 +51,11 @@
 										</div>
 									</div>
 								</div>
+								<!-- Input type Email Field-->
 								<div class="form-group has-feedback "
 									ng-class="{'has-success' : doctorRegistrationForm.email.$dirty && doctorRegistrationForm.email.$valid ,
                         'has-error' : doctorRegistrationForm.email.$dirty && doctorRegistrationForm.email.$invalid}">
-									<input type="text" class="form-control" id="inputError2"
+									<input type="email" class="form-control" id="inputError2"
 										name="email" ng-model="doctor.email" placeholder="Enter email"
 										ng-blur="doBlurEmail($event)" valid-Email>
 									<div class="help-inline">
@@ -75,6 +79,7 @@
 										</div>
 									</div>
 								</div>
+								<!-- Input type Mobile Field-->
 								<div class="form-group has-feedback "
 									ng-class="{'has-success' : doctorRegistrationForm.mobile.$dirty && doctorRegistrationForm.mobile.$valid ,
                         'has-error' : doctorRegistrationForm.mobile.$dirty && doctorRegistrationForm.mobile.$invalid}">
@@ -103,6 +108,7 @@
 										</div>
 									</div>
 								</div>
+								<!-- Input type Adhaar Number Field-->
 								<div class="form-group has-feedback "
 									ng-class="{'has-success' : doctorRegistrationForm.aadhaarNumber.$dirty && doctorRegistrationForm.aadhaarNumber.$valid ,
                         'has-error' : doctorRegistrationForm.aadhaarNumber.$dirty && doctorRegistrationForm.aadhaarNumber.$invalid}">
@@ -134,14 +140,17 @@
 										</div>
 									</div>
 								</div>
+								<!-- Input type Password Field-->
 								<div class="form-group">
 									<input type="password" class="form-control"
 										placeholder="Password">
 								</div>
+								<!-- Input type Confirm Password Field-->
 								<div class="form-group">
 									<input type="password" class="form-control"
 										placeholder="Confirm Password">
 								</div>
+								<!-- Input type Checkbox Field-->
 								<div class="form-group">
 									<div class="checkbox">
 										<label> <input type="checkbox"> Please accept
@@ -149,6 +158,7 @@
 										</label>
 									</div>
 								</div>
+								<!-- Input type Submit Button Field-->
 								<div class="form-group">
 									<input type="submit" class="btn btn-success btn-block"
 										value="SUBMIT">
@@ -156,8 +166,8 @@
 							</form>
 							<footer role="signup" class="text-center">
 								<ul>
-									<li data-toggle="modal" data-target="#myModal">Terms of
-										Use</li>
+									<li><a href="" data-toggle="modal" data-target="#myModal">Terms
+											& Conditions</a></li>
 								</ul>
 
 								<!-- ----------------------------POP UP----------------------------------- -->
@@ -188,59 +198,9 @@
 						</article>
 					</div>
 				</div>
-				<!-- end of row -->
 			</div>
-			<!-- end of home -->
-			<!--
-         <div role="tabpanel" class="tab-pane" id="profile">
-         	<div class="row">
-         		<div class="col-sm-6 mobile-pull">
-         			<article role="login">
-         				<h3 class="text-center">
-         					<i class="fa fa-lock"></i> Create User Account
-         				</h3>
-         				<form class="signup" action="index.html" method="post">
-         					<div class="form-group">
-         						<input type="text" class="form-control" placeholder="UserName">
-         					</div>
-         					<div class="form-group">
-         						<input type="email" class="form-control"
-         							placeholder="Email Address">
-         					</div>
-         
-         					<div class="form-group">
-         						<input type="password" class="form-control"
-         							placeholder="Password">
-         					</div>
-         					<div class="form-group">
-         						<input type="password" class="form-control"
-         							placeholder="Confirm Password">
-         					</div>
-         					<div class="form-group">
-         						<div class="checkbox">
-         							<label> <input type="checkbox"> Please accept
-         								the terms and conditions to proceed with your request.
-         							</label>
-         						</div>
-         					</div>
-         					<div class="form-group">
-         						<input type="submit" class="btn btn-success btn-block"
-         							value="SUBMIT">
-         					</div>
-         				</form>
-         				<footer role="signup" class="text-center">
-         					<ul>
-         						<li><a href="#">Terms of Use</a></li>
-         						
-         					</ul>
-         				</footer>
-         
-         			</article>
-         		</div>
-         	</div>
-         </div>
-         -->
 		</div>
 	</div>
 </div>
-	<br> <br>
+<br>
+<br>

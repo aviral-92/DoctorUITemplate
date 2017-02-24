@@ -1,7 +1,7 @@
 scotchApp.controller('index', function($scope, $http, $window) {
 
     $scope.dirty = {};
-    $http.get("/js/countries.json").success(function(states) {
+    $http.get("/js/MockJson/countries.json").success(function(states) {
         function suggest_state(term) {
             var q = term.toLowerCase().trim();
             var results = [];
@@ -98,7 +98,7 @@ scotchApp.controller('indexSlider', function($scope) {
 	
 });
 
-scotchApp.controller('registration', function($scope) {
+scotchApp.controller('doctorRegistration', function($scope) {
 	 $scope.doBlurName = function($event) {
 	        var target = $event.target;
 	        if ($scope.doctor != null && $scope.doctor.name.length > 0) {
@@ -127,9 +127,20 @@ scotchApp.controller('registration', function($scope) {
 	            target.focus();
 	        }
 	    }
+       
+       //TODO for Email Validation
+	   $scope.doBlurEmail = function($event) {
+	        var target = $event.target;
+	        if ($scope.doctor != null && $scope.doctor.email != null &&
+	            $scope.doctor.email.length > 9) {
+	            target.blur();
+	        } else {
+	            target.focus();
+	        }
+	    }
 });
 
-scotchApp.controller('registrationUser', function($scope) {
+scotchApp.controller('patientRegistration', function($scope) {
 	 $scope.doBlurName = function($event) {
 	        var target = $event.target;
 	        if ($scope.patient != null && $scope.patient.name.length > 0) {
@@ -158,7 +169,7 @@ scotchApp.controller('registrationUser', function($scope) {
 	            target.focus();
 	        }
 	    }
-	   //TODO for Email Validation
+	   
 	   $scope.doBlurEmail = function($event) {
 	        var target = $event.target;
 	        if ($scope.patient != null && $scope.patient.email != null &&
@@ -307,7 +318,7 @@ scotchApp.controller('about', function($scope) {
  var slides = $scope.slides;
     
     $scope.sliders = [{
-        image: '/images/Slider 1/orthopaedic.jpg',
+        image: '/images/Slider 1/sliderImage2.jpg',
         text: 'Cute Fish'
     }, {
         image: '/images/Slider 1/sliderImage1.jpg',
@@ -323,38 +334,73 @@ scotchApp.controller('about', function($scope) {
 
 scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieStore,
     $window) {
-    $scope.loader = false;
+    
+    $scope.doBlurEmail = function($event) {
+	        var target = $event.target;
+	        if ($scope.loginDetail != null && $scope.loginDetail.email != null &&
+	            $scope.loginDetail.email.length > 9) {
+	            target.blur();
+	        } else {
+	            target.focus();
+	        }
+	    }
+    $scope.doBlurPassword = function($event) {
+	        var target = $event.target;
+	        if ($scope.loginDetail != null && $scope.loginDetail.password != null &&
+	            $scope.loginDetail.password.length > 5) {
+	            target.blur();
+	        } else {
+	            target.focus();
+	        }
+	    }
+    
+    //$scope.loader = false;
     if ($cookieStore.get('loginData') == undefined ||
         $cookieStore.get('email') == undefined) {
 
 
         $scope.doctorLogin = function(loginDetail) {
-            console.log(loginDetail);
-            $cookieStore.put('email', loginDetail.email);
+            //console.log(loginDetail);
+            
+//             $http
+//                .get('https://doctor-service.cfapps.io/doctor/get/' +
+//                    loginDetail.email + '/email');
             var loginSuccessful = $http
-                .get('https://doctor-service.cfapps.io/doctor/get/' +
-                    loginDetail.email + '/email');
-            $scope.loader = true;
-            console.log(">>>>>>>>>" + loginSuccessful.success);
-            loginSuccessful.success(function(getDoctorDetails) {
-                if (getDoctorDetails.doctorId != null) {
+                .get("/js/MockJson/doctorLogin.json");
+            //$scope.loader = true;
+            //console.log(">>>>>>>>>" + loginSuccessful.success);
+            loginSuccessful.success(function(login) {
+                
+                for(var i=0; i<login.length;i++){
+                    console.log(login[i]);
+                    if(login[i].email == loginDetail.email && login[i].password == loginDetail.password){
+                        $scope.message = 'Successfully Logged in...!!!';
+                        $rootScope.getDoctorByMobile = login[i];
+                        $cookieStore.put('loginData', login[i]);
+                        $cookieStore.put('email', loginDetail.email);
+                        $window.location.href = "/View/DoctorDashboard.html";
+                        break;
+                    }
+                }
+                /*if (getDoctorDetails.email != null) {
                     $scope.message = 'Successfully Logged in...!!!';
                     $rootScope.getDoctorByMobile = getDoctorDetails;
                     $cookieStore.put('loginData', getDoctorDetails);
                     $window.location.href = "/View/DoctorDashboard.html";
                 } else {
                     $scope.message = 'Invalid Credentials...!!!';
-                }
-                $scope.loader = false;
+                }*/
+                //$scope.loader = false;
+                
             });
             loginSuccessful.error(function(data, status, headers, config) {
-                alert("failure message: " + data.message);
+                alert("failure message: " + data);
                 $scope.message = 'Invalid Credentials...!!!';
             });
         }
-        $scope.showSelectValue = function(mySelect) {
+        /*$scope.showSelectValue = function(mySelect) {
             console.log(mySelect);
-        }
+        }*/
     } else {
         $window.location.href = "#/loginPage";
     }
@@ -371,7 +417,7 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
 });
 
 
-scotchApp.controller('userLogin', function($scope, $rootScope, $http, $cookieStore,
+scotchApp.controller('patientLogin', function($scope, $rootScope, $http, $cookieStore,
 	    $window) {
 	    $scope.loader = false;
 	    if ($cookieStore.get('loginData') == undefined ||
@@ -406,7 +452,7 @@ scotchApp.controller('userLogin', function($scope, $rootScope, $http, $cookieSto
 	            console.log(mySelect);
 	        }
 	    } else {
-	        $window.location.href = "#/userLogin";
+	        $window.location.href = "#/patientLogin";
 	    }
 	    // add validation for adhaar number
 	    $scope.doBlurAdhar = function($event) {

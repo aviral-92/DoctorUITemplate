@@ -39,7 +39,11 @@ angular.module('MassAutoComplete', [])
         scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft || window.pageXOffset;
 
     container[0].style.top = '33' + 'px';
-    container[0].style.left = '0' + 'px';
+    if(rect.bottom > 120){
+    	container[0].style.left = '13' + 'px';
+    }else{
+    	container[0].style.left = '0' + 'px';
+    }
     container[0].style.width = rect.width + 'px';
   };
 
@@ -157,9 +161,12 @@ angular.module('MassAutoComplete', [])
         if (typeof(term) === 'string' && term.length > 0) {
           $q.when(current_options.suggest(term),
             function suggest_succeeded(suggestions) {
-              // Make sure the suggestion we are processing is of the current element.
-              // When using remote sources for example, a suggestion cycle might be
-              // triggered at a later time (When a different field is in focus).
+              // Make sure the suggestion we are processing is of the current
+				// element.
+              // When using remote sources for example, a suggestion cycle
+				// might be
+              // triggered at a later time (When a different field is in
+				// focus).
               if (!current_element || current_element !== target_element) {
                 return;
               }
@@ -173,7 +180,8 @@ angular.module('MassAutoComplete', [])
                   }
                 });
                 // Add the original term as the first value to enable the user
-                // to return to his original expression after suggestions were made.
+                // to return to his original expression after suggestions were
+				// made.
                 $scope.results = [{ value: term, label: '', id: ''}].concat(suggestions);
                 show_autocomplete();
                 if (current_options.auto_select_first) {
@@ -238,10 +246,14 @@ angular.module('MassAutoComplete', [])
             return ngmodel.$modelValue;
           },
           function(nv) {
-            // Prevent suggestion cycle when the value is the last value selected.
-            // When selecting from the menu the ng-model is updated and this watch
-            // is triggered. This causes another suggestion cycle that will provide as
-            // suggestion the value that is currently selected - this is unnecessary.
+            // Prevent suggestion cycle when the value is the last value
+			// selected.
+            // When selecting from the menu the ng-model is updated and this
+			// watch
+            // is triggered. This causes another suggestion cycle that will
+			// provide as
+            // suggestion the value that is currently selected - this is
+			// unnecessary.
             if (nv === last_selected_value) {
               return;
             }
@@ -331,8 +343,10 @@ angular.module('MassAutoComplete', [])
 
         bound_events[config.EVENTS.BLUR] = function() {
           // Detach the element from the auto complete when input loses focus.
-          // Focus is lost when a selection is made from the auto complete menu
-          // using the mouse (or touch). In that case we don't want to detach so
+          // Focus is lost when a selection is made from the auto complete
+			// menu
+          // using the mouse (or touch). In that case we don't want to detach
+			// so
           // we wait several ms for the input to regain focus.
           $timeout(function() {
             if (!current_element || current_element[0] !== $document[0].activeElement) {
@@ -374,7 +388,8 @@ angular.module('MassAutoComplete', [])
                 // the input element. So the enter will cause a keypress event
                 // on the input itself. Since this enter is not intended for the
                 // input but for the AC result we prevent propagation to parent
-                // elements because this event is not of their concern. We cannot
+                // elements because this event is not of their concern. We
+				// cannot
                 // prevent events from firing when the event was registered on
                 // the input itself.
                 e.stopPropagation();
