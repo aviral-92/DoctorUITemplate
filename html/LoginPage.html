@@ -52,12 +52,12 @@
 
 											<div class="help-inline">
 												<span ng-show="!!doctorForm.adhar.$error.isBlank"><b
-													style="color: red;">Doctor adhar number Required.</b></span> <span
+													style="color: red;">Aadhaar number Required.</b></span> <span
 													ng-show="!!doctorForm.adhar.$error.invalidChars"><b
-													style="color: red;">Doctor adhar number must contain
+													style="color: red;">Aadhaar number must contain
 														numbers only.</b></span> <span
 													ng-show="!!doctorForm.adhar.$error.invalidLen"><b
-													style="color: red;">Doctor adhar number must be 12
+													style="color: red;">Aadhaar number must be 12
 														digits.</b></span><span
 													class="glyphicon glyphicon-ok form-control-feedback"
 													style="color: green;" ng-show="doctorForm.adhar.$valid"></span>
@@ -69,13 +69,21 @@
 								<!-- ------------------------------------ -->
 
 								<div class="form-group">
-									<div class="col-sm-offset-1 col-sm-10">
+									<!-- ----------use to disable submit button ------>
+									<div class="col-sm-offset-1 col-sm-4">
+										<input type="submit" class="btn btn-success btn-block"
+											data-toggle="modal" data-target="#myModal1"
+											ng-disabled="!doctorForm.$valid || doctorForm.$pristine"
+											value="SUBMIT">
+										<!-- ----------use to disable submit button ------>
+									</div>
+									<!-- <div class="col-sm-offset-0 col-sm-10">
 										<button type="button" ng-click="searchDoctor(doctor)"
-											class="btn btn-success" data-toggle="modal"
+											class="btn btn-success" data-toggle="modal" ng-disabled="!doctorForm.$valid || doctorForm.$pristine"
 											data-target="#myModal1">
 											<span class="glyphicon glyphicon-ok-circle"></span> Submit
 										</button>
-									</div>
+									</div> -->
 								</div>
 							</form>
 						</div>

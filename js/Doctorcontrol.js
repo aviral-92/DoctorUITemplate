@@ -99,6 +99,8 @@ scotchApp.controller('indexSlider', function($scope) {
 });
 
 scotchApp.controller('doctorRegistration', function($scope) {
+    
+    $scope.confirm = false;
 	 $scope.doBlurName = function($event) {
 	        var target = $event.target;
 	        if ($scope.doctor != null && $scope.doctor.name.length > 0) {
@@ -138,6 +140,15 @@ scotchApp.controller('doctorRegistration', function($scope) {
 	            target.focus();
 	        }
 	    }
+       
+       $scope.doBlurPassword = function(login){
+           
+           if(login.password == login.cnfrmPassword){
+               $scope.confirm = false;
+           }else{
+               $scope.confirm = true;
+           }
+       }
 });
 
 scotchApp.controller('patientRegistration', function($scope) {
@@ -386,6 +397,27 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
             target.focus();
         }
     }
+   //----------------------------- code for forgot password dialogue box timings 
+    $(function(){
+        $('#myModal').on('show.bs.modal', function(){
+            var myModal = $(this);
+            clearTimeout(myModal.data('hideInterval'));
+            myModal.data('hideInterval', setTimeout(function(){
+                myModal.modal('hide');
+            }, 14000));
+        });
+    });
+    
+    $(function(){
+        $('#myModal1').on('show.bs.modal', function(){
+            var myModal = $(this);
+            clearTimeout(myModal.data('hideInterval'));
+            myModal.data('hideInterval', setTimeout(function(){
+                myModal.modal('hide');
+            }, 4000));
+        });
+    });
+    //------------------------------ code for forgot password dialogue box timings
 });
 
 
@@ -465,7 +497,29 @@ scotchApp.controller('patientLogin', function($scope, $rootScope, $http, $cookie
 	            target.focus();
 	        }
 	    }
-	});
+	  //----------------------------- code for forgot password dialogue box timings 
+	    $(function(){
+	        $('#myModal').on('show.bs.modal', function(){
+	            var myModal = $(this);
+	            clearTimeout(myModal.data('hideInterval'));
+	            myModal.data('hideInterval', setTimeout(function(){
+	                myModal.modal('hide');
+	            }, 14000));
+	        });
+	    });
+	    
+	    $(function(){
+	        $('#myModal1').on('show.bs.modal', function(){
+	            var myModal = $(this);
+	            clearTimeout(myModal.data('hideInterval'));
+	            myModal.data('hideInterval', setTimeout(function(){
+	                myModal.modal('hide');
+	            }, 4000));
+	        });
+	    });
+	    //------------------------------ code for forgot password dialogue box timings
+	    
+	   	});
 
 scotchApp.controller('contact', function($scope) {});
 

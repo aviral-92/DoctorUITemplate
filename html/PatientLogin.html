@@ -36,13 +36,13 @@
 
 						<div class="modal-body">
 
-							<form name="doctorForm" class="form-horizontal" role="form"
+							<form name="patientForm" class="form-horizontal" role="form"
 								style="margin-left: 20%;">
 								<!-- ---------------------------------- -->
 								<div class="col-sm-10">
 									<div class="form-group has-feedback "
-										ng-class="{'has-success' : doctorForm.adhar.$dirty && doctorForm.adhar.$valid ,
-			 'has-error' : doctorForm.adhar.$dirty && doctorForm.adhar.$invalid}">
+										ng-class="{'has-success' : patientForm.adhar.$dirty && patientForm.adhar.$valid ,
+			 'has-error' : patientForm.adhar.$dirty && patientForm.adhar.$invalid}">
 										<!-- <label class="control-label col-sm-2" for="name"> Adhar
 				Number:</label> -->
 										<div class="col-sm-8">
@@ -52,16 +52,16 @@
 												ng-blur="doBlurAdhar($event)" valid-Adhar />
 
 											<div class="help-inline">
-												<span ng-show="!!doctorForm.adhar.$error.isBlank"><b
-													style="color: red;">Doctor adhar number Required.</b></span> <span
-													ng-show="!!doctorForm.adhar.$error.invalidChars"><b
-													style="color: red;">Doctor adhar number must contain
+												<span ng-show="!!patientForm.adhar.$error.isBlank"><b
+													style="color: red;">Aadhaar number Required.</b></span> <span
+													ng-show="!!patientForm.adhar.$error.invalidChars"><b
+													style="color: red;">Aadhaar number must contain
 														numbers only.</b></span> <span
-													ng-show="!!doctorForm.adhar.$error.invalidLen"><b
-													style="color: red;">Doctor adhar number must be 12
+													ng-show="!!patientForm.adhar.$error.invalidLen"><b
+													style="color: red;">Aadhaar number must be 12
 														digits.</b></span><span
 													class="glyphicon glyphicon-ok form-control-feedback"
-													style="color: green;" ng-show="doctorForm.adhar.$valid"></span>
+													style="color: green;" ng-show="patientForm.adhar.$valid"></span>
 											</div>
 										</div>
 									</div>
@@ -70,13 +70,21 @@
 								<!-- ------------------------------------ -->
 
 								<div class="form-group">
-									<div class="col-sm-offset-1 col-sm-10">
+									<!-- ----------use to disable submit button ------>
+									<div class="col-sm-offset-1 col-sm-4">
+										<input type="submit" class="btn btn-success btn-block"
+											data-toggle="modal" data-target="#myModal1"
+											ng-disabled="!patientForm.$valid || patientForm.$pristine"
+											value="SUBMIT">
+									</div>
+									<!-- ----------use to disable submit button ------>
+									<!-- <div class="col-sm-offset-1 col-sm-10">
 										<button type="button" ng-click="searchDoctor(doctor)"
 											class="btn btn-success" data-toggle="modal"
 											data-target="#myModal1">
 											<span class="glyphicon glyphicon-ok-circle"></span> Submit
 										</button>
-									</div>
+									</div> -->
 								</div>
 							</form>
 

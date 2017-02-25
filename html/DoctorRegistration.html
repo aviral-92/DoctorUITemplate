@@ -189,8 +189,7 @@
                         'has-error' : doctorRegistrationForm.cnfrmPassword.$dirty && doctorRegistrationForm.cnfrmPassword.$invalid}">
 									<input type="password" class="form-control" id="inputError2"
 										name="cnfrmPassword" ng-model="loginDetail.cnfrmPassword"
-										placeholder="Enter password" valid-Confirm> 
-                                        <!--ng-blur="doBlurPassword($event)"-->
+										placeholder="Enter password" ng-blur="doBlurPassword(loginDetail)" valid-Confirm> 
 									<div class="help-inline">
 										<span
 											ng-show="!!doctorRegistrationForm.cnfrmPassword.$error.isBlank"><i
@@ -198,17 +197,17 @@
 											ng-show="!!doctorRegistrationForm.cnfrmPassword.$error.invalidChars"><i
 											style="color: red;">Confirm Incorrect password.</i></span> <span
 											ng-show="!!doctorRegistrationForm.cnfrmPassword.$error.invalidLen"><i
-											style="color: red;">Incorrect Confirm password</i></span><span ng-show="!!doctorRegistrationForm.cnfrmPassword.$error.pswrdMatch"><i
-											style="color: red;">Password && Confirm password not match</i></span>
-                                        
-										<div ng-if="doctorRegistrationForm.cnfrmPassword.$pristine == true">
+											style="color: red;">Incorrect Confirm password</i></span><span 
+                                            ng-show="confirm"><i style="color: red;">Password && Confirm password not match
+                                            </i></span>
+										<div ng-if="doctorRegistrationForm.cnfrmPassword.$pristine == true || confirm==true">
 											<span
 												class="glyphicon glyphicon-remove form-control-feedback"
 												style="color: red; margin-top: -5%;"
-												ng-show="!!doctorRegistrationForm.cnfrmPassword.$error.isBlank || !!doctorRegistrationForm.cnfrmPassword.$error.invalidChars || !!doctorRegistrationForm.cnfrmPassword.$error.invalidLen"></span>
+												ng-show="!!doctorRegistrationForm.cnfrmPassword.$error.isBlank || !!doctorRegistrationForm.cnfrmPassword.$error.invalidChars || !!doctorRegistrationForm.cnfrmPassword.$error.invalidLen || confirm == true"></span>
 										</div>
 										<div
-											ng-if="doctorRegistrationForm.cnfrmPassword.$pristine == false">
+											ng-if="doctorRegistrationForm.cnfrmPassword.$pristine == false && confirm==false">
 											<span class="glyphicon glyphicon-ok form-control-feedback"
 												style="color: green; margin-top: -5%;"
 												ng-show="!doctorRegistrationForm.cnfrmPassword.$error.isBlank && !doctorRegistrationForm.cnfrmPassword.$error.invalidChars && !doctorRegistrationForm.cnfrmPassword.$error.invalidLen"></span>
@@ -227,7 +226,7 @@
 								</div>
 								<!-- Input type Submit Button Field-->
 								<div class="form-group">
-									<input type="submit" class="btn btn-success btn-block" ng-disabled="!doctorRegistrationForm.$valid || doctorRegistrationForm.$pristine"
+									<input type="submit" class="btn btn-success btn-block" ng-disabled="!doctorRegistrationForm.$valid || doctorRegistrationForm.$pristine || confirm==true"
 										value="SUBMIT">
 								</div>
 							</form>
