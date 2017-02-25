@@ -61,16 +61,16 @@ scotchApp.controller('index', function($scope, $http, $window) {
     var slides = $scope.slides;
     
     $scope.sliders = [{
-        image: '/images/Slider 1/2.jpg',
+        image: '/images/Slider 1/4.jpg',
         text: 'Cute Fish'
     }, {
         image: '/images/Slider 1/1.jpg',
         text: 'Image2'
     }, {
-        image: '/images/Slider 1/3.jpg',
+        image: '/images/Slider 1/2.jpg',
         text: 'Image3'
     }, {
-        image: '/images/Slider 1/4.jpg',
+        image: '/images/Slider 1/3.jpg',
         text: 'Image4'
     }];
     
@@ -274,43 +274,6 @@ scotchApp.controller('doctorSearch', function($scope, $http) {
     }
 });
 
-/*scotchApp.controller('login', function($scope, $rootScope, $http, $cookieStore,
-    $window) {
-
-    $scope.loader = false;
-    if ($cookieStore.get('loginData') == undefined ||
-        $cookieStore.get('email') == undefined) {
-        $scope.doctorLogin = function(loginDetail) {
-            console.log(loginDetail);
-            $cookieStore.put('email', loginDetail.email);
-            var loginSuccessful = $http
-                .get('https://doctor-service.cfapps.io/doctor/get/' +
-                    loginDetail.email + '/email');
-            document.getElementById("myNav").style.width = "100%";
-            $scope.loader = true;
-            console.log(">>>>>>>>>" + loginSuccessful.success);
-            loginSuccessful.success(function(getDoctorDetails) {
-                if (getDoctorDetails.doctorId != null) {
-                    $scope.message = 'Successfully Logged in...!!!';
-                    $rootScope.getDoctorByMobile = getDoctorDetails;
-                    $cookieStore.put('loginData', getDoctorDetails);
-                    window.location = "#/dashboard";
-                } else {
-                    $scope.message = 'Invalid Credentials...!!!';
-                }
-                $scope.loader = false;
-            });
-            loginSuccessful.error(function(data, status, headers, config) {
-                alert("failure message: " + data.message);
-                $scope.message = 'Invalid Credentials...!!!';
-            });
-        }
-    } else {
-        $window.location.href = "#/dashboard";
-    }
-
-});*/
-
 scotchApp.controller('about', function($scope) {
 	 // initializing the time Interval
     $scope.firstSliderInterval = 3000;
@@ -318,8 +281,11 @@ scotchApp.controller('about', function($scope) {
  var slides = $scope.slides;
     
     $scope.sliders = [{
-        image: '/images/Slider 1/sliderImage2.jpg',
+        image: '/images/Slider 1/doc.jpg',
         text: 'Cute Fish'
+    }, {
+        image: '/images/Slider 1/doc4.jpg',
+        text: 'Image2'
     }, {
         image: '/images/Slider 1/sliderImage1.jpg',
         text: 'Image2'
@@ -327,6 +293,12 @@ scotchApp.controller('about', function($scope) {
         image: '/images/Slider 1/sliderImage2.jpg',
         text: 'Image3'
     }, {
+        image: '/images/Slider 1/doc1.jpg',
+        text: 'Image2'
+    }, {
+        image: '/images/Slider 1/doc2.jpg',
+        text: 'Image2'
+    },{
         image: '/images/Slider 1/sliderImage3.png',
         text: 'Image4'
     }];
@@ -419,21 +391,50 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
 
 scotchApp.controller('patientLogin', function($scope, $rootScope, $http, $cookieStore,
 	    $window) {
-	    $scope.loader = false;
+	 $scope.doBlurEmail = function($event) {
+	        var target = $event.target;
+	        if ($scope.loginDetail != null && $scope.loginDetail.email != null &&
+	            $scope.loginDetail.email.length > 9) {
+	            target.blur();
+	        } else {
+	            target.focus();
+	        }
+	    }
+	 $scope.doBlurPassword = function($event) {
+	        var target = $event.target;
+	        if ($scope.loginDetail != null && $scope.loginDetail.password != null &&
+	            $scope.loginDetail.password.length > 5) {
+	            target.blur();
+	        } else {
+	            target.focus();
+	        }
+	    }
+	   /* $scope.loader = false;*/
 	    if ($cookieStore.get('loginData') == undefined ||
 	        $cookieStore.get('email') == undefined) {
 
 
-	        $scope.doctorLogin = function(loginDetail) {
-	            console.log(loginDetail);
-	            $cookieStore.put('email', loginDetail.email);
+	        $scope.patientLogin = function(loginDetail) {
+	           /* console.log(loginDetail);
+	            $cookieStore.put('email', loginDetail.email);*/
 	            var loginSuccessful = $http
-	                .get('https://doctor-service.cfapps.io/doctor/get/' +
-	                    loginDetail.email + '/email');
-	            $scope.loader = true;
-	            console.log(">>>>>>>>>" + loginSuccessful.success);
-	            loginSuccessful.success(function(getDoctorDetails) {
-	                if (getDoctorDetails.doctorId != null) {
+	                .get("/js/MockJson/doctorLogin.json");
+	         /*   $scope.loader = true;
+	            console.log(">>>>>>>>>" + loginSuccessful.success);*/
+	            loginSuccessful.success(function(login) {
+	            	   
+	                for(var i=0; i<login.length;i++){
+	                    console.log(login[i]);
+	                    if(login[i].email == loginDetail.email && login[i].password == loginDetail.password){
+	                        $scope.message = 'Successfully Logged in...!!!';
+	                        $rootScope.getDoctorByMobile = login[i];
+	                        $cookieStore.put('loginData', login[i]);
+	                        $cookieStore.put('email', loginDetail.email);
+	                        $window.location.href = "/View/DoctorDashboard.html";
+	                        break;
+	                    }
+	                }
+	              /*  if (getDoctorDetails.doctorId != null) {
 	                    $scope.message = 'Successfully Logged in...!!!';
 	                    $rootScope.getDoctorByMobile = getDoctorDetails;
 	                    $cookieStore.put('loginData', getDoctorDetails);
@@ -441,16 +442,16 @@ scotchApp.controller('patientLogin', function($scope, $rootScope, $http, $cookie
 	                } else {
 	                    $scope.message = 'Invalid Credentials...!!!';
 	                }
-	                $scope.loader = false;
+	                $scope.loader = false;*/
 	            });
 	            loginSuccessful.error(function(data, status, headers, config) {
 	                alert("failure message: " + data.message);
 	                $scope.message = 'Invalid Credentials...!!!';
 	            });
 	        }
-	        $scope.showSelectValue = function(mySelect) {
+	       /* $scope.showSelectValue = function(mySelect) {
 	            console.log(mySelect);
-	        }
+	        }*/
 	    } else {
 	        $window.location.href = "#/patientLogin";
 	    }
@@ -526,11 +527,11 @@ function getByEmail($http, $cookieStore) {
     doctors.error(function(data, status, headers, config) {});
 }
 
-scotchApp.controller('retrievePassword', function($scope, $rootScope) {
+/*scotchApp.controller('retrievePassword', function($scope, $rootScope) {
     $scope.submit = function() {
         alert("Password send to your E-mail Id");
     }
 });
-
+*/
 
 /** **********************Dashboard Ends*********************** */

@@ -3,13 +3,13 @@
 		class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 		<!-- ----------------------------------------------- -->
 		<div class="row">
-			<div class="col-sm-12 nav-tab-holder" style="width:97.5%;">
+			<div class="col-sm-12 nav-tab-holder" style="width: 97.5%;">
 				<ul class="nav nav-tabs row" role="tablist">
-					<li role="presentation" class="col-sm-6"><a
-						href="#loginPage" aria-controls="home" role="tab"
-						data-toggle="tab">Doctor</a></li>
-					<li role="presentation" class="active col-sm-6"><a href="#patientLogin"
-						aria-controls="profile" role="tab" data-toggle="tab">Patient</a></li>
+					<li role="presentation" class="col-sm-6"><a href="#loginPage"
+						aria-controls="home" role="tab" data-toggle="tab">Doctor</a></li>
+					<li role="presentation" class="active col-sm-6"><a
+						href="#patientLogin" aria-controls="profile" role="tab"
+						data-toggle="tab">Patient</a></li>
 				</ul>
 			</div>
 		</div>
@@ -38,12 +38,6 @@
 
 							<form name="doctorForm" class="form-horizontal" role="form"
 								style="margin-left: 20%;">
-								<!-- <div class="form-group">
-									<div class="col-sm-6">
-										<input type="text" class="form-control" id="name"
-											ng-model="doctor.pin" placeholder="Enter your Adhaar Number">
-									</div>
-								</div> -->
 								<!-- ---------------------------------- -->
 								<div class="col-sm-10">
 									<div class="form-group has-feedback "
@@ -118,48 +112,67 @@
 				<div style="display: none" id="login-alert"
 					class="alert alert-danger col-sm-12"></div>
 
-				<form id="loginform" class="form-horizontal" role="form">
+				<form id="loginform" class="form-horizontal" role="form"
+					name="loginForm">
 
-					<div style="margin-bottom: 25px" class="input-group">
+					<div style="margin-bottom: 25px;" class="input-group has-feedback "
+						ng-class="{'has-success' : loginForm.email.$dirty && loginForm.email.$valid ,
+                        'has-error' : loginForm.email.$dirty && loginForm.email.$invalid}">
 						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-user"></i></span> <input id="login-username"
-							type="text" class="form-control" name="username" value=""
-							ng-model="loginDetail.email" placeholder="username or email">
-					</div>
-
-					<div style="margin-bottom: 25px" class="input-group">
-						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-lock"></i></span> <input id="login-password"
-							type="password" class="form-control" name="password"
-							ng-model="loginDetail.password" placeholder="password">
-					</div>
-
-					<!-- --------------------------------------------------------------------------------------- -->
-				<!-- 	<div class="form-group">
-						<label class="control-label col-sm-3"> Sign in as :</label>
-						<div class="col-sm-6">
-							<select class="form-control" ng-model="mySelect"
-								ng-change="showSelectValue(mySelect)">
-								<option value=""></option>
-								<option value="doctor">Doctor</option>
-								<option value="patient">Patient</option>
-							</select>
+							class="glyphicon glyphicon-user"></i></span> <input type="email"
+							class="form-control" id="inputError2" name="email"
+							ng-model="loginDetail.email" placeholder="Enter email"
+							ng-blur="doBlurEmail($event)" valid-Email>
+						<div class="help-inline">
+							<span ng-show="!!loginForm.email.$error.isBlank"><i
+								style="color: red;">Patient Email Required.</i></span> <span
+								ng-show="!!loginForm.email.$error.invalidChars"><i
+								style="color: red;">Patient Email must contain @ & dot(.) .</i></span>
+							<span ng-show="!!loginForm.email.$error.invalidLen"><i
+								style="color: red;">Patient Email must be use dot(.) &
+									characters.</i></span>
+							<div ng-if="loginForm.email.$invalid == true">
+								<span class="glyphicon glyphicon-remove form-control-feedback"
+									style="color: red;"
+									ng-show="!!loginForm.email.$error.isBlank || !!loginForm.email.$error.invalidChars || !!loginForm.email.$error.invalidLen"></span>
+							</div>
+							<div ng-if="loginForm.email.$pristine == false">
+								<span class="glyphicon glyphicon-ok form-control-feedback"
+									style="color: green;"
+									ng-show="!loginForm.email.$error.isBlank && !loginForm.email.$error.invalidChars && !loginForm.email.$error.invalidLen"></span>
+							</div>
 						</div>
-					</div> -->
+					</div>
+
+					<div style="margin-bottom: 25px;" class="input-group has-feedback "
+						ng-class="{'has-success' : loginForm.password.$dirty && loginForm.password.$valid ,
+                        'has-error' : loginForm.password.$dirty && loginForm.password.$invalid}">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-lock"></i></span> <input type="password"
+							class="form-control" id="inputError2" name="password"
+							ng-model="loginDetail.password" placeholder="Enter password"
+							ng-blur="doBlurPassword($event)" valid-Password>
+						<div class="help-inline">
+							<span ng-show="!!loginForm.password.$error.isBlank"><i
+								style="color: red;">Password required.</i></span> <span
+								ng-show="!!loginForm.password.$error.invalidChars"><i
+								style="color: red;">Incorrect password.</i></span> <span
+								ng-show="!!loginForm.password.$error.invalidLen"><i
+								style="color: red;">Incorrect password</i></span>
+							<div ng-if="loginForm.password.$invalid == true">
+								<span class="glyphicon glyphicon-remove form-control-feedback"
+									style="color: red;"
+									ng-show="!!loginForm.password.$error.isBlank || !!loginForm.password.$error.invalidChars || !!loginForm.password.$error.invalidLen"></span>
+							</div>
+							<div ng-if="loginForm.password.$pristine == false">
+								<span class="glyphicon glyphicon-ok form-control-feedback"
+									style="color: green;"
+									ng-show="!loginForm.password.$error.isBlank && !loginForm.password.$error.invalidChars && !loginForm.password.$error.invalidLen"></span>
+							</div>
+						</div>
+					</div>
+
 					<!-- --------------------------------------------------------------------------------------- -->
-
-
-
-					<!-- ---------------Need to edit in this code----------------------------------------------- -->
-					<!-- <select id="name" name="name">
-						<option value="">Sign in as...</option>
-						<option value="Elvis">Doctor</option>
-						<option value="Frank">Patient</option>
-						<option value="Jim">China</option>
-					</select><br /> <input type="text" id="firstname" name="firstname" value=""
-						readonly="readonly"> -->
-					<!-- --------------------------------------------------------------------------------------- -->
-
 					<div class="input-group">
 						<div class="checkbox">
 							<label> <input id="login-remember" type="checkbox"
@@ -167,29 +180,24 @@
 							</label>
 						</div>
 					</div>
-
 					<!-- ---------------------------------------------------------------- -->
 
 					<div class="form-group">
 						<div class="control-label col-sm-4">
 							<button class="btn btn-primary"
-								ng-click="doctorLogin(loginDetail)">
+								ng-click="patientLogin(loginDetail)">
 								<span class="glyphicon glyphicon-ok-circle"></span> Log In
 							</button>
 							{{message}}
 						</div>
 					</div>
 					<!-- ---------------------------------------------------------------- -->
-					<!-- <div style="margin-top: 10px" class="form-group">
-						Button
-					</div> -->
-
 					<div class="form-group">
 						<div class="col-md-12 control">
 							<div
 								style="border-top: 1px solid #888; padding-top: 15px; font-size: 85%">
-								Don't have an account! <a href="#/patientRegistration" onClick=""><u>
-									Sign Up Here</u> </a>
+								Don't have an account! <a href="#/patientRegistration"
+									onClick=""><u> Sign Up Here</u> </a>
 							</div>
 						</div>
 					</div>

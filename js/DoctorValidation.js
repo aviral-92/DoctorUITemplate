@@ -5,6 +5,8 @@ signUp = function($scope) {
     }
 }
 
+var pass = null;
+
 angular.module('UserValidation', []).directive('validName', function () {
     return {
         require: 'ngModel',
@@ -223,7 +225,32 @@ angular.module('UserValidation', []).directive('validName', function () {
                 ctrl.$setValidity('invalidLen', !invalidLen)
                 scope.consultingGood = !isBlank && !invalidChars && !invalidLen
                 if(scope.consultingGood == true){
+                    pass = viewValue;
                 	return viewValue;
+                }
+                else 
+                	return false;
+            })
+        }
+    }
+}).directive('validConfirm', function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, elm, attrs, ctrl) {
+            ctrl.$parsers.unshift(function (viewValue) {
+                console.log('hh');
+                var isBlank = viewValue === ''
+                	var invalidChars = !isBlank && !/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/.test(viewValue)
+                var invalidLen = !isBlank && !invalidChars && (viewValue.length < 5)
+                //var pswrdMatch = pass === viewValue
+                ctrl.$setValidity('isBlank', !isBlank)
+                ctrl.$setValidity('invalidChars', !invalidChars)
+                ctrl.$setValidity('invalidLen', !invalidLen)
+                //ctrl.$setValidity('pswrdMatch', !pswrdMatch)
+               
+                scope.consultingGood = !isBlank && !invalidChars && !invalidLen
+                if(scope.consultingGood == true){
+                    return viewValue;
                 }
                 else 
                 	return false;
