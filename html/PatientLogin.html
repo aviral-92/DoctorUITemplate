@@ -39,29 +39,32 @@
 							<form name="patientForm" class="form-horizontal" role="form"
 								style="margin-left: 20%;">
 								<!-- ---------------------------------- -->
-								<div class="col-sm-10">
+								<div class="col-sm-8">
 									<div class="form-group has-feedback "
-										ng-class="{'has-success' : patientForm.adhar.$dirty && patientForm.adhar.$valid ,
-			 'has-error' : patientForm.adhar.$dirty && patientForm.adhar.$invalid}">
-										<!-- <label class="control-label col-sm-2" for="name"> Adhar
-				Number:</label> -->
-										<div class="col-sm-8">
-											<input type="text" class="form-control" id="adhar"
-												name="adhar" ng-model="doctor.aadhaarNumber"
-												placeholder="Enter Adhar Number"
-												ng-blur="doBlurAdhar($event)" valid-Adhar />
-
-											<div class="help-inline">
-												<span ng-show="!!patientForm.adhar.$error.isBlank"><b
-													style="color: red;">Aadhaar number Required.</b></span> <span
-													ng-show="!!patientForm.adhar.$error.invalidChars"><b
-													style="color: red;">Aadhaar number must contain
-														numbers only.</b></span> <span
-													ng-show="!!patientForm.adhar.$error.invalidLen"><b
-													style="color: red;">Aadhaar number must be 12
-														digits.</b></span><span
-													class="glyphicon glyphicon-ok form-control-feedback"
-													style="color: green;" ng-show="patientForm.adhar.$valid"></span>
+										ng-class="{'has-success' : patientForm.aadhaarNumber.$dirty && patientForm.aadhaarNumber.$valid ,
+                        'has-error' : patientForm.aadhaarNumber.$dirty && patientForm.aadhaarNumber.$invalid}">
+										<input type="text" class="form-control" id="inputError2"
+											name="aadhaarNumber" ng-model="doctor.aadhaarNumber"
+											placeholder="Enter aadhaar number" valid-Adhar>
+										<!-- ng-blur="doBlurAdhar($event)"-->
+										<div class="help-inline">
+											<span ng-show="!!patientForm.aadhaarNumber.$error.isBlank"><b
+												style="color: red;">Aadhaar number Required.</b></span> <span
+												ng-show="!!patientForm.aadhaarNumber.$error.invalidChars"><b
+												style="color: red;">Aadhaar number must contain numbers
+													only.</b></span> <span
+												ng-show="!!patientForm.aadhaarNumber.$error.invalidLen"><b
+												style="color: red;">Aadhaar number must be 12 digits.</b></span>
+											<div ng-if="patientForm.aadhaarNumber.$invalid == true">
+												<span
+													class="glyphicon glyphicon-remove form-control-feedback"
+													style="color: red;"
+													ng-show="!!patientForm.aadhaarNumber.$error.isBlank || !!patientForm.aadhaarNumber.$error.invalidChars || !!patientForm.aadhaarNumber.$error.invalidLen"></span>
+											</div>
+											<div ng-if="patientForm.aadhaarNumber.$pristine == false">
+												<span class="glyphicon glyphicon-ok form-control-feedback"
+													style="color: green;"
+													ng-show="!patientForm.aadhaarNumber.$error.isBlank && !patientForm.aadhaarNumber.$error.invalidChars && !patientForm.aadhaarNumber.$error.invalidLen"></span>
 											</div>
 										</div>
 									</div>
