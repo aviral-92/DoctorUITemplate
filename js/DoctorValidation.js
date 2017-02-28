@@ -42,7 +42,7 @@ angular.module('UserValidation', []).directive('validName', function () {
                 ctrl.$setValidity('invalidLen', !invalidLen)
                 scope.emailGood = !isBlank && !invalidChars && !invalidLen
                 if(scope.emailGood == true){
-                	console.log(">>>>>>>>" +scope.nameGood);
+                	//console.log(">>>>>>>>" +scope.nameGood);
                 	return viewValue;
                 }
                 else 

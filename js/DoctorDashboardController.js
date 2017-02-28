@@ -60,12 +60,11 @@ scotchApp.controller('afterLogin', function($scope, $rootScope, $cookieStore) {
 	}
 });
 
-scotchApp.controller('logout', function($scope, $rootScope, $http,
-		$cookieStore, $window) {
+scotchApp.controller('logout', function($scope, $rootScope, $http, $cookieStore, $window) {
 
-	$cookieStore.remove('email');
+	$cookieStore.remove("email");
 	$cookieStore.remove('loginData');
-	window.location.href = "/index.html"; //edit route for new login page
+	$window.location.href = "/index.html"; //edit route for new login page
 });
 
 scotchApp.controller('dashboard',

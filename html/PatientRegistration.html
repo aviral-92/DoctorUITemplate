@@ -54,12 +54,6 @@
 									</div>
 								</div>
 								<!-- ------------------------------------------------- -->
-								<!-- <div class="form-group">
-									<input type="email" class="form-control"
-										placeholder="Email Address">
-								</div> -->
-
-								<!-- --------Need to add validation in this field-------- -->
 								<div class="form-group has-feedback "
 									ng-class="{'has-success' : patientForm.email.$dirty && patientForm.email.$valid ,
 			 'has-error' : patientForm.email.$dirty && patientForm.email.$invalid}">
@@ -121,7 +115,6 @@
 									</div>
 								</div>
 								<!-- ------------------------------------------------- -->
-								<!-- ------------------------------------------------- -->
 
 								<div class="form-group has-feedback "
 									ng-class="{'has-success' : patientForm.adhar.$dirty && patientForm.adhar.$valid ,
@@ -152,23 +145,17 @@
 										</div>
 									</div>
 								</div>
-								<!-- ------------------------------------------------- -->
-								<!-- <div class="form-group">
-									<input type="password" class="form-control"
-										placeholder="Password">
-								</div> -->
-
 								<!-- ------------------------------------------------------ -->
-								<div style="margin-bottom: 25px;"
-									class="form-group has-feedback "
+								<div class="form-group has-feedback "
 									ng-class="{'has-success' : patientForm.password.$dirty && patientForm.password.$valid ,
                         'has-error' : patientForm.password.$dirty && patientForm.password.$invalid}">
 									<input type="password" class="form-control" id="inputError2"
 										name="password" ng-model="loginDetail.password"
-										placeholder="Enter password" ng-blur="doBlurPassword($event)"
-										valid-Password>
+										placeholder="Enter password" valid-Password>
+									<!--ng-blur="doBlurPassword($event)" -->
 									<div class="help-inline">
-										<span ng-show="!!patientForm.password.$error.isBlank"><i
+										<span
+											ng-show="!!patientForm.password.$error.isBlank"><i
 											style="color: red;">Password required.</i></span> <span
 											ng-show="!!patientForm.password.$error.invalidChars"><i
 											style="color: red;">Incorrect password.</i></span> <span
@@ -180,7 +167,8 @@
 												style="color: red; margin-top: -5%;"
 												ng-show="!!patientForm.password.$error.isBlank || !!patientForm.password.$error.invalidChars || !!patientForm.password.$error.invalidLen"></span>
 										</div>
-										<div ng-if="patientForm.password.$pristine == false">
+										<div
+											ng-if="patientForm.password.$pristine == false">
 											<span class="glyphicon glyphicon-ok form-control-feedback"
 												style="color: green; margin-top: -5%;"
 												ng-show="!patientForm.password.$error.isBlank && !patientForm.password.$error.invalidChars && !patientForm.password.$error.invalidLen"></span>
@@ -188,10 +176,40 @@
 									</div>
 								</div>
 								<!-- ------------------------------------------------------ -->
-								<div class="form-group">
-									<input type="password" class="form-control"
-										placeholder="Confirm Password">
+								<div class="form-group has-feedback "
+									ng-class="{'has-success' : patientForm.cnfrmPassword.$dirty && patientForm.cnfrmPassword.$valid ,
+                        'has-error' : patientForm.cnfrmPassword.$dirty && patientForm.cnfrmPassword.$invalid}">
+									<input type="password" class="form-control" id="inputError2"
+										name="cnfrmPassword" ng-model="loginDetail.cnfrmPassword"
+										placeholder="Enter confirm password"
+										ng-blur="doBlurPassword(loginDetail)" valid-Confirm>
+									<div class="help-inline">
+										<span
+											ng-show="!!patientForm.cnfrmPassword.$error.isBlank"><i
+											style="color: red;">Confirm Password required.</i></span> <span
+											ng-show="!!patientForm.cnfrmPassword.$error.invalidChars"><i
+											style="color: red;">Confirm Incorrect password.</i></span> <span
+											ng-show="!!patientForm.cnfrmPassword.$error.invalidLen"><i
+											style="color: red;">Incorrect Confirm password</i></span><span
+											ng-show="confirm"><i style="color: red;">Password
+												&& Confirm password not match </i></span>
+										<div
+											ng-if="patientForm.cnfrmPassword.$pristine == true || confirm==true">
+											<span
+												class="glyphicon glyphicon-remove form-control-feedback"
+												style="color: red; margin-top: -5%;"
+												ng-show="!!patientForm.cnfrmPassword.$error.isBlank || !!patientForm.cnfrmPassword.$error.invalidChars || !!patientForm.cnfrmPassword.$error.invalidLen || confirm == true"></span>
+										</div>
+										<div
+											ng-if="patientForm.cnfrmPassword.$pristine == false && confirm==false">
+											<span class="glyphicon glyphicon-ok form-control-feedback"
+												style="color: green; margin-top: -5%;"
+												ng-show="!patientForm.cnfrmPassword.$error.isBlank && !patientForm.cnfrmPassword.$error.invalidChars && !patientForm.cnfrmPassword.$error.invalidLen"></span>
+										</div>
+
+									</div>
 								</div>
+								<!-- ------------------------------------------------------ -->
 								<div class="form-group">
 									<div class="checkbox">
 										<label> <input type="checkbox"> Please accept
@@ -200,7 +218,9 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<input type="submit" class="btn btn-success btn-block"
+									<input type="submit" class="btn "
+										ng-class="{'btn-primary btn-block' : !patientForm.$valid || patientForm.$pristine || confirm==true, 'btn-success btn-block' : !!patientForm.$valid || !patientForm.$pristine || !confirm==true}"
+										ng-disabled="!patientForm.$valid || patientForm.$pristine || confirm==true"
 										value="SUBMIT">
 								</div>
 							</form>
@@ -213,7 +233,7 @@
 								<!-- ----------------------------POP UP----------------------------------- -->
 								<div class="modal fade" id="myModal" role="dialog">
 									<div class="modal-dialog">
-										<div style="width: 90%; margin-left: 10%;"
+										<div style="width: 90%; margin-left: 4%;"
 											class="modal-content">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal"
@@ -235,7 +255,6 @@
 								</div>
 								<!-- ----------------------------POP UP----------------------------------- -->
 							</footer>
-
 						</article>
 					</div>
 				</div>
