@@ -1,6 +1,6 @@
 scotchApp.controller('patientLogin', function($scope, $rootScope, $http, $cookieStore,
     $window, $cookies) {
-    $scope.doBlurEmail = function($event) {
+   /* $scope.doBlurEmail = function($event) {
         var target = $event.target;
         if ($scope.loginDetail != null && $scope.loginDetail.email != null &&
             $scope.loginDetail.email.length > 9) {
@@ -17,7 +17,7 @@ scotchApp.controller('patientLogin', function($scope, $rootScope, $http, $cookie
         } else {
             target.focus();
         }
-    }
+    }*/
     /* $scope.loader = false;*/
     if ($cookieStore.get('loginData') == undefined ||
     		  $cookies.email == undefined) {
