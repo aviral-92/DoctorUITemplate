@@ -331,27 +331,7 @@ scotchApp.controller('about', function($scope) {
     }];
 });
 
-scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieStore,
-    $window, $cookies) {
-
-    $scope.doBlurEmail = function($event) {
-        var target = $event.target;
-        if ($scope.loginDetail != null && $scope.loginDetail.email != null &&
-            $scope.loginDetail.email.length > 9) {
-            target.blur();
-        } else {
-            target.focus();
-        }
-    }
-    $scope.doBlurPassword = function($event) {
-        var target = $event.target;
-        if ($scope.loginDetail != null && $scope.loginDetail.password != null &&
-            $scope.loginDetail.password.length > 5) {
-            target.blur();
-        } else {
-            target.focus();
-        }
-    }
+scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieStore, $window, $cookies) {
 
     //$scope.loader = false;
     if ($cookieStore.get('loginData') == undefined ||
@@ -376,7 +356,7 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
                         //                        $cookies.email = loginDetail.email;
                         $cookieStore.put('loginData', login[i]);
                         $cookieStore.put('email', loginDetail.email);
-                        $window.location.href = "/DoctorDashboard.html";
+                        $window.location.href = "/DoctorDashboard.html#/doctorDashboard";
                         break;
                     }
                 }
@@ -400,7 +380,7 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
             console.log(mySelect);
         }*/
     } else {
-        $window.location.href = "#/loginPage";
+        $window.location.href = "#/loginPage";// TODO, change URL, need to redirect on dashboard.
     }
     // add validation for adhaar number
     $scope.doBlurAdhar = function($event) {
@@ -426,95 +406,7 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
 });
 
 
-scotchApp.controller('patientLogin', function($scope, $rootScope, $http, $cookieStore,
-    $window) {
-    $scope.doBlurEmail = function($event) {
-        var target = $event.target;
-        if ($scope.loginDetail != null && $scope.loginDetail.email != null &&
-            $scope.loginDetail.email.length > 9) {
-            target.blur();
-        } else {
-            target.focus();
-        }
-    }
-    $scope.doBlurPassword = function($event) {
-        var target = $event.target;
-        if ($scope.loginDetail != null && $scope.loginDetail.password != null &&
-            $scope.loginDetail.password.length > 5) {
-            target.blur();
-        } else {
-            target.focus();
-        }
-    }
-    /* $scope.loader = false;*/
-    if ($cookieStore.get('loginData') == undefined ||
-        $cookieStore.get('email') == undefined) {
 
-
-        $scope.patientLogin = function(loginDetail) {
-            /* console.log(loginDetail);
-             $cookieStore.put('email', loginDetail.email);*/
-            var loginSuccessful = $http
-                .get("/js/MockJson/doctorLogin.json");
-            /*   $scope.loader = true;
-               console.log(">>>>>>>>>" + loginSuccessful.success);*/
-            loginSuccessful.success(function(login) {
-
-                for (var i = 0; i < login.length; i++) {
-                    console.log(login[i]);
-                    if (login[i].email == loginDetail.email && login[i].password == loginDetail.password) {
-                        $scope.message = 'Successfully Logged in...!!!';
-                        $rootScope.getDoctorByMobile = login[i];
-                        $cookieStore.put('loginData', login[i]);
-                        $cookieStore.put('email', loginDetail.email);
-                        $window.location.href = "/View/DoctorDashboard.html";
-                        break;
-                    }
-                }
-                /*  if (getDoctorDetails.doctorId != null) {
-                      $scope.message = 'Successfully Logged in...!!!';
-                      $rootScope.getDoctorByMobile = getDoctorDetails;
-                      $cookieStore.put('loginData', getDoctorDetails);
-                      $window.location.href = "/View/DoctorDashboard.html";
-                  } else {
-                      $scope.message = 'Invalid Credentials...!!!';
-                  }
-                  $scope.loader = false;*/
-            });
-            loginSuccessful.error(function(data, status, headers, config) {
-                alert("failure message: " + data.message);
-                $scope.message = 'Invalid Credentials...!!!';
-            });
-        }
-        /* $scope.showSelectValue = function(mySelect) {
-             console.log(mySelect);
-         }*/
-    } else {
-        $window.location.href = "#/patientLogin";
-    }
-    // add validation for adhaar number
-    $scope.doBlurAdhar = function($event) {
-        var target = $event.target;
-        if ($scope.doctor != null && $scope.doctor.aadhaarNumber != null &&
-            $scope.doctor.aadhaarNumber.length == 12) {
-            target.blur();
-        } else {
-            target.focus();
-        }
-    }
-    //----------------------------- code for forgot password dialogue box timings 
-    $(function() {
-        $('#myModal1').on('show.bs.modal', function() {
-            var myModal = $(this);
-            clearTimeout(myModal.data('hideInterval'));
-            myModal.data('hideInterval', setTimeout(function() {
-                myModal.modal('hide');
-            }, 4000));
-        });
-    });
-    //------------------------------ code for forgot password dialogue box timings
-
-});
 
 scotchApp.controller('contact', function($scope) {});
 

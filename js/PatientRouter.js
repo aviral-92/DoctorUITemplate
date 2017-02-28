@@ -20,7 +20,7 @@ scotchApp.config(function($routeProvider) {
 	})
 
 	// route for the About page
-	.when('/about', {
+	/*.when('/about', {
 		templateUrl : '/html/about.html',
 		controller : 'about'
 	})
@@ -29,7 +29,7 @@ scotchApp.config(function($routeProvider) {
 	.when('/contact', {
 		templateUrl : '/html/contact.html',
 		controller : 'contact'
-	})
+	})*/
 
 	// route for dashboard update profile
 	.when('/patientupdateProfile', {

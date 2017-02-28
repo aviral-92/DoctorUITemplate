@@ -130,7 +130,7 @@
 							class="glyphicon glyphicon-user"></i></span> <input type="email"
 							class="form-control" id="inputError2" name="email"
 							ng-model="loginDetail.email" placeholder="Enter email"
-							ng-blur="doBlurEmail($event)" valid-Email>
+							valid-Email>
 						<div class="help-inline">
 							<span ng-show="!!loginForm.email.$error.isBlank"><i
 								style="color: red;">Doctor Email Required.</i></span> <span
@@ -159,7 +159,7 @@
 							class="glyphicon glyphicon-lock"></i></span> <input type="password"
 							class="form-control" id="inputError2" name="password"
 							ng-model="loginDetail.password" placeholder="Enter password"
-							ng-blur="doBlurPassword($event)" valid-Password>
+							valid-Password>
 						<div class="help-inline">
 							<span ng-show="!!loginForm.password.$error.isBlank"><i
 								style="color: red;">Password required.</i></span> <span
@@ -190,7 +190,7 @@
 					<!-- ---------------------------------------------------------------- -->
 					<div class="form-group">
 						<div class="control-label col-sm-4">
-							<button class="btn btn-primary"
+							<button class="btn " ng-class="{'btn-primary btn-block' : !loginForm.$valid || loginForm.$pristine || confirm==true, 'btn-success btn-block' : !!loginForm.$valid || !loginForm.$pristine}" ng-disabled="!loginForm.$valid || loginForm.$pristine"
 								ng-click="doctorLogin(loginDetail)">
 								<span class="glyphicon glyphicon-ok-circle"></span> Log In
 							</button>

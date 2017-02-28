@@ -26,7 +26,6 @@
 <script type="text/javascript" src="/js/static_js/angular-cookies.js"></script>
 
 <script type="text/javascript" src="/js/DoctorRouter.js"></script>
-<script type="text/javascript" src="/js/DoctorRouterAfterLogin.js"></script>
 <!--<script type="text/javascript" src="/js/PatientRouter.js"></script>-->
 <script type="text/javascript" src="/js/Doctorcontrol.js"></script>
 <!--<script type="text/javascript" src="/js/Patientcontrol.js"></script>-->
@@ -36,7 +35,7 @@
 
 <script src="/html/SearchFunctionality/lib/dirPagination.js"></script>
 <script src="/js/static_js/bootstrap-datepicker.min.js"></script>
-
+<script type="text/javascript" src="/js/ImageSlider/ui-bootstrap-tpls-0.6.0.js"></script>
 <script type="text/javascript" src="/js/DoctorDashboardController.js"></script>
 <script>
 	$(document).ready(function() {
@@ -70,9 +69,9 @@
 								<span class="caret"></span>
 						</a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="#/afterLogin"><span class="fa fa-user"></span> Profile</a></li>
-								<li><a href="#/contact"><span class="fa fa-envelope-o"></span>
-										Contact</a></li>
+								<li><a href="#/doctorProfile"><span class="fa fa-user"></span> Profile</a></li>
+								<!--<li><a href="#/contact"><span class="fa fa-envelope-o"></span>
+										Contact</a></li>-->
 								<li class="divider"></li>
 								<li><a href="#/logout"><span class="fa fa-power-off"></span>
 										Log Out</a></li>
@@ -91,9 +90,9 @@
 						</li>
 						<li class="sider-menu">
 							<ul>
-								<li class="active" style="font-weight: bolder;"><a href="#"><span
+								<li class="active" style="font-weight: bolder;"><a href="#/doctorDashboard"><span
 										class="fa fa-fw fa-dashboard"></span> Dashboard</a></li>
-								<li style="font-weight: bolder;"><a href="#/afterLogin"><span class="glyphicon glyphicon-pencil"></span>
+								<li style="font-weight: bolder;"><a href="#/doctorProfile"><span class="glyphicon glyphicon-pencil"></span>
 										Profile </a></li>
 								<li style="font-weight: bolder;"><a href="#"><span class="glyphicon glyphicon-list"></span>
 										Appointments</a></li>
