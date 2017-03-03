@@ -356,7 +356,7 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
                         //                        $cookies.email = loginDetail.email;
                         $cookieStore.put('loginData', login[i]);
                         $cookieStore.put('email', loginDetail.email);
-                        $window.location.href = "/DoctorDashboard.html#/doctorDashboard";
+                        $window.location.href = "/DoctorDashboard.html#/home";
                         break;
                     }
                 }
@@ -380,6 +380,7 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
             console.log(mySelect);
         }*/
     } else {
+        $cookieStore.remove("email");
         $window.location.href = "#/loginPage";// TODO, change URL, need to redirect on dashboard.
     }
     // add validation for adhaar number
@@ -403,6 +404,10 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
         });
     });
     //------------------------------ code for forgot password dialogue box timings
+    $scope.init = function(){           
+        console.log("doctor " + $scope.testInput);
+       
+        };
 });
 
 

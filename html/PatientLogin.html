@@ -7,7 +7,7 @@
 				<ul class="nav nav-tabs row" role="tablist">
 					<li role="presentation" class="col-sm-6"><a href="#loginPage"
 						aria-controls="home" role="tab" data-toggle="tab">Doctor</a></li>
-					<li role="presentation" class="active col-sm-6"><a
+					<li role="presentation" class="active col-sm-6" data-ng-init="value='2'; init();"><a
 						href="#patientLogin" aria-controls="profile" role="tab"
 						data-toggle="tab">Patient</a></li>
 				</ul>
@@ -193,7 +193,7 @@
 
 					<div class="form-group">
 						<div class="control-label col-sm-4">
-							<button class="btn btn-primary"
+							<button class="btn " ng-class="{'btn-primary btn-block' : !loginForm.$valid || loginForm.$pristine || confirm==true, 'btn-success btn-block' : !!loginForm.$valid || !loginForm.$pristine}" ng-disabled="!loginForm.$valid || loginForm.$pristine"
 								ng-click="patientLogin(loginDetail)">
 								<span class="glyphicon glyphicon-ok-circle"></span> Log In
 							</button>

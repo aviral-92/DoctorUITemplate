@@ -39,7 +39,7 @@ scotchApp.controller('patientLogin', function($scope, $rootScope, $http, $cookie
                         $rootScope.getPatientByMobile = login[i];
                         $cookieStore.put('loginData', login[i]);
                         $cookieStore.put('email', loginDetail.email);
-                        $window.location.href = "/DoctorDashboard.html#/doctorDashboard";
+                        $window.location.href = "/PatientDashboard.html#/patientHome";
                         break;
                     }
                 }
@@ -85,7 +85,9 @@ scotchApp.controller('patientLogin', function($scope, $rootScope, $http, $cookie
         });
     });
     //------------------------------ code for forgot password dialogue box timings
-
+    $scope.init = function(){           
+        console.log("patient " +$scope.value);
+    };
 });
 
 /*scotchApp.controller('patientlogin',function($scope, $rootScope, $http, $cookieStore, $window){

@@ -2,10 +2,12 @@
 	<div id="loginbox" style="margin-top: 50px;"
 		class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 		<!-- ----------------------------------------------- -->
+		<!-- --------ng-model="mySelect"
+								ng-change="showSelectValue(mySelect)" value="1" -->
 		<div class="row">
 			<div class="col-sm-12 nav-tab-holder" style="width: 97.5%;">
 				<ul class="nav nav-tabs row" role="tablist">
-					<li role="presentation" class="active col-sm-6"><a
+					<li role="presentation" class="active col-sm-6" data-ng-init="testInput='1'; init();"><a
 						href="#loginPage" aria-controls="home" role="tab"
 						data-toggle="tab">Doctor</a></li>
 					<li role="presentation" class="col-sm-6"><a

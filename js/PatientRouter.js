@@ -8,28 +8,16 @@ scotchApp.config(function($routeProvider) {
 	})
 
 	// route for the patient login Success page
-	.when('/patientLoginSuccess', {
+	/*.when('/patientLoginSuccess', {
 		templateUrl : '/html/PatientService/patientLoginSuccess.html',
 		controller : 'patientLoginSuccess'
-	})
+	})*/
 	
 	// route for the patient signup page
 	.when('/patientsignup', {
 		templateUrl : '/html/PatientService/PatientSignUp.html',
 		controller : 'patientsignup'
 	})
-
-	// route for the About page
-	/*.when('/about', {
-		templateUrl : '/html/about.html',
-		controller : 'about'
-	})
-
-	// route for the Contact page
-	.when('/contact', {
-		templateUrl : '/html/contact.html',
-		controller : 'contact'
-	})*/
 
 	// route for dashboard update profile
 	.when('/patientupdateProfile', {
@@ -38,10 +26,10 @@ scotchApp.config(function($routeProvider) {
 	})
 
 	// route for dashboard retrieve password
-	.when('/retrievePassword', {
+	/*.when('/retrievePassword', {
 		templateUrl : '/html/Dashboard/RetrievePassword.html',
 		controller : 'retrievePassword'
-	})
+	})*/
 
 	// route for the Dashboard page
 	.when('/patientdashboard', {
