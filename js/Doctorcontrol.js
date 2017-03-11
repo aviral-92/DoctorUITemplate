@@ -215,7 +215,7 @@ scotchApp.controller('doctorRegistration', function($scope) {
     }
     
     var vm = this;
-	vm.publicKey = "6LeAmBgUAAAAACDTF6OE67pI1O0wYpxCdUMjqNaZ";
+	vm.publicKey = "6Lf2kBgUAAAAACwYaEUzyTW3b_T3QEp2xcLcrG3B";
     
     $scope.doctorRegisteration = function(DocRegisteration){
     
@@ -254,7 +254,7 @@ scotchApp.controller('patientRegistration', function($scope) {
         }
     }
     var vm = this;
-	vm.publicKey = "6LeAmBgUAAAAACDTF6OE67pI1O0wYpxCdUMjqNaZ";
+	vm.publicKey = "6Lf2kBgUAAAAACwYaEUzyTW3b_T3QEp2xcLcrG3B";
     
     $scope.patientRegisters = function(patientToRegister){
         
@@ -413,7 +413,7 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
 
     
     var vm = this;
-	vm.publicKey = "6LeAmBgUAAAAACDTF6OE67pI1O0wYpxCdUMjqNaZ";
+	vm.publicKey = "6Lf2kBgUAAAAACwYaEUzyTW3b_T3QEp2xcLcrG3B";
     
     
     //$scope.loader = false;
