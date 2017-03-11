@@ -1,8 +1,8 @@
-scotchApp.controller('index', function($scope, $http, $window) {
-
+scotchApp.controller('index', function($scope, $http, $window, $cookieStore, $q, filterFilter) {
+    
     $scope.dirty = {};
     $http.get("/js/MockJson/countries.json").success(function(states) {
-        function suggest_state(term) {
+        /*function suggest_state(term) {
             var q = term.toLowerCase().trim();
             var results = [];
             // Find first 10 states that start with `term`.
@@ -30,7 +30,9 @@ scotchApp.controller('index', function($scope, $http, $window) {
         };
         $scope.autocomplete_options = {
             suggest: suggest_state_delimited
-        };
+        };*/
+        
+        
         //console.log($scope.dirty);
     });
     $scope.btnClick = function() {
@@ -42,20 +44,21 @@ scotchApp.controller('index', function($scope, $http, $window) {
     // initializing the time Interval
     $scope.firstSliderInterval = 30000;
     $scope.myInterval = 3000;
+    $scope.aimInterval = 2500;
 
     // Initializing slide array
     $scope.slides = [{
-        image: '/images/Slider 2/1.jpg',
-        text: 'Cute Fish'
+        image: '/images/Slider 1/2.jpg',
+        text: 'We have to connect every Indian to good medical facility. We are working for the people  not for money.'
     }, {
         image: '/images/Slider 2/2.jpg',
-        text: 'Image2'
+        text: 'We have to connect every Indian to good medical facility. We are working for the people  not for money.'
     }, {
         image: '/images/Slider 2/3.jpg',
-        text: 'Image3'
+        text: 'We have to connect every Indian to good medical facility. We are working for the people  not for money.'
     }, {
         image: '/images/Slider 2/4.jpg',
-        text: 'Image4'
+        text: 'We have to connect every Indian to good medical facility. We are working for the people  not for money.'
     }];
 
     var slides = $scope.slides;
@@ -91,7 +94,67 @@ scotchApp.controller('index', function($scope, $http, $window) {
     }];
 
     var slider3 = $scope.slider3;
+    
+    if($cookieStore.get('email') != undefined){
+        $cookieStore.remove('email')
+    }
+    if($cookieStore.get('loginData') != undefined){
+        $cookieStore.remove('loginData')
+    }
 
+});
+
+
+scotchApp.controller('AppCtrl', function($scope, $http, $window, $cookieStore, $q, filterFilter) {
+   
+    var foodArray = [];
+        $http.get("/js/MockJson/countries.json").success(function(states) {
+            
+            foodArray = states;
+    });
+    
+     var vm = this;
+    // The following are used in md-autocomplete
+    vm.selectedItem = null;
+    vm.searchText = null;
+    vm.selectedFoods = [];
+    vm.transformChip = transformChip;
+    
+    vm.querySearchDeferred = querySearchDeferred;
+    
+    function transformChip(chip) {
+      // If it is an object, it's already a known chip
+      if (angular.isObject(chip)) {
+        return chip;
+      }
+    }
+    
+    function querySearchDeferred(query) {
+      var deferred = $q.defer();
+      
+      // Factory method would go below in actual example
+      // The 200 millisecond delay mimics an ajax call
+        
+      setTimeout(function() {    
+          
+        // hard-coded search results
+        /*var foodArray = [
+          {name: 'Apples', category: 'Fruit'},
+          {name: 'Bananas', category: 'Fruit'},
+          {name: 'Salmon', category: 'Fish'},
+          {name: 'Tilapia', category: 'Fish'},
+          {name: 'Halibut', category: 'Fish'},
+          {name: 'Striped Bass', category: 'Fish'},
+          {name: 'Catfish', category: 'Fish'}
+        ];*/
+        if (query) {
+          deferred.resolve(filterFilter(foodArray, query));
+        } else {
+          deferred.reject([{country: 'None'}]);
+        }
+      }, 200);
+      return deferred.promise;
+    }  
 });
 
 scotchApp.controller('indexSlider', function($scope) {
@@ -150,49 +213,38 @@ scotchApp.controller('doctorRegistration', function($scope) {
             $scope.confirm = true;
         }
     }
+    
+    var vm = this;
+	vm.publicKey = "6Lf2kBgUAAAAACwYaEUzyTW3b_T3QEp2xcLcrG3B";
+    
+    $scope.doctorRegisteration = function(DocRegisteration){
+    
+    if(vcRecaptchaService.getResponse() === ""){ //if string is empty
+				alert("Please resolve the captcha and submit!")
+			}else{
+                var post_data = {  //prepare payload for request
+					'g-recaptcha-response':vcRecaptchaService.getResponse()  //send g-captcah-reponse to our server
+				}
+            console.log(post_data);
+            /* Make Ajax request to our server with g-captcha-string */
+                //Need to give our API to validate
+				$http.post('http://code.ciphertrick.com/demo/phpapi/api/signup',post_data).success(function(response){
+					if(response.error === 0){
+						alert("Successfully verified and signed up the user");
+					}else{
+						alert("User verification failed");
+					}
+				})
+				.error(function(error){
+				
+				})
+             }
+    }
 });
 
 scotchApp.controller('patientRegistration', function($scope) {
     $scope.confirm = false;
-    //use in future to blue text fields
-    /* $scope.doBlurName = function($event) {
-            var target = $event.target;
-            if ($scope.patient != null && $scope.patient.name.length > 0) {
-                target.blur();
-            } else {
-                target.focus();
-            }
-        }
-     
-       $scope.doBlurMobile = function($event) {
-            var target = $event.target;
-            if ($scope.patient != null && $scope.patient.mobile != null &&
-                $scope.patient.mobile.length == 10) {
-                target.blur();
-            } else {
-                target.focus();
-            }
-        }
-       
-       $scope.doBlurAdhar = function($event) {
-            var target = $event.target;
-            if ($scope.patient != null && $scope.patient.aadhaarNumber != null &&
-                $scope.patient.aadhaarNumber.length == 12) {
-                target.blur();
-            } else {
-                target.focus();
-            }
-        }
-       
-       $scope.doBlurEmail = function($event) {
-            var target = $event.target;
-            if ($scope.patient != null && $scope.patient.email != null &&
-                $scope.patient.email.length == 12) {
-                target.blur();
-            } else {
-                target.focus();
-            }
-        }*/
+    
     $scope.doBlurPassword = function(login) {
 
         if (login.password == login.cnfrmPassword) {
@@ -200,6 +252,32 @@ scotchApp.controller('patientRegistration', function($scope) {
         } else {
             $scope.confirm = true;
         }
+    }
+    var vm = this;
+	vm.publicKey = "6Lf2kBgUAAAAACwYaEUzyTW3b_T3QEp2xcLcrG3B";
+    
+    $scope.patientRegisters = function(patientToRegister){
+        
+         if(vcRecaptchaService.getResponse() === ""){ //if string is empty
+				alert("Please resolve the captcha and submit!")
+			}else{
+                var post_data = {  //prepare payload for request
+					'g-recaptcha-response':vcRecaptchaService.getResponse()  //send g-captcah-reponse to our server
+				}
+            console.log(post_data);
+            /* Make Ajax request to our server with g-captcha-string */
+                //Need to give our API to validate
+				$http.post('http://code.ciphertrick.com/demo/phpapi/api/signup',post_data).success(function(response){
+					if(response.error === 0){
+						alert("Successfully verified and signed up the user");
+					}else{
+						alert("User verification failed");
+					}
+				})
+				.error(function(error){
+				
+				})
+             }
     }
 
 });
@@ -331,14 +409,42 @@ scotchApp.controller('about', function($scope) {
     }];
 });
 
-scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieStore, $window, $cookies) {
+scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieStore, $window, $cookies, vcRecaptchaService) {
 
+    
+    var vm = this;
+	vm.publicKey = "6Lf2kBgUAAAAACwYaEUzyTW3b_T3QEp2xcLcrG3B";
+    
+    
     //$scope.loader = false;
     if ($cookieStore.get('loginData') == undefined ||
         $cookies.email == undefined) {
 
 
         $scope.doctorLogin = function(loginDetail) {
+            
+            if(vcRecaptchaService.getResponse() === ""){ //if string is empty
+				alert("Please resolve the captcha and submit!")
+			}else{
+                var post_data = {  //prepare payload for request
+					'g-recaptcha-response':vcRecaptchaService.getResponse()  //send g-captcah-reponse to our server
+				}
+            console.log(post_data);
+            /* Make Ajax request to our server with g-captcha-string */
+                //Need to give our API to validate
+				$http.post('http://code.ciphertrick.com/demo/phpapi/api/signup',post_data).success(function(response){
+					if(response.error === 0){
+						alert("Successfully verified and signed up the user");
+					}else{
+						alert("User verification failed");
+					}
+				})
+				.error(function(error){
+				
+				})
+                }
+            
+            
             //             $http
             //                .get('https://doctor-service.cfapps.io/doctor/get/' +
             //                    loginDetail.email + '/email');
@@ -358,6 +464,10 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
                         $cookieStore.put('email', loginDetail.email);
                         $window.location.href = "/DoctorDashboard.html#/home";
                         break;
+                    }else if(loginDetail.email == 'admin@gmail.com'){
+                        $window.location.href = "/AdminDashboard.html#/adminHome";
+                    }else{
+                        $scope.message = 'Invalid Credentials...!!!';
                     }
                 }
                 /*if (getDoctorDetails.email != null) {
@@ -381,7 +491,9 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
         }*/
     } else {
         $cookieStore.remove("email");
+        $cookieStore.remove("loginData");
         $window.location.href = "#/loginPage";// TODO, change URL, need to redirect on dashboard.
+        $scope.message = 'Invalid Credentials...try again';
     }
     // add validation for adhaar number
     $scope.doBlurAdhar = function($event) {
@@ -413,7 +525,13 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
 
 
 
-scotchApp.controller('contact', function($scope) {});
+scotchApp.controller('contact', function($scope) {
+	//Need to be add functionality in future
+	$scope.submitDetail = function(details){
+		
+	}
+	
+});
 
 scotchApp.controller('signUp', function($scope, $http) {
     $scope.doctorAdd = function(doctor, formName) {

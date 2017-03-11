@@ -1,4 +1,4 @@
-var scotchApp = angular.module('myApp', ['ngMaterial','ngMessages', 'ngRoute', 'ngCookies']);
+var scotchApp = angular.module('myApp', ['ngMaterial','ngMessages', 'ngRoute', 'ngCookies', 'mwl.calendar', 'ngAnimate', 'ui.bootstrap', 'colorpicker.module']);
 
 scotchApp.config(function($routeProvider) {
     $routeProvider
@@ -21,6 +21,12 @@ scotchApp.config(function($routeProvider) {
         controller: 'calender'
     })
     
+    // route for the Angular Calender page
+        .when('/docCal', {
+        templateUrl: 'Dashboard/calender/DoctorCalender.html',
+        controller: 'KitchenSinkCtrl as vm'
+    })
+    
    // Doctor Dashboard
     // route for the home page
         .when('/patientHome', {
@@ -38,6 +44,30 @@ scotchApp.config(function($routeProvider) {
         .when('/patientProfile', {
         templateUrl: 'Dashboard/pages/PatientProfile.html',
         controller: 'patientProfile'
+    })
+    
+     // route for Doctor Appointment
+        .when('/doctorAppointment', {
+        templateUrl: 'Dashboard/pages/DoctorAppointment.html',
+        controller: 'doctorAppointment'
+    })
+    
+     // route for Patient Appointment
+        .when('/patientAppointment', {
+        templateUrl: 'Dashboard/pages/PatientAppointment.html',
+        controller: 'patientAppointment'
+    })
+    
+     // route for Patient new appointment page
+        .when('/patientNewAppointment', {
+        templateUrl: 'Dashboard/pages/PatientNewAppointment.html',
+        controller: 'patientNewAppointment'
+    })
+    
+     // route for Patient History page
+        .when('/patientHistory', {
+        templateUrl: 'Dashboard/pages/PatientHistory.html',
+        controller: 'patientHistory'
     });
 
 });

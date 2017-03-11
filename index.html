@@ -5,6 +5,9 @@
 <link rel="shortcut icon" href="/images/icon2.png" type="image/png">
 <title>Medical Solution</title>
 
+    <link rel="stylesheet"
+	href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    
 <link rel="stylesheet" type="text/css"
 	href="/css/bootstrap-combined.min.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="/css/style.css"
@@ -33,10 +36,23 @@
 	href="/css/massautocomplete.theme.css" media="screen" />
 <link rel="stylesheet" href="/css/RegistrationForm.css" />
 
+    
+<script src="/js/static_js/angular.min-1.4.8.js"></script>
+<script src="/js/static_js/angular-animate.min-1.4.8.js"></script>
+<script src="/js/static_js/angular-aria.min-1.4.8.js"></script>
+<script src="/js/static_js/angular-messages.min-1.4.8.js"></script>
+<script src="/js/static_js/angular-material.min-1.4.8.js"></script>
+
+<script src="/js/static_js/angular-route-1.4.8.js"></script>
+<script src="/js/static_js/angular-cookies-1.4.8.js"></script>
+    
+<!--
 <script type="text/javascript" src="/js/static_js/angular.min.js"></script>
 <script type="text/javascript" src="/js/static_js/jquery.min.js"></script>
 <script type="text/javascript" src="/js/static_js/angular-route.js"></script>
+-->
 <script type="text/javascript" src="/js/static_js/angular-sanitize.js"></script>
+
 <script type="text/javascript"
 	src="/js/static_js/custom_massautocomplete.js"></script>
 
@@ -44,7 +60,7 @@
 <script type="text/javascript" src="/js/static_js/jquery.min-3.1.1.js"></script>
 <script type="text/javascript"
 	src="/js/static_js/bootstrap.min-3.3.7.js"></script>
-<script type="text/javascript" src="/js/static_js/angular-cookies.js"></script>
+<!--<script type="text/javascript" src="/js/static_js/angular-cookies.js"></script>-->
 
 <script type="text/javascript" src="/js/DoctorRouter.js"></script>
 <script type="text/javascript" src="/js/PatientRouter.js"></script>
@@ -59,6 +75,10 @@
 <script type="text/javascript" src="/js/DatePicker.js"></script>
 <script type="text/javascript"
 	src="/js/ImageSlider/ui-bootstrap-tpls-0.6.0.js"></script>
+    
+    <script src='js/static_js/angular-recaptcha.min.js'></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer></script>
+    <link rel="canonical" href="http://code.ciphertrick.com/demo/notifications/" />
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -86,8 +106,7 @@
 	});
 </script>
 
-
-</head>
+    </head>
 <!-- ---------- style="background: linear-gradient(#9ad4ed, #f4fafd, #deeff7, #fff, #f4fafd, #deeff7, #fff, #9ad4ed, #9ad4ed);"-------- -->
 <body>
 	<div data-ng-controller="index">
@@ -117,6 +136,7 @@
 -->
 					<li><a href="#/contact">Contact Us</a></li>
 				</ul>
+<!--
 				<form role="search" class="navbar-form navbar-left">
 					<div class="input-group">
 						<div class="input-group-btn search-panel"></div>
@@ -136,12 +156,43 @@
 
 					</div>
 				</form>
+-->
+                <div class="col-sm-5" ng-controller='AppCtrl as vm'>
+            <md-chips ng-model="vm.selectedFoods" md-autocomplete-snap="" md-transform chip="vm.transformChip($chip)" md-require-match=''>
+                    <md-autocomplete md-selected-item='vm.selectedItem' 
+                       md-search-text='vm.searchText' 
+                       md-items='item in vm.querySearchDeferred(vm.searchText)' 
+                       md-item-text='item.country'
+                       placeholder="Search for Expertise " style="text-color:white;">
+                            <span md-highlight-text='vm.searchText'>{{item.country}}</span>
+                </md-autocomplete>
+                <md-chip-template>
+                    <span>
+                      <strong>{{$chip.country}}</strong>
+                      
+                    </span>
+                </md-chip-template>
+                </md-chips>
+<!--                     <span style="margin-top:5%;" class="input-group-btn">-->
+							<button class="btn btn-default pull-right"
+								style="background-color: #f9f9f9; margin-top:-11%;" type="button"
+								ng-click="btnClick()">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+<!--						</span>-->
+            </div>
+               
+
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#/loginPage"><span
 							class="glyphicon glyphicon-log-in"></span> Log In</a></li>
 				</ul>
+                
 			</div>
+            
+           
 		</nav>
+         
 		<div ng-view=""></div>
 
 

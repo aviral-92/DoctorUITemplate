@@ -1,0 +1,15 @@
+[
+    {
+        "email": "aviralmittal2012@gmail.com",
+        "password": "aviral",
+        "name":"Aviral Mittal",
+        "oneTimeFee": "1",
+        "expertized": "Heart",
+        "daysCheckFree": 1,
+        "mobile": "8527701990",
+        "aadhaarNumber" : "256321023652",
+        "homeAddress": "Delhi",
+        "gender" :"Male",
+        "isGovernmentServent" : "Yes"
+    }
+]

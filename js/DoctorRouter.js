@@ -1,7 +1,7 @@
 var scotchApp = angular.module('myApp', ['ngCookies', 'ngRoute',
     'ui.bootstrap', 'UserValidation',
     'angularUtils.directives.dirPagination', 'ngSanitize',
-    'MassAutoComplete'
+    'MassAutoComplete', 'ngMaterial', 'vcRecaptcha'
 ]);
 
 scotchApp.config(function($routeProvider) {
@@ -28,13 +28,13 @@ scotchApp.config(function($routeProvider) {
     // route for DoctorLogin
     .when('/loginPage', {
         templateUrl: '/html/LoginPage.html',
-        controller: 'loginPage'
+        controller: 'loginPage as loginDoc'
     })
 
     // route for PatientLogin
     .when('/patientLogin', {
         templateUrl: '/html/PatientLogin.html',
-        controller: 'patientLogin'
+        controller: 'patientLogin as patientToLogin'
     })
 
     // route for the login page --------------Not in Use
@@ -81,13 +81,13 @@ scotchApp.config(function($routeProvider) {
     // route for
     .when('/doctorRegistration', {
         templateUrl: '/html/DoctorRegistration.html',
-        controller: 'doctorRegistration'
+        controller: 'doctorRegistration as DocRegisteration'
     })
 
     //
     .when('/patientRegistration', {
         templateUrl: '/html/PatientRegistration.html',
-        controller: 'patientRegistration'
+        controller: 'patientRegistration as patientRegister'
     })
 
     .when('/searchFunctionality', {

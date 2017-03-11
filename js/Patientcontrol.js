@@ -19,6 +19,9 @@ scotchApp.controller('patientLogin', function($scope, $rootScope, $http, $cookie
         }
     }*/
     /* $scope.loader = false;*/
+    var vm = this;
+	vm.publicKey = "6Lf2kBgUAAAAACwYaEUzyTW3b_T3QEp2xcLcrG3B";
+    
     if ($cookieStore.get('loginData') == undefined ||
     		  $cookies.email == undefined) {
 
@@ -26,6 +29,29 @@ scotchApp.controller('patientLogin', function($scope, $rootScope, $http, $cookie
         $scope.patientLogin = function(loginDetail) {
             /* console.log(loginDetail);
              $cookieStore.put('email', loginDetail.email);*/
+            
+            if(vcRecaptchaService.getResponse() === ""){ //if string is empty
+				alert("Please resolve the captcha and submit!")
+			}else{
+                var post_data = {  //prepare payload for request
+					'g-recaptcha-response':vcRecaptchaService.getResponse()  //send g-captcah-reponse to our server
+				}
+            console.log(post_data);
+            /* Make Ajax request to our server with g-captcha-string */
+                //Need to give our API to validate
+				$http.post('http://code.ciphertrick.com/demo/phpapi/api/signup',post_data).success(function(response){
+					if(response.error === 0){
+						alert("Successfully verified and signed up the user");
+					}else{
+						alert("User verification failed");
+					}
+				})
+				.error(function(error){
+				
+				})
+             }
+            
+            
             var loginSuccessful = $http
                 .get("/js/MockJson/patientLogin.json");
             /*   $scope.loader = true;

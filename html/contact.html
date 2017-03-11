@@ -19,7 +19,7 @@
 										Email: abc@xyz.com
 									</div><br>
 								</form>
-								<form class="form form-horizontal"
+								<form  id="contact" class="form form-horizontal" name="contact" role="form"
 									style="margin-top: -45%; margin-left: 45%;">
 									<div class="form-group">
 										<div class="col-sm-10">
@@ -27,12 +27,41 @@
 												placeholder="Enter Name" name="fees" />
 										</div>
 									</div>
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<div class="col-sm-10">
 											<input type="text" class="form-control"
 												placeholder="Enter Email" />
 										</div>
+									</div> -->
+									<div class="form-group has-feedback col-sm-11"
+									ng-class="{'has-success' : contact.email.$dirty && contact.email.$valid ,
+                        'has-error' : contact.email.$dirty && contact.email.$invalid}">
+									<input type="email" class="form-control" id="inputError2"
+										name="email" ng-model="submitDetail.email" placeholder="Enter email"
+										valid-Email>
+									<!--ng-blur="doBlurEmail($event)"-->
+									<div class="help-inline">
+										<span ng-show="!!contact.email.$error.isBlank"><b
+											style="color: red;">Email Required.</b></span> <span
+											ng-show="!!contact.email.$error.invalidChars"><b
+											style="color: red;">Email must contain @ & dot(.)
+												.</b></span> <span
+											ng-show="!!contact.email.$error.invalidLen"><b
+											style="color: red;">Email must be use dot(.) &
+												characters.</b></span>
+										<div ng-if="contact.email.$invalid == true">
+											<span
+												class="glyphicon glyphicon-remove form-control-feedback"
+												style="color: red;"
+												ng-show="!!contact.email.$error.isBlank || !!contact.email.$error.invalidChars || !!contact.email.$error.invalidLen"></span>
+										</div>
+										<div ng-if="contact.email.$pristine == false">
+											<span class="glyphicon glyphicon-ok form-control-feedback"
+												style="color: green;"
+												ng-show="!contact.email.$error.isBlank && !contact.email.$error.invalidChars && !contact.email.$error.invalidLen"></span>
+										</div>
 									</div>
+								</div>
 									<div class="form-group">
 										<div class="col-sm-10">
 											<input type="text" class="form-control"
@@ -46,8 +75,12 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="col-sm-offset-0 col-sm-10">
-											<button type="button" class="btn btn-success">
+										<div class="col-sm-offset-0 col-sm-5">
+											<button type="button" class="btn " 
+											ng-class="{'btn-primary btn-block' : !contact.$valid || contact.$pristine 
+											|| confirm==true, 'btn-success btn-block' : !!contact.$valid || 
+											!contact.$pristine}" ng-disabled="!contact.$valid || contact.$pristine"
+											ng-click="submitDetail(details)">
 												<span class="glyphicon glyphicon-ok-circle"></span> Submit
 											</button>
 										</div>

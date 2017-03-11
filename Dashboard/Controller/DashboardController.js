@@ -1,6 +1,6 @@
 scotchApp.controller('index', function($scope, $cookieStore) {
    
-     var getDoctors = $cookieStore.get('loginData');
+    var getDoctors = $cookieStore.get('loginData');
     $scope.name = getDoctors.name;
     $scope.src = getDoctors.src;
     $scope.nameWithExpertise = getDoctors.name + ' ' + getDoctors.expertized;
@@ -27,11 +27,139 @@ scotchApp.controller('home', function($scope, $http) {
     
 });
 
-scotchApp.controller('calender', function($scope) {
+scotchApp.controller('calender', function($scope, $cookieStore) {
     
-    $scope.url = "#/calender";
+    var getDoctors = $cookieStore.get('loginData');
+    $scope.name = getDoctors.name;
+    $scope.src = '../../'+getDoctors.src;
+    $scope.nameWithExpertise = getDoctors.name + ' ' + getDoctors.expertized;
+    $scope.membership = 'Member since 24 Feb 2017';
 });
 
+
+scotchApp.factory('alert', function($uibModal) {
+
+    function show(action, event) {
+      return $uibModal.open({
+        templateUrl: '../../Dashboard/calender/modalContent.html',
+        controller: function() {
+          var vm = this;
+          vm.action = action;
+          vm.event = event;
+        },
+        controllerAs: 'vm'
+      });
+    }
+
+    return {
+      show: show
+    };
+  });
+
+scotchApp.controller('KitchenSinkCtrl', function(moment, alert, calendarConfig) {
+
+    var vm = this;
+    //These variables MUST be set as a minimum for the calendar to work
+    vm.calendarView = 'month';
+    vm.viewDate = new Date();
+    var actions = [{
+      label: '',
+      onClick: function(args) {
+        alert.show('Edited', args.calendarEvent);
+      }
+    }, {
+      label: '',
+      onClick: function(args) {
+        alert.show('Deleted', args.calendarEvent);
+      }
+    }];
+    vm.events = [
+      {
+        title: 'An event ',
+        color: calendarConfig.colorTypes.warning,
+        startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
+        endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
+        draggable: true,
+        resizable: true,
+        actions: actions
+      }, {
+        title: '<i class="glyphicon glyphicon-asterisk"></i> <span class="text-primary">Another event</span>, with a <i>html</i> title',
+        color: calendarConfig.colorTypes.info,
+        startsAt: moment().subtract(1, 'day').toDate(),
+        endsAt: moment().add(5, 'days').toDate(),
+        draggable: true,
+        resizable: true,
+        actions: actions
+      }, {
+        title: 'This is a really long event title that occurs on every year',
+        color: calendarConfig.colorTypes.important,
+        startsAt: moment().startOf('day').add(7, 'hours').toDate(),
+        endsAt: moment().startOf('day').add(19, 'hours').toDate(),
+        recursOn: 'year',
+        draggable: true,
+        resizable: true,
+        actions: actions
+      }
+    ];
+
+    vm.cellIsOpen = true;
+
+    vm.addEvent = function() {
+        // Push will be used to push in array of events.
+        //so we will save array in the last in db so that all the operations got over.
+      vm.events.push({
+        title: 'New event',
+        startsAt: moment().startOf('day').toDate(),
+        endsAt: moment().endOf('day').toDate(),
+        color: calendarConfig.colorTypes.important,
+        draggable: true,
+        resizable: true
+      });
+    };
+
+    vm.eventClicked = function(event) {
+      alert.show('Clicked', event);
+    };
+
+    vm.eventEdited = function(event) {
+      alert.show('Edited', event);
+    };
+
+    vm.eventDeleted = function(event) {
+      alert.show('Deleted', event);
+    };
+
+    vm.eventTimesChanged = function(event) {
+      alert.show('Dropped or resized', event);
+    };
+
+    vm.toggle = function($event, field, event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      event[field] = !event[field];
+    };
+
+    vm.timespanClicked = function(date, cell) {
+
+      if (vm.calendarView === 'month') {
+        if ((vm.cellIsOpen && moment(date).startOf('day').isSame(moment(vm.viewDate).startOf('day'))) || cell.events.length === 0 || !cell.inMonth) {
+          vm.cellIsOpen = false;
+        } else {
+          vm.cellIsOpen = true;
+          vm.viewDate = date;
+        }
+      } else if (vm.calendarView === 'year') {
+        if ((vm.cellIsOpen && moment(date).startOf('month').isSame(moment(vm.viewDate).startOf('month'))) || cell.events.length === 0) {
+          vm.cellIsOpen = false;
+        } else {
+          vm.cellIsOpen = true;
+          vm.viewDate = date;
+        }
+      }
+
+    };
+
+  });
 
 /* ----Profile--- */
 scotchApp.controller('profile', function($scope,$cookieStore, fileReader) {
@@ -169,7 +297,9 @@ scotchApp.controller('profile', function($scope,$cookieStore, fileReader) {
                return day === 0 || day === 6;
             }
          }  */         
-
+scotchApp.controller('doctorAppointment', function($scope, $http) {
+	
+});
 scotchApp.controller('signout', function($scope,$cookieStore, $window) {
    
     $cookieStore.remove('email') ;
