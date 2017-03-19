@@ -31,7 +31,7 @@ scotchApp.controller('calender', function($scope, $cookieStore) {
     
     var getDoctors = $cookieStore.get('loginData');
     $scope.name = getDoctors.name;
-    $scope.src = '../../'+getDoctors.src;
+    $scope.src = getDoctors.src;
     $scope.nameWithExpertise = getDoctors.name + ' ' + getDoctors.expertized;
     $scope.membership = 'Member since 24 Feb 2017';
 });
@@ -304,5 +304,5 @@ scotchApp.controller('signout', function($scope,$cookieStore, $window) {
    
     $cookieStore.remove('email') ;
     $cookieStore.remove('loginData') ;
-    $window.location.href = '/index.html#/';
+    $window.location.href = '/index.html#/loginPage';
 });
