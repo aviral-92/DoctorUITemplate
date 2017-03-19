@@ -215,7 +215,7 @@ scotchApp.controller('doctorRegistration', function($scope, $http, vcRecaptchaSe
 
 scotchApp.controller('patientRegistration', function($scope) {
     $scope.confirm = false;
-    
+    $scope.signUpErrors = false;
     $scope.doBlurPassword = function(login) {
 
         if (login.password == login.cnfrmPassword) {
@@ -249,6 +249,18 @@ scotchApp.controller('patientRegistration', function($scope) {
 				
 				})
              }
+    
+    var patientSignUp = $http.put('https://doctors.cfapps.io/patient/signUp',patientRegisteration);
+    patientSignUp.success(function(doctors) {
+            $scope.signUpErrors = true;
+            $scope.register = 'Successfully signup, now you can Log-In it.';
+        });
+    patientSignUp.error(function(data, status, headers, config) {
+            alert("failure message: " + data.message);
+            $scope.message = 'No Data Found!!!';
+            $scope.signUpErrors = true;
+            $scope.register = 'Try again later.';
+        });
     }
 
 });
