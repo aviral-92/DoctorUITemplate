@@ -34,12 +34,12 @@ scotchApp.controller('patientLogin', function($scope, $rootScope, $http, $cookie
             
             loginDetail.type = 'p';
             var loginSuccessful = $http
-                .post("https://doctors.cfapps.io/patientLogin/signUp", loginDetail);
+                .post("https://doctors.cfapps.io/api/patientLogin/signUp", loginDetail);
             loginSuccessful.success(function(login) {
 
             	if(login.message=="success"){
             		if(loginDetail.username.include=="@"){
-            			 var patientSuccess = $http.get("https://doctors.cfapps.io/patient/get/"+ loginDetail.username +"/email");
+            			 var patientSuccess = $http.get("https://doctors.cfapps.io/api/patient/get/"+ loginDetail.username +"/email");
             			 patientSuccess.success(function (patientObj){
             				 patientObj.src = '/images/no_pic.png';
                               $cookieStore.put('loginData', patientObj);
@@ -49,7 +49,7 @@ scotchApp.controller('patientLogin', function($scope, $rootScope, $http, $cookie
                              alert("failure message: " + data);
                          });
             		}else{
-                        var patientSuccess = $http.get("https://doctors.cfapps.io/patient/get/"+ loginDetail.username +"/mobile");
+                        var patientSuccess = $http.get("https://doctors.cfapps.io/api/patient/get/"+ loginDetail.username +"/mobile");
                         patientSuccess.success(function (patientObj){
                             $cookieStore.put('loginData', patientObj);
                             $window.location.href = "/PatientDashboard.html#/patientHome";
@@ -112,7 +112,7 @@ scotchApp.controller('patientdashboard',function($scope, $rootScope, $http, $coo
 function getByEmail($http, $cookieStore){
 	
 	alert($cookieStore.get('patientEmail'));
-	var patients = $http.get('http://patient-service.cfapps.io/patient/getPatientByEmail/'+$cookieStore.get('patientEmail'));
+	var patients = $http.get('http://patient-service.cfapps.io/api/patient/getPatientByEmail/'+$cookieStore.get('patientEmail'));
 	patients.success(function(data) {
 		return data;
 	});
@@ -125,7 +125,7 @@ scotchApp.controller('patientsignup',function($scope, $http){
 		$scope.submit = true;
 		console.log(formName);
 		if ($scope[formName].$valid) {
-		   var res = $http.post('http://patient-service.cfapps.io/patient/',patient);
+		   var res = $http.post('http://patient-service.cfapps.io/api/patient/',patient);
 		   res.success(function(data) {
 			   alert(data.message);
 			   $scope.isVisible = false;
@@ -166,10 +166,10 @@ scotchApp.controller('patientupdateProfile',function($scope, $rootScope, $http, 
 	$scope.patients = $cookieStore.get('patientData');
 	$scope.patientUpdate = function(patientUpdateValue){
 		console.log(patientUpdateValue);
-		var updatepatient = $http.put('http://patient-service.cfapps.io/patient/', patientUpdateValue);
+		var updatepatient = $http.put('http://patient-service.cfapps.io/api/patient/', patientUpdateValue);
 		updatepatient.success(function(updateResponse) {
 			$scope.successMessage = "Successfully Updated...!!!";
-			var patientSuccess = $http.get('http://patient-service.cfapps.io/patient/getPatientByEmail/'+patients.patientEmail);
+			var patientSuccess = $http.get('http://patient-service.cfapps.io/api/patient/getPatientByEmail/'+patients.patientEmail);
 			patientSuccess.success(function(data) {
 				alert("dfdfdf");
 				console.log(data.mobile);
