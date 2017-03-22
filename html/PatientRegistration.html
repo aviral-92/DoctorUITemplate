@@ -120,7 +120,7 @@
 									ng-class="{'has-success' : patientForm.adhar.$dirty && patientForm.adhar.$valid ,
 			 'has-error' : patientForm.adhar.$dirty && patientForm.adhar.$invalid}">
 									<input type="text" class="form-control" id="adhar" name="adhar"
-										ng-model="patient.aadhaarNumber"
+										ng-model="patient.adhaar"
 										placeholder="Enter aadhaar number"
 										ng-blur="doBlurAdhar($event)" valid-Adhar />
 									<div class="help-inline">
@@ -150,7 +150,7 @@
 									ng-class="{'has-success' : patientForm.password.$dirty && patientForm.password.$valid ,
                         'has-error' : patientForm.password.$dirty && patientForm.password.$invalid}">
 									<input type="password" class="form-control" id="inputError2"
-										name="password" ng-model="loginDetail.password"
+										name="password" ng-model="patient.password"
 										placeholder="Enter password" valid-Password>
 									<!--ng-blur="doBlurPassword($event)" -->
 									<div class="help-inline">
@@ -180,9 +180,9 @@
 									ng-class="{'has-success' : patientForm.cnfrmPassword.$dirty && patientForm.cnfrmPassword.$valid ,
                         'has-error' : patientForm.cnfrmPassword.$dirty && patientForm.cnfrmPassword.$invalid}">
 									<input type="password" class="form-control" id="inputError2"
-										name="cnfrmPassword" ng-model="loginDetail.cnfrmPassword"
+										name="cnfrmPassword" ng-model="patient.cnfrmPassword"
 										placeholder="Enter confirm password"
-										ng-blur="doBlurPassword(loginDetail)" valid-Confirm>
+										ng-blur="doBlurPassword(patient)" valid-Confirm>
 									<div class="help-inline">
 										<span
 											ng-show="!!patientForm.cnfrmPassword.$error.isBlank"><i
@@ -212,17 +212,17 @@
 								<!-- ------------------------------------------------------ -->
 								<div class="form-group">
 									<div class="checkbox">
-										<label> <input type="checkbox"> Please accept
+										<label> <input type="checkbox" required="required"> Please accept
 											the terms and conditions to proceed with your request.
 										</label>
 									</div>
 								</div>
                                 <div vc-recaptcha key="patientRegister.publicKey"></div>
 								<div class="form-group">
-									<input type="submit" class="btn "
+									<input type="button" class="btn "
 										ng-class="{'btn-primary btn-block' : !patientForm.$valid || patientForm.$pristine || confirm==true, 'btn-success btn-block' : !!patientForm.$valid || !patientForm.$pristine || !confirm==true}"
 										ng-disabled="!patientForm.$valid || patientForm.$pristine || confirm==true"
-										value="SUBMIT" ng-click="patientRegisters(loginDetail)">
+										value="SUBMIT" ng-click="patientRegisters(patient)">
 								</div>
 							</form>
 							<footer role="signup" class="text-center">
@@ -230,7 +230,7 @@
 									<li><a href="" data-toggle="modal" data-target="#myModal">Terms
 											& Conditions</a></li>
 								</ul>
-
+                                 <div ng-show="signUpErrors">{{register}}</div>
 								<!-- ----------------------------POP UP----------------------------------- -->
 								<div class="modal fade" id="myModal" role="dialog">
 									<div class="modal-dialog">

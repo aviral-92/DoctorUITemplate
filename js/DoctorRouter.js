@@ -84,12 +84,6 @@ scotchApp.config(function($routeProvider) {
         controller: 'doctorRegistration as DocRegisteration'
     })
 
-    //
-    .when('/patientRegistration', {
-        templateUrl: '/html/PatientRegistration.html',
-        controller: 'patientRegistration as patientRegister'
-    })
-
     .when('/searchFunctionality', {
         templateUrl: '/html/SearchFunctionality/DoctorSearch.html',
         controller: 'functionalitySearch'

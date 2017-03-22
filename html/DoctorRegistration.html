@@ -184,7 +184,7 @@
 									<input type="password" class="form-control" id="inputError2"
 										name="cnfrmPassword" ng-model="doctor.cnfrmPassword"
 										placeholder="Enter confirm password"
-										ng-blur="doBlurPassword(loginDetail)" valid-Confirm>
+										ng-blur="doBlurPassword(doctor)" valid-Confirm>
 									<div class="help-inline">
 										<span
 											ng-show="!!doctorRegistrationForm.cnfrmPassword.$error.isBlank"><i
@@ -227,14 +227,15 @@
 										ng-disabled="!doctorRegistrationForm.$valid || doctorRegistrationForm.$pristine || confirm==true"
 										value="SUBMIT" ng-click="doctorRegisteration(doctor)">
 								</div>
+                                
 							</form>
 							<footer role="signup" class="text-center">
 								<ul>
 									<li><a href="" data-toggle="modal" data-target="#myModal">Terms
 											& Conditions</a></li>
 								</ul>
-                                
                                 <div ng-show="signUpError">{{register}}</div>
+
 								<!-- ----------------------------POP UP----------------------------------- -->
 								<div class="modal fade" id="myModal" role="dialog">
 									<div class="modal-dialog">

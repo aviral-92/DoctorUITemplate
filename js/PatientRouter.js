@@ -14,16 +14,28 @@ scotchApp.config(function($routeProvider) {
 	})*/
 	
 	// route for the patient signup page
-	.when('/patientsignup', {
+	/*.when('/patientsignup', {
 		templateUrl : '/html/PatientService/PatientSignUp.html',
 		controller : 'patientsignup'
-	})
+	})*/
+    
+    //
+    .when('/patientRegistration', {
+        templateUrl: '/html/PatientRegistration.html',
+        controller: 'patientRegistrations as patientRegister'
+    })
+    
+    /*.when('/patientRegistration', {
+        templateUrl: '/html/PatientRegistration.html',
+        controller: 'demo'
+    })*/
+
 
 	// route for dashboard update profile
-	.when('/patientupdateProfile', {
+	/*.when('/patientupdateProfile', {
 		templateUrl : '/html/PatientDashboard/PatientupdateProfile.html',
 		controller : 'patientupdateProfile'
-	})
+	})*/
 
 	// route for dashboard retrieve password
 	/*.when('/retrievePassword', {
@@ -35,9 +47,9 @@ scotchApp.config(function($routeProvider) {
 	.when('/patientdashboard', {
 		templateUrl : '/html/PatientDashboard/WelcomePatientDashboard.html',
 		controller : 'patientdashboard'
-	})
+	});
 	// route for patient dashboard home page
-	.when('/patientafterLogin', {
+	/*.when('/patientafterLogin', {
 		templateUrl : '/html/PatientDashboard/PatientAfterLogin.html',
 		controller : 'patientafterLogin'
 	})
@@ -45,5 +57,5 @@ scotchApp.config(function($routeProvider) {
 	.when('/patientlogout', {
 		templateUrl : '/html/PatientService/PatientLogin.html',
 		controller : 'patientlogout'
-	});
+	})*/
 });

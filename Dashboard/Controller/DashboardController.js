@@ -1,8 +1,8 @@
 scotchApp.controller('index', function($scope, $cookieStore) {
    
-    var getDoctors = $cookieStore.get('loginData');
+    var getDoctors = $cookieStore.get('patientLoginData');
     $scope.name = getDoctors.name;
-    $scope.src = getDoctors.src;
+    $scope.url = getDoctors.src;
     $scope.nameWithExpertise = getDoctors.name + ' ' + getDoctors.expertized;
     $scope.membership = 'Member since 24 Feb 2017';
 });

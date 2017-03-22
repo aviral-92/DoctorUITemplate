@@ -1,7 +1,7 @@
 scotchApp.controller('index', function($scope, $http, $window, $cookieStore, $q, filterFilter) {
     
     $scope.dirty = {};
-    $http.get("/js/MockJson/countries.json").success(function(states) {
+    $http.get("https://doctors.cfapps.io/api/doctor/get/all/expertisation").success(function(states) {
         /*function suggest_state(term) {
             var q = term.toLowerCase().trim();
             var results = [];
@@ -108,9 +108,16 @@ scotchApp.controller('index', function($scope, $http, $window, $cookieStore, $q,
 scotchApp.controller('AppCtrl', function($scope, $http, $window, $cookieStore, $q, filterFilter) {
    
     var foodArray = [];
-        $http.get("/js/MockJson/countries.json").success(function(states) {
-            
-            foodArray = states;
+        $http.get("https://doctors.cfapps.io/api/doctor/get/all/expertisation").success(function(expertise) {
+
+        var allExpertise = [];
+        var i = 1, j = 0;
+        while(expertise[i] != undefined){
+            foodArray[j] = expertise[i];
+            i++;
+            j++;
+        }
+//        foodArray = allExpertise;
     });
     
      var vm = this;
@@ -199,7 +206,7 @@ scotchApp.controller('doctorRegistration', function($scope, $http, vcRecaptchaSe
 				
 				})
              }
-        var drSignUp = $http.put('https://doctors.cfapps.io/doctor/signup',DocRegisteration);
+        var drSignUp = $http.put('https://doctors.cfapps.io/api/doctor/signup',DocRegisteration);
         drSignUp.success(function(doctors) {
                 $scope.signUpError = true;
                 $scope.register = 'Successfully signup, now you can Log-In it.';
@@ -213,45 +220,7 @@ scotchApp.controller('doctorRegistration', function($scope, $http, vcRecaptchaSe
     }
 });
 
-scotchApp.controller('patientRegistration', function($scope) {
-    $scope.confirm = false;
-    
-    $scope.doBlurPassword = function(login) {
 
-        if (login.password == login.cnfrmPassword) {
-            $scope.confirm = false;
-        } else {
-            $scope.confirm = true;
-        }
-    }
-    var vm = this;
-	vm.publicKey = "6Lf2kBgUAAAAACwYaEUzyTW3b_T3QEp2xcLcrG3B";
-    
-    $scope.patientRegisters = function(patientToRegister){
-        
-         if(vcRecaptchaService.getResponse() === ""){ //if string is empty
-				alert("Please resolve the captcha and submit!")
-			}else{
-                var post_data = {  //prepare payload for request
-					'g-recaptcha-response':vcRecaptchaService.getResponse()  //send g-captcah-reponse to our server
-				}
-            console.log(post_data);
-            /* Make Ajax request to our server with g-captcha-string */
-                //Need to give our API to validate
-				$http.post('http://code.ciphertrick.com/demo/phpapi/api/signup',post_data).success(function(response){
-					if(response.error === 0){
-						alert("Successfully verified and signed up the user");
-					}else{
-						alert("User verification failed");
-					}
-				})
-				.error(function(error){
-				
-				})
-             }
-    }
-
-});
 
 scotchApp.controller('functionalitySearch', function($scope, $http) {
 
@@ -323,7 +292,7 @@ scotchApp.controller('doctorSearch', function($scope, $http) {
 
             console.log(loginDetail);
             doctorSearch = $http.post(
-                'https://doctor-service.cfapps.io/doctor/get/all',
+                'https://doctor-service.cfapps.io/api/doctor/get/all',
                 loginDetail);
             $scope.loader = true;
         } else {
@@ -416,13 +385,13 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
 //            loginDetail.username = loginDetail.email;
             loginDetail.type = 'd';
             var loginSuccessful = $http
-                .post("https://doctors.cfapps.io/login/signup", loginDetail);
+                .post("https://doctors.cfapps.io/api/login/drlogin", loginDetail);
            
             loginSuccessful.success(function(login) {
                 
                 if(login.message == 'success'){
                     if(loginDetail.username.includes('@')){
-                        var doctorSuccess = $http.get("https://doctors.cfapps.io/doctor/get/"+ loginDetail.username +"/email");
+                        var doctorSuccess = $http.get("https://doctors.cfapps.io/api/doctor/get/"+ loginDetail.username +"/email");
                         doctorSuccess.success(function (doctorObj){
                             doctorObj.src = '/images/no_pic.png';
                             $cookieStore.put('loginData', doctorObj);
@@ -432,7 +401,7 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
                             alert("failure message: " + data);
                         });
                     }else{
-                        var doctorSuccess = $http.get("https://doctors.cfapps.io/doctor/get/"+ loginDetail.username +"/mobile");
+                        var doctorSuccess = $http.get("https://doctors.cfapps.io/api/doctor/get/"+ loginDetail.username +"/mobile");
                         doctorSuccess.success(function (doctorObj){
                             $cookieStore.put('loginData', doctorObj);
                             $window.location.href = "/DoctorDashboard.html#/home";
@@ -495,13 +464,14 @@ scotchApp.controller('contact', function($scope) {
 	
 });
 
-scotchApp.controller('signUp', function($scope, $http) {
+
+/*scotchApp.controller('signUp', function($scope, $http) {
     $scope.doctorAdd = function(doctor, formName) {
         console.log(doctor);
         $scope.submit = true;
         console.log(formName);
         if ($scope[formName].$valid) {
-            var res = $http.post('https://doctor-service.cfapps.io/doctor/',
+            var res = $http.post('https://doctor-service.cfapps.io/api/doctor/',
                 doctor);
             res.success(function(data) {
                 alert(data.message);
@@ -540,12 +510,12 @@ scotchApp.controller('signUp', function($scope, $http) {
             target.focus();
         }
     }
-});
+});*/
 /** **********************Dashboard Starts*********************** */
 
 function getByEmail($http, $cookieStore) {
     alert($cookieStore.get('email'));
-    var doctors = $http.get('https://doctor-service.cfapps.io/doctor/get/' +
+    var doctors = $http.get('https://doctor-service.cfapps.io/api/doctor/get/' +
         $cookieStore.get('email') + '/email');
     doctors.success(function(data) {
         return data;
