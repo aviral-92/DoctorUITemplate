@@ -356,8 +356,7 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
     
     
     //$scope.loader = false;
-    if ($cookieStore.get('loginData') == undefined ||
-        $cookies.email == undefined) {
+    if ($cookieStore.get('doctorLoginData') == undefined) {
 
 
         $scope.doctorLogin = function(loginDetail) {
@@ -394,7 +393,7 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
                         var doctorSuccess = $http.get("https://doctors.cfapps.io/api/doctor/get/"+ loginDetail.username +"/email");
                         doctorSuccess.success(function (doctorObj){
                             doctorObj.src = '/images/no_pic.png';
-                            $cookieStore.put('loginData', doctorObj);
+                            $cookieStore.put('doctorLoginData', doctorObj);
                             $window.location.href = "/DoctorDashboard.html#/home";
                         });
                         doctorSuccess.error(function(data, status, headers, config) {
@@ -403,7 +402,7 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
                     }else{
                         var doctorSuccess = $http.get("https://doctors.cfapps.io/api/doctor/get/"+ loginDetail.username +"/mobile");
                         doctorSuccess.success(function (doctorObj){
-                            $cookieStore.put('loginData', doctorObj);
+                            $cookieStore.put('doctorLoginData', doctorObj);
                             $window.location.href = "/DoctorDashboard.html#/home";
                         });
                         doctorSuccess.error(function(data, status, headers, config) {

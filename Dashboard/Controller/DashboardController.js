@@ -1,6 +1,12 @@
 scotchApp.controller('index', function($scope, $cookieStore) {
    
-    var getDoctors = $cookieStore.get('patientLoginData');
+    var getDoctors;
+    if($cookieStore.get('doctorLoginData') != undefined)
+    {
+        getDoctors = $cookieStore.get('doctorLoginData');
+    }else{
+        getDoctors = $cookieStore.get('patientLoginData');
+    }
     $scope.name = getDoctors.name;
     $scope.url = getDoctors.src;
     $scope.nameWithExpertise = getDoctors.name + ' ' + getDoctors.expertized;
@@ -29,7 +35,7 @@ scotchApp.controller('home', function($scope, $http) {
 
 scotchApp.controller('calender', function($scope, $cookieStore) {
     
-    var getDoctors = $cookieStore.get('loginData');
+    var getDoctors = $cookieStore.get('doctorLoginData');
     $scope.name = getDoctors.name;
     $scope.src = getDoctors.src;
     $scope.nameWithExpertise = getDoctors.name + ' ' + getDoctors.expertized;
@@ -165,7 +171,7 @@ scotchApp.controller('KitchenSinkCtrl', function(moment, alert, calendarConfig) 
 scotchApp.controller('profile', function($scope,$cookieStore, fileReader) {
    
     $scope.url = "#/profile";
-    var getDoctors = $cookieStore.get('loginData');
+    var getDoctors = $cookieStore.get('doctorLoginData');
     
     $scope.doctors = getDoctors
     $scope.doctors.dob = new Date($scope.doctors.dob);
@@ -203,6 +209,8 @@ scotchApp.controller('profile', function($scope,$cookieStore, fileReader) {
         if (getDoctors.aadhaarNumber == doctorUpdateValue.aadhaarNumber) {
             delete doctorUpdateValue.aadhaarNumber;
         }
+        
+        //TODO need to change cookies from loginData to doctorLoginData.
         var updateDoctor = $http.put(
             'https://doctor-service.cfapps.io/doctor/', doctorUpdateValue);
         updateDoctor.success(function(updateResponse) {
@@ -302,7 +310,8 @@ scotchApp.controller('doctorAppointment', function($scope, $http) {
 });
 scotchApp.controller('signout', function($scope,$cookieStore, $window) {
    
-    $cookieStore.remove('email') ;
-    $cookieStore.remove('loginData') ;
+    //$cookieStore.remove('email') ;
+    $cookieStore.remove('doctorLoginData') ;
+    $cookieStore.remove('patientLoginData') ;
     $window.location.href = '/index.html#/loginPage';
 });
