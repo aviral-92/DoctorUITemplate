@@ -27,6 +27,12 @@ scotchApp.config(function($routeProvider) {
         controller: 'KitchenSinkCtrl as vm'
     })
     
+    // route for the Angular Calender page
+        .when('/patientCal', {
+        templateUrl: 'Dashboard/calender/PatientCalender.html',
+        controller: 'KitchenSinkCtrl as vm'
+    })
+    
    // Doctor Dashboard
     // route for the home page
         .when('/patientHome', {
