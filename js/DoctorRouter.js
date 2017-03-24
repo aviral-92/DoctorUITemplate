@@ -1,17 +1,12 @@
-var scotchApp = angular.module('myApp', ['ngCookies', 'ngRoute',
-    'ui.bootstrap', 'UserValidation',
-    'angularUtils.directives.dirPagination', 'ngSanitize',
-    'MassAutoComplete', 'ngMaterial', 'vcRecaptcha'
-]);
 
 scotchApp.config(function($routeProvider) {
     $routeProvider
 
     // route for the home page
-        .when('/', {
+      /*  .when('/', {
         templateUrl: '/html/Index_Slider.html',
         controller: 'indexSlider'
-    })
+    })*/
 
     // route for the home page
     .when('/home', {
@@ -25,35 +20,24 @@ scotchApp.config(function($routeProvider) {
         controller: 'doctorSearch'
     })
 
-    // route for DoctorLogin
-    .when('/loginPage', {
-        templateUrl: '/html/LoginPage.html',
-        controller: 'loginPage as loginDoc'
-    })
-
-    // route for PatientLogin
-    .when('/patientLogin', {
-        templateUrl: '/html/PatientLogin.html',
-        controller: 'patientLogin as patientToLogin'
-    })
-
     // route for the login page --------------Not in Use
-    .when('/login', {
+    /*.when('/login', {
             templateUrl: '/html/Login.html',
             controller: 'login'
         })
         // route for the login Success page
-        .when('/drLoginSuccess', {
+    */    
+    /*.when('/drLoginSuccess', {
             templateUrl: '/html/Dashboard/AfterLogin.html',
             controller: 'drLoginSuccess'
-        })
+        })*/
 
-    // route for the SignUp page
+   /* // route for the SignUp page
     .when('/signUp', {
         templateUrl: '/html/DoctorSignUp.html',
         controller: 'signUp'
     })
-
+*/
     // route for the About page
     .when('/about', {
         templateUrl: '/html/about.html',
@@ -66,7 +50,7 @@ scotchApp.config(function($routeProvider) {
         controller: 'contact'
     })
 
-    // route for the Dashboard page
+    /*// route for the Dashboard page
     .when('/dashboard', {
         templateUrl: '/html/Dashboard/WelcomeDashboard.html',
         controller: 'dashboard'
@@ -76,13 +60,9 @@ scotchApp.config(function($routeProvider) {
     .when('/retrievePassword', {
         templateUrl: '/html/Dashboard/RetrievePassword.html',
         controller: 'retrievePassword'
-    })
+    })*/
 
-    // route for
-    .when('/doctorRegistration', {
-        templateUrl: '/html/DoctorRegistration.html',
-        controller: 'doctorRegistration as DocRegisteration'
-    })
+    
 
     .when('/searchFunctionality', {
         templateUrl: '/html/SearchFunctionality/DoctorSearch.html',
@@ -98,7 +78,7 @@ scotchApp.config(function($routeProvider) {
         controller: 'doctorDashboard'
     })
 
-    //Doctor profile page rounting...
+   /* //Doctor profile page rounting...
     .when('/doctorProfile', {
         templateUrl: '/html/Dashboard/AfterLogin.html',
         controller: 'doctorProfile' //to be change to doctorProfile
@@ -108,12 +88,8 @@ scotchApp.config(function($routeProvider) {
     .when('/updateDoctorProfile', {
         templateUrl: '/html/Dashboard/updateProfile.html',
         controller: 'updateDoctorProfile'
-    })
+    })*/
 
-    // route for the logout page
-    .when('/logout', {
-        templateUrl: '/html/LoginPage.html',
-        controller: 'logout'
-    });
+    
 
 });

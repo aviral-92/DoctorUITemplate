@@ -311,7 +311,10 @@ scotchApp.controller('doctorAppointment', function($scope, $http) {
 scotchApp.controller('signout', function($scope,$cookieStore, $window) {
    
     //$cookieStore.remove('email') ;
-    $cookieStore.remove('doctorLoginData') ;
-    $cookieStore.remove('patientLoginData') ;
+    if($cookieStore.get('doctorLoginData') != undefined){
+        $cookieStore.remove('doctorLoginData') ;
+    }else{
+        $cookieStore.remove('patientLoginData') ;
+    }
     $window.location.href = '/index.html#/loginPage';
 });

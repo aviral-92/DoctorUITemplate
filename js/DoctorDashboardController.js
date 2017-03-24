@@ -1,3 +1,4 @@
+/*
 scotchApp.controller('doctorDashboard',
     function($scope, $rootScope, $http, $cookieStore) {
         var doctorDetail = $cookieStore.get('loginData');
@@ -192,6 +193,7 @@ scotchApp.controller('updateDoctorProfile', function($scope, $rootScope, $http,
             target.focus();
         }
     }
+    */ /*
     $scope.doBlurDegree = function($event) {
         var target = $event.target;
         if ($scope.doctors != null && $scope.doctors.highestDegree != null &&
@@ -246,4 +248,4 @@ scotchApp.controller('updateDoctorProfile', function($scope, $rootScope, $http,
             target.focus();
         }
     }
-});
+});*/
