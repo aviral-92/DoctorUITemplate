@@ -3,10 +3,10 @@ scotchApp.config(function($routeProvider) {
     $routeProvider
 
     // route for the home page
-      /*  .when('/', {
+        .when('/', {
         templateUrl: '/html/Index_Slider.html',
         controller: 'indexSlider'
-    })*/
+    })
 
     // route for the home page
     .when('/home', {

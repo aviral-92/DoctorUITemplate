@@ -1,6 +1,7 @@
 /* Doctor Registeration */
-scotchApp.controller('doctorRegistration', function($scope, $http, vcRecaptchaService) {
+scotchApp.controller('doctorRegistration', function($scope, $http, vcRecaptchaService, $interval, $mdDialog) {
 
+    $scope.spinner = false;
     $scope.confirm = false;
     $scope.signUpError = false;
     $scope.doBlurPassword = function(login) {
@@ -17,55 +18,7 @@ scotchApp.controller('doctorRegistration', function($scope, $http, vcRecaptchaSe
 
     $scope.doctorRegisteration = function(DocRegisteration) {
 
-        if (vcRecaptchaService.getResponse() === "") { //if string is empty
-            alert("Please resolve the captcha and submit!")
-        } else {
-            var post_data = { //prepare payload for request
-                'g-recaptcha-response': vcRecaptchaService.getResponse() //send g-captcah-reponse to our server
-            }
-            console.log(post_data);
-            /* Make Ajax request to our server with g-captcha-string */
-            //Need to give our API to validate
-            $http.post('http://code.ciphertrick.com/demo/phpapi/api/signup', post_data).success(function(response) {
-                    if (response.error === 0) {
-                        alert("Successfully verified and signed up the user");
-                    } else {
-                        alert("User verification failed");
-                    }
-                })
-                .error(function(error) {
-
-                })
-        }
-        var drSignUp = $http.put('https://doctors.cfapps.io/api/doctor/signup', DocRegisteration);
-        drSignUp.success(function(doctors) {
-            $scope.signUpError = true;
-            $scope.register = 'Successfully signup, now you can Log-In it.';
-        });
-        drSignUp.error(function(data, status, headers, config) {
-            alert("failure message: " + data.message);
-            $scope.message = 'No Data Found!!!';
-            $scope.signUpError = true;
-            $scope.register = 'Try again later.';
-        });
-    }
-});
-/* Doctor Registeration */
-
-
-/* Doctor Login */
-scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieStore, $window, $cookies, vcRecaptchaService) {
-
-    var vm = this;
-    vm.publicKey = "6Lf2kBgUAAAAACwYaEUzyTW3b_T3QEp2xcLcrG3B";
-
-
-    //$scope.loader = false;
-    if ($cookieStore.get('doctorLoginData') == undefined) {
-
-
-        $scope.doctorLogin = function(loginDetail) {
-
+        try{
             if (vcRecaptchaService.getResponse() === "") { //if string is empty
                 alert("Please resolve the captcha and submit!")
             } else {
@@ -76,21 +29,132 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
                 /* Make Ajax request to our server with g-captcha-string */
                 //Need to give our API to validate
                 $http.post('http://code.ciphertrick.com/demo/phpapi/api/signup', post_data).success(function(response) {
-                    if (response.error === 0) {
-                        alert("Successfully verified and signed up the user");
-                    } else {
-                        //alert("User verification failed");
-                    }
-                }).error(function(error) {
-                    //alert("Captch invalid")
-                })
+                        if (response.error === 0) {
+                            alert("Successfully verified and signed up the user");
+                        } else {
+                            alert("User verification failed");
+                        }
+                    })
+                    .error(function(error) {
+
+                    })
             }
+        }catch(error){
+                    /*$scope.spinner = false;
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                         .parent(angular.element(document.querySelector('#dialogContainer')))
+                         .clickOutsideToClose(true)
+                         .title('Incorrect Captcha')
+                         .textContent('Loading Again')
+                         .ariaLabel('Loading Again')
+                         .ok('Ok!')
+                    );*/
+            //$interval(callAtInterval,2200);
+                 
+        }
+          /*function callAtInterval() {
+            console.log("Interval occurred");
+            $window.location.reload();
+            console.log("Interval finished");
+        }*/
+        
+        var drSignUp = $http.put('https://doctors.cfapps.io/api/doctor/signup', DocRegisteration);
+        $scope.spinner = true;
+        drSignUp.success(function(doctors) {
+            //$scope.signUpError = true;
+            $scope.spinner = false;
+            $scope.spinner = false;
+            $mdDialog.show(
+            $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#dialogContainer')))
+                .clickOutsideToClose(true)
+                .title('Successfully Registered')
+                .textContent('Successfully signup, now you can Log-In it.')
+                .ariaLabel('Successfully signup, now you can Log-In it.')
+                .ok('Ok!')
+            );
+            //$scope.register = 'Successfully signup, now you can Log-In it.';
+        });
+        drSignUp.error(function(data, status, headers, config) {
+            alert("failure message: " + data.message);
+            $scope.message = 'No Data Found!!!';
+            $scope.signUpError = true;
+            $scope.spinner = false;
+            $scope.register = 'Try again later.';
+        });
+    }
+});
+/* Doctor Registeration */
+
+
+/* Doctor Login */
+scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieStore, $window, $cookies, vcRecaptchaService, $mdDialog, $interval) {
+
+    $scope.spinner = false;
+    var vm = this;
+    vm.publicKey = "6Lf2kBgUAAAAACwYaEUzyTW3b_T3QEp2xcLcrG3B";
+
+
+    //$scope.loader = false;
+    if ($cookieStore.get('doctorLoginData') == undefined) {
+
+
+        $scope.doctorLogin = function(loginDetail) {
+
+            try{
+                if (vcRecaptchaService.getResponse() === "") { //if string is empty
+                    alert("Please resolve the captcha and submit!")
+                } else {
+                    var post_data = { //prepare payload for request
+                        'g-recaptcha-response': vcRecaptchaService.getResponse() //send g-captcah-reponse to our server
+                    }
+                    console.log(post_data);
+                    /* Make Ajax request to our server with g-captcha-string */
+                    //Need to give our API to validate
+                    var captcha = $http.post('http://code.ciphertrick.com/demo/phpapi/api/signup', post_data);
+
+                    captcha.success(function(response) {
+                        if (response.error === 0) {
+                            alert("Successfully verified and signed up the user");
+                        } else {
+                            //alert("User verification failed");
+                        }
+                    });
+                    captcha.error(function(error) {
+                        //alert("Captch invalid")
+                    });
+                    captcha.catch(function(error){
+
+                        // alert("Got In Catch");
+                    });
+                }
+             }catch(error){
+                    $scope.spinner = false;
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                         .parent(angular.element(document.querySelector('#dialogContainer')))
+                         .clickOutsideToClose(true)
+                         .title('Incorrect Captcha')
+                         .textContent('Loading Again')
+                         .ariaLabel('Loading Again')
+                         .ok('Ok!')
+                    );
+                 $interval(callAtInterval,2200);
+                 
+             }
+            
+                function callAtInterval() {
+                        console.log("Interval occurred");
+                        $window.location.reload();
+                        console.log("Interval finished");
+                    }
 
             //            loginDetail.username = loginDetail.email;
             loginDetail.type = 'd';
             var loginSuccessful = $http
                 .post("https://doctors.cfapps.io/api/login/drlogin", loginDetail);
-
+            $scope.spinner = true;
             loginSuccessful.success(function(login) {
 
                 if (login.message == 'success') {
@@ -99,6 +163,7 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
                         doctorSuccess.success(function(doctorObj) {
                             doctorObj.src = '/images/no_pic.png';
                             $cookieStore.put('doctorLoginData', doctorObj);
+                            $scope.spinner = false;
                             $window.location.href = "/DoctorDashboard.html#/home";
                         });
                         doctorSuccess.error(function(data, status, headers, config) {
@@ -108,12 +173,26 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
                         var doctorSuccess = $http.get("https://doctors.cfapps.io/api/doctor/get/" + loginDetail.username + "/mobile");
                         doctorSuccess.success(function(doctorObj) {
                             $cookieStore.put('doctorLoginData', doctorObj);
+                            $scope.spinner = false;
                             $window.location.href = "/DoctorDashboard.html#/home";
                         });
                         doctorSuccess.error(function(data, status, headers, config) {
                             alert("failure message: " + data);
                         });
                     }
+                }else{
+                    $scope.spinner = false;
+                    alert('Wrong Credentials');
+                    $mdDialog.show(
+                    $mdDialog.alert()
+                     .parent(angular.element(document.querySelector('#dialogContainer')))
+                     .clickOutsideToClose(true)
+                     .title('Wrong Credentials')
+                     .textContent('Username or password is wrong')
+                     .ariaLabel('Username or password is wrong')
+                     .ok('Ok!')     
+                );
+                    
                 }
                 //$scope.loader = false;
 
@@ -152,7 +231,7 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
     });
     //------------------------------ code for forgot password dialogue box timings
     $scope.init = function() {
-        console.log("doctor " + $scope.testInput);
+//        console.log("doctor " + $scope.testInput);
 
     };
 });
@@ -160,7 +239,9 @@ scotchApp.controller('loginPage', function($scope, $rootScope, $http, $cookieSto
 
 
 /* Patient Registeration */
-scotchApp.controller('patientRegistrations', function($scope, $http, vcRecaptchaService) {
+scotchApp.controller('patientRegistrations', function($scope, $http, vcRecaptchaService, $window, $mdDialog, $interval) {
+   
+    $scope.spinner = false;
     $scope.confirm = false;
     $scope.signUpErrors = false;
     $scope.doBlurPassword = function(login) {
@@ -176,39 +257,91 @@ scotchApp.controller('patientRegistrations', function($scope, $http, vcRecaptcha
 
     $scope.patientRegisters = function(patientRegister) {
 
-     /*   if (vcRecaptchaService.getResponse() === "") { //if string is empty
-            alert("Please resolve the captcha and submit!")
-        } else {*/
-            var post_data = { //prepare payload for request
-                'g-recaptcha-response': vcRecaptchaService.getResponse() //send g-captcah-reponse to our server
+        try{
+            if (vcRecaptchaService.getResponse() === "") { //if string is empty
+                alert("Please resolve the captcha and submit!")
+            } else {
+                var post_data = { //prepare payload for request
+                    'g-recaptcha-response': vcRecaptchaService.getResponse() //send g-captcah-reponse to our server
+                }
+                console.log(post_data);
+                /* Make Ajax request to our server with g-captcha-string ***/
+                //Need to give our API to validate
+                $http.post('http://code.ciphertrick.com/demo/phpapi/api/signup', post_data).success(function(response) {
+                        if (response.error === 0) {
+                            alert("Successfully verified and signed up the user");
+                        } else {
+                            alert("User verification failed");
+                        }
+                    })
+                    .error(function(error) {
+                        //					alert("Captcha invalid")
+                    })
             }
-            console.log(post_data);
-            /* Make Ajax request to our server with g-captcha-string ***/
-            //Need to give our API to validate
-            $http.post('http://code.ciphertrick.com/demo/phpapi/api/signup', post_data).success(function(response) {
-                    if (response.error === 0) {
-                        alert("Successfully verified and signed up the user");
-                    } else {
-                        alert("User verification failed");
-                    }
-                })
-                .error(function(error) {
-                    //					alert("Captcha invalid")
-                })
-        /*}*/
+        }catch(error){
+                    $scope.spinner = false;
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                         .parent(angular.element(document.querySelector('#dialogContainer')))
+                         .clickOutsideToClose(true)
+                         .title('Moment please')
+                         .textContent('Loading')
+                         .ariaLabel('Loading')
+                         .ok('Ok!')
+                    );
+//                 $interval(callAtInterval,1200);
+                 
+             }
+            
+            /*function callAtInterval() {
+                    console.log("Interval occurred");
+                    $window.location.reload();
+                    console.log("Interval finished");
+                }*/
 
         var patientSignUp = $http.put("https://doctors.cfapps.io/api/patient/signUp", patientRegister);
-
+        $scope.spinner = true;
         patientSignUp.success(function(patients) {
-            $scope.signUpErrors = true;
-            $scope.register = 'Successfully signup, now you can Log-In it.';
+            
+//            $scope.signUpErrors = true;
+            $scope.spinner = false;
+            $mdDialog.show(
+            $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#dialogContainer')))
+                .clickOutsideToClose(true)
+                .title('Successfully Registered')
+                .textContent('Successfully signup, now you can Log-In it.')
+                .ariaLabel('Successfully signup, now you can Log-In it.')
+                .ok('Ok!')
+            );
+//            $scope.register = 'Successfully signup, now you can Log-In it.';
         });
         patientSignUp.error(function(data, status, headers, config) {
-            alert("failure message: " + data);
-            $scope.message = 'No Data Found!!!';
-            $scope.signUpErrors = true;
-            $scope.register = 'Try again later.';
+            
+            $scope.spinner = false;
+            $mdDialog.show(
+            $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#dialogContainer')))
+                .clickOutsideToClose(true)
+                .title('Try Again')
+                .textContent('Try again later.')
+                .ariaLabel('Try again later.')
+                .ok('Ok!')
+            );
         });
+    }
+    
+    function callAlert(){
+        
+        $mdDialog.show(
+            $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#dialogContainer')))
+                .clickOutsideToClose(true)
+                .title('Successfully Registered')
+                .textContent('Successfully signup, now you can Log-In it.')
+                .ariaLabel('Successfully signup, now you can Log-In it.')
+                .ok('Ok!')
+            );
     }
 
 });
@@ -217,7 +350,9 @@ scotchApp.controller('patientRegistrations', function($scope, $http, vcRecaptcha
 
 /* Patient Login */
 scotchApp.controller('patientLogin', function($scope, $rootScope, $http, $cookieStore,
-    $window, $cookies, vcRecaptchaService) {
+    $window, $cookies, vcRecaptchaService,$interval, $mdDialog) {
+    
+    $scope.spinner = false;
     var vm = this;
     vm.publicKey = "6Lf2kBgUAAAAACwYaEUzyTW3b_T3QEp2xcLcrG3B";
 
@@ -228,31 +363,52 @@ scotchApp.controller('patientLogin', function($scope, $rootScope, $http, $cookie
         $scope.patientLogin = function(loginDetail) {
             /* console.log(loginDetail);
              $cookieStore.put('email', loginDetail.email);*/
-
-           /* if (vcRecaptchaService.getResponse() === "") { //if string is empty
-                alert("Please resolve the captcha and submit!")
-            } else {*/
-                var post_data = { //prepare payload for request
-                    'g-recaptcha-response': vcRecaptchaService.getResponse() //send g-captcah-reponse to our server
+            try{
+                if (vcRecaptchaService.getResponse() === "") { //if string is empty
+                    alert("Please resolve the captcha and submit!")
+                } else {
+                    var post_data = { //prepare payload for request
+                        'g-recaptcha-response': vcRecaptchaService.getResponse() //send g-captcah-reponse to our server
+                    }
+                    console.log(post_data);
+                    /* Make Ajax request to our server with g-captcha-string */
+                    //Need to give our API to validate
+                    $http.post('http://code.ciphertrick.com/demo/phpapi/api/signup', post_data).success(function(response) {
+                            if (response.error === 0) {
+                                alert("Successfully verified and signed up the user");
+                            } else {
+                                //alert("User verification failed");
+                            }
+                        })
+                        .error(function(error) {
+                            alert("Captcha invalid")
+                        })
                 }
-                console.log(post_data);
-                /* Make Ajax request to our server with g-captcha-string */
-                //Need to give our API to validate
-                $http.post('http://code.ciphertrick.com/demo/phpapi/api/signup', post_data).success(function(response) {
-                        if (response.error === 0) {
-                            alert("Successfully verified and signed up the user");
-                        } else {
-                            //alert("User verification failed");
-                        }
-                    })
-                    .error(function(error) {
-                        alert("Captcha invalid")
-                    })
-            /*}*/
+            }catch(error){
+                    $scope.spinner = false;
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                         .parent(angular.element(document.querySelector('#dialogContainer')))
+                         .clickOutsideToClose(true)
+                         .title('Incorrect Captcha')
+                         .textContent('Loading Again')
+                         .ariaLabel('Loading Again')
+                         .ok('Ok!')
+                    );
+                 $interval(callAtInterval,2200);
+                 
+             }
+            
+                function callAtInterval() {
+                        console.log("Interval occurred");
+                        $window.location.reload();
+                        console.log("Interval finished");
+                    }
 
             loginDetail.type = 'p';
             var loginSuccessful = $http
                 .post("https://doctors.cfapps.io/api/login/patientlogin", loginDetail);
+            $scope.spinner = true;
             loginSuccessful.success(function(login) {
 
                 if (login.message == "success") {
@@ -261,6 +417,7 @@ scotchApp.controller('patientLogin', function($scope, $rootScope, $http, $cookie
                         patientSuccess.success(function(patientObj) {
                             patientObj.src = '/images/no_pic.png';
                             $cookieStore.put('patientLoginData', patientObj);
+                            $scope.spinner = false;
                             $window.location.href = "/PatientDashboard.html#/patientHome";
                         });
                         patientSuccess.error(function(data, status, headers, config) {
@@ -270,6 +427,7 @@ scotchApp.controller('patientLogin', function($scope, $rootScope, $http, $cookie
                         var patientSuccess = $http.get("https://doctors.cfapps.io/api/patient/get/" + loginDetail.username + "/mobile");
                         patientSuccess.success(function(patientObj) {
                             $cookieStore.put('patientLoginData', patientObj);
+                            $scope.spinner = false;
                             $window.location.href = "/PatientDashboard.html#/patientHome";
                         });
                         patientSuccess.error(function(data, status, headers, config) {
