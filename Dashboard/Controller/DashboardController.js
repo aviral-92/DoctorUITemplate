@@ -62,7 +62,7 @@ scotchApp.factory('alert', function($uibModal) {
     };
   });
 
-scotchApp.controller('KitchenSinkCtrl', function(moment, alert, calendarConfig) {
+scotchApp.controller('KitchenSinkCtrl', function(moment, alert, calendarConfig, $scope) {
 
     var vm = this;
     //These variables MUST be set as a minimum for the calendar to work
@@ -80,7 +80,7 @@ scotchApp.controller('KitchenSinkCtrl', function(moment, alert, calendarConfig) 
       }
     }];
     vm.events = [
-      {
+      /*{
         title: 'An event ',
         color: calendarConfig.colorTypes.warning,
         startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
@@ -105,7 +105,7 @@ scotchApp.controller('KitchenSinkCtrl', function(moment, alert, calendarConfig) 
         draggable: true,
         resizable: true,
         actions: actions
-      }
+      }*/
     ];
 
     vm.cellIsOpen = true;
@@ -117,11 +117,24 @@ scotchApp.controller('KitchenSinkCtrl', function(moment, alert, calendarConfig) 
         title: 'New event',
         startsAt: moment().startOf('day').toDate(),
         endsAt: moment().endOf('day').toDate(),
-        color: calendarConfig.colorTypes.important,
-        draggable: true,
-        resizable: true
+        //color: calendarConfig.colorTypes.important,
+        //draggable: true,
+        //resizable: true
       });
     };
+    
+    //TODO Ajax hit to Save or Update an event.
+    vm.save = function(index){
+        
+        console.log(vm.events[index]);
+        console.log($scope.hours);
+    }
+    
+    //TODO Ajax hit to delete an event.
+    vm.delete = function(index){
+        
+        vm.events.splice(index, 1);
+    }
 
     vm.eventClicked = function(event) {
       alert.show('Clicked', event);
@@ -164,7 +177,8 @@ scotchApp.controller('KitchenSinkCtrl', function(moment, alert, calendarConfig) 
       }
 
     };
-
+console.log(vm.events);
+    
   });
 
 /* ----Profile--- */
