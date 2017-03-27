@@ -1,3 +1,35 @@
+scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog ) {
+    
+    var getPatients = $cookieStore.get('patientLoginData');
+    $scope.url = getPatients.src;
+    console.log(getPatients);
+    var response = $http.get('https://doctors.cfapps.io/api/notification/getNotifyforpatient/'+getPatients.pId+'/pId');
+    response.success(function(notification){
+        $scope.notificationCount = notification.length;
+        console.log(notification);
+        $scope.notifications = notification;
+    });
+    response.error(function(data, status, headers, config) {
+        
+        alert('Failure');
+    });
+    
+    $scope.demo = function(notify){
+        
+        $mdDialog.show(
+                  $mdDialog.alert()
+                     .parent(angular.element(document.querySelector('#dialogContainer')))
+                     .clickOutsideToClose(true)
+                     .title(notify.notiyfMessage)
+                     .textContent(notify.notiyfMessage)
+                     .ariaLabel(notify.notiyfMessage)
+                     .ok('Ok!')
+            );
+        // TODO Now add ajax hit to make it read.
+    }
+    
+});
+
 scotchApp.controller('patientHome', function($scope, $http) {
 	$scope.visible = false;
     var index = 0;
