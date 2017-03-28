@@ -427,32 +427,21 @@ scotchApp.controller('patientAppointment', function($scope, $http) {
 	
 });
 
-scotchApp.controller('patientNewAppointment', function($scope, $http) {
-	
-});
-
-
 scotchApp.controller('patientHistory', function($scope, $http, $window) {
 	
      $scope.btnClick = function() {
         $window.location.href = '#/patientAppointment';
         console.log($scope.dirty.value);
-
+         
     }
     
 });
-scotchApp.controller('AppCtrl', function($scope, $http, $window, $cookieStore, $q, filterFilter) {
+scotchApp.controller('patientNewAppointment', function($scope,$rootScope, $http, $q, filterFilter) {
 
+    $scope.searchResult = false;
+    $scope.spinner = false;
     var foodArray = [];
     $http.get("https://doctors.cfapps.io/api/doctor/get/all/expertisation").success(function(expertise) {
-
-        /*var allExpertise = [];
-        var i = 1, j = 0;
-        while(expertise[i] != undefined){
-            foodArray[j] = expertise[i];
-            i++;
-            j++;
-        }*/
         foodArray = expertise;
     });
 
@@ -475,21 +464,7 @@ scotchApp.controller('AppCtrl', function($scope, $http, $window, $cookieStore, $
     function querySearchDeferred(query) {
         var deferred = $q.defer();
 
-        // Factory method would go below in actual example
-        // The 200 millisecond delay mimics an ajax call
-
         setTimeout(function() {
-
-            // hard-coded search results
-            /*var foodArray = [
-              {name: 'Apples', category: 'Fruit'},
-              {name: 'Bananas', category: 'Fruit'},
-              {name: 'Salmon', category: 'Fish'},
-              {name: 'Tilapia', category: 'Fish'},
-              {name: 'Halibut', category: 'Fish'},
-              {name: 'Striped Bass', category: 'Fish'},
-              {name: 'Catfish', category: 'Fish'}
-            ];*/
             if (query) {
                 deferred.resolve(filterFilter(foodArray, query));
             } else {
@@ -500,10 +475,29 @@ scotchApp.controller('AppCtrl', function($scope, $http, $window, $cookieStore, $
         }, 200);
         return deferred.promise;
     }
-     $scope.btnClick = function() {
-        $window.location.href = '#/patientHistory';
-        console.log($scope.dirty.value);
+    
+     $scope.btnClick = function(item) {
+//        $window.location.href = '#/patientHistory';
+         
+         var obj = {"expertized" : item[0]}
+         var expertise = JSON.stringify(obj);
+         console.log(expertise);
+         
+         var response = $http.post('https://doctors.cfapps.io/api/doctor/get/all', expertise);
+         $scope.spinner = true;
+         response.success(function(doctorsList){
+                $scope.spinner = false;
+                console.log(doctorsList);
+                $scope.doctors = doctorsList;
+        });
+        response.error(function(data, status, headers, config) { 
+            alert('Failure');
+            $scope.spinner = false;
+        });
+         
+         $scope.searchResult = true;
 
     }
+      
 });
  
