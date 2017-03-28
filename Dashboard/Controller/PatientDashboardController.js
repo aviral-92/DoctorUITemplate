@@ -1,20 +1,14 @@
-scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog ) {
+scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $window, $interval) {
     
     var getPatients = $cookieStore.get('patientLoginData');
+    $scope.name = getPatients.name;
+    // need to add membership like created date.
     $scope.url = getPatients.src;
     console.log(getPatients);
-    var response = $http.get('https://doctors.cfapps.io/api/notification/getNotifyforpatient/'+getPatients.pId+'/pId');
-    response.success(function(notification){
-        $scope.notificationCount = notification.length;
-        console.log(notification);
-        $scope.notifications = notification;
-    });
-    response.error(function(data, status, headers, config) {
-        
-        alert('Failure');
-    });
+    getNotification(getPatients);
+    getMessages(getPatients);
     
-    $scope.demo = function(notify){
+    $scope.getNotofication = function(notify){
         
         $mdDialog.show(
                   $mdDialog.alert()
@@ -25,9 +19,76 @@ scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog ) 
                      .ariaLabel(notify.notiyfMessage)
                      .ok('Ok!')
             );
-        // TODO Now add ajax hit to make it read.
+        var obj = {
+            "notifyId" : notify.notifyId
+        }; // Create new object
+        var notifys = JSON.stringify(obj)
+        console.log(notifys);
+        var responseUpdate = $http.put('https://doctors.cfapps.io/api/notification/updateNotify', notifys);
+            responseUpdate.success(function(data){
+                console.log('success');
+                getNotification(getPatients);
+            });
+            responseUpdate.error(function(data, status, headers, config){
+                console.log('failure');
+                getNotification(getPatients);
+            });
     }
     
+    $scope.getMessage = function(messages){
+        
+        $mdDialog.show(
+                  $mdDialog.alert()
+                     .parent(angular.element(document.querySelector('#dialogContainer')))
+                     .clickOutsideToClose(true)
+                     .title(messages.message)
+                     .textContent(messages.message)
+                     .ariaLabel(messages.message)
+                     .ok('Ok!')
+            );
+        
+        /*var obj = {
+            "notifyId" : notify.notifyId
+        }; // Create new object
+        var notifys = JSON.stringify(obj)
+        console.log(notifys);*/
+        var responseUpdate = $http.put('https://doctors.cfapps.io/api/message/updatemessage', messages);
+            responseUpdate.success(function(data){
+                console.log('success');
+                getMessages(getPatients);
+            });
+            responseUpdate.error(function(data, status, headers, config){
+                console.log('failure');
+                getMessages(getPatients);
+            });
+    }   
+    
+    //Function for rest hit to get notofication array...
+    function getNotification(patients){
+        var response = $http.get('https://doctors.cfapps.io/api/notification/getNotifyforpatient/'+patients.pId+'/pId');
+        response.success(function(notification){
+            $scope.notificationCount = notification.length;
+            console.log(notification);
+            $scope.notifications = notification;
+        });
+        response.error(function(data, status, headers, config) { 
+            alert('Failure');
+        });
+        console.log('Notification function over');
+    }
+    
+    function getMessages(patients){
+        var response = $http.get('https://doctors.cfapps.io/api/message/getmessageforpatient/'+patients.pId+'/pId');
+        response.success(function(messages){
+            $scope.messageCount = messages.length;
+            console.log(messages);
+            $scope.messages = messages;
+        });
+        response.error(function(data, status, headers, config) { 
+            alert('Failure');
+        });
+        console.log('Message function over');
+    }
 });
 
 scotchApp.controller('patientHome', function($scope, $http) {
