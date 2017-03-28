@@ -16,14 +16,45 @@
 			<div class="panel-body">
 				<div class="panel-content">
 					<br>
+                    <!---------------------Search----->
+                        <div class="col-sm-10" ng-controller='AppCtrl as vm'>
+            <md-chips ng-model="vm.selectedFoods" md-autocomplete-snap="" md-transform chip="vm.transformChip($chip)" md-require-match=''>
+                    <md-autocomplete md-selected-item='vm.selectedItem' 
+                       md-search-text='vm.searchText' 
+                       md-items='item in vm.querySearchDeferred(vm.searchText)' 
+                       md-item-text='item'
+                       placeholder="Search for Expertise " style="text-color:white;">
+                            <span md-highlight-text='vm.searchText'>{{item}}</span>
+                                </md-autocomplete>
+                                <md-chip-template>
+                                    <span>
+                                      <strong>{{$chip}}</strong>
+                                    </span>
+                                </md-chip-template>
+                                </md-chips>
+							<button class="btn btn-default pull-right"
+								style="background-color: #f9f9f9; margin-top:-5%;" type="button"
+								ng-click="btnClick()">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+                        </div>
+                    <br><br><br><br><br>
+                    <!----------------------------search--------ng-model="checked"  aria-label="Toggle ngShow"--->
+             <!--       <div class="check-element animate-show-hide" ng-show="checked">
+  I show up when your checkbox is checked.
+</div>-->
+                    
+                    <!---------------------upcoming appointments-------------------------->
+                
+                            <!-----------------------------upcoming apppointments------------------------------->
 					<!--------------Previous appointment Start------------>
-					<div class="container">
-						<div class="row">
-						
+					
 							<!--------------Previous appointment Start------------>
 
 							<!--------------Make an appointment start------------>
-                        
+                       <!-- <div class="container">
+						<div class="row">
+						
                             
 							<div class="col-xs-5">
 								<div class="well">
@@ -86,24 +117,12 @@
 												</select> <select class="">
 													<option value="Time" class="">Time am/pm</option>
 													<option value="10am" class="">10:00am-1:00pm</option>
-													<!--<option value="1030am" class="">10:30am</option>
-													<option value="11am" class="">11:00am</option>
-													<option value="1130am" class="">11:30am</option>
-													<option value="12pm" class="">12:00pm</option>
-													<option value="1230pm" class="">12:30pm</option>
-													<option value="1pm" class="">1:00pm</option>
-													<option value="130pm" class="">1:30pm</option>-->
-													<option value="2pm" class="">5:00pm-8:00pm</option>
-													<!--<option value="230pm" class="">2:30pm</option>
-													<option value="3pm" class="">3:00pm</option>
-													<option value="330pm" class="">3:30pm</option>
-													<option value="4pm" class="">4:00pm</option>
-													<option value="430pm" class="">4:30pm</option>-->
+													
 												</select>
 											</div>
 											<br> <br> <br>
 										</div>
-										<label for="comment">Message</label> &nbsp;&nbsp;
+										<label for="comment">Problem</label> &nbsp;&nbsp;
 										<textarea name="message" id="message" class="span4" rows="5"
 											style="width: 60%"></textarea>
 									</div>
@@ -119,13 +138,20 @@
 										<br>
 									</div>
 								</div>
-							</div>
+							</div>-->
 							<!--------------Make an appointment close------------>
 						</div>
 					</div>
 					<br>
 					<br>
+					<br><br>
 					<br>
+					<br><br>
+					<br>
+					<br><br>
+					<br>
+					<br><br>
+					
 				</div>
 			</div>
 		</div>

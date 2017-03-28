@@ -432,6 +432,78 @@ scotchApp.controller('patientNewAppointment', function($scope, $http) {
 });
 
 
-scotchApp.controller('patientHistory', function($scope, $http) {
+scotchApp.controller('patientHistory', function($scope, $http, $window) {
 	
+     $scope.btnClick = function() {
+        $window.location.href = '#/patientAppointment';
+        console.log($scope.dirty.value);
+
+    }
+    
 });
+scotchApp.controller('AppCtrl', function($scope, $http, $window, $cookieStore, $q, filterFilter) {
+
+    var foodArray = [];
+    $http.get("https://doctors.cfapps.io/api/doctor/get/all/expertisation").success(function(expertise) {
+
+        /*var allExpertise = [];
+        var i = 1, j = 0;
+        while(expertise[i] != undefined){
+            foodArray[j] = expertise[i];
+            i++;
+            j++;
+        }*/
+        foodArray = expertise;
+    });
+
+    var vm = this;
+    // The following are used in md-autocomplete
+    vm.selectedItem = null;
+    vm.searchText = null;
+    vm.selectedFoods = [];
+    vm.transformChip = transformChip;
+
+    vm.querySearchDeferred = querySearchDeferred;
+
+    function transformChip(chip) {
+        // If it is an object, it's already a known chip
+        if (angular.isObject(chip)) {
+            return chip;
+        }
+    }
+
+    function querySearchDeferred(query) {
+        var deferred = $q.defer();
+
+        // Factory method would go below in actual example
+        // The 200 millisecond delay mimics an ajax call
+
+        setTimeout(function() {
+
+            // hard-coded search results
+            /*var foodArray = [
+              {name: 'Apples', category: 'Fruit'},
+              {name: 'Bananas', category: 'Fruit'},
+              {name: 'Salmon', category: 'Fish'},
+              {name: 'Tilapia', category: 'Fish'},
+              {name: 'Halibut', category: 'Fish'},
+              {name: 'Striped Bass', category: 'Fish'},
+              {name: 'Catfish', category: 'Fish'}
+            ];*/
+            if (query) {
+                deferred.resolve(filterFilter(foodArray, query));
+            } else {
+                deferred.reject([{
+                    country: 'None'
+                }]);
+            }
+        }, 200);
+        return deferred.promise;
+    }
+     $scope.btnClick = function() {
+        $window.location.href = '#/patientHistory';
+        console.log($scope.dirty.value);
+
+    }
+});
+ 
