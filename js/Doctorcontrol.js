@@ -1,40 +1,8 @@
 scotchApp.controller('index', function($scope, $http, $window, $cookieStore, $q, filterFilter) {
 
     $scope.dirty = {};
-    $http.get("https://doctors.cfapps.io/api/doctor/get/all/expertisation").success(function(states) {
-        /*function suggest_state(term) {
-            var q = term.toLowerCase().trim();
-            var results = [];
-            // Find first 10 states that start with `term`.
-            for (var i = 0; i < states.length && results.length < 10; i++) {
-                var state = states[i].country;
-                if (state.toLowerCase().indexOf(q) === 0)
-                    results.push({
-                        label: state,
-                        value: state
-                    });
-            }
-            return results;
-        }
-
-        function suggest_state_delimited(term) {
-            var ix = term.lastIndexOf(','),
-                lhs = term.substring(0, ix + 1),
-                rhs = term.substring(ix + 1),
-                suggestions = suggest_state(rhs);
-            suggestions.forEach(function(s) {
-                s.value = lhs + s.value;
-            });
-
-            return suggestions;
-        };
-        $scope.autocomplete_options = {
-            suggest: suggest_state_delimited
-        };*/
-
-
-        //console.log($scope.dirty);
-    });
+   /* $http.get("https://doctors.cfapps.io/api/doctor/get/all/expertisation").success(function(states) {
+    });*/
     $scope.btnClick = function() {
         $window.location.href = '#/searchFunctionality';
         console.log($scope.dirty.value);
@@ -109,14 +77,6 @@ scotchApp.controller('AppCtrl', function($scope, $http, $window, $cookieStore, $
 
     var foodArray = [];
     $http.get("https://doctors.cfapps.io/api/doctor/get/all/expertisation").success(function(expertise) {
-
-        /*var allExpertise = [];
-        var i = 1, j = 0;
-        while(expertise[i] != undefined){
-            foodArray[j] = expertise[i];
-            i++;
-            j++;
-        }*/
         foodArray = expertise;
     });
 
@@ -143,17 +103,6 @@ scotchApp.controller('AppCtrl', function($scope, $http, $window, $cookieStore, $
         // The 200 millisecond delay mimics an ajax call
 
         setTimeout(function() {
-
-            // hard-coded search results
-            /*var foodArray = [
-              {name: 'Apples', category: 'Fruit'},
-              {name: 'Bananas', category: 'Fruit'},
-              {name: 'Salmon', category: 'Fish'},
-              {name: 'Tilapia', category: 'Fish'},
-              {name: 'Halibut', category: 'Fish'},
-              {name: 'Striped Bass', category: 'Fish'},
-              {name: 'Catfish', category: 'Fish'}
-            ];*/
             if (query) {
                 deferred.resolve(filterFilter(foodArray, query));
             } else {
@@ -169,10 +118,6 @@ scotchApp.controller('AppCtrl', function($scope, $http, $window, $cookieStore, $
 scotchApp.controller('indexSlider', function($scope) {
 
 });
-
-
-
-
 
 scotchApp.controller('functionalitySearch', function($scope, $http) {
 
@@ -301,10 +246,6 @@ scotchApp.controller('about', function($scope) {
     }];
 });
 
-
-
-
-
 scotchApp.controller('contact', function($scope) {
     //Need to be add functionality in future
     $scope.submitDetail = function(details) {
@@ -313,56 +254,9 @@ scotchApp.controller('contact', function($scope) {
 
 });
 
-
-/*scotchApp.controller('signUp', function($scope, $http) {
-    $scope.doctorAdd = function(doctor, formName) {
-        console.log(doctor);
-        $scope.submit = true;
-        console.log(formName);
-        if ($scope[formName].$valid) {
-            var res = $http.post('https://doctor-service.cfapps.io/api/doctor/',
-                doctor);
-            res.success(function(data) {
-                alert(data.message);
-                $scope.isVisible = false;
-            });
-            res.error(function(data, status, headers, config) {
-                alert("failure message: " + data.message);
-            });
-        } else {
-            console.log("invalid")
-        }
-    }
-    $scope.doBlurName = function($event) {
-        var target = $event.target;
-        if ($scope.doctor != null && $scope.doctor.name.length > 0) {
-            target.blur();
-        } else {
-            target.focus();
-        }
-    }
-    $scope.doBlurMobile = function($event) {
-        var target = $event.target;
-        if ($scope.doctor != null && $scope.doctor.mobile != null &&
-            $scope.doctor.mobile.length == 10) {
-            target.blur();
-        } else {
-            target.focus();
-        }
-    }
-    $scope.doBlurAdhar = function($event) {
-        var target = $event.target;
-        if ($scope.doctor != null && $scope.doctor.aadhaarNumber != null &&
-            $scope.doctor.aadhaarNumber.length == 12) {
-            target.blur();
-        } else {
-            target.focus();
-        }
-    }
-});*/
 /** **********************Dashboard Starts*********************** */
 
-function getByEmail($http, $cookieStore) {
+/*function getByEmail($http, $cookieStore) {
     alert($cookieStore.get('email'));
     var doctors = $http.get('https://doctor-service.cfapps.io/api/doctor/get/' +
         $cookieStore.get('email') + '/email');
@@ -370,13 +264,6 @@ function getByEmail($http, $cookieStore) {
         return data;
     });
     doctors.error(function(data, status, headers, config) {});
-}
-
-/*scotchApp.controller('retrievePassword', function($scope, $rootScope) {
-    $scope.submit = function() {
-        alert("Password send to your E-mail Id");
-    }
-});
-*/
+}*/
 
 /** **********************Dashboard Ends*********************** */

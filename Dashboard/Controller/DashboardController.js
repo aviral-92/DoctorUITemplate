@@ -1,97 +1,104 @@
 scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $window, $interval) {
 
-    var getDoctors;
-    if ($cookieStore.get('doctorLoginData') != undefined) {
-        getDoctors = $cookieStore.get('doctorLoginData');
-    } else {
-        getDoctors = $cookieStore.get('patientLoginData');
-    }
-    $scope.name = getDoctors.name;
-    $scope.url = getDoctors.src;
-    $scope.nameWithExpertise = getDoctors.name + ' ' + getDoctors.expertized;
-    $scope.membership = 'Member since 24 Feb 2017';
-    getNotification(getDoctors);
-    getMessages(getDoctors);
+    if($cookieStore.get('doctorLoginData') == undefined){
+        $window.location.href = '/index.html#/loginPage';
+    }else{
+        var getDoctors;
+        if ($cookieStore.get('doctorLoginData') != undefined) {
+            getDoctors = $cookieStore.get('doctorLoginData');
+        } else {
+            getDoctors = $cookieStore.get('patientLoginData');
+        }
+        $scope.name = getDoctors.name;
+        $scope.url = getDoctors.src;
+        $scope.nameWithExpertise = getDoctors.name + ' ' + getDoctors.expertized;
+        $scope.membership = 'Member since 24 Feb 2017';
+        getNotification(getDoctors);
+        getMessages(getDoctors);
 
-    $scope.getNotofication = function(notify) {
+        $scope.getNotofication = function(notify) {
 
-        $mdDialog.show(
-            $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#dialogContainer')))
-            .clickOutsideToClose(true)
-            .title(notify.notiyfMessage)
-            .textContent(notify.notiyfMessage)
-            .ariaLabel(notify.notiyfMessage)
-            .ok('Ok!')
-        );
-        var obj = {
-            "notifyId": notify.notifyId
-        }; // Create new object
-        var notifys = JSON.stringify(obj)
-        /* console.log(notifys);*/
-        var responseUpdate = $http.put('https://doctors.cfapps.io/api/notification/updateNotify', notifys);
-        responseUpdate.success(function(data) {
-            console.log('success');
-            getNotification(getDoctors);
-        });
-        responseUpdate.error(function(data, status, headers, config) {
-            console.log('failure');
-            getNotification(getDoctors);
-        });
-    }
+            $mdDialog.show(
+                $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#dialogContainer')))
+                .clickOutsideToClose(true)
+                .title(notify.notiyfMessage)
+                .textContent(notify.notiyfMessage)
+                .ariaLabel(notify.notiyfMessage)
+                .ok('Ok!')
+            );
+            var obj = {
+                "notifyId": notify.notifyId
+            }; // Create new object
+            var notifys = JSON.stringify(obj)
+            /* console.log(notifys);*/
+            var responseUpdate = $http.put('https://doctors.cfapps.io/api/notification/updateNotify', notifys);
+            responseUpdate.success(function(data) {
+                console.log('success');
+                getNotification(getDoctors);
+            });
+            responseUpdate.error(function(data, status, headers, config) {
+                console.log('failure');
+                getNotification(getDoctors);
+            });
+        }
 
-    $scope.getMessage = function(messages) {
+        $scope.getMessage = function(messages) {
 
-        $mdDialog.show(
-            $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#dialogContainer')))
-            .clickOutsideToClose(true)
-            .title(messages.message)
-            .textContent(messages.message)
-            .ariaLabel(messages.message)
-            .ok('Ok!')
-        );
+            $mdDialog.show(
+                $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#dialogContainer')))
+                .clickOutsideToClose(true)
+                .title(messages.message)
+                .textContent(messages.message)
+                .ariaLabel(messages.message)
+                .ok('Ok!')
+            );
 
-        var responseUpdate = $http.put('https://doctors.cfapps.io/api/message/updatemessage', messages);
-        responseUpdate.success(function(data) {
-            console.log('success');
-            getMessages(getDoctors);
-        });
-        responseUpdate.error(function(data, status, headers, config) {
-            console.log('failure');
-            getMessages(getDoctors);
-        });
-    }
+            var responseUpdate = $http.put('https://doctors.cfapps.io/api/message/updatemessage', messages);
+            responseUpdate.success(function(data) {
+                console.log('success');
+                getMessages(getDoctors);
+            });
+            responseUpdate.error(function(data, status, headers, config) {
+                console.log('failure');
+                getMessages(getDoctors);
+            });
+        }
 
-    function getNotification(doctors) {
-        var response = $http.get('https://doctors.cfapps.io/api/notification/getNotifyfordoctor/' + doctors.doctorId + '/dId');
-        response.success(function(notification) {
-            $scope.notificationCount = notification.length;
-            console.log(notification);
-            $scope.notifications = notification;
-        });
-        response.error(function(data, status, headers, config) {
-            alert('Failure');
-        });
-        console.log('Notification function over');
-    }
+        function getNotification(doctors) {
+            var response = $http.get('https://doctors.cfapps.io/api/notification/getNotifyfordoctor/' + doctors.doctorId + '/dId');
+            response.success(function(notification) {
+                $scope.notificationCount = notification.length;
+                console.log(notification);
+                $scope.notifications = notification;
+            });
+            response.error(function(data, status, headers, config) {
+                alert('Failure');
+            });
+            console.log('Notification function over');
+        }
 
-    function getMessages(doctors) {
-        var response = $http.get('https://doctors.cfapps.io/api/message/getmessagefordoctor/' + doctors.doctorId + '/dId');
-        response.success(function(messages) {
-            $scope.messageCount = messages.length;
-            console.log(messages);
-            $scope.messages = messages;
-        });
-        response.error(function(data, status, headers, config) {
-            alert('Failure');
-        });
-        console.log('Message function over');
+        function getMessages(doctors) {
+            var response = $http.get('https://doctors.cfapps.io/api/message/getmessagefordoctor/' + doctors.doctorId + '/dId');
+            response.success(function(messages) {
+                $scope.messageCount = messages.length;
+                console.log(messages);
+                $scope.messages = messages;
+            });
+            response.error(function(data, status, headers, config) {
+                alert('Failure');
+            });
+            console.log('Message function over');
+        }
     }
 });
 
-scotchApp.controller('home', function($scope, $http) {
+scotchApp.controller('home', function($scope, $http, $cookieStore, $window) {
 
+    if($cookieStore.get('doctorLoginData') == undefined){
+        $window.location.href = '/index.html#/loginPage';
+    }
     $scope.visible = false;
     var index = 0;
     $scope.url = "#/home";
