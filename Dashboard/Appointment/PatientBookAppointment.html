@@ -36,13 +36,15 @@
                             <i class="glyphicon glyphicon-time"></i>{{doctor.timing}}<br>
 <!--                            <i class="glyphicon glyphicon-calendar" ></i>-->
                             <md-content class="cal col-sm-8" > 
-                                <md-datepicker style="background-color:#F5F5F5;" ng-model="doctor.appointment" md-placeholder="Enter date"></md-datepicker>
+                                <md-datepicker style="background-color:#F5F5F5;" ng-model="booking.appointmentDate" md-placeholder="Enter date"></md-datepicker>
 				            </md-content>
+                            <br>
+                            <textarea ng-model="booking.description" cols="20" rows="3" placeholder="Enter your problem"></textarea>
                         </p>
                             <br><br>
                         <!-- Split button -->
                         <div class="btn-group">
-                            <button ng-click="bookAppointment(doctor)" type="button" class="btn btn-primary">
+                            <button ng-click="bookAppointment(doctor,booking)" type="button" class="btn btn-primary">
                                 Book Appointment</button>
                             
                             
@@ -70,9 +72,18 @@
          margin-left:-10%;
          background-color:#F5F5F5;
     }
+    
+     @media only screen and (max-width: 785px) {
+        .cal{
+            margin-left: -2%;
+            padding: inherit;
+        }
+    }
+    
     @media only screen and (max-width: 600px) {
         .cal{
-            margin-left: 0%;
+            margin-left: -4%;
+            padding: inherit;
         }
     }
     
