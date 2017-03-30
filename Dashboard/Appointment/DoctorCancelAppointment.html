@@ -1,0 +1,71 @@
+<div class="content-wrapper">
+   <!-- Content Header (Page header) -->
+   <section class="content-header">
+      <h1>
+         Appointment <small>panel</small>
+      </h1>
+      <ol class="breadcrumb">
+         <li><a href="#/home"><i class="fa fa-dashboard"></i> Home</a></li>
+         <li class="active">Appointment</li>
+      </ol>
+   </section>
+   <br>
+   <!-- Main content -->
+   <section class="content">
+      <div class="panel profile-page animated zoomIn">
+         <div class="panel-body">
+            <div class="panel-content">
+               <br>
+               <div class="container">
+                  <div class="row">
+                     <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="well well-sm">
+                           <div class="row">
+                              <div class="col-sm-6 col-md-4">
+                                 <img ng-src="{{doctor.profilePic}}" alt="" class="img-rounded img-responsive" />
+                              </div>
+                              <div class="col-sm-6 col-md-8">
+                                 <h4><i class="glyphicon glyphicon-user"></i> {{doctor.name}}</h4>
+                                 <small><cite style="font-size: large" title="San Francisco, USA"><i style="color:blue; " class="glyphicon glyphicon-map-marker"></i>{{doctor.allergies}}</cite></small>
+                                 <p style="font-size: large">
+                                    <i style="color:orange;" class="glyphicon glyphicon-envelope"></i> {{doctor.email}}
+                                    <br />
+                                    <i style="color:green;" class="glyphicon glyphicon-phone"></i> {{doctor.mobile}}
+                                    <br />
+                                    <i style="color:blue;" class="glyphicon glyphicon-chevron-right"></i> {{doctor.dob}}
+                                    <br />
+                                    <i style="color:red;" class="glyphicon glyphicon-chevron-right"></i> {{doctor.allergies}}
+                                    <br />
+                                 </p>
+                                 <br><br>
+                                 <!-- Split button -->
+                                 <div class="btn-group">
+                                    <button ng-click="cancelAppointment(doctor)" type="button" class="btn btn-danger">
+                                    Cancel Appointment</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <br>
+</div>
+<style>
+   .cal{
+   margin-left:-10%;
+   background-color:#F5F5F5;
+   }
+   @media only screen and (max-width: 600px) {
+   .cal{
+   margin-left: 0%;
+   }
+   }
+</style>

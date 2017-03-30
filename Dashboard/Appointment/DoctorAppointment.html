@@ -24,16 +24,18 @@
                             <th>Mobile</th>
                             <th>Email</th>
                               <th>Problem</th>
+                              <th>View Appointment</th>
                             <th>Cancel Appointment</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr ng-repeat="patient in patients">
-                            <td>{{patient.name}}</td>
-                            <td>{{patient.mobile}}</td>
-                            <td>{{patient.email}}</td>
-                            <td>{{patient.problem}}</td>
-                            <td><button><b>View</b> <i class="fa fa-medkit" style="color:red;"></i> <b>Cancel</b></button></td>
+                          <tr ng-repeat="doctorAppointment in doctorAppointments">
+                            <td>{{doctorAppointment.name}}</td>
+                            <td>{{doctorAppointment.mobile}}</td>
+                            <td>{{doctorAppointment.email}}</td>
+                            <td>{{doctorAppointment.problem}}</td>
+                               <td><button ng-click="viewPatient(doctorAppointments)"><b>View</b> <i class="fa fa-medkit" style="color:red;"></i> <b>appointment</b></button></td>
+                            <td><button ng-click="cancelAppointment(doctorAppointments)"><b>Cancel</b> <i class="fa fa-medkit" style="color:red;"></i> <b>appointment</b></button></td>
                           </tr>
                         </tbody>
                       </table>

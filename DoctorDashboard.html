@@ -99,6 +99,7 @@
     <link href="https://unpkg.com/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">
 <!--    <script src="Dashboard/calender/example.js"></script>-->
 <!--    <script src="Dashboard/calender/helpers.js"></script>-->
+    <script src="Dashboard/Appointment/AppointmentController.js"></script>
     <!-- Angular Calender Closing -->
     
     
@@ -257,7 +258,7 @@
             </span> -->
 					</a></li>
 
-					<li><a href="#/doctorAppointment"> <i class="fa fa-calendar"></i> <span>Appointment</span>
+					<li><a ng-click="btnClick()"> <i class="fa fa-calendar"></i> <span>Appointment</span>
 					</a></li>
 					<li><a href="#/profile"> <i class="fa fa-check-square-o"></i>
 							<span>Profile</span> <!--  <span class="pull-right-container">

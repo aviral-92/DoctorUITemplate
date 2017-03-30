@@ -54,8 +54,14 @@ scotchApp.config(function($routeProvider) {
     
      // route for Doctor Appointment
         .when('/doctorAppointment', {
-        templateUrl: 'Dashboard/pages/DoctorAppointment.html',
+        templateUrl: 'Dashboard/Appointment/DoctorAppointment.html',
         controller: 'doctorAppointment'
+    })
+    
+     // route for doctor view patient and cancel Appointment also
+        .when('/doctorCancelAppointment', {
+        templateUrl: 'Dashboard/Appointment/DoctorCancelAppointment.html',
+        controller: 'doctorCancelAppointment'
     })
     
      // route for Patient Appointment

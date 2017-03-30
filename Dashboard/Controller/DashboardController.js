@@ -1,4 +1,4 @@
-scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $window, $interval) {
+scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $window, $interval, $rootScope, $window) {
 
     if($cookieStore.get('doctorLoginData') == undefined){
         $window.location.href = '/index.html#/loginPage';
@@ -91,6 +91,24 @@ scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $
             });
             console.log('Message function over');
         }
+        
+        $scope.btnClick = function() {
+            
+       var response = $http.get('https://doctors.cfapps.io/api/appointment/appointment/'+getDoctors.doctorId + "/doctor");
+         $scope.spinner = true;
+         response.success(function(doctorsList){
+                $scope.spinner = false;
+                console.log(doctorsList);
+                $rootScope.getDoctorAppointment = doctorsList;
+                // Routing to appointment page....
+                $window.location.href = '#/doctorAppointment';
+//                $scope.doctors = doctorsList;
+        });
+        response.error(function(data, status, headers, config) { 
+            alert('Failure');
+            $scope.spinner = false;
+        });
+     }
     }
 });
 
