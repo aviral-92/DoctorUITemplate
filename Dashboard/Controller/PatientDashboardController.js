@@ -342,89 +342,13 @@ scotchApp.controller('KitchenSinkCtrl', function(moment, alert, calendarConfig) 
     };
 
   });
-/*scotchApp.controller('patientupdateProfile',function($scope, $rootScope, $http, $cookieStore){
-	 var paitentDetails = $cookieStore.get('patientLoginData');
-    $scope.patients = paitentDetails;
-	$scope.patientUpdate = function(patientUpdateValue){
-		console.log(patientUpdateValue);
-         Logic to remove fields if not updated 
-        
-        var patient;
-        if(patientUpdateValue.name != paitentDetails.name){
-            patient.name = patientUpdateValue.name;
-        }
-        if(patientUpdateValue.adhaar != paitentDetails.adhaar){
-            patient.adhaar = patientUpdateValue.adhaar;
-        }
-        if(patientUpdateValue.allergies != paitentDetails.allergies){
-            patient.allergies = patientUpdateValue.allergies;
-        }
-        if(patientUpdateValue.dob != paitentDetails.dob){
-            patient.dob = patientUpdateValue.dob;
-        }
-        if(patientUpdateValue.email != paitentDetails.email){
-            patient.email = patientUpdateValue.email;
-        }
-        if(patientUpdateValue.gender != paitentDetails.gender){
-            patient.gender = patientUpdateValue.gender;
-        }
-        if(patientUpdateValue.homeAddress != paitentDetails.homeAddress){
-            patient.homeAddress = patientUpdateValue.homeAddress;
-        }
-        if(patientUpdateValue.mobile != paitentDetails.mobile){
-            patient.mobile = patientUpdateValue.mobile;
-        }
-        if(patientUpdateValue.password != undefined && patientUpdateValue.password == patientUpdateValue.confirmPassward){
-            patient.password = patientUpdateValue.password;
-        }
-        patient.pId;
-        
-         Logic to remove fields if not updated 
-		var updatepatient = $http.put('https://doctors.cfapps.io/api/patient/', patient);
-		updatepatient.success(function(updateResponse) {
-			$scope.successMessage = "Successfully Updated...!!!";
-			var patientSuccess = $http.get('https://doctors.cfapps.io/api/patient/get/'+patients.patientEmail+'/email');
-			patientSuccess.success(function(data) {
-//				alert("dfdfdf");
-				console.log(data.mobile);
-				$cookieStore.remove('patientLoginData');
-				$cookieStore.put('patientLoginData', data);
-			});
-			patientSuccess.error(function(data, status, headers, config) {
-			});
-		});
-		updatepatient.error(function(updateResponse, status, headers, config) {
-			alert("failure message: " + updateResponse.message);
-		});
-	}
-	$scope.doBlurName = function($event){
-		var target = $event.target;
-		if($scope.patients != null && $scope.patients.patientName.length > 0){
-			target.blur();	
-		}else{
-			target.focus();
-		}
-	}
-	$scope.doBlurMobile = function($event){
-		var target = $event.target;
-		if($scope.patients != null && $scope.patients.patientMobile != null && $scope.patients.patientMobile.length == 10){
-			target.blur();	
-		}else{
-			target.focus();
-		}
-	}
-	$scope.doBlurHomeAddress = function($event){
-		var target = $event.target;
-		if($scope.patients != null && $scope.patients.patientHomeAddress != null && $scope.patients.patientHomeAddress.length > 0){
-			target.blur();	
-		}else{
-			target.focus();
-		}
-	}
-});*/
 
-scotchApp.controller('patientAppointment', function($scope, $http) {
+scotchApp.controller('patientAppointment', function($scope, $http, $rootScope) {
 	
+    var getDoctor = $rootScope.doctorObj;
+    console.log(getDoctor);
+    $scope.doctor = getDoctor;
+    
 });
 
 scotchApp.controller('patientHistory', function($scope, $http, $window) {
@@ -436,7 +360,7 @@ scotchApp.controller('patientHistory', function($scope, $http, $window) {
     }
     
 });
-scotchApp.controller('patientNewAppointment', function($scope,$rootScope, $http, $q, filterFilter) {
+scotchApp.controller('patientNewAppointment', function($scope,$rootScope, $http, $q, filterFilter, $location) {
 
     $scope.searchResult = false;
     $scope.spinner = false;
@@ -498,6 +422,13 @@ scotchApp.controller('patientNewAppointment', function($scope,$rootScope, $http,
          $scope.searchResult = true;
 
     }
+     
+     $scope.viewDoctor = function(doctor){
+         
+         console.log(doctor);
+         $rootScope.doctorObj = doctor;
+         $location.path('/patientAppointment');
+     }
       
 });
  

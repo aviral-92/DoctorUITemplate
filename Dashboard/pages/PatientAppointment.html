@@ -17,373 +17,43 @@
 				<div class="panel-content">
 					<br>
                     
-                    	<!--------------Previous appointment Start------------>
-                    
                     <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+                        <img ng-src="{{doctor.profilePic}}" alt="" class="img-rounded img-responsive" />
                     </div>
                     <div class="col-sm-6 col-md-8">
-                        <h4>
-                            Bhaumik Patel</h4>
-                        <small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker">
-                        </i></cite></small>
-                        <p>
-                            <i class="glyphicon glyphicon-envelope"></i>email@example.com
+                        <h4><i class="glyphicon glyphicon-user"></i> {{doctor.name}}</h4>
+                        <small><cite style="font-size: large" title="San Francisco, USA"><i style="color:blue; " class="glyphicon glyphicon-map-marker"></i>{{doctor.clinicAddress}}</cite></small>
+                        <p style="font-size: large">
+                            <i style="color:orange;" class="glyphicon glyphicon-envelope"></i> {{doctor.email}}
                             <br />
-                            <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.jquery2dotnet.com</a>
+                            <i style="color:green;" class="glyphicon glyphicon-phone"></i> {{doctor.mobile}}
                             <br />
-                            <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>
+                            <i class="glyphicon glyphicon-time"></i>{{doctor.timing}}</p>
                         <!-- Split button -->
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary">
-                                Social</button>
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                <span class="caret"></span><span class="sr-only">Social</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Twitter</a></li>
-                                <li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google +</a></li>
-                                <li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Github</a></li>
-                            </ul>
+                                Book Appointment</button>
+                            
+                            
                         </div>
                     </div>
-            
-                    	<!--------------Previous appointment Start------------>
-                    <!--------------------------------Timing slots for appointments----->
-                    <!--------------Previous appointment Start------------>
-					<div class="container">
-						<div class="row">
-						
-							<!--------------Previous appointment Start------------>
-
-							<!--------------Make an appointment start------------>
-                        
-                            
-							<div class="col-xs-5">
-								<div class="well">
-
-                                    
-									<legend class="text-center" style="color: #fff">
-										<img src="">Appointments
-									</legend>
-									<div class="span5">
-										<label class="">Date &amp; Time</label>
-										<div class="btn-toolbar" style="margin: 0;">
-											<div class="btn-group">
-												<select class="">
-													<option value="Month" class="">- Month -</option>
-													<option value="January" class="">January</option>
-													<option value="February" class="">February</option>
-													<option value="March" class="">March</option>
-													<option value="April" class="">April</option>
-													<option value="May" class="">May</option>
-													<option value="June" class="">June</option>
-													<option value="July" class="">July</option>
-													<option value="August" class="">August</option>
-													<option value="September" class="">September</option>
-													<option value="October" class="">October</option>
-													<option value="November" class="">November</option>
-													<option value="December" class="">December</option>
-												</select> <select class="">
-													<option value="Day" class="">- Date -</option>
-													<option value="01" class="">1</option>
-													<option value="02" class="">2</option>
-													<option value="03" class="">3</option>
-													<option value="03" class="">4</option>
-													<option value="03" class="">5</option>
-													<option value="03" class="">6</option>
-													<option value="03" class="">7</option>
-													<option value="03" class="">8</option>
-													<option value="03" class="">9</option>
-													<option value="03" class="">10</option>
-													<option value="03" class="">11</option>
-													<option value="03" class="">12</option>
-													<option value="03" class="">13</option>
-													<option value="03" class="">14</option>
-													<option value="03" class="">15</option>
-													<option value="03" class="">16</option>
-													<option value="03" class="">17</option>
-													<option value="03" class="">18</option>
-													<option value="03" class="">19</option>
-													<option value="03" class="">20</option>
-													<option value="03" class="">21</option>
-													<option value="03" class="">22</option>
-													<option value="03" class="">23</option>
-													<option value="03" class="">24</option>
-													<option value="03" class="">25</option>
-													<option value="03" class="">26</option>
-													<option value="03" class="">27</option>
-													<option value="03" class="">28</option>
-													<option value="03" class="">29</option>
-													<option value="03" class="">30</option>
-													<option value="03" class="">31</option>
-												</select> <select class="">
-													<option value="Time" class="">Time am/pm</option>
-													<option value="10am" class="">10:00am-1:00pm</option>
-													<!--<option value="1030am" class="">10:30am</option>
-													<option value="11am" class="">11:00am</option>
-													<option value="1130am" class="">11:30am</option>
-													<option value="12pm" class="">12:00pm</option>
-													<option value="1230pm" class="">12:30pm</option>
-													<option value="1pm" class="">1:00pm</option>
-													<option value="130pm" class="">1:30pm</option>-->
-													<option value="2pm" class="">5:00pm-8:00pm</option>
-													<!--<option value="230pm" class="">2:30pm</option>
-													<option value="3pm" class="">3:00pm</option>
-													<option value="330pm" class="">3:30pm</option>
-													<option value="4pm" class="">4:00pm</option>
-													<option value="430pm" class="">4:30pm</option>-->
-												</select>
-											</div>
-											<br> <br> <br>
-										</div>
-										<label for="comment">Problem</label> &nbsp;&nbsp;
-										<textarea name="message" id="message" class="span4" rows="5"
-											style="width: 60%"></textarea>
-									</div>
-									<br>
-									<div class="form-group">
-										<div class="col-sm-offset-4 col-sm-8">
-											<button type="button" class="btn btn-primary"
-												data-toggle="modal" data-target="#myModal">
-												<span class="glyphicon glyphicon-ok"></span> Submit
-											</button>
-
-										</div>
-										<br>
-									</div>
-								</div>
-							</div>
-							<!--------------Make an appointment close------------>
-                            <!----------timing slots for appointment---->
-                    
-                    
-					<!--------------Previous appointment Start------------>
-					<!--<div class="container">
-						<div class="row">
-							<div class="col-xs-5">
-								<div class="well">
-
-									<legend class="text-center" style="color: #fff">
-										<img src=""> Upcoming Appointments
-									</legend>
-									<table class="table table-striped">
-										<thead>
-											<tr>
-												<th>Firstname</th>
-												<th>Lastname</th>
-												<th>Email</th>
-												
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>John</td>
-												<td>Doe</td>
-												<td>john@example.com</td>
-												
-											</tr>
-											<tr>
-												<td>Mary</td>
-												<td>Moe</td>
-												<td>mary@example.com</td>
-												
-											</tr>
-											<tr>
-												<td>July</td>
-												<td>Dooley</td>
-												<td>july@example.com</td>
-
-											</tr>
-										</tbody>
-									</table>
-									<br>
-								
-								</div>
-							</div>-->
-							<!--------------Previous appointment Start------------>
-
-							<!--------------Make an appointment start------------>
-                        
-                            
-<!--							<div class="col-xs-5">
-								<div class="well">
-
-                                    
-									<legend class="text-center" style="color: #fff">
-										<img src=""> New Appointments
-									</legend>
-									<div class="span5">
-										<label class="">Date &amp; Time</label>
-										<div class="btn-toolbar" style="margin: 0;">
-											<div class="btn-group">
-												<select class="">
-													<option value="Month" class="">- Month -</option>
-													<option value="January" class="">January</option>
-													<option value="February" class="">February</option>
-													<option value="March" class="">March</option>
-													<option value="April" class="">April</option>
-													<option value="May" class="">May</option>
-													<option value="June" class="">June</option>
-													<option value="July" class="">July</option>
-													<option value="August" class="">August</option>
-													<option value="September" class="">September</option>
-													<option value="October" class="">October</option>
-													<option value="November" class="">November</option>
-													<option value="December" class="">December</option>
-												</select> <select class="">
-													<option value="Day" class="">- Day -</option>
-													<option value="01" class="">1</option>
-													<option value="02" class="">2</option>
-													<option value="03" class="">3</option>
-													<option value="03" class="">4</option>
-													<option value="03" class="">5</option>
-													<option value="03" class="">6</option>
-													<option value="03" class="">7</option>
-													<option value="03" class="">8</option>
-													<option value="03" class="">9</option>
-													<option value="03" class="">10</option>
-													<option value="03" class="">11</option>
-													<option value="03" class="">12</option>
-													<option value="03" class="">13</option>
-													<option value="03" class="">14</option>
-													<option value="03" class="">15</option>
-													<option value="03" class="">16</option>
-													<option value="03" class="">17</option>
-													<option value="03" class="">18</option>
-													<option value="03" class="">19</option>
-													<option value="03" class="">20</option>
-													<option value="03" class="">21</option>
-													<option value="03" class="">22</option>
-													<option value="03" class="">23</option>
-													<option value="03" class="">24</option>
-													<option value="03" class="">25</option>
-													<option value="03" class="">26</option>
-													<option value="03" class="">27</option>
-													<option value="03" class="">28</option>
-													<option value="03" class="">29</option>
-													<option value="03" class="">30</option>
-													<option value="03" class="">31</option>
-												</select> <select class="">
-													<option value="Time" class="">Time am/pm</option>
-													<option value="10am" class="">10:00am</option>
-													<option value="1030am" class="">10:30am</option>
-													<option value="11am" class="">11:00am</option>
-													<option value="1130am" class="">11:30am</option>
-													<option value="12pm" class="">12:00pm</option>
-													<option value="1230pm" class="">12:30pm</option>
-													<option value="1pm" class="">1:00pm</option>
-													<option value="130pm" class="">1:30pm</option>
-													<option value="2pm" class="">2:00pm</option>
-													<option value="230pm" class="">2:30pm</option>
-													<option value="3pm" class="">3:00pm</option>
-													<option value="330pm" class="">3:30pm</option>
-													<option value="4pm" class="">4:00pm</option>
-													<option value="430pm" class="">4:30pm</option>
-												</select>
-											</div>
-											<br> <br> <br>
-										</div>
-										<label for="comment">Message</label> &nbsp;&nbsp;
-										<textarea name="message" id="message" class="span4" rows="5"
-											style="width: 60%"></textarea>
-									</div>
-									<br>
-									<div class="form-group">
-										<div class="col-sm-offset-4 col-sm-8">
-											<button type="button" class="btn btn-primary"
-												data-toggle="modal" data-target="#myModal">
-												<span class="glyphicon glyphicon-ok"></span> Submit
-											</button>
-
-										</div>
-										<br>
-									</div>
-								</div>
-							</div>-->
-							<!--------------Make an appointment close------------>
 						</div>
 					</div>
 					<br>
 					<br>
 					<br>
-				</div>
-			</div>
-		</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</section>
 
 	<br>
 </div>
-<style>
-.carddemoBasicUsage .card-media {
-	background-color: #999999;
-}
-
-/* override bootstrap styles */
-@media ( min-width : 979px) {
-	body {
-		/*		padding-top: 60px;*/
-		/* 60px to make the container go all the way to the bottom of the topbar */
-		
-	}
-}
-
-select {
-	width: 120px;
-	margin-right: 10px;
-}
-
-legend {
-	background-color: #3c8dbc;
-	padding-right: 20px;
-	margin-top: -20px;
-	padding-top: 0px;
-	padding-bottom: 5px;
-	border-top-right-radius: 4px;
-	-moz-border-radius-topright: 4px;
-	border-top-left-radius: 4px;
-	-moz-border-radius-topleft: 4px -webkit-border-top-left-radius: 4px;
-	-webkit-border-top-right-radius: 4px;
-	/*	margin-left: -20px;*/
-	/*	padding-left: 20px;*/
-	margin-top: -20px;
-	padding-top: 0px;
-	padding-bottom: 5px;
-}
-
-label {
-	margin-left: 0px;
-}
-</style>
-
-
-<script>
-function myFunction() {
-    var x = document.getElementById('myDIV');
-    if (x.style.display === 'none') {
-        x.style.display = 'block';
-    } else {
-        x.style.display = 'none';
-    }
-}
-</script>
-                    <style>
-                    
-                    body{padding-top:30px;}
-
-.glyphicon {  margin-bottom: 10px;margin-right: 10px;}
-
-small {
-display: block;
-line-height: 1.428571429;
-color: #999;
-}
-                    
-                    </style>
