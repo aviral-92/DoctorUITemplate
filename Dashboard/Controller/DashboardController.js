@@ -406,9 +406,7 @@ scotchApp.controller('profile', function($scope, $cookieStore, fileReader, $http
                return day === 0 || day === 6;
             }
          }  */
-scotchApp.controller('doctorAppointment', function($scope, $http) {
 
-});
 scotchApp.controller('signout', function($scope, $cookieStore, $window) {
 
     //$cookieStore.remove('email') ;
