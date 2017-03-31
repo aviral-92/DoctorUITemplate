@@ -1,4 +1,4 @@
-scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $window, $interval, $rootScope, $window) {
+scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $window, $interval, $rootScope, $window,ajaxErrorControl) {
 
     if($cookieStore.get('doctorLoginData') == undefined){
         $window.location.href = '/index.html#/loginPage';
@@ -74,7 +74,7 @@ scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $
                 $scope.notifications = notification;
             });
             response.error(function(data, status, headers, config) {
-                alert('Failure');
+             /*   alert('Failure');*/
             });
             console.log('Notification function over');
         }
@@ -87,7 +87,7 @@ scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $
                 $scope.messages = messages;
             });
             response.error(function(data, status, headers, config) {
-                alert('Failure');
+              /*  alert('Failure');*/
             });
             console.log('Message function over');
         }
@@ -105,8 +105,9 @@ scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $
 //                $scope.doctors = doctorsList;
         });
         response.error(function(data, status, headers, config) { 
-            alert('Failure');
+//            alert('Failure');
             $scope.spinner = false;
+             ajaxErrorControl.ajaxServiceDown();
         });
      }
     }
@@ -332,7 +333,7 @@ scotchApp.controller('profile', function($scope, $cookieStore, fileReader, $http
             );
         });
         updateDoctor.error(function(updateResponse, status, headers, config) {
-            alert("failure message: " + updateResponse.message);
+//            alert("failure message: " + updateResponse.message);
         });
     }
 
@@ -344,7 +345,7 @@ scotchApp.controller('profile', function($scope, $cookieStore, fileReader, $http
             $scope.doctors = data;
         });
         doctorSuccess.error(function(data, status, headers, config) {
-            alert('ggg');
+          /*  alert('ggg');*/
         });
     }
 

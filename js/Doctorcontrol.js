@@ -1,10 +1,11 @@
-scotchApp.controller('index', function($scope, $http, $window, $cookieStore, $q, filterFilter) {
+scotchApp.controller('index', function($scope, $http, $window, $cookieStore, $q, filterFilter, $mdDialog, ajaxErrorControl) {
 
     $scope.dirty = {};
    /* $http.get("https://doctors.cfapps.io/api/doctor/get/all/expertisation").success(function(states) {
     });*/
     $scope.btnClick = function() {
-        $window.location.href = '#/searchFunctionality';
+        ajaxErrorControl.ajaxServiceDown();
+//        $window.location.href = '#/searchFunctionality';
         console.log($scope.dirty.value);
 
     }
@@ -69,6 +70,17 @@ scotchApp.controller('index', function($scope, $http, $window, $cookieStore, $q,
     if ($cookieStore.get('loginData') != undefined) {
         $cookieStore.remove('loginData')
     }
+    
+     $mdDialog.show(
+                $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#dialogContainer')))
+                .clickOutsideToClose(true)
+                .title('Beta Version')
+                .textContent('Inconvenience regret...!!!')
+                .ariaLabel('Inconvenience regret...!!!')
+                .ok('OK')
+
+            );
 
 });
 
@@ -246,10 +258,19 @@ scotchApp.controller('about', function($scope) {
     }];
 });
 
-scotchApp.controller('contact', function($scope) {
+scotchApp.controller('contact', function($scope, $http) {
     //Need to be add functionality in future
+    
+  
     $scope.submitDetail = function(details) {
-
+        var response = $http.post('https://doctors.cfapps.io/api/misc/addContact', details);
+          response.success(function(data) {
+                console.log('success');
+               console.log(response);
+            });
+            response.error(function(data, status, headers, config) {
+                console.log('failure');
+            });
     }
 
 });

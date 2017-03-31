@@ -1,4 +1,4 @@
-scotchApp.controller('doctorAppointment', function($scope, $http, $location, $rootScope, $location ) {
+scotchApp.controller('doctorAppointment', function($scope, $http, $location, $rootScope, $location,ajaxErrorControl ) {
     
      var doctorAppointment = $rootScope.getDoctorAppointment;
      console.log('Appointment Data');
@@ -16,7 +16,8 @@ scotchApp.controller('doctorAppointment', function($scope, $http, $location, $ro
                 console.log('success');
             });
             responseUpdate.error(function(data, status, headers, config) {
-                console.log('failure');
+               /* console.log('failure');*/
+                ajaxErrorControl.ajaxServiceDown();
             });
      }
            //cancel appointment ned to check it
@@ -104,7 +105,7 @@ scotchApp.controller('patientAppointmentSearch', function($scope,$rootScope, $ht
                 $scope.doctors = doctorsList;
         });
         response.error(function(data, status, headers, config) { 
-            alert('Failure');
+           /* alert('Failure');*/
             $scope.spinner = false;
         });
          

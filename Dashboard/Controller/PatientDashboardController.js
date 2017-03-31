@@ -72,7 +72,7 @@ scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $
             $scope.notifications = notification;
         });
         response.error(function(data, status, headers, config) { 
-            alert('Failure');
+            /*alert('Failure');*/
         });
         console.log('Notification function over');
     }
@@ -85,7 +85,7 @@ scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $
             $scope.messages = messages;
         });
         response.error(function(data, status, headers, config) { 
-            alert('Failure');
+            /*alert('Failure');*/
         });
         console.log('Message function over');
     }
@@ -181,7 +181,7 @@ scotchApp.controller('patientProfile', function($scope,$cookieStore, fileReader,
                 });
 	        });
 	        updatePatient.error(function(updateResponse, status, headers, config) {
-	            alert("failure message: " + updateResponse.message);
+	          /*  alert("failure message: " + updateResponse.message);*/
 	        });
 	    }
 	    
