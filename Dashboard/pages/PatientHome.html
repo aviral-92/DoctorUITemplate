@@ -109,7 +109,7 @@
             <!-- /.box-header -->
             <div class="box-body">
               <ul class="todo-list">
-                <li ng-repeat="todoData in todoList" inline-edit="todoData.message" on-save="updateTodo(todoData.message)" on-cancel="cancelEdit(todoData.message)">
+                <li ng-repeat="todoData in todoList" inline-edit="todoData.todoMessage" on-save="updateTodo(todoData)" on-cancel="cancelEdit(todoData.todoMessage)">
                   <!-- drag handle -->
                       <span class="handle">
                         <i class="fa fa-ellipsis-v"></i>
@@ -118,7 +118,7 @@
                   <!-- checkbox -->
                   <input type="checkbox" value="">
                   <!-- todo text -->
-                  <span class="text">{{todoData.message}}</span>
+                  <span class="text">{{todoData.todoMessage}}</span>
                   <!-- Emphasis label -->
                  <!--  <small class="label label-info"><i class="fa fa-clock-o"></i> 2 mins</small>
                   General tools such as edit or delete

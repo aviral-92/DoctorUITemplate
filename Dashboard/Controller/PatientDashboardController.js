@@ -91,14 +91,50 @@ scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $
     }
 });
 
-scotchApp.controller('patientHome', function($scope, $http) {
+scotchApp.controller('patientHome', function($scope, $http, $cookieStore,$mdDialog) {
 	$scope.visible = false;
     var index = 0;
     $scope.url = "#/patientHome";
-    var todo = $http.get('/js/MockJson/todoList.json');
+    console.log('data' +$cookieStore.get('patientLoginData').pId);
+    var todo = $http.get('https://doctors.cfapps.io/api/todo/gettodoListforpatient/'+ $cookieStore.get('patientLoginData').pId +'/pId');
     todo.success(function(todoData) {
+        console.log(todoData);
         $scope.todoList = todoData;
+          alert("success");
     });
+     todo.error(function(todoData) {
+       alert("failure");
+    });
+    
+    
+    $scope.updateTodo = function(todoData){
+        
+        
+        var updateJsonObj = {
+            "todoId" : todoData.todoId,
+            "todoMessage" : todoData.todoMessage
+        }
+        var updateJson = JSON.stringify(updateJsonObj);
+        console.log(updateJson);
+        
+           var updatetodoList = $http.put('https://doctors.cfapps.io/api/todo/updatetodoListforPatient',updateJson);
+            updatetodoList.success(function(response) {
+            console.log(response);
+                 $mdDialog.show(
+                  $mdDialog.alert()
+                     .parent(angular.element(document.querySelector('#dialogContainer')))
+                     .clickOutsideToClose(true)
+                     .title("update todo List")
+                     .textContent("successfully updated...!!!")
+                     .ariaLabel("successfully updated...!!!")
+                     .ok('Ok!')
+            );
+    });
+     updatetodoList.error(function(response) {
+       alert("failure");
+    });
+        
+    }
     $scope.close = function(){
         var data = $scope.todoTastData;
         $scope.todoList.push({
