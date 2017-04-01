@@ -1,10 +1,10 @@
-scotchApp.controller('index', function($scope, $http, $window, $cookieStore, $q, filterFilter, $mdDialog, ajaxErrorControl) {
+scotchApp.controller('index', function($scope, $http, $window, $cookieStore, $q, filterFilter, $mdDialog, popUpCalled) {
 
     $scope.dirty = {};
    /* $http.get("https://doctors.cfapps.io/api/doctor/get/all/expertisation").success(function(states) {
     });*/
     $scope.btnClick = function() {
-        ajaxErrorControl.ajaxServiceDown();
+        popUpCalled.popup('Service Down for Maintainance', 'We will be back in a while');
 //        $window.location.href = '#/searchFunctionality';
         console.log($scope.dirty.value);
 
@@ -71,26 +71,27 @@ scotchApp.controller('index', function($scope, $http, $window, $cookieStore, $q,
         $cookieStore.remove('loginData')
     }
     
-     $mdDialog.show(
-                $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#dialogContainer')))
-                .clickOutsideToClose(true)
-                .title('Beta Version')
-                .textContent('Inconvenience regret...!!!')
-                .ariaLabel('Inconvenience regret...!!!')
-                .ok('OK')
-
-            );
-
+    // for popup dilogue.... 
+    popUpCalled.popup('Beta Version', 'Inconvenience regret...!!!');
+    
 });
 
 
-scotchApp.controller('AppCtrl', function($scope, $http, $window, $cookieStore, $q, filterFilter) {
+scotchApp.controller('AppCtrl', function($scope, $http, $window, $cookieStore, $q, filterFilter, ajaxGetResponse) {
 
     var foodArray = [];
-    $http.get("https://doctors.cfapps.io/api/doctor/get/all/expertisation").success(function(expertise) {
+    // Ajax hit via service AjaxGetServiceRequest
+    var serverResponse = ajaxGetResponse.getAllExpertise();
+    serverResponse.success(function(response){
+           foodArray = response;
+       });
+       serverResponse.error(function(data, status, headers, config){
+           alert('no response');
+       });
+    
+    /*$http.get("https://doctors.cfapps.io/api/doctor/get/all/expertisation").success(function(expertise) {
         foodArray = expertise;
-    });
+    });*/
 
     var vm = this;
     // The following are used in md-autocomplete
@@ -154,7 +155,7 @@ scotchApp.controller('middleContent', function($scope, $cookieStore) {
     }
 });
 
-scotchApp.controller('doctorSearch', function($scope, $http) {
+/*scotchApp.controller('doctorSearch', function($scope, $http) {
 
     $scope.dirty = {};
 
@@ -226,7 +227,7 @@ scotchApp.controller('doctorSearch', function($scope, $http) {
         $scope.message = null;
         $scope.modalBody = false;
     }
-});
+});*/
 
 scotchApp.controller('about', function($scope) {
     // initializing the time Interval
@@ -258,33 +259,18 @@ scotchApp.controller('about', function($scope) {
     }];
 });
 
-scotchApp.controller('contact', function($scope, $http) {
+scotchApp.controller('contact', function($scope, $http, ajaxGetResponse) {
     //Need to be add functionality in future
-    
   
     $scope.submitDetail = function(details) {
-        var response = $http.post('https://doctors.cfapps.io/api/misc/addContact', details);
+        // Ajax hit via service AjaxGetServiceRequest
+        var response = ajaxGetResponse.putContactInfo(details);
           response.success(function(data) {
-                console.log('success');
-               console.log(response);
-            });
-            response.error(function(data, status, headers, config) {
+            console.log('success');
+            console.log(response);
+        });
+        response.error(function(data, status, headers, config) {
                 console.log('failure');
-            });
+        });
     }
-
 });
-
-/** **********************Dashboard Starts*********************** */
-
-/*function getByEmail($http, $cookieStore) {
-    alert($cookieStore.get('email'));
-    var doctors = $http.get('https://doctor-service.cfapps.io/api/doctor/get/' +
-        $cookieStore.get('email') + '/email');
-    doctors.success(function(data) {
-        return data;
-    });
-    doctors.error(function(data, status, headers, config) {});
-}*/
-
-/** **********************Dashboard Ends*********************** */

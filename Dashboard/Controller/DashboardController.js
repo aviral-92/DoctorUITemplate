@@ -1,4 +1,4 @@
-scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $window, $interval, $rootScope, $window,ajaxErrorControl) {
+scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $window, $interval, $rootScope, $window, popUpCalled) {
 
     if($cookieStore.get('doctorLoginData') == undefined){
         $window.location.href = '/index.html#/loginPage';
@@ -105,9 +105,9 @@ scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $
 //                $scope.doctors = doctorsList;
         });
         response.error(function(data, status, headers, config) { 
-//            alert('Failure');
+//            alert('Failure'); 
             $scope.spinner = false;
-             ajaxErrorControl.ajaxServiceDown();
+             popUpCalled.popup('Service Down for Maintainance', 'We will be back in a while');
         });
      }
     }

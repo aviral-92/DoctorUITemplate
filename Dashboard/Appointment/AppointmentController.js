@@ -1,4 +1,4 @@
-scotchApp.controller('doctorAppointment', function($scope, $http, $location, $rootScope, $location,ajaxErrorControl ) {
+scotchApp.controller('doctorAppointment', function($scope, $http, $location, $rootScope, $location, popUpCalled ) {
     
      var doctorAppointment = $rootScope.getDoctorAppointment;
      console.log('Appointment Data');
@@ -16,8 +16,8 @@ scotchApp.controller('doctorAppointment', function($scope, $http, $location, $ro
                 console.log('success');
             });
             responseUpdate.error(function(data, status, headers, config) {
-               /* console.log('failure');*/
-                ajaxErrorControl.ajaxServiceDown();
+               /* console.log('failure');*/ 
+                popUpCalled.popup('Service Down for Maintainance', 'We will be back in a while');
             });
      }
            //cancel appointment ned to check it

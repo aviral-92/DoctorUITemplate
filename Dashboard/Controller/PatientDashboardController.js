@@ -1,4 +1,4 @@
-scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $window, $interval) {
+scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $window, $interval, popUpCalled) {
     
     var getPatients = $cookieStore.get('patientLoginData');
     $scope.name = getPatients.name;
@@ -10,7 +10,9 @@ scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $
     
     $scope.getNotofication = function(notify){
         
-        $mdDialog.show(
+        // Popup Called for alert...
+        popUpCalled.popup(notify.notiyfMessage, notify.notiyfMessage);
+       /* $mdDialog.show(
                   $mdDialog.alert()
                      .parent(angular.element(document.querySelector('#dialogContainer')))
                      .clickOutsideToClose(true)
@@ -18,7 +20,7 @@ scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $
                      .textContent(notify.notiyfMessage)
                      .ariaLabel(notify.notiyfMessage)
                      .ok('Ok!')
-            );
+            );*/
         var obj = {
             "notifyId" : notify.notifyId
         }; // Create new object
@@ -37,7 +39,9 @@ scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $
     
     $scope.getMessage = function(messages){
         
-        $mdDialog.show(
+        // Popup Called for alert...
+        popUpCalled.popup(messages.message, (messages.message);
+        /*$mdDialog.show(
                   $mdDialog.alert()
                      .parent(angular.element(document.querySelector('#dialogContainer')))
                      .clickOutsideToClose(true)
@@ -45,7 +49,7 @@ scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $
                      .textContent(messages.message)
                      .ariaLabel(messages.message)
                      .ok('Ok!')
-            );
+            );*/
         
         /*var obj = {
             "notifyId" : notify.notifyId
@@ -91,7 +95,7 @@ scotchApp.controller('index', function($scope, $http, $cookieStore, $mdDialog, $
     }
 });
 
-scotchApp.controller('patientHome', function($scope, $http, $cookieStore,$mdDialog) {
+scotchApp.controller('patientHome', function($scope, $http, $cookieStore, $mdDialog) {
 	$scope.visible = false;
     var index = 0;
     $scope.url = "#/patientHome";
