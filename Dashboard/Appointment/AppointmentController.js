@@ -1,62 +1,62 @@
-scotchApp.controller('doctorAppointment', function($scope, $http, $location, $rootScope, $location, popUpCalled ) {
-    
-     var doctorAppointment = $rootScope.getDoctorAppointment;
-     console.log('Appointment Data');
-     console.log(doctorAppointment);
-     $scope.doctorAppointments = doctorAppointment;
-    
-     $scope.viewPatient = function(doctorAppointment){
-         console.log(doctorAppointment);
-         $rootScope.patientObj = doctorAppointment;
+scotchApp.controller('doctorAppointment', function ($scope, $http, $location, $rootScope, $location, popUpCalled) {
+
+    var doctorAppointment = $rootScope.getDoctorAppointment;
+    console.log('Appointment Data');
+    console.log(doctorAppointment);
+    $scope.doctorAppointments = doctorAppointment;
+
+    $scope.viewPatient = function (doctorAppointment) {
+        console.log(doctorAppointment);
+        $rootScope.patientObj = doctorAppointment;
         //cancel appointment ned to check it
-          $scope.cancelAppointment = function(PatientDetails){
-         var responseUpdate = $http.delete('https://doctors.cfapps.io/api/appointment/appointment/cancel/'+getPatient[0].dId);
-            responseUpdate.success(function(data) {
+        $scope.cancelAppointment = function (PatientDetails) {
+            var responseUpdate = $http.delete('https://doctors.cfapps.io/api/appointment/appointment/cancel/' + getPatient[0].dId);
+            responseUpdate.success(function (data) {
                 console.log('responseUpdate');
                 console.log('success');
             });
-            responseUpdate.error(function(data, status, headers, config) {
-               /* console.log('failure');*/ 
+            responseUpdate.error(function (data, status, headers, config) {
+                /* console.log('failure');*/
                 popUpCalled.popup('Service Down for Maintainance', 'We will be back in a while');
             });
-     }
-           //cancel appointment ned to check it
+        }
+        //cancel appointment ned to check it
         $location.path('/doctorCancelAppointment');
-     }
+    }
 });
 
-scotchApp.controller('doctorCancelAppointment', function($scope, $http, $rootScope) {
+scotchApp.controller('doctorCancelAppointment', function ($scope, $http, $rootScope) {
     var getPatient = $rootScope.patientObj;
     console.log(getPatient);
-    
-      $scope.cancelAppointment = function(PatientDetails){
-         var responseUpdate = $http.delete('https://doctors.cfapps.io/api/appointment/appointment/cancel/'+getPatient[0].dId);
-            responseUpdate.success(function(data) {
-                console.log('responseUpdate');
-                console.log('success');
-            });
-            responseUpdate.error(function(data, status, headers, config) {
-                console.log('failure');
-            });
-     }
+
+    $scope.cancelAppointment = function (PatientDetails) {
+        var responseUpdate = $http.delete('https://doctors.cfapps.io/api/appointment/appointment/cancel/' + getPatient[0].dId);
+        responseUpdate.success(function (data) {
+            console.log('responseUpdate');
+            console.log('success');
+        });
+        responseUpdate.error(function (data, status, headers, config) {
+            console.log('failure');
+        });
+    }
 });
 
 
-scotchApp.controller('patientHistory', function($scope, $http, $window) {
-	
-     $scope.btnClick = function() {
+scotchApp.controller('patientHistory', function ($scope, $http, $window) {
+
+    $scope.btnClick = function () {
         $window.location.href = '#/patientAppointment';
         console.log($scope.dirty.value);
-         
+
     }
-    
+
 });
-scotchApp.controller('patientAppointmentSearch', function($scope,$rootScope, $http, $q, filterFilter, $location) {
+scotchApp.controller('patientAppointmentSearch', function ($scope, $rootScope, $http, $q, filterFilter, $location) {
 
     $scope.searchResult = false;
     $scope.spinner = false;
     var foodArray = [];
-    $http.get("https://doctors.cfapps.io/api/doctor/get/all/expertisation").success(function(expertise) {
+    $http.get("https://doctors.cfapps.io/api/doctor/get/all/expertisation").success(function (expertise) {
         foodArray = expertise;
     });
 
@@ -79,7 +79,7 @@ scotchApp.controller('patientAppointmentSearch', function($scope,$rootScope, $ht
     function querySearchDeferred(query) {
         var deferred = $q.defer();
 
-        setTimeout(function() {
+        setTimeout(function () {
             if (query) {
                 deferred.resolve(filterFilter(foodArray, query));
             } else {
@@ -90,67 +90,70 @@ scotchApp.controller('patientAppointmentSearch', function($scope,$rootScope, $ht
         }, 200);
         return deferred.promise;
     }
-    
-     $scope.btnClick = function(item) {
-         
-         var obj = {"expertized" : item[0]}
-         var expertise = JSON.stringify(obj);
-         console.log(expertise);
-         
-         var response = $http.post('https://doctors.cfapps.io/api/doctor/get/all', expertise);
-         $scope.spinner = true;
-         response.success(function(doctorsList){
-                $scope.spinner = false;
-                console.log(doctorsList);
-                $scope.doctors = doctorsList;
+
+    $scope.btnClick = function (item) {
+
+        var obj = {
+            "expertized": item[0]
+        }
+        var expertise = JSON.stringify(obj);
+        console.log(expertise);
+
+        var response = $http.post('https://doctors.cfapps.io/api/doctor/get/all', expertise);
+        $scope.spinner = true;
+        response.success(function (doctorsList) {
+            $scope.spinner = false;
+            console.log(doctorsList);
+            $scope.doctors = doctorsList;
         });
-        response.error(function(data, status, headers, config) { 
-           /* alert('Failure');*/
+        response.error(function (data, status, headers, config) {
+            /* alert('Failure');*/
             $scope.spinner = false;
         });
-         
-         $scope.searchResult = true;
+
+        $scope.searchResult = true;
 
     }
-     
-     $scope.viewDoctor = function(doctor){
-         
-         console.log(doctor);
-         $rootScope.doctorObj = doctor;
-         $location.path('/patientAppointment');
-     }
-      
+
+    $scope.viewDoctor = function (doctor) {
+
+        console.log(doctor);
+        $rootScope.doctorObj = doctor;
+        $location.path('/patientAppointment');
+    }
+
 });
- 
-scotchApp.controller('patientAppointmentBook', function($scope, $http, $rootScope, $cookieStore) {
-	
+
+scotchApp.controller('patientAppointmentBook', function ($scope, $http, $rootScope, $cookieStore, ajaxGetResponse, popUpCalled) {
+
     var getDoctor = $rootScope.doctorObj;
     console.log(getDoctor);
-    if(getDoctor != undefined){
-//        $scope.booking = {};
+    if (getDoctor != undefined) {
+        //        $scope.booking = {};
     }
     $scope.doctor = getDoctor;
-    
-    $scope.bookAppointment = function(doctor, booking){
-        
+
+    $scope.bookAppointment = function (doctor, booking) {
+
         var appointmentObj = {
-            "appointmentDesc" : booking.description,
-            "createdDate" : booking.appointmentDate,
-            "dId" : getDoctor.doctorId,
-            "pId" : $cookieStore.get('patientLoginData').pId
+            "appointmentDesc": booking.description,
+            "createdDate": booking.appointmentDate,
+            "dId": getDoctor.did,
+            "pId": $cookieStore.get('patientLoginData').pId
         }
         var notificationObj = {
-            "dId" : getDoctor.doctorId,
-            "notiyfMessage" : "New appointment booked, schedule on "+booking.appointmentDate
+            "dId": getDoctor.did,
+            "notiyfMessage": "New appointment booked, schedule on " + booking.appointmentDate
         }
-//        console.log(appointmentObj);
+        //        console.log(appointmentObj);
         var appointment = JSON.stringify(appointmentObj);
         var sendNotification = JSON.stringify(notificationObj);
         console.log(appointment);
-        var response = $http.post('https://doctors.cfapps.io/api/appointment/appointment/make', appointment);
-        response.success(function(data){
-            
-            $mdDialog.show(
+        var response = ajaxGetResponse.appointmentBookByPatient(appointment);
+        response.success(function (data) {
+
+            popUpCalled.popup('Appointment Booked', 'Your Appointment has been booked');
+            /*$mdDialog.show(
                   $mdDialog.alert()
                      .parent(angular.element(document.querySelector('#dialogContainer')))
                      .clickOutsideToClose(true)
@@ -158,24 +161,24 @@ scotchApp.controller('patientAppointmentBook', function($scope, $http, $rootScop
                      .textContent('Your Appointment has been booked')
                      .ariaLabel('Your Appointment has been booked')
                      .ok('Ok!')
-            );
+            );*/
             notifyDoctor(sendNotification);
-    });
-    response.error(function(data, status, headers, config) { 
-        console.log('Booking appointment failed');
-        //TODO to be remove once response comes in JSON
-        notifyDoctor(sendNotification);
-    });
-        
-}
-    
-    function notifyDoctor(sendNotification){
-        
-        var responseNotify = $http.post('https://doctors.cfapps.io/api/notification/addNotifyfordoctor', sendNotification);
-            responseNotify.success(function(data){
-                
-            });
-            responseNotify.error(function(data, status, headers, config) { 
+        });
+        response.error(function (data, status, headers, config) {
+            console.log('Booking appointment failed');
+            //TODO to be remove once response comes in JSON
+            notifyDoctor(sendNotification);
+        });
+
+    }
+
+    function notifyDoctor(sendNotification) {
+
+        var responseNotify = ajaxGetResponse.sendNotoficationToDoctor(sendNotification);
+        responseNotify.success(function (data) {
+            console.log('notofication Send');
+        });
+        responseNotify.error(function (data, status, headers, config) {
             console.log('sending notofication failed');
         });
     }
