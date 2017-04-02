@@ -1,11 +1,11 @@
-scotchApp.controller('index', function($scope, $http, $window, $cookieStore, $q, filterFilter, $mdDialog, popUpCalled) {
+scotchApp.controller('index', function ($scope, $http, $window, $cookieStore, $q, filterFilter, $mdDialog, popUpCalled) {
 
     $scope.dirty = {};
-   /* $http.get("https://doctors.cfapps.io/api/doctor/get/all/expertisation").success(function(states) {
-    });*/
-    $scope.btnClick = function() {
+    /* $http.get("https://doctors.cfapps.io/api/doctor/get/all/expertisation").success(function(states) {
+     });*/
+    $scope.btnClick = function () {
         popUpCalled.popup('Service Down for Maintainance', 'We will be back in a while');
-//        $window.location.href = '#/searchFunctionality';
+        //        $window.location.href = '#/searchFunctionality';
         console.log($scope.dirty.value);
 
     }
@@ -70,25 +70,25 @@ scotchApp.controller('index', function($scope, $http, $window, $cookieStore, $q,
     if ($cookieStore.get('loginData') != undefined) {
         $cookieStore.remove('loginData')
     }
-    
+
     // for popup dilogue.... 
     popUpCalled.popup('Beta Version', 'Inconvenience regret...!!!');
-    
+
 });
 
 
-scotchApp.controller('AppCtrl', function($scope, $http, $window, $cookieStore, $q, filterFilter, ajaxGetResponse) {
+scotchApp.controller('AppCtrl', function ($scope, $http, $window, $cookieStore, $q, filterFilter, ajaxGetResponse) {
 
     var foodArray = [];
     // Ajax hit via service AjaxGetServiceRequest
     var serverResponse = ajaxGetResponse.getAllExpertise();
-    serverResponse.success(function(response){
-           foodArray = response;
-       });
-       serverResponse.error(function(data, status, headers, config){
-           alert('no response');
-       });
-    
+    serverResponse.success(function (response) {
+        foodArray = response;
+    });
+    serverResponse.error(function (data, status, headers, config) {
+        alert('no response');
+    });
+
     /*$http.get("https://doctors.cfapps.io/api/doctor/get/all/expertisation").success(function(expertise) {
         foodArray = expertise;
     });*/
@@ -115,7 +115,7 @@ scotchApp.controller('AppCtrl', function($scope, $http, $window, $cookieStore, $
         // Factory method would go below in actual example
         // The 200 millisecond delay mimics an ajax call
 
-        setTimeout(function() {
+        setTimeout(function () {
             if (query) {
                 deferred.resolve(filterFilter(foodArray, query));
             } else {
@@ -128,24 +128,24 @@ scotchApp.controller('AppCtrl', function($scope, $http, $window, $cookieStore, $
     }
 });
 
-scotchApp.controller('indexSlider', function($scope) {
+scotchApp.controller('indexSlider', function ($scope) {
 
 });
 
-scotchApp.controller('functionalitySearch', function($scope, $http) {
+scotchApp.controller('functionalitySearch', function ($scope, $http) {
 
     $scope.users = []; //declare an empty array
-    $http.get("/html/SearchFunctionality/mockJson/mock.json").success(function(response) {
+    $http.get("/html/SearchFunctionality/mockJson/mock.json").success(function (response) {
         $scope.users = response; //ajax request to fetch data into $scope.data
     });
 
-    $scope.sort = function(keyname) {
+    $scope.sort = function (keyname) {
         $scope.sortKey = keyname; //set the sortKey to the param passed
         $scope.reverse = !$scope.reverse; //if true make it false and vice versa
     }
 });
 
-scotchApp.controller('middleContent', function($scope, $cookieStore) {
+scotchApp.controller('middleContent', function ($scope, $cookieStore) {
     if ($cookieStore.get('loginData') != undefined &&
         $cookieStore.get('email') != undefined) {
         window.location = "#/dashboard";
@@ -229,7 +229,7 @@ scotchApp.controller('middleContent', function($scope, $cookieStore) {
     }
 });*/
 
-scotchApp.controller('about', function($scope) {
+scotchApp.controller('about', function ($scope) {
     // initializing the time Interval
     $scope.firstSliderInterval = 3000;
     // Initializing slide array
@@ -259,18 +259,18 @@ scotchApp.controller('about', function($scope) {
     }];
 });
 
-scotchApp.controller('contact', function($scope, $http, ajaxGetResponse) {
+scotchApp.controller('contact', function ($scope, $http, ajaxGetResponse) {
     //Need to be add functionality in future
-  
-    $scope.submitDetail = function(details) {
+
+    $scope.submitDetail = function (details) {
         // Ajax hit via service AjaxGetServiceRequest
         var response = ajaxGetResponse.putContactInfo(details);
-          response.success(function(data) {
+        response.success(function (data) {
             console.log('success');
             console.log(response);
         });
-        response.error(function(data, status, headers, config) {
-                console.log('failure');
+        response.error(function (data, status, headers, config) {
+            console.log('failure');
         });
     }
 });
