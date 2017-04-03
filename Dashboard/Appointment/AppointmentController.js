@@ -50,7 +50,7 @@ scotchApp.controller('patientHistory', function ($scope, $http, $window) {
     }
 
 });
-scotchApp.controller('patientAppointmentSearch', function ($scope, $rootScope, $http, $q, filterFilter, $location) {
+scotchApp.controller('patientAppointmentSearch', function ($scope, $rootScope, $http, $q, filterFilter, $location, $window) {
 
     $scope.searchResult = false;
     $scope.spinner = false;
@@ -112,15 +112,17 @@ scotchApp.controller('patientAppointmentSearch', function ($scope, $rootScope, $
     $scope.viewDoctor = function (doctor) {
 
         console.log(doctor);
-        $rootScope.doctorObj = doctor;
+        $window.localStorage.setItem('doctorObj', angular.toJson(doctor));
+        //$rootScope.doctorObj = doctor;
         $location.path('/patientAppointment');
     }
 
 });
 
-scotchApp.controller('patientAppointmentBook', function ($scope, $http, $rootScope, $cookieStore, ajaxGetResponse, popUpCalled) {
+scotchApp.controller('patientAppointmentBook', function ($scope, $http, $rootScope, $cookieStore, $window, ajaxGetResponse, popUpCalled) {
 
-    var getDoctor = $rootScope.doctorObj;
+    var getDoctor = JSON.parse($window.localStorage.getItem('doctorObj'));
+    //var getDoctor = $rootScope.doctorObj;
     console.log(getDoctor);
     if (getDoctor != undefined) {
         //        $scope.booking = {};
