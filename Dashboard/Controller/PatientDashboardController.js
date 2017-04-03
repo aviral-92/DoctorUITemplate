@@ -109,15 +109,6 @@ scotchApp.controller('patientHome', function ($scope, $http, $cookieStore, $mdDi
             console.log(response);
             //Service called for popup
             popUpCalled.popup('update todo List', 'successfully updated...!!!');
-            /*$mdDialog.show(
-                  $mdDialog.alert()
-                     .parent(angular.element(document.querySelector('#dialogContainer')))
-                     .clickOutsideToClose(true)
-                     .title("update todo List")
-                     .textContent("successfully updated...!!!")
-                     .ariaLabel("successfully updated...!!!")
-                     .ok('Ok!')
-            );*/
         });
         serverResponseupdate.error(function (response) {
             alert("failure");

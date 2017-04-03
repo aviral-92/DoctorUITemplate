@@ -96,5 +96,20 @@ scotchApp.service('ajaxGetResponse', function ($http) {
         var serverResponse = $http.post('https://doctors.cfapps.io/api/notification/addNotifyfordoctor', notification);
         return serverResponse;
     }
+    
+    this.getDoctorTodoList = function (dId) {
+        var serverResponse = $http.get('https://doctors.cfapps.io/api/todo/gettodoListfordoctor/' + dId + '/dId');
+        return serverResponse;
+    }
+
+    this.addDoctorTodoList = function (todoList) {
+        var serverResponse = $http.post('https://doctors.cfapps.io/api/todo/addToDoListfordoctor', todoList);
+        return serverResponse;
+    }
+
+    this.updateDoctorTodoList = function (todoList) {
+        var serverResponse = $http.put('https://doctors.cfapps.io/api/todo/updatetodoListfordoctor', todoList);
+        return serverResponse;
+    }
 
 });

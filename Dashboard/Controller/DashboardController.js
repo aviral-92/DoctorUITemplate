@@ -19,15 +19,6 @@ scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, 
         $scope.getNotofication = function (notify) {
 
             popUpCalled.popup(notify.notiyfMessage, notify.notiyfMessage);
-            /*$mdDialog.show(
-                $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#dialogContainer')))
-                .clickOutsideToClose(true)
-                .title(notify.notiyfMessage)
-                .textContent(notify.notiyfMessage)
-                .ariaLabel(notify.notiyfMessage)
-                .ok('Ok!')
-            );*/
             var obj = {
                 "notifyId": notify.notifyId
             }; // Create new object
@@ -45,16 +36,6 @@ scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, 
         $scope.getMessage = function (messages) {
 
             popUpCalled.popup(messages.message, messages.message);
-            /*$mdDialog.show(
-                $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#dialogContainer')))
-                .clickOutsideToClose(true)
-                .title(messages.message)
-                .textContent(messages.message)
-                .ariaLabel(messages.message)
-                .ok('Ok!')
-            );*/
-
             var serverResponseUpdate = ajaxGetResponse.updateMessage(messages);
             serverResponseUpdate.success(function (data) {
                 console.log('success');
@@ -67,7 +48,7 @@ scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, 
         }
 
         function getNotification(doctors) {
-            var serverResponse = ajaxGetResponse.getDoctorNotification(doctors.doctorId);
+            var serverResponse = ajaxGetResponse.getDoctorNotification(doctors.did);
             serverResponse.success(function (notification) {
                 $scope.notificationCount = notification.length;
                 console.log(notification);
@@ -81,7 +62,7 @@ scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, 
         }
 
         function getMessages(doctors) {
-            var serverResponse = ajaxGetResponse.getDoctorMessage(doctors.doctorId);
+            var serverResponse = ajaxGetResponse.getDoctorMessage(doctors.did);
             serverResponse.success(function (messages) {
                 $scope.messageCount = messages.length;
                 console.log(messages);
@@ -115,7 +96,7 @@ scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, 
     }
 });
 
-scotchApp.controller('home', function ($scope, $http, $cookieStore, $window) {
+scotchApp.controller('home', function ($scope, $http, $cookieStore, $window, ajaxGetResponse, popUpCalled) {
 
     if ($cookieStore.get('doctorLoginData') == undefined) {
         $window.location.href = '/index.html#/loginPage';
@@ -123,10 +104,53 @@ scotchApp.controller('home', function ($scope, $http, $cookieStore, $window) {
     $scope.visible = false;
     var index = 0;
     $scope.url = "#/home";
-    var todo = $http.get('/js/MockJson/todoList.json');
-    todo.success(function (todoData) {
+
+    var todoServerResponse = ajaxGetResponse.getDoctorTodoList($cookieStore.get('doctorLoginData').did);
+    todoServerResponse.success(function (todoData) {
+        console.log(todoData);
         $scope.todoList = todoData;
     });
+    todoServerResponse.error(function (todoData) {
+        alert("failure");
+    });
+
+    $scope.updateTodo = function (todoData) {
+        var updateJsonObj = {
+            "todoId": todoData.todoId,
+            "todoMessage": todoData.todoMessage
+        }
+        var updateJson = JSON.stringify(updateJsonObj);
+        console.log(updateJson);
+
+        var serverResponseupdate = ajaxGetResponse.updateDoctorTodoList(updateJson);
+        serverResponseupdate.success(function (response) {
+            console.log(response);
+            //Service called for popup
+            popUpCalled.popup('update todo List', 'successfully updated...!!!');
+        });
+        serverResponseupdate.error(function (response) {
+            alert("failure");
+        });
+    }
+  $scope.addTodo = function () {
+
+        var todoListObj = {
+            'todoMessage': $scope.todoTastData,
+            'dId': $cookieStore.get('doctorLoginData').did
+        }
+        var todoList = JSON.stringify(todoListObj);
+        console.log(todoListObj);
+        var serverResponse = ajaxGetResponse.addDoctorTodoList(todoListObj);
+        serverResponse.success(function (response) {
+            $scope.todoList.push({
+                "todoMessage": $scope.todoTastData
+            });
+            $scope.todoTastData = '';
+        });
+        serverResponse.error(function (response) {
+            popUpCalled.popup('Under maintainance', 'Please try after sometime');
+        });
+    }
 
     $scope.close = function () {
         var data = $scope.todoTastData;
