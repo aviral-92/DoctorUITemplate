@@ -155,8 +155,8 @@ scotchApp.controller('functionalitySearch', function ($scope, $http) {
     }
 });*/
 
-scotchApp.controller('doctorSearch', function($scope, $http) {
-    
+scotchApp.controller('doctorSearch', function ($scope, $http) {
+
 });
 /*scotchApp.controller('doctorSearch', function($scope, $http) {
 
