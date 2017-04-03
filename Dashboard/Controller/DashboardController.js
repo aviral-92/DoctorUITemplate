@@ -14,6 +14,13 @@ scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, 
         $scope.nameWithExpertise = getDoctors.name + ' ' + getDoctors.expertized;
         $scope.membership = 'Member since 24 Feb 2017';
         getNotification(getDoctors);
+        var i = 0;
+        $interval(function () {
+            // your stuff  
+            getNotification(getDoctors);
+            console.log('Calling again and again' + i);
+            i++;
+        }, 30000);
         getMessages(getDoctors);
 
         $scope.getNotofication = function (notify) {
@@ -133,7 +140,7 @@ scotchApp.controller('home', function ($scope, $http, $cookieStore, $window, aja
             alert("failure");
         });
     }
-  $scope.addTodo = function () {
+    $scope.addTodo = function () {
 
         var todoListObj = {
             'todoMessage': $scope.todoTastData,

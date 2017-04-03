@@ -1,4 +1,4 @@
-scotchApp.controller('doctorAppointment', function ($scope, $http, $window, $location, $rootScope, $location, popUpCalled) {
+scotchApp.controller('doctorAppointment', function ($scope, $http, $window, $location, $rootScope, $location, popUpCalled,ajaxGetResponse) {
 
     //var doctorAppointment = $rootScope.getDoctorAppointment;
     var doctorAppointment = JSON.parse($window.localStorage.getItem('getDoctorAppointment'));
@@ -12,10 +12,11 @@ scotchApp.controller('doctorAppointment', function ($scope, $http, $window, $loc
         $window.localStorage.setItem('patientObj', angular.toJson(doctorAppointment));
         //cancel appointment ned to check it
         $scope.cancelAppointment = function (PatientDetails) {
-            var responseUpdate = $http.delete('https://doctors.cfapps.io/api/appointment/appointment/cancel/' + getPatient[0].dId);
+            var responseUpdate = ajaxGetResponse.cancelAppointmentByDoctorId();
             responseUpdate.success(function (data) {
-                console.log('responseUpdate');
+//                console.log('responseUpdate');
                 console.log('success');
+                 popUpCalled.popup('Appointment Cancel', 'Successfully..!!!!');
             });
             responseUpdate.error(function (data, status, headers, config) {
                 /* console.log('failure');*/
@@ -27,17 +28,23 @@ scotchApp.controller('doctorAppointment', function ($scope, $http, $window, $loc
     }
 });
 
-scotchApp.controller('doctorCancelAppointment', function ($scope, $http, $rootScope, $window) {
+scotchApp.controller('doctorCancelAppointment', function ($scope, $http, $rootScope, $window, ajaxGetResponse) {
 
     //var getPatient = $rootScope.patientObj;
     var getPatient = JSON.parse($window.localStorage.getItem('patientObj'));
     console.log(getPatient);
     $scope.doctor = getPatient;
+    
+     var age = new Date().getYear() - new Date($scope.doctor.patient.dob).getYear();
+    $scope.doctor.patient.age = age;
+    
+    
     $scope.cancelAppointment = function (PatientDetails) {
-        var responseUpdate = $http.delete('https://doctors.cfapps.io/api/appointment/appointment/cancel/' + getPatient.dId);
+        var responseUpdate = ajaxGetResponse.cancelAppointmentByDoctorId();
         responseUpdate.success(function (data) {
-            console.log('responseUpdate');
+//            console.log('responseUpdate');
             console.log('success');
+              popUpCalled.popup('Appointment Cancel', 'Successfully..!!!!');
         });
         responseUpdate.error(function (data, status, headers, config) {
             console.log('failure');

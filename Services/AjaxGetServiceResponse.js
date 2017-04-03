@@ -111,5 +111,10 @@ scotchApp.service('ajaxGetResponse', function ($http) {
         var serverResponse = $http.put('https://doctors.cfapps.io/api/todo/updatetodoListfordoctor', todoList);
         return serverResponse;
     }
+    
+     this.cancelAppointmentByDoctorId = function (PatientDetails) {
+        var serverResponse = $http.delete('https://doctors.cfapps.io/api/appointment/appointment/cancel/' + getPatient[0].dId);
+        return serverResponse;
+    }
 
 });
