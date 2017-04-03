@@ -6,21 +6,21 @@ scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, 
     $scope.url = getPatients.src;
     console.log(getPatients);
     getNotification(getPatients);
+    //Calling Starts for every 30 seconds to check whether there is any notification or not.
+    var i = 0;
+    $interval(function () {
+        // your stuff  
+        getNotification(getPatients);
+        console.log('Calling again and again' + i);
+        i++;
+    }, 30000);
+    //Calling Ends for every 30 seconds to check whether there is any notification or not.
     getMessages(getPatients);
 
     $scope.getNotofication = function (notify) {
 
         // Popup Called for alert...
         popUpCalled.popup(notify.notiyfMessage, notify.notiyfMessage);
-        /* $mdDialog.show(
-                   $mdDialog.alert()
-                      .parent(angular.element(document.querySelector('#dialogContainer')))
-                      .clickOutsideToClose(true)
-                      .title(notify.notiyfMessage)
-                      .textContent(notify.notiyfMessage)
-                      .ariaLabel(notify.notiyfMessage)
-                      .ok('Ok!')
-             );*/
         var obj = {
             "notifyId": notify.notifyId
         }; // Create new object
@@ -41,16 +41,6 @@ scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, 
 
         // Popup Called for alert...
         popUpCalled.popup(messages.message, messages.message);
-        /*$mdDialog.show(
-                  $mdDialog.alert()
-                     .parent(angular.element(document.querySelector('#dialogContainer')))
-                     .clickOutsideToClose(true)
-                     .title(messages.message)
-                     .textContent(messages.message)
-                     .ariaLabel(messages.message)
-                     .ok('Ok!')
-            );*/
-
         var serverResponseUpdate = ajaxGetResponse.updateMessage(messages);
         serverResponseUpdate.success(function (data) {
             console.log('success');

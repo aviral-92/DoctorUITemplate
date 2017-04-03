@@ -145,7 +145,7 @@ scotchApp.controller('functionalitySearch', function ($scope, $http) {
     }
 });
 
-scotchApp.controller('middleContent', function ($scope, $cookieStore) {
+/*scotchApp.controller('middleContent', function ($scope, $cookieStore) {
     if ($cookieStore.get('loginData') != undefined &&
         $cookieStore.get('email') != undefined) {
         window.location = "#/dashboard";
@@ -153,8 +153,11 @@ scotchApp.controller('middleContent', function ($scope, $cookieStore) {
         $cookieStore.get('patientEmail') != undefined) {
         window.location = "#/patientdashboard";
     }
-});
+});*/
 
+scotchApp.controller('doctorSearch', function($scope, $http) {
+    
+});
 /*scotchApp.controller('doctorSearch', function($scope, $http) {
 
     $scope.dirty = {};

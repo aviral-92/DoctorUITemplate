@@ -47,7 +47,6 @@ scotchApp.controller('patientHistory', function ($scope, $http, $window) {
     $scope.btnClick = function () {
         $window.location.href = '#/patientAppointment';
         console.log($scope.dirty.value);
-
     }
 
 });
@@ -90,7 +89,6 @@ scotchApp.controller('patientAppointmentSearch', function ($scope, $rootScope, $
         }, 200);
         return deferred.promise;
     }
-
     $scope.btnClick = function (item) {
 
         var obj = {
@@ -98,7 +96,6 @@ scotchApp.controller('patientAppointmentSearch', function ($scope, $rootScope, $
         }
         var expertise = JSON.stringify(obj);
         console.log(expertise);
-
         var response = $http.post('https://doctors.cfapps.io/api/doctor/get/all', expertise);
         $scope.spinner = true;
         response.success(function (doctorsList) {
@@ -110,11 +107,8 @@ scotchApp.controller('patientAppointmentSearch', function ($scope, $rootScope, $
             /* alert('Failure');*/
             $scope.spinner = false;
         });
-
         $scope.searchResult = true;
-
     }
-
     $scope.viewDoctor = function (doctor) {
 
         console.log(doctor);
@@ -132,7 +126,6 @@ scotchApp.controller('patientAppointmentBook', function ($scope, $http, $rootSco
         //        $scope.booking = {};
     }
     $scope.doctor = getDoctor;
-
     $scope.bookAppointment = function (doctor, booking) {
 
         var appointmentObj = {
@@ -145,31 +138,21 @@ scotchApp.controller('patientAppointmentBook', function ($scope, $http, $rootSco
             "dId": getDoctor.did,
             "notiyfMessage": "New appointment booked, schedule on " + booking.appointmentDate
         }
-        //        console.log(appointmentObj);
+        
         var appointment = JSON.stringify(appointmentObj);
         var sendNotification = JSON.stringify(notificationObj);
         console.log(appointment);
         var response = ajaxGetResponse.appointmentBookByPatient(appointment);
         response.success(function (data) {
 
-            popUpCalled.popup('Appointment Booked', 'Your Appointment has been booked');
-            /*$mdDialog.show(
-                  $mdDialog.alert()
-                     .parent(angular.element(document.querySelector('#dialogContainer')))
-                     .clickOutsideToClose(true)
-                     .title('Appointment Booked')
-                     .textContent('Your Appointment has been booked')
-                     .ariaLabel('Your Appointment has been booked')
-                     .ok('Ok!')
-            );*/
             notifyDoctor(sendNotification);
+            popUpCalled.popup('Appointment Booked', 'Your Appointment has been booked');
         });
         response.error(function (data, status, headers, config) {
             console.log('Booking appointment failed');
             //TODO to be remove once response comes in JSON
             notifyDoctor(sendNotification);
         });
-
     }
 
     function notifyDoctor(sendNotification) {

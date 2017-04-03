@@ -2,7 +2,7 @@
 
 
 
-scotchApp.controller('patientdashboard', function($scope, $rootScope, $http, $cookieStore) {
+/*scotchApp.controller('patientdashboard', function($scope, $rootScope, $http, $cookieStore) {
     var patientDetail = $cookieStore.get('patientData');
 
     if (patientDetail != null) {
@@ -12,9 +12,9 @@ scotchApp.controller('patientdashboard', function($scope, $rootScope, $http, $co
         }
         $scope.percent = parseInt((field / 7) * 100) + '%';
     }
-});
+});*/
 
-function getByEmail($http, $cookieStore) {
+/*function getByEmail($http, $cookieStore) {
 
     alert($cookieStore.get('patientEmail'));
     var patients = $http.get('http://patient-service.cfapps.io/api/patient/getPatientByEmail/' + $cookieStore.get('patientEmail'));
@@ -22,7 +22,7 @@ function getByEmail($http, $cookieStore) {
         return data;
     });
     doctors.error(function(data, status, headers, config) {});
-}
+}*/
 
 
 /*scotchApp.controller('patientsignup',function($scope, $http){
