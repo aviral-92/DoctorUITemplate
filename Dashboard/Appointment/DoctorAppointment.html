@@ -30,12 +30,12 @@
                         </thead>
                         <tbody>
                           <tr ng-repeat="doctorAppointment in doctorAppointments">
-                            <td>{{doctorAppointment.name}}</td>
-                            <td>{{doctorAppointment.mobile}}</td>
-                            <td>{{doctorAppointment.email}}</td>
-                            <td>{{doctorAppointment.problem}}</td>
-                               <td><button ng-click="viewPatient(doctorAppointments)"><b>View</b> <i class="fa fa-medkit" style="color:red;"></i> <b>appointment</b></button></td>
-                            <td><button ng-click="cancelAppointment(doctorAppointments)"><b>Cancel</b> <i class="fa fa-medkit" style="color:red;"></i> <b>appointment</b></button></td>
+                            <td>{{doctorAppointment.patient.name}}</td>
+                            <td>{{doctorAppointment.patient.mobile}}</td>
+                            <td>{{doctorAppointment.patient.email}}</td>
+                            <td>{{doctorAppointment.appointmentDesc}}</td>
+                               <td><button ng-click="viewPatient(doctorAppointment)"><b>View</b> <i class="fa fa-medkit" style="color:red;"></i> <b>appointment</b></button></td>
+                            <td><button ng-click="cancelAppointment(doctorAppointment)"><b>Cancel</b> <i class="fa fa-medkit" style="color:red;"></i> <b>appointment</b></button></td>
                           </tr>
                         </tbody>
                       </table>

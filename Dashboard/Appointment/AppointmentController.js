@@ -1,13 +1,15 @@
-scotchApp.controller('doctorAppointment', function ($scope, $http, $location, $rootScope, $location, popUpCalled) {
+scotchApp.controller('doctorAppointment', function ($scope, $http, $window, $location, $rootScope, $location, popUpCalled) {
 
-    var doctorAppointment = $rootScope.getDoctorAppointment;
+    //var doctorAppointment = $rootScope.getDoctorAppointment;
+    var doctorAppointment = JSON.parse($window.localStorage.getItem('getDoctorAppointment'));
     console.log('Appointment Data');
     console.log(doctorAppointment);
     $scope.doctorAppointments = doctorAppointment;
 
     $scope.viewPatient = function (doctorAppointment) {
         console.log(doctorAppointment);
-        $rootScope.patientObj = doctorAppointment;
+        //$rootScope.patientObj = doctorAppointment;
+        $window.localStorage.setItem('patientObj', angular.toJson(doctorAppointment));
         //cancel appointment ned to check it
         $scope.cancelAppointment = function (PatientDetails) {
             var responseUpdate = $http.delete('https://doctors.cfapps.io/api/appointment/appointment/cancel/' + getPatient[0].dId);
@@ -25,12 +27,14 @@ scotchApp.controller('doctorAppointment', function ($scope, $http, $location, $r
     }
 });
 
-scotchApp.controller('doctorCancelAppointment', function ($scope, $http, $rootScope) {
-    var getPatient = $rootScope.patientObj;
-    console.log(getPatient);
+scotchApp.controller('doctorCancelAppointment', function ($scope, $http, $rootScope, $window) {
 
+    //var getPatient = $rootScope.patientObj;
+    var getPatient = JSON.parse($window.localStorage.getItem('patientObj'));
+    console.log(getPatient);
+    $scope.doctor = getPatient;
     $scope.cancelAppointment = function (PatientDetails) {
-        var responseUpdate = $http.delete('https://doctors.cfapps.io/api/appointment/appointment/cancel/' + getPatient[0].dId);
+        var responseUpdate = $http.delete('https://doctors.cfapps.io/api/appointment/appointment/cancel/' + getPatient.dId);
         responseUpdate.success(function (data) {
             console.log('responseUpdate');
             console.log('success');
@@ -140,7 +144,7 @@ scotchApp.controller('patientAppointmentBook', function ($scope, $http, $rootSco
             "dId": getDoctor.did,
             "notiyfMessage": "New appointment booked, schedule on " + booking.appointmentDate
         }
-        
+
         var appointment = JSON.stringify(appointmentObj);
         var sendNotification = JSON.stringify(notificationObj);
         console.log(appointment);

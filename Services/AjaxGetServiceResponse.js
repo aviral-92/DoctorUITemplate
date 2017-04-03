@@ -63,7 +63,7 @@ scotchApp.service('ajaxGetResponse', function ($http) {
     }
 
     this.getAppointmentByDoctorId = function (dId) {
-        var serverResponse = $http.get('https://doctors.cfapps.io/api/appointment/appointment/' + dId + '/doctor');
+        var serverResponse = $http.get('https://doctors.cfapps.io/api/appointment/appointment/' + dId + '/doctorBydId');
         return serverResponse;
     }
 

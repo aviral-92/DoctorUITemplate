@@ -70,19 +70,20 @@ scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, 
             });
             serverResponse.error(function (data, status, headers, config) {
                 /*  alert('Failure');*/
-                popUpCalled.popup('Under Maintainence', 'inconvinence regrected...!!!');
+                popUpCalled.popup('Under Maintainence', 'inconvinence regreted...!!!');
             });
             console.log('Message function over');
         }
 
         $scope.btnClick = function () {
 
-            var serverResponse = ajaxGetResponse.getAppointmentByDoctorId(getDoctors.doctorId);
+            var serverResponse = ajaxGetResponse.getAppointmentByDoctorId(getDoctors.did);
             $scope.spinner = true;
             serverResponse.success(function (doctorsList) {
                 $scope.spinner = false;
                 console.log(doctorsList);
-                $rootScope.getDoctorAppointment = doctorsList;
+                $window.localStorage.setItem('getDoctorAppointment', angular.toJson(doctorsList));
+                //$rootScope.getDoctorAppointment = doctorsList;
                 // Routing to appointment page....
                 $window.location.href = '#/doctorAppointment';
                 //                $scope.doctors = doctorsList;
