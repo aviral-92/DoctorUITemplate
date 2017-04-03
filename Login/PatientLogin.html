@@ -1,0 +1,222 @@
+<div class="container">
+	<div id="loginbox" style="margin-top: 50px;"
+		class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+		<!-- ----------------------------------------------- -->
+		<div class="row">
+			<div class="col-sm-12 nav-tab-holder" style="width: 97.5%;">
+				<ul class="nav nav-tabs row" role="tablist">
+					<li role="presentation" class="col-sm-6"><a href="#loginPage"
+						aria-controls="home" role="tab" data-toggle="tab">Doctor</a></li>
+					<li role="presentation" class="active col-sm-6" data-ng-init="value='2'; init();"><a
+						href="#patientLogin" aria-controls="profile" role="tab"
+						data-toggle="tab">Patient</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- ----------------------------------------------- -->
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<div class="panel-title">Sign In</div>
+				<div
+					style="float: right; font-size: 80%; position: relative; top: -10px"
+					data-toggle="modal" data-target="#myModal">
+					<a href="">Forgot password?</a>
+				</div>
+			</div>
+
+            <div class="center-block" ng-show="spinner">
+                <img class="col-md-3 col-md-offset-3" src="../images/gears.gif" style=" position: absolute;  z-index:5;">
+            </div>
+            
+			<!-- ----------------------------POP UP----------------------------------- -->
+			<div class="modal fade" id="myModal" role="dialog">
+				<div class="modal-dialog">
+					<div style="width: 90%; margin-left: 10%;" class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								ng-click="close()">&times;</button>
+							<h4 class="modal-title">Forget Password</h4>
+						</div>
+
+						<div class="modal-body">
+
+							<form name="patientForm" class="form-horizontal" role="form"
+								style="margin-left: 20%;">
+								<!-- ---------------------------------- -->
+								<div class="col-sm-8">
+									<div class="form-group has-feedback "
+										ng-class="{'has-success' : patientForm.aadhaarNumber.$dirty && patientForm.aadhaarNumber.$valid ,
+                        'has-error' : patientForm.aadhaarNumber.$dirty && patientForm.aadhaarNumber.$invalid}">
+										<input type="text" class="form-control" id="inputError2"
+											name="aadhaarNumber" ng-model="doctor.aadhaarNumber"
+											placeholder="Enter aadhaar number" valid-Adhar>
+										<!-- ng-blur="doBlurAdhar($event)"-->
+										<div class="help-inline">
+											<span ng-show="!!patientForm.aadhaarNumber.$error.isBlank"><b
+												style="color: red;">Aadhaar number Required.</b></span> <span
+												ng-show="!!patientForm.aadhaarNumber.$error.invalidChars"><b
+												style="color: red;">Aadhaar number must contain numbers
+													only.</b></span> <span
+												ng-show="!!patientForm.aadhaarNumber.$error.invalidLen"><b
+												style="color: red;">Aadhaar number must be 12 digits.</b></span>
+											<div ng-if="patientForm.aadhaarNumber.$invalid == true">
+												<span
+													class="glyphicon glyphicon-remove form-control-feedback"
+													style="color: red;"
+													ng-show="!!patientForm.aadhaarNumber.$error.isBlank || !!patientForm.aadhaarNumber.$error.invalidChars || !!patientForm.aadhaarNumber.$error.invalidLen"></span>
+											</div>
+											<div ng-if="patientForm.aadhaarNumber.$pristine == false">
+												<span class="glyphicon glyphicon-ok form-control-feedback"
+													style="color: green;"
+													ng-show="!patientForm.aadhaarNumber.$error.isBlank && !patientForm.aadhaarNumber.$error.invalidChars && !patientForm.aadhaarNumber.$error.invalidLen"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- ------------------------------------ -->
+
+								<div class="form-group">
+									<!-- ----------use to disable submit button ------>
+									<div class="col-sm-offset-1 col-sm-4">
+										<input type="submit" class="btn btn-success btn-block"
+											data-toggle="modal" data-target="#myModal1"
+											ng-disabled="!patientForm.$valid || patientForm.$pristine"
+											value="SUBMIT">
+									</div>
+									<!-- ----------use to disable submit button ------>
+									<!-- <div class="col-sm-offset-1 col-sm-10">
+										<button type="button" ng-click="searchDoctor(doctor)"
+											class="btn btn-success" data-toggle="modal"
+											data-target="#myModal1">
+											<span class="glyphicon glyphicon-ok-circle"></span> Submit
+										</button>
+									</div> -->
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal" ng-click="close()">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- ----------------------------POP UP----------------------------------- -->
+
+			<!-- ----------------------------POP UP----------------------------------- -->
+			<div class="modal fade" id="myModal1" role="dialog">
+				<div class="modal-dialog">
+					<div style="width: 90%; margin-left: 10%;" class="modal-content">
+						<div class="modal-body">
+							<p>Please check Your Email Id</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal" ng-click="close()">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- ----------------------------POP UP----------------------------------- -->
+
+			<div style="padding-top: 30px" class="panel-body">
+
+				<div style="display: none" id="login-alert"
+					class="alert alert-danger col-sm-12"></div>
+
+				<form id="loginform" class="form-horizontal" role="form"
+					name="loginForm">
+
+					<div style="margin-bottom: 25px;" class="input-group has-feedback "
+						ng-class="{'has-success' : loginForm.email.$dirty && loginForm.email.$valid ,
+                        'has-error' : loginForm.email.$dirty && loginForm.email.$invalid}">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span> <input type="email"
+							class="form-control" id="inputError2" name="email"
+							ng-model="loginDetail.username" placeholder="Enter email"
+							ng-blur="doBlurEmail($event)" valid-Email>
+						<div class="help-inline">
+							<span ng-show="!!loginForm.email.$error.isBlank"><i
+								style="color: red;">Patient Email Required.</i></span> <span
+								ng-show="!!loginForm.email.$error.invalidChars"><i
+								style="color: red;">Patient Email must contain @ & dot(.) .</i></span>
+							<span ng-show="!!loginForm.email.$error.invalidLen"><i
+								style="color: red;">Patient Email must be use dot(.) &
+									characters.</i></span>
+							<div ng-if="loginForm.email.$invalid == true">
+								<span class="glyphicon glyphicon-remove form-control-feedback"
+									style="color: red;"
+									ng-show="!!loginForm.email.$error.isBlank || !!loginForm.email.$error.invalidChars || !!loginForm.email.$error.invalidLen"></span>
+							</div>
+							<div ng-if="loginForm.email.$pristine == false">
+								<span class="glyphicon glyphicon-ok form-control-feedback"
+									style="color: green;"
+									ng-show="!loginForm.email.$error.isBlank && !loginForm.email.$error.invalidChars && !loginForm.email.$error.invalidLen"></span>
+							</div>
+						</div>
+					</div>
+
+					<div style="margin-bottom: 25px;" class="input-group has-feedback "
+						ng-class="{'has-success' : loginForm.password.$dirty && loginForm.password.$valid ,
+                        'has-error' : loginForm.password.$dirty && loginForm.password.$invalid}">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-lock"></i></span> <input type="password"
+							class="form-control" id="inputError2" name="password"
+							ng-model="loginDetail.password" placeholder="Enter password"
+							ng-blur="doBlurPassword($event)" valid-Password>
+						<div class="help-inline">
+							<span ng-show="!!loginForm.password.$error.isBlank"><i
+								style="color: red;">Password required.</i></span> <span
+								ng-show="!!loginForm.password.$error.invalidChars"><i
+								style="color: red;">Incorrect password.</i></span> <span
+								ng-show="!!loginForm.password.$error.invalidLen"><i
+								style="color: red;">Incorrect password</i></span>
+							<div ng-if="loginForm.password.$invalid == true">
+								<span class="glyphicon glyphicon-remove form-control-feedback"
+									style="color: red;"
+									ng-show="!!loginForm.password.$error.isBlank || !!loginForm.password.$error.invalidChars || !!loginForm.password.$error.invalidLen"></span>
+							</div>
+							<div ng-if="loginForm.password.$pristine == false">
+								<span class="glyphicon glyphicon-ok form-control-feedback"
+									style="color: green;"
+									ng-show="!loginForm.password.$error.isBlank && !loginForm.password.$error.invalidChars && !loginForm.password.$error.invalidLen"></span>
+							</div>
+						</div>
+					</div>
+
+                    <div vc-recaptcha key="patientToLogin.publicKey"></div>
+					<!-- --------------------------------------------------------------------------------------- -->
+					<div class="input-group">
+						<div class="checkbox">
+							<label> <input id="login-remember" type="checkbox"
+								name="remember" value="1"> Remember me
+							</label>
+						</div>
+					</div>
+					<!-- ---------------------------------------------------------------- -->
+
+					<div class="form-group">
+						<div class="control-label col-sm-4">
+							<button class="btn " ng-class="{'btn-primary btn-block' : !loginForm.$valid || loginForm.$pristine || confirm==true, 'btn-success btn-block' : !!loginForm.$valid || !loginForm.$pristine}" ng-disabled="!loginForm.$valid || loginForm.$pristine"
+								ng-click="patientLogin(loginDetail)">
+								<span class="glyphicon glyphicon-ok-circle"></span> Log In
+							</button>
+							{{message}}
+						</div>
+					</div>
+					<!-- ---------------------------------------------------------------- -->
+					<div class="form-group">
+						<div class="col-md-12 control">
+							<div
+								style="border-top: 1px solid #888; padding-top: 15px; font-size: 85%">
+								Don't have an account! <a href="#/patientRegistration"
+									onClick=""> Sign Up Here </a>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

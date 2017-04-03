@@ -1,0 +1,50 @@
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<h1>
+			Appointment <small>panel</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="#/home"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li class="active">Appointment</li>
+		</ol>
+	</section>
+	<br>
+	<!-- Main content -->
+	<section class="content">
+		<div class="panel profile-page animated zoomIn">
+			<div class="panel-body">
+				<div class="panel-content">
+					<br>
+                    <!---------------------Search----->
+                       <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                              <th>Problem</th>
+                              <th>View Appointment</th>
+                            <th>Cancel Appointment</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="doctorAppointment in doctorAppointments">
+                            <td>{{doctorAppointment.patient.name}}</td>
+                            <td>{{doctorAppointment.patient.mobile}}</td>
+                            <td>{{doctorAppointment.patient.email}}</td>
+                            <td>{{doctorAppointment.appointmentDesc}}</td>
+                               <td><button ng-click="viewPatient(doctorAppointment)"><b>View</b> <i class="fa fa-medkit" style="color:red;"></i> <b>appointment</b></button></td>
+                            <td><button ng-click="cancelAppointment(doctorAppointment)"><b>Cancel</b> <i class="fa fa-medkit" style="color:red;"></i> <b>appointment</b></button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+						</div>
+					</div><br><br><br><br><br><br>
+            <div class="center-block" ng-show="spinner">
+                <img class="col-md-1 col-md-offset-2" src="../images/gears.gif" style=" position: absolute;  z-index:5;">
+            </div>
+        </div>
+    </section>
+	<br><br><br><br><br>
+</div>

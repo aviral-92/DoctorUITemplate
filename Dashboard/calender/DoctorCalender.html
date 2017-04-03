@@ -148,10 +148,17 @@
             show-meridian="true">
           </div>
         </td>
+          <td>
+          <button
+            class="btn btn-success"
+            ng-click="vm.save($index)">
+            Save
+          </button>
+        </td>
         <td>
           <button
             class="btn btn-danger"
-            ng-click="vm.events.splice($index, 1)">
+            ng-click="vm.delete($index)">
             Delete
           </button>
         </td>

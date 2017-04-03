@@ -7,7 +7,11 @@
         <pre>{{ vm.action }}</pre>
         </p>
         <p>Event:
-        <pre>{{ vm.event | json }}</pre>
+        <pre>
+            <b>Title = </b>{{ vm.event.title }}<br>
+            <b>startsAt = </b>{{ vm.event.startsAt }}<br>
+            <b>endsAt = </b>{{ vm.event.endsAt }}
+        </pre>
         </p>
       </div>
       <div class="modal-footer">
