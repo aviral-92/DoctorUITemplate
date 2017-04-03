@@ -1,0 +1,284 @@
+<div class="container">
+	<div class="login-signup">
+		<div class="row">
+			<div class="col-sm-6 nav-tab-holder col-centered">
+				<ul class="nav nav-tabs row" role="tablist">
+					<li role="presentation" class="active col-sm-6"><a
+						href="#doctorRegistration" aria-controls="home" role="tab"
+						data-toggle="tab">Doctor</a></li>
+					<li role="presentation" class="col-sm-6"><a
+						href="#patientRegistration" aria-controls="patientRegistration"
+						role="tab" data-toggle="tab">Patient</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="home">
+				<div class="row">
+					<div class="col-sm-6 mobile-pull col-centered">
+						<article role="login">
+							<h3 class="text-center">
+								<i class="fa fa-user"></i> Register Yourself
+							</h3>
+							<!-- --------------Form Name----------------------- -->
+							<form class="signup" name="doctorRegistrationForm"
+								novalidate="novalidate">
+								<!-- Input type Name Field-->
+								<div class="form-group has-feedback "
+									ng-class="{'has-success' : doctorRegistrationForm.name.$dirty && doctorRegistrationForm.name.$valid ,
+                        'has-error' : doctorRegistrationForm.name.$dirty && doctorRegistrationForm.name.$invalid}">
+									<input type="text" class="form-control" id="inputError2"
+										name="name" ng-model="doctor.name" placeholder="Enter name"
+										valid-Name>
+									<!--ng-blur="doBlurName($event)" -->
+									<div class="help-inline">
+										<span ng-show="!!doctorRegistrationForm.name.$error.isBlank"><b
+											style="color: red;">Doctor Name Required.</b></span> <span
+											ng-show="!!doctorRegistrationForm.name.$error.invalidChars"><b
+											style="color: red;">Doctor Name must contain letters
+												&amp; spaces only.</b></span> <span
+											ng-show="!!doctorRegistrationForm.name.$error.invalidLen"><b
+											style="color: red;">Doctor Name must be 3-20 characters.</b></span>
+										<div ng-if="doctorRegistrationForm.name.$invalid == true">
+											<span
+												class="glyphicon glyphicon-remove form-control-feedback"
+												style="color: red; margin-top: -5%;"
+												ng-show="!!doctorRegistrationForm.name.$error.isBlank || !!doctorRegistrationForm.name.$error.invalidChars || !!doctorRegistrationForm.name.$error.invalidLen"></span>
+										</div>
+										<div ng-if="doctorRegistrationForm.name.$pristine == false">
+											<span class="glyphicon glyphicon-ok form-control-feedback"
+												style="color: green; margin-top: -5%;"
+												ng-show="!doctorRegistrationForm.name.$error.isBlank && !doctorRegistrationForm.name.$error.invalidChars && !doctorRegistrationForm.name.$error.invalidLen"></span>
+										</div>
+									</div>
+								</div>
+                                
+                                <!--  For Spinner-->
+                                <div class="center-block" ng-show="spinner">
+                                    <img class="col-md-3 col-md-offset-3" src="../images/gears.gif" style=" position: absolute;  z-index:5;">
+                                </div>
+                                <!-- For Spinner -->
+                                
+								<!-- Input type Email Field-->
+								<div class="form-group has-feedback "
+									ng-class="{'has-success' : doctorRegistrationForm.email.$dirty && doctorRegistrationForm.email.$valid ,
+                        'has-error' : doctorRegistrationForm.email.$dirty && doctorRegistrationForm.email.$invalid}">
+									<input type="email" class="form-control" id="inputError2"
+										name="email" ng-model="doctor.email" placeholder="Enter email"
+										valid-Email>
+									<!--ng-blur="doBlurEmail($event)"-->
+									<div class="help-inline">
+										<span ng-show="!!doctorRegistrationForm.email.$error.isBlank"><b
+											style="color: red;">Doctor Email Required.</b></span> <span
+											ng-show="!!doctorRegistrationForm.email.$error.invalidChars"><b
+											style="color: red;">Doctor Email must contain @ & dot(.)
+												.</b></span> <span
+											ng-show="!!doctorRegistrationForm.email.$error.invalidLen"><b
+											style="color: red;">Doctor Email must be use dot(.) &
+												characters.</b></span>
+										<div ng-if="doctorRegistrationForm.email.$invalid == true">
+											<span
+												class="glyphicon glyphicon-remove form-control-feedback"
+												style="color: red; margin-top: -5%;"
+												ng-show="!!doctorRegistrationForm.email.$error.isBlank || !!doctorRegistrationForm.email.$error.invalidChars || !!doctorRegistrationForm.email.$error.invalidLen"></span>
+										</div>
+										<div ng-if="doctorRegistrationForm.email.$pristine == false">
+											<span class="glyphicon glyphicon-ok form-control-feedback"
+												style="color: green; margin-top: -5%;"
+												ng-show="!doctorRegistrationForm.email.$error.isBlank && !doctorRegistrationForm.email.$error.invalidChars && !doctorRegistrationForm.email.$error.invalidLen"></span>
+										</div>
+									</div>
+								</div>
+
+								<!-- Input type Mobile Field-->
+								<div class="form-group has-feedback "
+									ng-class="{'has-success' : doctorRegistrationForm.mobile.$dirty && doctorRegistrationForm.mobile.$valid ,
+                        'has-error' : doctorRegistrationForm.mobile.$dirty && doctorRegistrationForm.mobile.$invalid}">
+									<input type="text" class="form-control" id="inputError2"
+										name="mobile" ng-model="doctor.mobile"
+										placeholder="Enter mobile number" valid-Mobile>
+									<!--ng-blur="doBlurMobile($event)"-->
+									<div class="help-inline">
+										<span ng-show="!!doctorRegistrationForm.mobile.$error.isBlank"><b
+											style="color: red;">Doctor mobile number Required.</b></span> <span
+											ng-show="!!doctorRegistrationForm.mobile.$error.invalidChars"><b
+											style="color: red;">Doctor mobile number must contain
+												numbers only.</b></span> <span
+											ng-show="!!doctorRegistrationForm.mobile.$error.invalidLen"><b
+											style="color: red;">Doctor mobile number must be 10
+												digits.</b></span>
+										<div ng-if="doctorRegistrationForm.mobile.$invalid == true">
+											<span
+												class="glyphicon glyphicon-remove form-control-feedback"
+												style="color: red; margin-top: -5%;"
+												ng-show="!!doctorRegistrationForm.mobile.$error.isBlank || !!doctorRegistrationForm.mobile.$error.invalidChars || !!doctorRegistrationForm.mobile.$error.invalidLen"></span>
+										</div>
+										<div ng-if="doctorRegistrationForm.mobile.$pristine == false">
+											<span class="glyphicon glyphicon-ok form-control-feedback"
+												style="color: green; margin-top: -5%;"
+												ng-show="!doctorRegistrationForm.mobile.$error.isBlank && !doctorRegistrationForm.mobile.$error.invalidChars && !doctorRegistrationForm.mobile.$error.invalidLen"></span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group has-feedback "
+									ng-class="{'has-success' : doctorRegistrationForm.aadhaarNumber.$dirty && doctorRegistrationForm.aadhaarNumber.$valid ,
+                        'has-error' : doctorRegistrationForm.aadhaarNumber.$dirty && doctorRegistrationForm.aadhaarNumber.$invalid}">
+									<input type="text" class="form-control" id="inputError2"
+										name="aadhaarNumber" ng-model="doctor.aadhaarNumber"
+										placeholder="Enter aadhaar number" valid-Adhar>
+									<!-- ng-blur="doBlurAdhar($event)"-->
+									<div class="help-inline">
+										<span
+											ng-show="!!doctorRegistrationForm.aadhaarNumber.$error.isBlank"><b
+											style="color: red;">Doctor adhar number Required.</b></span> <span
+											ng-show="!!doctorRegistrationForm.aadhaarNumber.$error.invalidChars"><b
+											style="color: red;">Doctor adhar number must contain
+												numbers only.</b></span> <span
+											ng-show="!!doctorRegistrationForm.aadhaarNumber.$error.invalidLen"><b
+											style="color: red;">Doctor adhar number must be 12
+												digits.</b></span>
+										<div
+											ng-if="doctorRegistrationForm.aadhaarNumber.$invalid == true">
+											<span
+												class="glyphicon glyphicon-remove form-control-feedback"
+												style="color: red; margin-top: -5%;"
+												ng-show="!!doctorRegistrationForm.aadhaarNumber.$error.isBlank || !!doctorRegistrationForm.aadhaarNumber.$error.invalidChars || !!doctorRegistrationForm.aadhaarNumber.$error.invalidLen"></span>
+										</div>
+										<div
+											ng-if="doctorRegistrationForm.aadhaarNumber.$pristine == false">
+											<span class="glyphicon glyphicon-ok form-control-feedback"
+												style="color: green; margin-top: -5%;"
+												ng-show="!doctorRegistrationForm.aadhaarNumber.$error.isBlank && !doctorRegistrationForm.aadhaarNumber.$error.invalidChars && !doctorRegistrationForm.aadhaarNumber.$error.invalidLen"></span>
+										</div>
+									</div>
+								</div>
+								<!-- ------------------------------------------------------ -->
+								<div class="form-group has-feedback "
+									ng-class="{'has-success' : doctorRegistrationForm.password.$dirty && doctorRegistrationForm.password.$valid ,
+                        'has-error' : doctorRegistrationForm.password.$dirty && doctorRegistrationForm.password.$invalid}">
+									<input type="password" class="form-control" id="inputError2"
+										name="password" ng-model="doctor.password"
+										placeholder="Enter password" valid-Password>
+									<!--ng-blur="doBlurPassword($event)" -->
+									<div class="help-inline">
+										<span
+											ng-show="!!doctorRegistrationForm.password.$error.isBlank"><i
+											style="color: red;">Password required.</i></span> <span
+											ng-show="!!doctorRegistrationForm.password.$error.invalidChars"><i
+											style="color: red;">Incorrect password.</i></span> <span
+											ng-show="!!doctorRegistrationForm.password.$error.invalidLen"><i
+											style="color: red;">Incorrect password</i></span>
+										<div ng-if="doctorRegistrationForm.password.$invalid == true">
+											<span
+												class="glyphicon glyphicon-remove form-control-feedback"
+												style="color: red; margin-top: -5%;"
+												ng-show="!!doctorRegistrationForm.password.$error.isBlank || !!doctorRegistrationForm.password.$error.invalidChars || !!doctorRegistrationForm.password.$error.invalidLen"></span>
+										</div>
+										<div
+											ng-if="doctorRegistrationForm.password.$pristine == false">
+											<span class="glyphicon glyphicon-ok form-control-feedback"
+												style="color: green; margin-top: -5%;"
+												ng-show="!doctorRegistrationForm.password.$error.isBlank && !doctorRegistrationForm.password.$error.invalidChars && !doctorRegistrationForm.password.$error.invalidLen"></span>
+										</div>
+									</div>
+								</div>
+								<!-- ------------------------------------------------------ -->
+
+								<!-- Input type Confirm Password Field-->
+								<div class="form-group has-feedback "
+									ng-class="{'has-success' : doctorRegistrationForm.cnfrmPassword.$dirty && doctorRegistrationForm.cnfrmPassword.$valid ,
+                        'has-error' : doctorRegistrationForm.cnfrmPassword.$dirty && doctorRegistrationForm.cnfrmPassword.$invalid}">
+									<input type="password" class="form-control" id="inputError2"
+										name="cnfrmPassword" ng-model="doctor.cnfrmPassword"
+										placeholder="Enter confirm password"
+										ng-blur="doBlurPassword(doctor)" valid-Confirm>
+									<div class="help-inline">
+										<span
+											ng-show="!!doctorRegistrationForm.cnfrmPassword.$error.isBlank"><i
+											style="color: red;">Confirm Password required.</i></span> <span
+											ng-show="!!doctorRegistrationForm.cnfrmPassword.$error.invalidChars"><i
+											style="color: red;">Confirm Incorrect password.</i></span> <span
+											ng-show="!!doctorRegistrationForm.cnfrmPassword.$error.invalidLen"><i
+											style="color: red;">Incorrect Confirm password</i></span><span
+											ng-show="confirm"><i style="color: red;">Password
+												&& Confirm password not match </i></span>
+										<div
+											ng-if="doctorRegistrationForm.cnfrmPassword.$pristine == true || confirm==true">
+											<span
+												class="glyphicon glyphicon-remove form-control-feedback"
+												style="color: red; margin-top: -5%;"
+												ng-show="!!doctorRegistrationForm.cnfrmPassword.$error.isBlank || !!doctorRegistrationForm.cnfrmPassword.$error.invalidChars || !!doctorRegistrationForm.cnfrmPassword.$error.invalidLen || confirm == true"></span>
+										</div>
+										<div
+											ng-if="doctorRegistrationForm.cnfrmPassword.$pristine == false && confirm==false">
+											<span class="glyphicon glyphicon-ok form-control-feedback"
+												style="color: green; margin-top: -5%;"
+												ng-show="!doctorRegistrationForm.cnfrmPassword.$error.isBlank && !doctorRegistrationForm.cnfrmPassword.$error.invalidChars && !doctorRegistrationForm.cnfrmPassword.$error.invalidLen"></span>
+										</div>
+
+									</div>
+								</div>
+								<!-- ------------------------------------------------------ -->
+								<!-- Input type Checkbox Field-->
+								<div class="form-group">
+									<div class="checkbox">
+										<label> <input type="checkbox"> Please accept
+											the terms and conditions to proceed with your request.
+										</label>
+									</div>
+								</div>
+                                <div vc-recaptcha key="DocRegisteration.publicKey"></div>
+								<!-- Input type Submit Button Field-->
+								<div class="form-group">
+									<input type="submit" class="btn " ng-class="{'btn-primary btn-block' : !doctorRegistrationForm.$valid || doctorRegistrationForm.$pristine || confirm==true, 'btn-success btn-block' : !!doctorRegistrationForm.$valid || !doctorRegistrationForm.$pristine || !confirm==true}"
+										ng-disabled="!doctorRegistrationForm.$valid || doctorRegistrationForm.$pristine || confirm==true"
+										value="SUBMIT" ng-click="doctorRegisteration(doctor)">
+								</div>
+                                
+							</form>
+							<footer role="signup" class="text-center">
+								<ul>
+									<li><a href="" data-toggle="modal" data-target="#myModal">Terms
+											& Conditions</a></li>
+								</ul>
+                                <div ng-show="signUpError">{{register}}</div>
+
+								<!-- ----------------------------POP UP----------------------------------- -->
+								<div class="modal fade" id="myModal" role="dialog">
+									<div class="modal-dialog">
+										<div style="width: 90%; margin-left: 4%;"
+											class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal"
+													ng-click="close()">&times;</button>
+												<h4 class="modal-title">Terms & Conditions</h4>
+											</div>
+
+											<div class="modal-body">
+												<p>Please read it carefully.</p>
+												<p>1. We just wants to provide best platform to each individual as well as doctor.
+												We do not take any responsibilities of any kind related with our plate form.
+												<br>2. There are many people who does fake they can fake us also. 
+												This is individual's  responsibilities to that doctor he his selecting is real.
+												<br>3. There are many problems associated with online platform we assume 
+												that you understand the risk involved in online platform &
+ 												each individual using our platform is him/her responsible for the risk.</p>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default"
+													data-dismiss="modal" ng-click="close()">Close</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- ----------------------------POP UP----------------------------------- -->
+							</footer>
+						</article>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+<br>

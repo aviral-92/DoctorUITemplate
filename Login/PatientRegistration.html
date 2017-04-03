@@ -1,0 +1,279 @@
+<div class="container">
+	<div class="login-signup">
+		<div class="row">
+			<div class="col-sm-6 nav-tab-holder col-centered">
+				<ul class="nav nav-tabs row" role="tablist">
+					<li role="presentation" class="col-sm-6"><a
+						href="#doctorRegistration" aria-controls="home" role="tab"
+						data-toggle="tab">Doctor</a></li>
+					<li role="presentation" class="active col-sm-6"><a
+						href="#patientRegistration" aria-controls="profile" role="tab"
+						data-toggle="tab">Patient</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="profile">
+				<div class="row">
+					<div class="col-sm-6 mobile-pull col-centered">
+						<article role="login">
+							<h3 class="text-center">
+								<i class="fa fa-user"></i> Register Yourself
+							</h3>
+							<form name="patientForm" class="signup" action="index.html"
+								method="post" novalidate="novalidate">
+
+								<!-- ------------------------------------------------- -->
+								<div class="form-group has-feedback "
+									ng-class="{'has-success' : patientForm.name.$dirty && patientForm.name.$valid ,
+			 'has-error' : patientForm.name.$dirty && patientForm.name.$invalid}">
+									<input type="text" class="form-control" id="inputError2"
+										name="name" ng-model="patient.name" placeholder="Enter name"
+										ng-blur="doBlurName($event)" valid-Name>
+
+									<div class="help-inline">
+										<span ng-show="!!patientForm.name.$error.isBlank"><i
+											style="color: red;">Patient Name Required.</i></span> <span
+											ng-show="!!patientForm.name.$error.invalidChars"><i
+											style="color: red;">Patient Name must contain letters
+												&amp; spaces only.</i></span> <span
+											ng-show="!!patientForm.name.$error.invalidLen"><i
+											style="color: red;">Patient Name must be 3-20 characters.</i></span>
+
+										<div ng-if="patientForm.name.$invalid == true">
+											<span
+												class="glyphicon glyphicon-remove form-control-feedback"
+												style="color: red; margin-top: -5%;"
+												ng-show="!!patientForm.name.$error.isBlank || !!patientForm.name.$error.invalidChars || !!patientForm.name.$error.invalidLen"></span>
+										</div>
+										<div ng-if="patientForm.name.$pristine == false">
+											<span class="glyphicon glyphicon-ok form-control-feedback"
+												style="color: green; margin-top: -5%;"
+												ng-show="!patientForm.name.$error.isBlank && !patientForm.name.$error.invalidChars && !patientForm.name.$error.invalidLen"></span>
+										</div>
+									</div>
+								</div>
+                                
+                                <!--  For Spinner-->
+                                <div class="center-block" ng-show="spinner">
+                                    <img class="col-md-3 col-md-offset-3" src="../images/gears.gif" style=" position: absolute;  z-index:5;">
+                                </div>
+                                <!-- For Spinner -->
+                                
+								<!-- ------------------------------------------------- -->
+								<div class="form-group has-feedback "
+									ng-class="{'has-success' : patientForm.email.$dirty && patientForm.email.$valid ,
+			 'has-error' : patientForm.email.$dirty && patientForm.email.$invalid}">
+									<input type="text" class="form-control" id="email" name="email"
+										ng-model="patient.email" placeholder="Enter email"
+										ng-blur="doBlurEmail($event)" valid-Email />
+									<div class="help-inline">
+										<span ng-show="!!patientForm.email.$error.isBlank"><i
+											style="color: red;">Patient Email Required.</i></span> <span
+											ng-show="!!patientForm.email.$error.invalidChars"><i
+											style="color: red;">Patient Email must contain @ & dot(.)
+												.</i></span> <span ng-show="!!patientForm.email.$error.invalidLen"><i
+											style="color: red;">Patient Email must be use dot(.) &
+												characters.</i></span>
+										<div ng-if="patientForm.email.$invalid == true">
+											<span
+												class="glyphicon glyphicon-remove form-control-feedback"
+												style="color: red; margin-top: -5%;"
+												ng-show="!!patientForm.email.$error.isBlank || !!patientForm.email.$error.invalidChars || !!patientForm.email.$error.invalidLen"></span>
+										</div>
+										<div ng-if="patientForm.email.$pristine == false">
+											<span class="glyphicon glyphicon-ok form-control-feedback"
+												style="color: green; margin-top: -5%;"
+												ng-show="!patientForm.email.$error.isBlank && !patientForm.email.$error.invalidChars && !patientForm.email.$error.invalidLen"></span>
+										</div>
+									</div>
+								</div>
+
+
+								<!-- ------------------------------------------------- -->
+								<div class="form-group has-feedback "
+									ng-class="{'has-success' : patientForm.mobile.$dirty && patientForm.mobile.$valid ,
+			 'has-error' : patientForm.mobile.$dirty && patientForm.mobile.$invalid}">
+									<input type="text" class="form-control" id="mobile"
+										name="mobile" ng-model="patient.mobile"
+										placeholder="Enter mobile number"
+										ng-blur="doBlurMobile($event)" valid-Mobile />
+									<div class="help-inline">
+										<span ng-show="!!patientForm.mobile.$error.isBlank"><i
+											style="color: red;">Patient mobile number Required.</i></span> <span
+											ng-show="!!patientForm.mobile.$error.invalidChars"><i
+											style="color: red;">Patient mobile number must contain
+												numbers only.</i></span> <span
+											ng-show="!!patientForm.mobile.$error.invalidLen"><i
+											style="color: red;">Patient mobile number must be 10
+												digits.</i></span>
+
+										<div ng-if="patientForm.mobile.$invalid == true">
+											<span
+												class="glyphicon glyphicon-remove form-control-feedback"
+												style="color: red; margin-top: -5%;"
+												ng-show="!!patientForm.mobile.$error.isBlank || !!patientForm.mobile.$error.invalidChars || !!patientForm.mobile.$error.invalidLen"></span>
+										</div>
+										<div ng-if="patientForm.mobile.$pristine == false">
+											<span class="glyphicon glyphicon-ok form-control-feedback"
+												style="color: green; margin-top: -5%;"
+												ng-show="!patientForm.mobile.$error.isBlank && !patientForm.mobile.$error.invalidChars && !patientForm.mobile.$error.invalidLen"></span>
+										</div>
+									</div>
+								</div>
+								<!-- ------------------------------------------------- -->
+
+								<div class="form-group has-feedback "
+									ng-class="{'has-success' : patientForm.adhar.$dirty && patientForm.adhar.$valid ,
+			 'has-error' : patientForm.adhar.$dirty && patientForm.adhar.$invalid}">
+									<input type="text" class="form-control" id="adhar" name="adhar"
+										ng-model="patient.adhaar"
+										placeholder="Enter aadhaar number"
+										ng-blur="doBlurAdhar($event)" valid-Adhar />
+									<div class="help-inline">
+										<span ng-show="!!patientForm.adhar.$error.isBlank"><i
+											style="color: red;">Patient adhar number Required.</i></span> <span
+											ng-show="!!patientForm.adhar.$error.invalidChars"><i
+											style="color: red;">Patient adhar number must contain
+												numbers only.</i></span> <span
+											ng-show="!!patientForm.adhar.$error.invalidLen"><i
+											style="color: red;">Patient adhar number must be 12
+												digits.</i></span>
+										<div ng-if="patientForm.adhar.$invalid == true">
+											<span
+												class="glyphicon glyphicon-remove form-control-feedback"
+												style="color: red; margin-top: -5%;"
+												ng-show="!!patientForm.adhar.$error.isBlank || !!patientForm.adhar.$error.invalidChars || !!patientForm.adhar.$error.invalidLen"></span>
+										</div>
+										<div ng-if="patientForm.adhar.$pristine == false">
+											<span class="glyphicon glyphicon-ok form-control-feedback"
+												style="color: green; margin-top: -5%;"
+												ng-show="!patientForm.adhar.$error.isBlank && !patientForm.adhar.$error.invalidChars && !patientForm.adhar.$error.invalidLen"></span>
+										</div>
+									</div>
+								</div>
+								<!-- ------------------------------------------------------ -->
+								<div class="form-group has-feedback "
+									ng-class="{'has-success' : patientForm.password.$dirty && patientForm.password.$valid ,
+                        'has-error' : patientForm.password.$dirty && patientForm.password.$invalid}">
+									<input type="password" class="form-control" id="inputError2"
+										name="password" ng-model="patient.password"
+										placeholder="Enter password" valid-Password>
+									<!--ng-blur="doBlurPassword($event)" -->
+									<div class="help-inline">
+										<span
+											ng-show="!!patientForm.password.$error.isBlank"><i
+											style="color: red;">Password required.</i></span> <span
+											ng-show="!!patientForm.password.$error.invalidChars"><i
+											style="color: red;">Incorrect password.</i></span> <span
+											ng-show="!!patientForm.password.$error.invalidLen"><i
+											style="color: red;">Incorrect password</i></span>
+										<div ng-if="patientForm.password.$invalid == true">
+											<span
+												class="glyphicon glyphicon-remove form-control-feedback"
+												style="color: red; margin-top: -5%;"
+												ng-show="!!patientForm.password.$error.isBlank || !!patientForm.password.$error.invalidChars || !!patientForm.password.$error.invalidLen"></span>
+										</div>
+										<div
+											ng-if="patientForm.password.$pristine == false">
+											<span class="glyphicon glyphicon-ok form-control-feedback"
+												style="color: green; margin-top: -5%;"
+												ng-show="!patientForm.password.$error.isBlank && !patientForm.password.$error.invalidChars && !patientForm.password.$error.invalidLen"></span>
+										</div>
+									</div>
+								</div>
+								<!-- ------------------------------------------------------ -->
+								<div class="form-group has-feedback "
+									ng-class="{'has-success' : patientForm.cnfrmPassword.$dirty && patientForm.cnfrmPassword.$valid ,
+                        'has-error' : patientForm.cnfrmPassword.$dirty && patientForm.cnfrmPassword.$invalid}">
+									<input type="password" class="form-control" id="inputError2"
+										name="cnfrmPassword" ng-model="patient.cnfrmPassword"
+										placeholder="Enter confirm password"
+										ng-blur="doBlurPassword(patient)" valid-Confirm>
+									<div class="help-inline">
+										<span
+											ng-show="!!patientForm.cnfrmPassword.$error.isBlank"><i
+											style="color: red;">Confirm Password required.</i></span> <span
+											ng-show="!!patientForm.cnfrmPassword.$error.invalidChars"><i
+											style="color: red;">Confirm Incorrect password.</i></span> <span
+											ng-show="!!patientForm.cnfrmPassword.$error.invalidLen"><i
+											style="color: red;">Incorrect Confirm password</i></span><span
+											ng-show="confirm"><i style="color: red;">Password
+												&& Confirm password not match </i></span>
+										<div
+											ng-if="patientForm.cnfrmPassword.$pristine == true || confirm==true">
+											<span
+												class="glyphicon glyphicon-remove form-control-feedback"
+												style="color: red; margin-top: -5%;"
+												ng-show="!!patientForm.cnfrmPassword.$error.isBlank || !!patientForm.cnfrmPassword.$error.invalidChars || !!patientForm.cnfrmPassword.$error.invalidLen || confirm == true"></span>
+										</div>
+										<div
+											ng-if="patientForm.cnfrmPassword.$pristine == false && confirm==false">
+											<span class="glyphicon glyphicon-ok form-control-feedback"
+												style="color: green; margin-top: -5%;"
+												ng-show="!patientForm.cnfrmPassword.$error.isBlank && !patientForm.cnfrmPassword.$error.invalidChars && !patientForm.cnfrmPassword.$error.invalidLen"></span>
+										</div>
+
+									</div>
+								</div>
+								<!-- ------------------------------------------------------ -->
+								<div class="form-group">
+									<div class="checkbox">
+										<label> <input type="checkbox" required="required"> Please accept
+											the terms and conditions to proceed with your request.
+										</label>
+									</div>
+								</div>
+                                <div vc-recaptcha key="patientRegister.publicKey"></div>
+								<div class="form-group">
+									<input type="button" class="btn "
+										ng-class="{'btn-primary btn-block' : !patientForm.$valid || patientForm.$pristine || confirm==true, 'btn-success btn-block' : !!patientForm.$valid || !patientForm.$pristine || !confirm==true}"
+										ng-disabled="!patientForm.$valid || patientForm.$pristine || confirm==true"
+										value="SUBMIT" ng-click="patientRegisters(patient)">
+								</div>
+							</form>
+							<footer role="signup" class="text-center">
+								<ul>
+									<li><a href="" data-toggle="modal" data-target="#myModal">Terms
+											& Conditions</a></li>
+								</ul>
+                                 <div ng-show="signUpErrors">{{register}}</div>
+								<!-- ----------------------------POP UP----------------------------------- -->
+								<div class="modal fade" id="myModal" role="dialog">
+									<div class="modal-dialog">
+										<div style="width: 90%; margin-left: 4%;"
+											class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal"
+													ng-click="close()">&times;</button>
+												<h4 class="modal-title">Terms & Conditions</h4>
+											</div>
+
+											<div class="modal-body">
+												<p>Please read it carefully.</p>
+												<p>1. We just wants to provide best platform to each individual as well as doctor.
+												We do not take any responsibilities of any kind related with our plate form.
+												<br>2. There are many people who does fake they can fake us also. 
+												This is individual's  responsibilities to that doctor he his selecting is real.
+												<br>3. There are many problems associated with online platform we assume 
+												that you understand the risk involved in online platform &
+ 												each individual using our platform is him/her responsible for the risk.</p>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default"
+													data-dismiss="modal" ng-click="close()">Close</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- ----------------------------POP UP----------------------------------- -->
+							</footer>
+						</article>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+<br>

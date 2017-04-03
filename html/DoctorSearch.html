@@ -1,0 +1,128 @@
+<div class="container">
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="profile">
+            <div class="row">
+                <div class="col-sm-6 mobile-pull-left" style="margin-left: 23%;  margin-top: 2%;">
+                    <article role="login">
+                        <h3 class="text-center">
+                            <i class="fa fa-search"></i> Search
+                        </h3>
+                        <form class="form-horizontal" role="form" style="text-align: center; margin-left: 26%;">
+                            <!-- <div class="col-sm-12"> -->
+                            <div class="form-group">
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="name" ng-model="doctor.name" placeholder="Search by Doctor Name">
+                                </div>
+                            </div>
+                            <!-- 	</div> -->
+
+                            <!-- <div class="col-sm-12"> -->
+                            <div class="form-group">
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="name" ng-model="doctor.clinicName" placeholder="Search by Clinic Name">
+                                </div>
+                            </div>
+                            <!-- 	</div> -->
+
+                            <!-- <div class="col-sm-12"> -->
+                            <div class="form-group">
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="name" ng-model="doctor.clinicAddress" placeholder="Search by Clinic Address">
+                                </div>
+                            </div>
+                            <!-- </div> -->
+
+                            <!-- <div class="col-sm-12"> -->
+                            <div class="form-group">
+                                <div class="col-sm-8">
+                                    <!-- <div class="input-group"> -->
+                                    <!-- <div class="input-group-btn search-panel"></div> -->
+                                    <div mass-autocomplete>
+                                        <input class="form-control" name="x" placeholder="Search by States" ng-model="dirty.value" mass-autocomplete-item="autocomplete_options">
+                                        <div></div>
+                                    </div>
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                            <!-- 				</div> -->
+
+                            <!-- <div class="col-sm-12"> -->
+                            <div class="form-group">
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="name" ng-model="doctor.city" placeholder="Search by City">
+                                </div>
+                            </div>
+                            <!-- 	</div>
+
+							<div class="col-sm-12"> -->
+                            <div class="form-group">
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="name" ng-model="doctor.pin" placeholder="Search by Pin Code">
+                                </div>
+                            </div>
+                            <!-- </div> -->
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-0 col-sm-8">
+                                    <button type="button" ng-click="searchDoctor(doctor)" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+										<span class="glyphicon glyphicon-search"></span> Search Doctor
+									</button>
+                                </div>
+                            </div>
+                            <br>
+                        </form>
+
+                        <!-- -------------MODEL------- -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+                                <div style="width: 130%; margin-left: -10%;" class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" ng-click="close()">&times;</button>
+                                        <h4 class="modal-title">Doctor Update</h4>
+                                    </div>
+                                    <center>
+                                        <div ng-show="loader" class="loader"></div>
+                                    </center>
+                                    <div class="modal-body">
+                                        <div ng-show="modalBody">
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Gender</th>
+                                                    <th>Age</th>
+                                                    <th>Mobile</th>
+                                                    <th>Govt Servant</th>
+                                                    <th>Expertise</th>
+                                                    <th>Clinic</th>
+                                                    <th>Consulting Fees</th>
+                                                </tr>
+                                                <tr ng-repeat="doctorObj in doctors" class="active">
+                                                    <td>{{doctorObj.doctorId}}</td>
+                                                    <td>{{doctorObj.name}}</td>
+                                                    <td>{{doctorObj.email}}</td>
+                                                    <td>{{doctorObj.gender}}</td>
+                                                    <td>{{doctorObj.age}}</td>
+                                                    <td>{{doctorObj.mobile}}</td>
+                                                    <td>{{doctorObj.isGovernmentServent}}</td>
+                                                    <td>{{doctorObj.expertized}}</td>
+                                                    <td>{{doctorObj.clinicAddress}}</td>
+                                                    <td>{{doctorObj.oneTimeFee}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        {{message}}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

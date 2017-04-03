@@ -1,0 +1,99 @@
+<div class="container">
+	<!-- <div class="login-signup"> -->
+		<!-- <div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="profile"> -->
+				<div class="row" style="margin-left: 20%;  margin-top: 2%;">
+					<div class="col-sm-8 mobile-pull-left">
+						<article role="login">
+                            <h4 class="text-center" style="color:#5BB0D5;">
+								For Any Query Or suggestion
+							</h4>
+							<h3 class="text-center">
+								<i class="fa fa-phone"></i> Contact Us
+							</h3>
+							<!-- <div class="container"> -->
+								<!--<form class="form form-horizontal">
+									<div class="form-group">
+										<strong>OFFICE</strong><br /> <span>Office timings 9
+											am to 5 pm (IST)</span> <br /> <strong>ABC Hospital</strong><br>
+										Karol Bagh<br>New Delhi 110060<br>INDIA<br> 
+										<br>
+										Tel:+91 11-25555500 <br> Fax:+91 11-2565656002 <br>
+										Email: abc@xyz.com
+									</div><br>
+								</form>-->
+								<form  id="contact" class="form form-horizontal" name="contact" role="form" style="text-align: center; margin-left: 26%;">
+                                    <!---style="margin-top: -45%; margin-left: 45%;"---->
+									<div class="form-group">
+										<div class="col-sm-8">
+											<input type="text" class="form-control"  ng-model="details.name" 
+												placeholder="Enter Name" name="fees" />
+										</div>
+									</div>
+									<!-- <div class="form-group">
+										<div class="col-sm-10">
+											<input type="text" class="form-control"
+												placeholder="Enter Email" />
+										</div>
+									</div> -->
+									<div class="form-group has-feedback col-sm-9"
+									ng-class="{'has-success' : contact.email.$dirty && contact.email.$valid ,
+                        'has-error' : contact.email.$dirty && contact.email.$invalid}">
+									<input type="email" class="form-control" id="inputError2"
+										name="email" ng-model="details.email" placeholder="Enter email"
+										valid-Email>
+									<!--ng-blur="doBlurEmail($event)"-->
+									<div class="help-inline">
+										<span ng-show="!!contact.email.$error.isBlank"><b
+											style="color: red;">Email Required.</b></span> <span
+											ng-show="!!contact.email.$error.invalidChars"><b
+											style="color: red;">Email must contain @ & dot(.)
+												.</b></span> <span
+											ng-show="!!contact.email.$error.invalidLen"><b
+											style="color: red;">Email must be use dot(.) &
+												characters.</b></span>
+										<div ng-if="contact.email.$invalid == true">
+											<span
+												class="glyphicon glyphicon-remove form-control-feedback"
+												style="color: red;"
+												ng-show="!!contact.email.$error.isBlank || !!contact.email.$error.invalidChars || !!contact.email.$error.invalidLen"></span>
+										</div>
+										<div ng-if="contact.email.$pristine == false">
+											<span class="glyphicon glyphicon-ok form-control-feedback"
+												style="color: green;"
+												ng-show="!contact.email.$error.isBlank && !contact.email.$error.invalidChars && !contact.email.$error.invalidLen"></span>
+										</div>
+									</div>
+								</div>
+									<div class="form-group">
+										<div class="col-sm-8">
+											<input type="text" class="form-control"  ng-model="details.mobile" 
+												placeholder="Enter Mobile" />
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-8">
+											<textarea class="form-control" rows="5" id="comment"  ng-model="details.message" 
+												placeholder="Message"></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-offset-0 col-sm-4">
+											<button type="button" class="btn " 
+											ng-class="{'btn-primary btn-block' : !contact.$valid || contact.$pristine 
+											|| confirm==true, 'btn-success btn-block' : !!contact.$valid || 
+											!contact.$pristine}" ng-disabled="!contact.$valid || contact.$pristine"
+											ng-click="submitDetail(details)">
+												<span class="glyphicon glyphicon-ok-circle"></span> Submit
+											</button>
+										</div>
+									</div>
+								</form>
+							<!-- </div> -->
+						</article>
+					</div>
+				</div>
+		<!-- 	</div>
+		</div> 
+	</div>-->
+</div>

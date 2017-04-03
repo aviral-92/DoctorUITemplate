@@ -1,0 +1,71 @@
+[
+    {
+        "email": "aviralmittal2012@gmail.com",
+        "password": "aviral",
+        "patientName":"Aviral Mittal",
+        "patientMobile": "8527701990",
+        "patientAadhaar" : "256321023652",
+        "patientHomeAddress": "Delhi",
+        "dob" : "03/25/1992",
+        "gender" :"Male",
+        "allergies" :"Dust",
+        "src" : "Dashboard/dist/img/user2-160x160.jpg",
+        "description" : "simple, creative, social person."
+    },
+    
+    {
+        "email": "rinkuvatscs@gmail.com",
+        "password": "rinku",
+        "patientName":"Rinku Sharma",
+        "patientMobile": "8975463210",
+        "patientAadhaar" : "25689745210.",
+        "patientHomeAddress": "Sikandrabaad",
+        "dob" : "02/25/1990",
+        "gender" :"Male",
+        "allergies" :"Dust",
+         "src" : "Dashboard/dist/img/user1-128x128.jpg",
+        "description" : "simple, creative, social person."
+    },
+    
+    {
+        "email": "agg.mahima@gmail.com",
+        "password": "mahima",
+        "patientName":"Mahima Agrawal",
+        "patientMobile": "8802987685",
+        "patientAadhaar" : "25689745223",
+        "patientHomeAddress": "Shastri Nagar",
+        "dob" : "06/25/1993",
+        "gender" :"Female",
+        "allergies" :"Dust",
+         "src" : "Dashboard/dist/img/user3-128x128.jpg",
+        "description" : "simple, creative, social person."
+    },
+ 
+    {
+        "email": "satendergautam@gmail.com",
+        "password": "satender",
+        "patientName":"Satender Gautam",
+        "patientMobile": "8835426540",
+        "patientAadhaar" : "25689745226.",
+        "patientHomeAddress": "Sahibabaad",
+        "dob" : "03/25/1990",
+        "gender" :"Male",
+        "allergies" :"Dust",
+         "src" : "Dashboard/dist/img/user6-128x128.jpg",
+        "description" : "simple, creative, social person."
+    },
+    
+    {
+        "email": "preetijain387@gmail.com",
+        "password": "preeti",
+        "patientName": "Preeti Jain",
+        "patientMobile": "8835426548",
+        "patientAadhaar" : "25689749226.",
+        "patientHomeAddress": "Noida",
+        "dob" : "03/25/1991",
+        "gender" :"Female",
+        "allergies" :"Dust",
+        "src" : "Dashboard/dist/img/user4-128x128.jpg",
+        "description" : "simple, creative, social person."
+    }
+]

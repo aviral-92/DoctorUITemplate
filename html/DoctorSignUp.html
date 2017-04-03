@@ -1,0 +1,187 @@
+<div class="container">
+	<br />
+	<!-- <h3 style="margin-left: 32%;">Doctor SignUp</h3> -->
+	<!-- -------background: linear-gradient(#f2deeA, #f2deeA, #eff6f9, #f2deeA, #eff6f9); -->
+	<div
+		style="margin-left: 12%; margin-right: 12%; width: 900px; height: 680px; /* background: linear-gradient(#9ad4ed, #deeff7, #deeff7, #c0e8f9, #deeff7); */ margin-top: -1%;">
+		<!-- <h1 style="background: url(/images/12.jpg) no-repeat center;">Login</h1> -->
+		<form name="doctorForm" class="form form-horizontal"
+			style="margin-left: 30%;" novalidate="novalidate">
+			<div class="col-sm-10" style="margin-top: 10%;">
+				<div class="form-group has-feedback "
+					ng-class="{'has-success' : doctorForm.name.$dirty && doctorForm.name.$valid ,
+			 'has-error' : doctorForm.name.$dirty && doctorForm.name.$invalid}">
+					<!-- <label class="control-label col-sm-2" for="inputError2">
+				Name:</label> -->
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="inputError2"
+							name="name" ng-model="doctor.name" placeholder="Enter name"
+							ng-blur="doBlurName($event)" valid-Name>
+
+						<div class="help-inline">
+							<span ng-show="!!doctorForm.name.$error.isBlank"><b
+								style="color: red;">Doctor Name Required.</b></span> <span
+								ng-show="!!doctorForm.name.$error.invalidChars"><b
+								style="color: red;">Doctor Name must contain letters &amp;
+									spaces only.</b></span> <span
+								ng-show="!!doctorForm.name.$error.invalidLen"><b
+								style="color: red;">Doctor Name must be 3-20 characters.</b></span> <span
+								class="glyphicon glyphicon-ok form-control-feedback"
+								style="color: green;" ng-show="doctorForm.name.$valid"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-10">
+				<div class="form-group has-feedback "
+					ng-class="{'has-success' : doctorForm.mobile.$dirty && doctorForm.mobile.$valid ,
+			 'has-error' : doctorForm.mobile.$dirty && doctorForm.mobile.$invalid}">
+					<!-- <label class="control-label col-sm-2" for="inputError2">
+				Mobile Number :</label> -->
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="mobile" name="mobile"
+							ng-model="doctor.mobile" placeholder="Enter Mobile Number"
+							ng-blur="doBlurMobile($event)" valid-Mobile />
+
+						<div class="help-inline">
+							<span ng-show="!!doctorForm.mobile.$error.isBlank"><b
+								style="color: red;">Doctor mobile number Required.</b></span> <span
+								ng-show="!!doctorForm.mobile.$error.invalidChars"><b
+								style="color: red;">Doctor mobile number must contain
+									numbers only.</b></span> <span
+								ng-show="!!doctorForm.mobile.$error.invalidLen"><b
+								style="color: red;">Doctor mobile number must be 10 digits.</b></span><span
+								class="glyphicon glyphicon-ok form-control-feedback"
+								style="color: green;" ng-show="doctorForm.mobile.$valid"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-10">
+				<div class="form-group has-feedback "
+					ng-class="{'has-success' : doctorForm.adhar.$dirty && doctorForm.adhar.$valid ,
+			 'has-error' : doctorForm.adhar.$dirty && doctorForm.adhar.$invalid}">
+					<!-- <label class="control-label col-sm-2" for="name"> Adhar
+				Number:</label> -->
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="adhar" name="adhar"
+							ng-model="doctor.aadhaarNumber" placeholder="Enter Adhar Number"
+							ng-blur="doBlurAdhar($event)" valid-Adhar />
+
+						<div class="help-inline">
+							<span ng-show="!!doctorForm.adhar.$error.isBlank"><b
+								style="color: red;">Doctor adhar number Required.</b></span> <span
+								ng-show="!!doctorForm.adhar.$error.invalidChars"><b
+								style="color: red;">Doctor adhar number must contain numbers
+									only.</b></span> <span ng-show="!!doctorForm.adhar.$error.invalidLen"><b
+								style="color: red;">Doctor adhar number must be 12 digits.</b></span><span
+								class="glyphicon glyphicon-ok form-control-feedback"
+								style="color: green;" ng-show="doctorForm.adhar.$valid"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-10">
+				<div class="form-group">
+					<!-- <label class="control-label col-sm-2" for="pwd">Email:</label> -->
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="email"
+							ng-model="doctor.email" placeholder="Enter Email">
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-10">
+				<div class="form-group">
+					<!-- <label class="control-label col-sm-2" for="pwd">DOB:</label> -->
+					<div class="col-sm-8">
+						<!--<input type="text" class="form-control" id="email"
+					ng-model="doctor.age" placeholder="Enter Age"> -->
+						<div class="input-group input-append date" id="datePicker">
+							<input type="text" class="form-control" name="date" /> <span
+								class="input-group-addon add-on"><span
+								class="glyphicon glyphicon-calendar"></span></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<div class="form-group">
+					<!-- <label class="control-label col-sm-2" for="name"> Gender:</label> -->
+					<div class="control-label col-sm-8"
+						style="margin-top: -1%; margin-left: -4%;">
+						<label class="radio-inline"> <input type="radio"
+							name="optradio1" ng-model="doctor.gender" ng-value='1' />Male
+						</label> <label class="radio-inline"> <input type="radio"
+							name="optradio1" ng-model="doctor.gender" ng-value='0' />Female
+						</label> <label class="radio-inline"> <input type="radio"
+							name="optradio1" ng-model="doctor.gender" ng-value='2' />Transgen
+						</label>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- --------------------------------------------- -->
+
+
+			<div class="form-group">
+				<!-- <label class="col-xs-3 control-label" style="margin-left: -19%;">T&C</label> -->
+				<div class="col-xs-8">
+					<div
+						style="border: 1px solid #e5e5e5; height: 200px; overflow: auto; padding: 10px;">
+						<h4 style="text-align: center; font-weight: bold;">Terms & Conditions</h4>
+						<p>Lorem ipsum dolor sit amet, veniam numquam has te. No suas
+							nonumes recusabo mea, est ut graeci definitiones. His ne melius
+							vituperata scriptorem, cum paulo copiosae conclusionemque at.
+							Facer inermis ius in, ad brute nominati referrentur vis. Dicat
+							erant sit ex. Phaedrum imperdiet scribentur vix no, ad latine
+							similique forensibus vel.</p>
+						
+						<p>Eum ea quidam oportere imperdiet, facer oportere
+							vituperatoribus eu vix, mea ei iisque legendos hendrerit. Blandit
+							comprehensam eu his, ad eros veniam ridens eum. Id odio lobortis
+							elaboraret pro. Vix te fabulas partiendo.</p>
+						<p>Natum oportere et qui, vis graeco tincidunt instructior an,
+							autem elitr noster per et. Mea eu mundi qualisque. Quo nemore
+							nusquam vituperata et, mea ut abhorreant deseruisse, cu nostrud
+							postulant dissentias qui. Postea tincidunt vel eu.</p>
+						<p>Ad eos alia inermis nominavi, eum nibh docendi definitionem
+							no. Ius eu stet mucius nonumes, no mea facilis philosophia
+							necessitatibus. Te eam vidit iisque legendos, vero meliore
+							deserunt ius ea. An qui inimicus inciderint.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-xs-6 col-xs-offset-3" style="margin-left: 3%;">
+					<div class="checkbox">
+						<label> <input type="checkbox" name="agree" value="agree" />
+							I Agree with the terms and conditions
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<!-- ----http://formvalidation.io/examples/terms-conditions-agreement-validation/----------------------------------------- -->
+			<div class="form-group" ng-show="formAllGood()"></div>
+			<div class="form-group">
+				<div class="control-label col-sm-2">
+					<button class="btn btn-primary"
+						ng-click="doctorAdd(doctor, 'doctorForm')">
+						<span class="glyphicon glyphicon-ok-circle"></span> Register
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+</div>
+<br />
+<!--<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br /> -->
