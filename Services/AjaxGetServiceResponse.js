@@ -126,9 +126,14 @@ scotchApp.service('ajaxGetResponse', function ($http) {
         var serverResponse = $http.get('https://doctors.cfapps.io/api/calendar/getCalendarForPatient/' + pId + '/pId');
         return serverResponse;
     }
-    
+
     this.deleteCalendarEventByCalendarId = function (calendar) {
         var serverResponse = $http.put('https://doctors.cfapps.io/api/calendar/deleteCalendarforPatient', calendar);
+        return serverResponse;
+    }
+
+    this.getAppointmentByPatientId = function (pId) {
+        var serverResponse = $http.get('https://doctors.cfapps.io/api/appointment/appointment/' + pId + '/patient');
         return serverResponse;
     }
 });

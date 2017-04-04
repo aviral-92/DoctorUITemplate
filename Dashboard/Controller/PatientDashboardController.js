@@ -78,6 +78,22 @@ scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, 
         });
         console.log('Message function over');
     }
+
+    $scope.btnClick = function () {
+        var serverResponse = ajaxGetResponse.getAppointmentByPatientId(getPatients.pId);
+        $scope.spinner = true;
+        serverResponse.success(function (list) {
+            $scope.spinner = false;
+            //console.log(serverResponse);
+            console.log(list);
+            $window.localStorage.setItem('getPatientAppointment', angular.toJson(list));
+            $window.location.href = '#/viewPatientAppointment';
+        });
+        serverResponse.error(function (data, status, headers, config) {
+            alert('Failure');
+            $scope.spinner = false;
+        });
+    }
 });
 
 scotchApp.controller('patientHome', function ($scope, $http, $cookieStore, $mdDialog, popUpCalled, ajaxGetResponse) {

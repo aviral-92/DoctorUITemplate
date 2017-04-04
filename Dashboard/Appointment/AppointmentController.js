@@ -53,12 +53,17 @@ scotchApp.controller('doctorCancelAppointment', function ($scope, $http, $rootSc
 });
 
 
-scotchApp.controller('patientHistory', function ($scope, $http, $window) {
+scotchApp.controller('viewPatientAppointment', function ($scope, $http, $window, ajaxGetResponse) {
 
-    $scope.btnClick = function () {
-        $window.location.href = '#/patientAppointment';
-        console.log($scope.dirty.value);
-    }
+    var viewAppointment = JSON.parse($window.localStorage.getItem('getPatientAppointment'));
+    console.log(viewAppointment);
+    $scope.doctors = viewAppointment;
+  /*  $scope.viewDoctor = function (doctor) {
+        console.log(doctor);
+        $window.localStorage.setItem('doctorObj', angular.toJson(doctor));
+        //$rootScope.doctorObj = doctor;
+        $location.path('/patientAppointment');
+    }*/
 
 });
 scotchApp.controller('patientAppointmentSearch', function ($scope, $rootScope, $http, $q, filterFilter, $location, $window) {
@@ -201,4 +206,8 @@ scotchApp.controller('patientAppointmentBook', function ($scope, $http, $rootSco
             console.log('sending notofication failed');
         });
     }
+});
+
+scotchApp.controller('patientAppointmentHistory', function ($scope, $rootScope, $cookieStore, $window, ajaxGetResponse, popUpCalled) {
+
 });
