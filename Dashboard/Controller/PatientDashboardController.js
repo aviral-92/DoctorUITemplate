@@ -264,7 +264,7 @@ scotchApp.factory('alert', function ($uibModal) {
     };
 });
 
-scotchApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig) {
+scotchApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig, ajaxGetResponse, $cookieStore, popUpCalled) {
 
     var vm = this;
     //These variables MUST be set as a minimum for the calendar to work
@@ -275,38 +275,40 @@ scotchApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig)
         onClick: function (args) {
             alert.show('Edited', args.calendarEvent);
         }
-            }, {
+    }, {
         label: '',
         onClick: function (args) {
             alert.show('Deleted', args.calendarEvent);
         }
-            }];
-    vm.events = [{
-        title: 'An event ',
-        color: calendarConfig.colorTypes.warning,
-        startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
-        endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
-        draggable: true,
-        resizable: true,
-        actions: actions
-            }, {
-        title: '<i class="glyphicon glyphicon-asterisk"></i> <span class="text-primary">Another event</span>, with a <i>html</i> title',
-        color: calendarConfig.colorTypes.info,
-        startsAt: moment().subtract(1, 'day').toDate(),
-        endsAt: moment().add(5, 'days').toDate(),
-        draggable: true,
-        resizable: true,
-        actions: actions
-            }, {
-        title: 'This is a really long event title that occurs on every year',
-        color: calendarConfig.colorTypes.important,
-        startsAt: moment().startOf('day').add(7, 'hours').toDate(),
-        endsAt: moment().startOf('day').add(19, 'hours').toDate(),
-        recursOn: 'year',
-        draggable: true,
-        resizable: true,
-        actions: actions
-            }];
+    }];
+    vm.events = [
+        /*{
+          title: 'An event ',
+          color: calendarConfig.colorTypes.warning,
+          startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
+          endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
+          draggable: true,
+          resizable: true,
+          actions: actions
+        }, {
+          title: '<i class="glyphicon glyphicon-asterisk"></i> <span class="text-primary">Another event</span>, with a <i>html</i> title',
+          color: calendarConfig.colorTypes.info,
+          startsAt: moment().subtract(1, 'day').toDate(),
+          endsAt: moment().add(5, 'days').toDate(),
+          draggable: true,
+          resizable: true,
+          actions: actions
+        }, {
+          title: 'This is a really long event title that occurs on every year',
+          color: calendarConfig.colorTypes.important,
+          startsAt: moment().startOf('day').add(7, 'hours').toDate(),
+          endsAt: moment().startOf('day').add(19, 'hours').toDate(),
+          recursOn: 'year',
+          draggable: true,
+          resizable: true,
+          actions: actions
+        }*/
+    ];
 
     vm.cellIsOpen = true;
 
@@ -316,12 +318,53 @@ scotchApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig)
         vm.events.push({
             title: 'New event',
             startsAt: moment().startOf('day').toDate(),
-            endsAt: moment().endOf('day').toDate(),
-            color: calendarConfig.colorTypes.important,
-            draggable: true,
-            resizable: true
+            endsAt: moment().endOf('day').toDate()
+            //color: calendarConfig.colorTypes.important,
+            //draggable: true,
+            //resizable: true
         });
     };
+
+    //Get events
+    var serverResponse = ajaxGetResponse.getCalendarDetailsByPatientId($cookieStore.get('patientLoginData').pId);
+    serverResponse.success(function (calendarEvents) {
+        console.log(calendarEvents);
+        for (var i = 0; i < calendarEvents.length; i++) {
+            vm.events.push({
+                title: calendarEvents[i].calendarTitle,
+                startsAt: new Date(calendarEvents[i].startDate),
+                endsAt: new Date(calendarEvents[i].endDate),
+                calendarId: calendarEvents[i].calendarId
+            });
+        }
+    });
+    serverResponse.error(function (updateResponse, status, headers, config) {
+        popUpCalled.popup('Under Maintainance', 'Inconvinence regrected...!!!');
+        /*  alert("failure message: " + updateResponse.message);*/
+    });
+
+
+    //TODO Ajax hit to Save or Update an event.
+    vm.save = function (index) {
+
+        console.log(vm.events[index]);
+        console.log($scope.hours);
+    }
+
+    //TODO Ajax hit to delete an event.
+    vm.delete = function (index, event) {
+
+        var serverResponse = ajaxGetResponse.deleteCalendarEventByCalendarId(event);
+        serverResponse.success(function (calendarEvents) {
+            popUpCalled.popup('Deleted....', 'Successfully deleted...!!!');
+        });
+        serverResponse.error(function (updateResponse, status, headers, config) {
+            //TODO need to change in service, response is not coming in JSON format.
+            popUpCalled.popup('Under Maintainance', 'Inconvinence regrected...!!!');
+            /*  alert("failure message: " + updateResponse.message);*/
+        });
+        vm.events.splice(index, 1);
+    }
 
     vm.eventClicked = function (event) {
         alert.show('Clicked', event);
@@ -364,5 +407,6 @@ scotchApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig)
         }
 
     };
+    console.log(vm.events);
 
 });
