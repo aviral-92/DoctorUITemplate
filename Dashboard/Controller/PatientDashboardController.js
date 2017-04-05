@@ -97,6 +97,11 @@ scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, 
 });
 
 scotchApp.controller('patientHome', function ($scope, $http, $cookieStore, $mdDialog, popUpCalled, ajaxGetResponse) {
+    
+   $scope.click = function(){
+        popUpCalled.popup('Under maintainance', 'Coming Soon');
+   }
+   
     $scope.visible = false;
     var index = 0;
     $scope.url = "#/patientHome";
