@@ -82,6 +82,7 @@
         <th>Title</th>
         <th>Starts at</th>
         <th>Ends at</th>
+        <th>Add</th>
         <th>Remove</th>
       </tr>
     </thead>
@@ -148,10 +149,17 @@
             show-meridian="true">
           </div>
         </td>
+          <td>
+          <button
+            class="btn btn-success"
+            ng-click="vm.save($index)">
+            Save
+          </button>
+        </td>
         <td>
           <button
             class="btn btn-danger"
-            ng-click="vm.events.splice($index, 1)">
+            ng-click="vm.delete($index, event)">
             Delete
           </button>
         </td>

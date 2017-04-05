@@ -96,7 +96,7 @@ scotchApp.service('ajaxGetResponse', function ($http) {
         var serverResponse = $http.post('https://doctors.cfapps.io/api/notification/addNotifyfordoctor', notification);
         return serverResponse;
     }
-    
+
     this.getDoctorTodoList = function (dId) {
         var serverResponse = $http.get('https://doctors.cfapps.io/api/todo/gettodoListfordoctor/' + dId + '/dId');
         return serverResponse;
@@ -111,10 +111,34 @@ scotchApp.service('ajaxGetResponse', function ($http) {
         var serverResponse = $http.put('https://doctors.cfapps.io/api/todo/updatetodoListfordoctor', todoList);
         return serverResponse;
     }
-    
-     this.cancelAppointmentByDoctorId = function (PatientDetails) {
+
+    this.cancelAppointmentByDoctorId = function (PatientDetails) {
         var serverResponse = $http.delete('https://doctors.cfapps.io/api/appointment/appointment/cancel/' + getPatient[0].dId);
         return serverResponse;
     }
 
+    this.addCalendarEventByPatientId = function (calendar) {
+        var serverResponse = $http.post('https://doctors.cfapps.io/api/calendar/addCalendarForPatient', calendar);
+        return serverResponse;
+    }
+
+    this.getCalendarDetailsByPatientId = function (pId) {
+        var serverResponse = $http.get('https://doctors.cfapps.io/api/calendar/getCalendarForPatient/' + pId + '/pId');
+        return serverResponse;
+    }
+
+    this.deleteCalendarEventByCalendarId = function (calendar) {
+        var serverResponse = $http.put('https://doctors.cfapps.io/api/calendar/deleteCalendarforPatient', calendar);
+        return serverResponse;
+    }
+
+    this.getAppointmentByPatientId = function (pId) {
+        var serverResponse = $http.get('https://doctors.cfapps.io/api/appointment/appointment/' + pId + '/patient');
+        return serverResponse;
+    }
+    
+    this.cancelAppointmentById = function (appointmentId) {
+        var serverResponse = $http.delete('https://doctors.cfapps.io/api/appointment/appointment/cancel/' + appointmentId);
+        return serverResponse;
+    }
 });

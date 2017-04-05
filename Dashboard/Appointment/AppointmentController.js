@@ -1,4 +1,4 @@
-scotchApp.controller('doctorAppointment', function ($scope, $http, $window, $location, $rootScope, $location, popUpCalled,ajaxGetResponse) {
+scotchApp.controller('doctorAppointment', function ($scope, $http, $window, $location, $rootScope, $location, popUpCalled, ajaxGetResponse) {
 
     //var doctorAppointment = $rootScope.getDoctorAppointment;
     var doctorAppointment = JSON.parse($window.localStorage.getItem('getDoctorAppointment'));
@@ -14,9 +14,9 @@ scotchApp.controller('doctorAppointment', function ($scope, $http, $window, $loc
         $scope.cancelAppointment = function (PatientDetails) {
             var responseUpdate = ajaxGetResponse.cancelAppointmentByDoctorId();
             responseUpdate.success(function (data) {
-//                console.log('responseUpdate');
+                //                console.log('responseUpdate');
                 console.log('success');
-                 popUpCalled.popup('Appointment Cancel', 'Successfully..!!!!');
+                popUpCalled.popup('Appointment Cancel', 'Successfully..!!!!');
             });
             responseUpdate.error(function (data, status, headers, config) {
                 /* console.log('failure');*/
@@ -34,17 +34,17 @@ scotchApp.controller('doctorCancelAppointment', function ($scope, $http, $rootSc
     var getPatient = JSON.parse($window.localStorage.getItem('patientObj'));
     console.log(getPatient);
     $scope.doctor = getPatient;
-    
-     var age = new Date().getYear() - new Date($scope.doctor.patient.dob).getYear();
+
+    var age = new Date().getYear() - new Date($scope.doctor.patient.dob).getYear();
     $scope.doctor.patient.age = age;
-    
-    
+
+
     $scope.cancelAppointment = function (PatientDetails) {
         var responseUpdate = ajaxGetResponse.cancelAppointmentByDoctorId();
         responseUpdate.success(function (data) {
-//            console.log('responseUpdate');
+            //            console.log('responseUpdate');
             console.log('success');
-              popUpCalled.popup('Appointment Cancel', 'Successfully..!!!!');
+            popUpCalled.popup('Appointment Cancel', 'Successfully..!!!!');
         });
         responseUpdate.error(function (data, status, headers, config) {
             console.log('failure');
@@ -53,11 +53,31 @@ scotchApp.controller('doctorCancelAppointment', function ($scope, $http, $rootSc
 });
 
 
-scotchApp.controller('patientHistory', function ($scope, $http, $window) {
+scotchApp.controller('viewPatientAppointment', function ($scope, $http, $window, ajaxGetResponse, $filter) {
 
-    $scope.btnClick = function () {
-        $window.location.href = '#/patientAppointment';
-        console.log($scope.dirty.value);
+    var viewAppointment = JSON.parse($window.localStorage.getItem('getPatientAppointment'));
+    console.log(viewAppointment);
+    var today = $filter('date')(new Date(), 'yyyy-MM-dd');
+    //    $scope.todaysDate = today;
+    for (var i = 0; i < viewAppointment.length; i++) {
+        if (today > viewAppointment[i].appointmentDate) {
+            viewAppointment[i].disable = true;
+        } else {
+            viewAppointment[i].disable = false;
+        }
+    }
+    $scope.doctors = viewAppointment;
+    
+     $scope.cancelAppointment = function (doctor) {
+        var responseUpdate = ajaxGetResponse.cancelAppointmentById(doctor.appointmentId);
+        responseUpdate.success(function (data) {
+            //            console.log('responseUpdate');
+            console.log('success');
+            popUpCalled.popup('Appointment Cancel', 'Successfully..!!!!');
+        });
+        responseUpdate.error(function (data, status, headers, config) {
+            console.log('failure');
+        });
     }
 
 });
@@ -143,7 +163,7 @@ scotchApp.controller('patientAppointmentBook', function ($scope, $http, $rootSco
 
         var appointmentObj = {
             "appointmentDesc": booking.description,
-            "createdDate": booking.appointmentDate,
+            "appointmentDate": booking.appointmentDate,
             "dId": getDoctor.did,
             "pId": $cookieStore.get('patientLoginData').pId
         }
@@ -151,23 +171,46 @@ scotchApp.controller('patientAppointmentBook', function ($scope, $http, $rootSco
             "dId": getDoctor.did,
             "notiyfMessage": "New appointment booked, schedule on " + booking.appointmentDate
         }
+        var calendarObj = {
+            "pId": $cookieStore.get('patientLoginData').pId,
+            "calendarTitle": booking.description,
+            "startDate": booking.appointmentDate,
+            "endDate": booking.appointmentDate
+        }
 
         var appointment = JSON.stringify(appointmentObj);
         var sendNotification = JSON.stringify(notificationObj);
+        var calendarEvent = JSON.stringify(calendarObj);
+
         console.log(appointment);
         var response = ajaxGetResponse.appointmentBookByPatient(appointment);
         response.success(function (data) {
 
             notifyDoctor(sendNotification);
+            addCalendarEvents(calendarEvent);
             popUpCalled.popup('Appointment Booked', 'Your Appointment has been booked');
         });
         response.error(function (data, status, headers, config) {
             console.log('Booking appointment failed');
             //TODO to be remove once response comes in JSON
             notifyDoctor(sendNotification);
+            addCalendarEvents(calendarEvent);
         });
     }
 
+    //function for adding events in Calendar.
+    function addCalendarEvents(calendarEvent) {
+
+        var responseCalendarEvent = ajaxGetResponse.addCalendarEventByPatientId(calendarEvent);
+        responseCalendarEvent.success(function (data) {
+            console.log('Calendar Event Set');
+        });
+        responseCalendarEvent.error(function (data, status, headers, config) {
+            console.log('Unable to set event');
+        });
+    }
+
+    // function for sending notification
     function notifyDoctor(sendNotification) {
 
         var responseNotify = ajaxGetResponse.sendNotoficationToDoctor(sendNotification);
@@ -178,4 +221,8 @@ scotchApp.controller('patientAppointmentBook', function ($scope, $http, $rootSco
             console.log('sending notofication failed');
         });
     }
+});
+
+scotchApp.controller('patientAppointmentHistory', function ($scope, $rootScope, $cookieStore, $window, ajaxGetResponse, popUpCalled) {
+
 });

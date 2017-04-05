@@ -1,0 +1,47 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Appointment <small>panel</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#/home"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Appointment</li>
+        </ol>
+    </section>
+    <br>
+    <!-- Main content -->
+    <section class="content">
+        <div class="panel profile-page animated zoomIn">
+            <div class="panel-body">
+                <div class="panel-content">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Mobile</th>
+                                <th>Clinic Address</th>
+                                <th>Problem</th>
+                                <th>Appointment Date</th>
+                                <th>Cancel</th>
+                                <th>Drive Location</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="doctor in doctors | orderBy : 'appointmentDate' : true">
+                                <td>{{doctor.doctor.name}}</td>
+                                <td>{{doctor.doctor.mobile}}</td>
+                                <td>{{doctor.doctor.clinicAddress}}</td>
+                                <td>{{doctor.appointmentDesc}}</td>
+                                <td>{{doctor.appointmentDate}}</td>
+                                <td><button ng-disabled="doctor.disable" class="btn btn-danger" ng-click="cancelAppointment(doctor)"><b><i class="fa fa-trash"></i></b> <!--<b>Cancel</b>--></button></td>
+                                <td><img src="../../images/googleLocation.jpg" width="40" height="40" />
+                                    <!--<i style="font-weight:bolder; font-size: 25px; color:green;" class="glyphicon glyphicon-map-marker"></i>--></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
