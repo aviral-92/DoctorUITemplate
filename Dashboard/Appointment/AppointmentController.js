@@ -53,11 +53,31 @@ scotchApp.controller('doctorCancelAppointment', function ($scope, $http, $rootSc
 });
 
 
-scotchApp.controller('patientHistory', function ($scope, $http, $window) {
+scotchApp.controller('viewPatientAppointment', function ($scope, $http, $window, ajaxGetResponse, $filter) {
 
-    $scope.btnClick = function () {
-        $window.location.href = '#/patientAppointment';
-        console.log($scope.dirty.value);
+    var viewAppointment = JSON.parse($window.localStorage.getItem('getPatientAppointment'));
+    console.log(viewAppointment);
+    var today = $filter('date')(new Date(), 'yyyy-MM-dd');
+    //    $scope.todaysDate = today;
+    for (var i = 0; i < viewAppointment.length; i++) {
+        if (today > viewAppointment[i].appointmentDate) {
+            viewAppointment[i].disable = true;
+        } else {
+            viewAppointment[i].disable = false;
+        }
+    }
+    $scope.doctors = viewAppointment;
+    
+     $scope.cancelAppointment = function (doctor) {
+        var responseUpdate = ajaxGetResponse.cancelAppointmentById(doctor.appointmentId);
+        responseUpdate.success(function (data) {
+            //            console.log('responseUpdate');
+            console.log('success');
+            popUpCalled.popup('Appointment Cancel', 'Successfully..!!!!');
+        });
+        responseUpdate.error(function (data, status, headers, config) {
+            console.log('failure');
+        });
     }
 
 });
@@ -143,7 +163,7 @@ scotchApp.controller('patientAppointmentBook', function ($scope, $http, $rootSco
 
         var appointmentObj = {
             "appointmentDesc": booking.description,
-            "createdDate": booking.appointmentDate,
+            "appointmentDate": booking.appointmentDate,
             "dId": getDoctor.did,
             "pId": $cookieStore.get('patientLoginData').pId
         }
@@ -201,4 +221,8 @@ scotchApp.controller('patientAppointmentBook', function ($scope, $http, $rootSco
             console.log('sending notofication failed');
         });
     }
+});
+
+scotchApp.controller('patientAppointmentHistory', function ($scope, $rootScope, $cookieStore, $window, ajaxGetResponse, popUpCalled) {
+
 });

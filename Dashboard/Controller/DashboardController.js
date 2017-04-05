@@ -106,6 +106,10 @@ scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, 
 
 scotchApp.controller('home', function ($scope, $http, $cookieStore, $window, ajaxGetResponse, popUpCalled) {
 
+     $scope.click = function(){
+        popUpCalled.popup('Under maintainance', 'Coming Soon');
+   }
+     
     if ($cookieStore.get('doctorLoginData') == undefined) {
         $window.location.href = '/index.html#/loginPage';
     }

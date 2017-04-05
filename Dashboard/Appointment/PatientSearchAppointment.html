@@ -1,71 +1,66 @@
 <div class="content-wrapper">
-	<!-- Content Header (Page header) -->
-	<section class="content-header">
-		<h1>
-			Appointment <small>panel</small>
-		</h1>
-		<ol class="breadcrumb">
-			<li><a href="#/home"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li class="active">Appointment</li>
-		</ol>
-	</section>
-	<br>
-	<!-- Main content -->
-	<section class="content">
-		<div class="panel profile-page animated zoomIn">
-			<div class="panel-body">
-				<div class="panel-content">
-					<br>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Appointment <small>panel</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#/home"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Appointment</li>
+        </ol>
+    </section>
+    <br>
+    <!-- Main content -->
+    <section class="content">
+        <div class="panel profile-page animated zoomIn">
+            <div class="panel-body">
+                <div class="panel-content">
+                    <br>
                     <!---------------------Search----->
-                        <div class="col-sm-10" >
-            <md-chips ng-model="vm.selectedFoods" md-autocomplete-snap="" md-transform chip="vm.transformChip($chip)" md-require-match=''>
-                    <md-autocomplete md-selected-item='vm.selectedItem' 
-                       md-search-text='vm.searchText' 
-                       md-items='item in vm.querySearchDeferred(vm.searchText)' 
-                       md-item-text='item'
-                       placeholder="Search for Expertise " ng-model="data" style="text-color:white;">
-                            <span md-highlight-text='vm.searchText'>{{item}}</span>
-                                </md-autocomplete>
-                                <md-chip-template>
-                                    <span>
+                    <div class="col-sm-10">
+                        <md-chips ng-model="vm.selectedFoods" md-autocomplete-snap="" md-transform chip="vm.transformChip($chip)" md-require-match=''>
+                            <md-autocomplete md-selected-item='vm.selectedItem' md-search-text='vm.searchText' md-items='item in vm.querySearchDeferred(vm.searchText)' md-item-text='item' placeholder="Search for Expertise " ng-model="data" style="text-color:white;">
+                                <span md-highlight-text='vm.searchText'>{{item}}</span>
+                            </md-autocomplete>
+                            <md-chip-template>
+                                <span>
                                       <strong>{{$chip}}</strong>
                                     </span>
-                                </md-chip-template>
-                                </md-chips>
-							<button class="btn btn-default pull-right"
-								style="background-color: #f9f9f9; margin-top:-5%;" type="button"
-								ng-click="btnClick(vm.selectedFoods)">
+                            </md-chip-template>
+                        </md-chips>
+                        <button class="btn btn-default pull-right" style="background-color: #f9f9f9; margin-top:-5%;" type="button" ng-click="btnClick(vm.selectedFoods)">
 								<span class="glyphicon glyphicon-search"></span>
 							</button>
-                        </div>
-						</div>
-					</div><br><br>
+                    </div>
+                </div>
+            </div><br><br>
             <div class="center-block" ng-show="spinner">
                 <img class="col-md-1 col-md-offset-2" src="../images/gears.gif" style=" position: absolute;  z-index:5;">
             </div>
-					<div class="container" ng-show="searchResult">
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Mobile</th>
-        <th>Clinic Address</th>
-        <th>Book Appointment</th>
-        <th>Drive Location</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="doctor in doctors">
-        <td>{{doctor.name}}</td>
-        <td>{{doctor.mobile}}</td>
-        <td>{{doctor.clinicAddress}}</td>
-        <td><button ng-click="viewDoctor(doctor)"><b>View</b> <i class="fa fa-medkit" style="color:red;"></i> <b>Book</b></button></td>
-        <td><i class="glyphicon glyphicon-map-marker"></i></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-				</div>
+            <div class="container" ng-show="searchResult">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                            <th>Clinic Address</th>
+                            <th>Book Appointment</th>
+                            <th>Drive Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="doctor in doctors">
+                            <td>{{doctor.name}}</td>
+                            <td>{{doctor.mobile}}</td>
+                            <td>{{doctor.clinicAddress}}</td>
+                            <td><button class="btn btn-success" ng-click="viewDoctor(doctor)"><i class="fa fa-medkit" style="color:white;"></i> <b>Book</b></button></td>
+                            <td><img src="../../images/googleLocation.jpg" width="40" height="40" />
+                                <!--<i style="font-weight:bolder; font-size: 25px; color:#E52626;" class="glyphicon glyphicon-map-marker-move"></i>--></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </section>
-	<br>
+    <br>
 </div>
