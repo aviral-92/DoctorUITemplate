@@ -22,17 +22,19 @@
                                 <th>Mobile</th>
                                 <th>Clinic Address</th>
                                 <th>Problem</th>
+                                <th>Appointment Date</th>
                                 <th>Cancel</th>
                                 <th>Drive Location</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="doctor in doctors | orderBy : doctor.createdDate : true">
+                            <tr ng-repeat="doctor in doctors | orderBy : 'appointmentDate' : true">
                                 <td>{{doctor.doctor.name}}</td>
                                 <td>{{doctor.doctor.mobile}}</td>
                                 <td>{{doctor.doctor.clinicAddress}}</td>
                                 <td>{{doctor.appointmentDesc}}</td>
-                                <td><button class="btn btn-danger" ng-click="viewDoctor(doctor)"><b><i class="fa fa-trash"></i></b> <!--<b>Cancel</b>--></button></td>
+                                <td>{{doctor.appointmentDate}}</td>
+                                <td><button ng-disabled="doctor.disable" class="btn btn-danger" ng-click="cancelAppointment(doctor)"><b><i class="fa fa-trash"></i></b> <!--<b>Cancel</b>--></button></td>
                                 <td><img src="../../images/googleLocation.jpg" width="40" height="40" />
                                     <!--<i style="font-weight:bolder; font-size: 25px; color:green;" class="glyphicon glyphicon-map-marker"></i>--></td>
                             </tr>

@@ -53,10 +53,19 @@ scotchApp.controller('doctorCancelAppointment', function ($scope, $http, $rootSc
 });
 
 
-scotchApp.controller('viewPatientAppointment', function ($scope, $http, $window, ajaxGetResponse) {
+scotchApp.controller('viewPatientAppointment', function ($scope, $http, $window, ajaxGetResponse, $filter) {
 
     var viewAppointment = JSON.parse($window.localStorage.getItem('getPatientAppointment'));
     console.log(viewAppointment);
+    var today = $filter('date')(new Date(), 'yyyy-MM-dd');
+    //    $scope.todaysDate = today;
+    for (var i = 0; i < viewAppointment.length; i++) {
+        if (today > viewAppointment[i].appointmentDate) {
+            viewAppointment[i].disable = true;
+        } else {
+            viewAppointment[i].disable = false;
+        }
+    }
     $scope.doctors = viewAppointment;
 
 });
@@ -142,7 +151,7 @@ scotchApp.controller('patientAppointmentBook', function ($scope, $http, $rootSco
 
         var appointmentObj = {
             "appointmentDesc": booking.description,
-            "createdDate": booking.appointmentDate,
+            "appointmentDate": booking.appointmentDate,
             "dId": getDoctor.did,
             "pId": $cookieStore.get('patientLoginData').pId
         }
