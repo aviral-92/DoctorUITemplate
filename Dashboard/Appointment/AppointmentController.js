@@ -67,6 +67,18 @@ scotchApp.controller('viewPatientAppointment', function ($scope, $http, $window,
         }
     }
     $scope.doctors = viewAppointment;
+    
+     $scope.cancelAppointment = function (doctor) {
+        var responseUpdate = ajaxGetResponse.cancelAppointmentById(doctor.appointmentId);
+        responseUpdate.success(function (data) {
+            //            console.log('responseUpdate');
+            console.log('success');
+            popUpCalled.popup('Appointment Cancel', 'Successfully..!!!!');
+        });
+        responseUpdate.error(function (data, status, headers, config) {
+            console.log('failure');
+        });
+    }
 
 });
 scotchApp.controller('patientAppointmentSearch', function ($scope, $rootScope, $http, $q, filterFilter, $location, $window) {

@@ -136,4 +136,9 @@ scotchApp.service('ajaxGetResponse', function ($http) {
         var serverResponse = $http.get('https://doctors.cfapps.io/api/appointment/appointment/' + pId + '/patient');
         return serverResponse;
     }
+    
+    this.cancelAppointmentById = function (appointmentId) {
+        var serverResponse = $http.delete('https://doctors.cfapps.io/api/appointment/appointment/cancel/' + appointmentId);
+        return serverResponse;
+    }
 });
