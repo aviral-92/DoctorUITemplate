@@ -58,12 +58,6 @@ scotchApp.controller('viewPatientAppointment', function ($scope, $http, $window,
     var viewAppointment = JSON.parse($window.localStorage.getItem('getPatientAppointment'));
     console.log(viewAppointment);
     $scope.doctors = viewAppointment;
-  /*  $scope.viewDoctor = function (doctor) {
-        console.log(doctor);
-        $window.localStorage.setItem('doctorObj', angular.toJson(doctor));
-        //$rootScope.doctorObj = doctor;
-        $location.path('/patientAppointment');
-    }*/
 
 });
 scotchApp.controller('patientAppointmentSearch', function ($scope, $rootScope, $http, $q, filterFilter, $location, $window) {
