@@ -86,6 +86,7 @@ scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, 
         console.log('Message function over');
     }
 
+    //Redirect to View Appointment Page.
     $scope.btnClick = function () {
         var serverResponse = ajaxGetResponse.getAppointmentByPatientId(getPatients.pId);
         $scope.spinner = true;
@@ -103,12 +104,12 @@ scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, 
     }
 });
 
-scotchApp.controller('patientHome', function ($scope, $http, $cookieStore, $mdDialog, popUpCalled, ajaxGetResponse) {
-    
-   $scope.click = function(){
+scotchApp.controller('patientHome', function ($scope, $window, $cookieStore, popUpCalled, ajaxGetResponse) {
+
+    $scope.click = function () {
         popUpCalled.popup('Under maintainance', 'Coming Soon');
-   }
-   
+    }
+
     $scope.visible = false;
     var index = 0;
     $scope.url = "#/patientHome";
@@ -160,6 +161,23 @@ scotchApp.controller('patientHome', function ($scope, $http, $cookieStore, $mdDi
         });
         serverResponse.error(function (response) {
             popUpCalled.popup('Under maintainance', 'Please try after sometime');
+        });
+    }
+
+    //Redirect to View Appointment Page.
+    $scope.viewAppointment = function () {
+        var serverResponse = ajaxGetResponse.getAppointmentByPatientId($cookieStore.get('patientLoginData').pId);
+        $scope.spinner = true;
+        serverResponse.success(function (list) {
+            $scope.spinner = false;
+            //console.log(serverResponse);
+            console.log(list);
+            $window.localStorage.setItem('getPatientAppointment', angular.toJson(list));
+            $window.location.href = '#/viewPatientAppointment';
+        });
+        serverResponse.error(function (data, status, headers, config) {
+            alert('Failure');
+            $scope.spinner = false;
         });
     }
 });
@@ -437,4 +455,9 @@ scotchApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig,
     };
     console.log(vm.events);
 
+});
+
+scotchApp.controller('Error404Controller', function($window){
+   
+    $window.location.href = '../../ErrorPage.html';
 });

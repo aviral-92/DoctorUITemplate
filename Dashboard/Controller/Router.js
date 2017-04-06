@@ -15,11 +15,11 @@ scotchApp.config(function ($routeProvider) {
             controller: 'profile'
         })
 
-        // route for Calender page
+        /*// route for Calender page
         .when('/calender', {
             templateUrl: 'Dashboard/pages/CalendarRoute.html',
             controller: 'calender'
-        })
+        })*/
 
         // route for the Angular Calender page
         .when('/docCal', {
@@ -90,6 +90,11 @@ scotchApp.config(function ($routeProvider) {
         .when('/map', {
             templateUrl: 'Dashboard/Map/Map.html',
             controller: 'doctorGeoLocation'
+        })
+
+        .otherwise({
+            templateUrl: '/ErrorPage.html',
+            controller: 'Error404Controller'
         });
 
 });
