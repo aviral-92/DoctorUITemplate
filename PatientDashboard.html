@@ -42,6 +42,7 @@
     <script src="/js/static_js/angular-route-1.4.8.js"></script>
     <script src="/js/static_js/angular-cookies-1.4.8.js"></script>
     <!--<script src="js/static_js/angular-route.js"></script>-->
+    <script src="html/SearchFunctionality/lib/dirPagination.js"></script>
     <script src="Dashboard/Controller/Router.js"></script>
     <script src="Dashboard/Controller/DashboardController.js"></script>
     <script src="Dashboard/Controller/PatientDashboardController.js"></script>
@@ -72,6 +73,14 @@
     <link href="https://unpkg.com/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">
     <!-- Angular Calender Closing -->
 
+    <!-- Map  -->
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script src="https://rawgit.com/lodash/lodash/2.4.1/dist/lodash.underscore.min.js"></script>
+    <script src="https://rawgit.com/nlaplante/angular-google-maps/1.1.4/dist/angular-google-maps.min.js"></script>
+    <link href="Dashboard/Map/Map.css" rel="stylesheet">
+    <script src="Dashboard/Map/Map.js"></script>
+    <!-- Map  -->
+    
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -229,9 +238,9 @@
 
                             <ul class="treeview-menu">
                                 <!--<li><a href="#/patientAppointment"><i class="fa fa-file-text-o"></i> Upcoming Appointment</a></li>-->
-                                  <li><a href="#/searchAppointment"><i class="fa fa-plus-square"></i> Book Appointment</a></li>
-            <li><a href="" ng-click="btnClick()"><i class="fa fa-list-alt"></i>View Appointment</a></li>
-                               
+                                <li><a href="#/searchAppointment"><i class="fa fa-plus-square"></i> Book Appointment</a></li>
+                                <li><a href="" ng-click="btnClick()"><i class="fa fa-list-alt"></i>View Appointment</a></li>
+
                                 <!--<li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>-->
                             </ul>
                         </li>
