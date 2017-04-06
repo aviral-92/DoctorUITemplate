@@ -28,7 +28,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="doctor in doctors | orderBy : 'appointmentDate' : true">
+                            <tr dir-paginate="doctor in doctors|orderBy:'-appointmentDate'|itemsPerPage:10">
                                 <td>{{doctor.doctor.name}}</td>
                                 <td>{{doctor.doctor.mobile}}</td>
                                 <td>{{doctor.doctor.clinicAddress}}</td>
@@ -40,6 +40,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <dir-pagination-controls max-size="10" direction-links="true" boundary-links="true"> </dir-pagination-controls>
                 </div>
             </div>
         </div>

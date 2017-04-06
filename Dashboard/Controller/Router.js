@@ -1,4 +1,4 @@
-var scotchApp = angular.module('myApp', ['ngMaterial', 'ngMessages', 'ngRoute', 'ngCookies', 'mwl.calendar', 'ngAnimate', 'ui.bootstrap', 'colorpicker.module']);
+var scotchApp = angular.module('myApp', ['ngMaterial', 'ngMessages', 'ngRoute', 'ngCookies', 'mwl.calendar', 'ngAnimate', 'ui.bootstrap', 'colorpicker.module', 'angularUtils.directives.dirPagination']);
 
 scotchApp.config(function ($routeProvider) {
     $routeProvider
