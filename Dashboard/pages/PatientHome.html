@@ -60,7 +60,7 @@
                 </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-xs-6" onclick="location.href='#/viewPatientAppointment';" style="cursor: pointer;">
+            <div class="col-lg-3 col-xs-6" ng-click="viewAppointment()" style="cursor: pointer;">
                 <!-- small box -->
                 <div class="small-box bg-aqua">
                     <div class="inner">
@@ -179,9 +179,9 @@
                     <i class="fa fa-bars"></i></button>
                                 <ul class="dropdown-menu pull-right" role="menu">
                                     <li><a ng-href={{url}}>Add new event</a></li>
-                                    <li><a href="#">Clear events</a></li>
+                                    <li><a href="">Clear events</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="#">View calendar</a></li>
+                                    <li><a href="#/patientCal">View calendar</a></li>
                                 </ul>
                             </div>
                             <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
