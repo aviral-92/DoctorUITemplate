@@ -1,5 +1,5 @@
 /* Doctor Registeration */
-scotchApp.controller('doctorRegistration', function ($scope, $http, vcRecaptchaService, $interval, ajaxErrorControl) {
+scotchApp.controller('doctorRegistration', function ($scope, $http, vcRecaptchaService, $interval, popUpCalled) {
 
     $scope.spinner = false;
     $scope.confirm = false;
@@ -36,11 +36,13 @@ scotchApp.controller('doctorRegistration', function ($scope, $http, vcRecaptchaS
                         }
                     })
                     .error(function (error) {
-                        ajaxErrorControl.ajaxServiceDown();
+                        popUpCalled.popup('Under maintainance', 'Coming Soon');
+                        //ajaxErrorControl.ajaxServiceDown();
                     })
             }
         } catch (error) {
-            ajaxErrorControl.ajaxServiceDown();
+            popUpCalled.popup('Under maintainance', 'Coming Soon');
+            //ajaxErrorControl.ajaxServiceDown();
             /*$scope.spinner = false;
             $mdDialog.show(
                 $mdDialog.alert()

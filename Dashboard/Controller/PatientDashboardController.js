@@ -1,5 +1,12 @@
 scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, $window, $interval, popUpCalled, ajaxGetResponse) {
 
+    //For getting current Geo-Coordinates.
+    $window.navigator.geolocation.getCurrentPosition(function (position) {
+        console.log(position);
+        $window.localStorage.setItem('currentLatitude', JSON.stringify(position.coords.latitude));
+        $window.localStorage.setItem('currentLongitude', JSON.stringify(position.coords.longitude));
+    });
+
     var getPatients = $cookieStore.get('patientLoginData');
     $scope.name = getPatients.name;
     // need to add membership like created date.
