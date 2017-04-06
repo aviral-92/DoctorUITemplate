@@ -3,7 +3,10 @@ scotchApp.controller('doctorGeoLocation', function ($scope, $rootScope, $cookieS
     var currentLatitude = $window.localStorage.getItem('currentLatitude');
     var currentLongitude = $window.localStorage.getItem('currentLongitude');
     var doctorLocation = JSON.parse($window.localStorage.getItem('currentDoctor'));
-
+    navigator.geolocation.getCurrentPosition(function (p) {
+        var LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
+        console.log(LatLng);
+    });
     // map object
     $scope.map = {
         control: {},
