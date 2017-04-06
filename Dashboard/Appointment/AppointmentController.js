@@ -67,8 +67,8 @@ scotchApp.controller('viewPatientAppointment', function ($scope, $http, $window,
         }
     }
     $scope.doctors = viewAppointment;
-    
-     $scope.cancelAppointment = function (doctor) {
+
+    $scope.cancelAppointment = function (doctor) {
         var responseUpdate = ajaxGetResponse.cancelAppointmentById(doctor.appointmentId);
         responseUpdate.success(function (data) {
             //            console.log('responseUpdate');
@@ -78,6 +78,13 @@ scotchApp.controller('viewPatientAppointment', function ($scope, $http, $window,
         responseUpdate.error(function (data, status, headers, config) {
             console.log('failure');
         });
+    }
+    
+    //For Map
+    $scope.getCurrentDoctor = function(doctor){
+        
+        $window.localStorage.setItem('currentDoctor', angular.toJson(doctor));
+        $window.location.href = '#/map';
     }
 
 });

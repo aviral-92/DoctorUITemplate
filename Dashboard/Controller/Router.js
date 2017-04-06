@@ -1,4 +1,4 @@
-var scotchApp = angular.module('myApp', ['ngMaterial', 'ngMessages', 'ngRoute', 'ngCookies', 'mwl.calendar', 'ngAnimate', 'ui.bootstrap', 'colorpicker.module', 'angularUtils.directives.dirPagination']);
+var scotchApp = angular.module('myApp', ['ngMaterial', 'ngMessages', 'ngRoute', 'ngCookies', 'mwl.calendar', 'ngAnimate', 'ui.bootstrap', 'colorpicker.module', 'angularUtils.directives.dirPagination', 'google-maps']);
 
 scotchApp.config(function ($routeProvider) {
     $routeProvider
@@ -75,8 +75,8 @@ scotchApp.config(function ($routeProvider) {
             templateUrl: 'Dashboard/Appointment/PatientSearchAppointment.html',
             controller: 'patientAppointmentSearch as vm'
         })
-    
-    // route for Patient History page
+
+        // route for Patient History page
         .when('/patientAppointmentHistory', {
             templateUrl: 'Dashboard/Appointment/PatientAppointmentHistory.html',
             controller: 'patientAppointmentHistory'
@@ -85,6 +85,11 @@ scotchApp.config(function ($routeProvider) {
         .when('/viewPatientAppointment', {
             templateUrl: 'Dashboard/Appointment/ViewPatientAppointment.html',
             controller: 'viewPatientAppointment'
+        })
+
+        .when('/map', {
+            templateUrl: 'Dashboard/Map/Map.html',
+            controller: 'doctorGeoLocation'
         });
 
 });
