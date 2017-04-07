@@ -34,8 +34,8 @@
                             <td>{{doctorAppointment.patient.mobile}}</td>
                             <td>{{doctorAppointment.patient.email}}</td>
                             <td>{{doctorAppointment.appointmentDesc}}</td>
-                               <td><button ng-click="viewPatient(doctorAppointment)"><b>View</b> <i class="fa fa-medkit" style="color:red;"></i> <b>appointment</b></button></td>
-                            <td><button ng-click="cancelAppointment(doctorAppointment)"><b>Cancel</b> <i class="fa fa-medkit" style="color:red;"></i> <b>appointment</b></button></td>
+                              <td><button ng-click="viewPatient(doctorAppointment)" class="btn btn-success"> <b><i class="fa fa-medkit"></i></b></button></td>
+                            <td><button ng-click="cancelAppointment(doctorAppointment)"  class="btn btn-danger"><b><i class="fa fa-trash"></i></b></button></td>
                           </tr>
                         </tbody>
                       </table>
