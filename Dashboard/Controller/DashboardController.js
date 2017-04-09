@@ -1,5 +1,8 @@
-scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, $window, $interval, $rootScope, $window, ajaxGetResponse, popUpCalled) {
+scotchApp.controller('index', function ($scope, $route, $cookieStore, $mdDialog, $window, $interval, $rootScope, $window, ajaxGetResponse, popUpCalled) {
 
+    //for making ng-class active
+    $scope.$route = $route;
+    
     if ($cookieStore.get('doctorLoginData') == undefined) {
         $window.location.href = '/index.html#/loginPage';
     } else {
@@ -104,18 +107,76 @@ scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, 
     }
 });
 
-scotchApp.controller('home', function ($scope, $http, $cookieStore, $window, ajaxGetResponse, popUpCalled) {
+scotchApp.controller('home', function ($scope, $route, $cookieStore, $window, ajaxGetResponse, popUpCalled) {
 
-     $scope.click = function(){
+    $scope.click = function () {
         popUpCalled.popup('Under maintainance', 'Coming Soon');
-   }
-     
+    }
+
     if ($cookieStore.get('doctorLoginData') == undefined) {
         $window.location.href = '/index.html#/loginPage';
     }
     $scope.visible = false;
     var index = 0;
     $scope.url = "#/home";
+
+    //Profile completion code on Dashboard...
+    var getDoctors = $cookieStore.get('doctorLoginData');
+    //Calculate percentage dynamically...
+    if (getDoctors != null) {
+        var field = 6;
+        if (getDoctors.homeAddress != null &&
+            getDoctors.homeAddress != 'NA') {
+            field++;
+        }
+        if (getDoctors.highestDegree != null &&
+            getDoctors.highestDegree != 'NA') {
+            field++;
+        }
+        if (getDoctors.expertized != null &&
+            getDoctors.expertized != 'NA') {
+            field++;
+        }
+        if (getDoctors.isGovernmentServent != null &&
+            getDoctors.isGovernmentServent != 'NA') {
+            field++;
+        }
+        if (getDoctors.clinicAddress != null &&
+            getDoctors.clinicAddress != 'NA') {
+            field++;
+        }
+        if (getDoctors.oneTimeFee != null &&
+            getDoctors.oneTimeFee != '' &&
+            getDoctors.oneTimeFee != 'NA') {
+            field++;
+        }
+        if (getDoctors.daysCheckFree != null &&
+            getDoctors.daysCheckFree != 'NA') {
+            field++;
+        }
+        if (getDoctors.clinicName != null &&
+            getDoctors.clinicName != 'NA') {
+            field++;
+        }
+        if (getDoctors.dob != null &&
+            getDoctors.dob != 'NA') {
+            field++;
+        }
+        if (getDoctors.gender != null &&
+            getDoctors.gender != 'NA') {
+            field++;
+        }
+        //No need to check age as it will be calculated dynamically
+        /*if (getDoctors.age != null &&
+            getDoctors.age != 'NA') {
+            field++;
+        }*/
+        if (getDoctors.description != null &&
+            getDoctors.description != 'NA') {
+            field++;
+        }
+        $scope.percent = parseInt((field / 17) * 100) + '%';
+    }
 
     var todoServerResponse = ajaxGetResponse.getDoctorTodoList($cookieStore.get('doctorLoginData').did);
     todoServerResponse.success(function (todoData) {
@@ -171,6 +232,8 @@ scotchApp.controller('home', function ($scope, $http, $cookieStore, $window, aja
         });
         $scope.todoTastData = '';
     }
+
+
 
 });
 
@@ -323,7 +386,10 @@ scotchApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig,
 });
 
 /* ----Profile--- */
-scotchApp.controller('profile', function ($scope, $cookieStore, fileReader, $http, $window, $interval, popUpCalled, ajaxGetResponse) {
+scotchApp.controller('profile', function ($scope, $cookieStore, fileReader, $route, $window, $interval, popUpCalled, ajaxGetResponse) {
+
+    //for making class active
+    $scope.$route = $route;
     $scope.url = "#/profile";
     var getDoctors = $cookieStore.get('doctorLoginData');
     $scope.doctors = getDoctors
@@ -356,38 +422,12 @@ scotchApp.controller('profile', function ($scope, $cookieStore, fileReader, $htt
         var serverResponseUpdateDoctor = ajaxGetResponse.updateDoctorProfile(doctorUpdateValue);
         serverResponseUpdateDoctor.success(function (updateResponse) {
             $scope.successMessage = "Successfully Updated...!!!";
-
-            //No need to get again as while updating fields will already have data.
-
-            // setDoctorsOnHtml($cookieStore.get('doctorLoginData'));
             popUpCalled.popup('Doctor Updated', 'Doctor updated successfully...!!!');
-            /*$mdDialog.show(
-                $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#dialogContainer')))
-                .clickOutsideToClose(true)
-                .title('Doctor Updated')
-                .textContent('Doctor updated successfully...!!!')
-                .ariaLabel('Doctor updated successfully...!!!')
-                .ok('Ok!')
-
-            );*/
         });
         serverResponseUpdateDoctor.error(function (updateResponse, status, headers, config) {
             //            alert("failure message: " + updateResponse.message);
         });
     }
-
-    /*function setDoctorsOnHtml(doctorData) {
-        var serverResponseSuccess = ajaxGetResponse.getDoctorByEmail(doctorData.email);
-        serverResponseSuccess.success(function (data) {
-            $cookieStore.remove('doctorLoginData');
-            $cookieStore.put('doctorLoginData', data);
-            $scope.doctors = data;
-        });
-        serverResponseSuccess.error(function (data, status, headers, config) {
-              alert('ggg');
-        });
-    }*/
 
     //Calucate Age of Doctor
     var age = new Date().getYear() - new Date($scope.doctors.dob).getYear();
@@ -449,26 +489,8 @@ scotchApp.controller('profile', function ($scope, $cookieStore, fileReader, $htt
     }
 });
 
-/*scotchApp.controller('dateController', dateController);
- function dateController ($scope) {
-            $scope.myDate = new Date();
-            $scope.minDate = new Date(
-               $scope.myDate.getFullYear(),
-               $scope.myDate.getMonth() - 2,
-               $scope.myDate.getDate());
-            $scope.maxDate = new Date(
-               $scope.myDate.getFullYear(),
-               $scope.myDate.getMonth() + 2,
-               $scope.myDate.getDate());
-            $scope.onlyWeekendsPredicate = function(date) {
-               var day = date.getDay();
-               return day === 0 || day === 6;
-            }
-         }  */
-
 scotchApp.controller('signout', function ($scope, $cookieStore, $window) {
 
-    //$cookieStore.remove('email') ;
     if ($cookieStore.get('doctorLoginData') != undefined) {
         $cookieStore.remove('doctorLoginData');
     } else {

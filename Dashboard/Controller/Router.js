@@ -6,13 +6,15 @@ scotchApp.config(function ($routeProvider) {
         // route for the home page
         .when('/home', {
             templateUrl: 'Dashboard/pages/home.html',
-            controller: 'home'
+            controller: 'home',
+            activetab: 'docDashboard'
         })
 
         // route for the home page
         .when('/profile', {
             templateUrl: 'Dashboard/pages/profile.html',
-            controller: 'profile'
+            controller: 'profile',
+            activetab: 'docProfile'
         })
 
         /*// route for Calender page
@@ -24,7 +26,8 @@ scotchApp.config(function ($routeProvider) {
         // route for the Angular Calender page
         .when('/docCal', {
             templateUrl: 'Dashboard/calender/DoctorCalender.html',
-            controller: 'KitchenSinkCtrl as vm'
+            controller: 'KitchenSinkCtrl as vm',
+            activetab: 'docCalendar'
         })
 
         // route for the Angular Calender page
@@ -55,7 +58,8 @@ scotchApp.config(function ($routeProvider) {
         // route for Doctor Appointment
         .when('/doctorAppointment', {
             templateUrl: 'Dashboard/Appointment/DoctorAppointment.html',
-            controller: 'doctorAppointment'
+            controller: 'doctorAppointment',
+            activetab: 'docAppointment'
         })
 
         // route for doctor view patient and cancel Appointment also

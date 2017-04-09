@@ -164,6 +164,10 @@ scotchApp.controller('patientHome', function ($scope, $window, $cookieStore, pop
         });
     }
 
+    //Calling Calendar Service begin
+    
+    //Calling Calendar Service ends
+
     //Redirect to View Appointment Page.
     $scope.viewAppointment = function () {
         var serverResponse = ajaxGetResponse.getAppointmentByPatientId($cookieStore.get('patientLoginData').pId);
@@ -457,7 +461,7 @@ scotchApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig,
 
 });
 
-scotchApp.controller('Error404Controller', function($window){
-   
+scotchApp.controller('Error404Controller', function ($window) {
+
     $window.location.href = '../../ErrorPage.html';
 });
