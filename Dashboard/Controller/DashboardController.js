@@ -2,7 +2,7 @@ scotchApp.controller('index', function ($scope, $route, $cookieStore, $mdDialog,
 
     //for making ng-class active
     $scope.$route = $route;
-    
+
     if ($cookieStore.get('doctorLoginData') == undefined) {
         $window.location.href = '/index.html#/loginPage';
     } else {
@@ -266,7 +266,7 @@ scotchApp.factory('alert', function ($uibModal) {
     };
 });
 
-scotchApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig, $scope) {
+scotchApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig, $scope, $cookieStore, ajaxGetResponse, popUpCalled) {
 
     var vm = this;
     //These variables MUST be set as a minimum for the calendar to work
@@ -327,6 +327,24 @@ scotchApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig,
         });
     };
 
+    //Get events
+    var serverResponse = ajaxGetResponse.getCalendarDetailsByDoctorId($cookieStore.get('doctorLoginData').did);
+    serverResponse.success(function (calendarEvents) {
+        console.log(calendarEvents);
+        for (var i = 0; i < calendarEvents.length; i++) {
+            vm.events.push({
+                title: calendarEvents[i].calendarTitle,
+                startsAt: new Date(calendarEvents[i].startDate),
+                endsAt: new Date(calendarEvents[i].endDate),
+                calendarId: calendarEvents[i].calendarId
+            });
+        }
+    });
+    serverResponse.error(function (updateResponse, status, headers, config) {
+        popUpCalled.popup('Under Maintainance', 'Inconvinence regrected...!!!');
+        /*  alert("failure message: " + updateResponse.message);*/
+    });
+
     //TODO Ajax hit to Save or Update an event.
     vm.save = function (index) {
 
@@ -335,8 +353,17 @@ scotchApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig,
     }
 
     //TODO Ajax hit to delete an event.
-    vm.delete = function (index) {
+    vm.delete = function (index, event) {
 
+        var serverResponse = ajaxGetResponse.deleteCalendarEventByCalendarId(event);
+        serverResponse.success(function (calendarEvents) {
+            popUpCalled.popup('Deleted....', 'Successfully deleted...!!!');
+        });
+        serverResponse.error(function (updateResponse, status, headers, config) {
+            //TODO need to change in service, response is not coming in JSON format.
+            popUpCalled.popup('Under Maintainance', 'Inconvinence regrected...!!!');
+            /*  alert("failure message: " + updateResponse.message);*/
+        });
         vm.events.splice(index, 1);
     }
 

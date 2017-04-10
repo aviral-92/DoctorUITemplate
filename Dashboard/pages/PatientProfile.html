@@ -1,176 +1,168 @@
 <div class="content-wrapper">
+    <section class="content-header">
+        <h1 class="al-title ng-binding">
+            Profile <small>panel</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#/home"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Profile</li>
+        </ol>
+    </section>
+    <br>
+    <!--
 	<div class="al-content"></div>
 	<div class="content-top clearfix">
 		<h1 class="al-title ng-binding">Profile</h1>
 	</div>
-	<div ui-view autoscroll="true" autoscroll-body-top class="ng-scope">
-		<div ba-panel ba-panel-class="profile-page">
-			<div class="panel profile-page animated zoomIn">
-				<div class="panel-body">
-					<div class="panel-content">
-						<div class="progress-info">Your profile is {{percent}}
-							Complete</div>
-						<div class="progress">
-							<div
-								class="progress-bar progress-bar-primary progress-bar-striped active"
-								role="progressbar" aria-valuenow="5" aria-valuemin="0"
-								aria-valuemax="11" style="width: {{percent}}"></div>
-						</div>
-						<h3 class="page-header">General Information</h3>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group row clearfix">
-									<label for="inputFirstName" class="col-sm-3 control-label">Picture</label>
-									<div class="col-sm-9">
-										<div class="userpic">
-											<div class="userpic-wrapper">
-												<img ng-src={{patients.src}} ng-click="uploadPicture()"
-													width="150px" height="150px">
-											</div>
-											<!-- ngIf: !noPicture -->
-											<i class="ion-ios-close-outline ng-scope"
-												ng-click="removePicture()" ng-if="!noPicture"></i>
-											<!-- end ngIf: !noPicture -->
-											<a href="" class="change-userpic" ng-click="uploadPicture()">Change
-												Profile Picture</a> <input type="file" ng-show="false"
-												id="uploadFile" ng-file="onFileSelect($files)">
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6"></div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group row clearfix">
-									<label for="inputFirstName" class="col-sm-3 control-label">Name</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="inputFirstName"
-											ng-model="patients.name" placeholder="">
-										<!-- -- value="Anastasiya" -->
-									</div>
-								</div>
-								<div class="form-group row clearfix">
-									<label for="inputLastName" class="col-sm-3 control-label">Gender</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="inputLastName"
-											ng-model="patients.gender" placeholder="" value="">
-									</div>
-								</div>
-								<!--    <div class="form-group row clearfix">
+-->
+    <div ui-view autoscroll="true" autoscroll-body-top class="ng-scope">
+        <div ba-panel ba-panel-class="profile-page">
+            <div class="panel profile-page animated zoomIn">
+                <div class="panel-body">
+                    <div class="panel-content">
+                        <div class="progress-info">Your profile is {{percent}} Complete
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="11" style="width: {{percent}}"></div>
+                        </div>
+                        <h3 class="page-header">General Information</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row clearfix">
+                                    <label for="inputFirstName" class="col-sm-3 control-label">Picture</label>
+                                    <div class="col-sm-9">
+                                        <div class="userpic">
+                                            <div class="userpic-wrapper">
+                                                <img ng-src={{patients.src}} ng-click="uploadPicture()" width="150px" height="150px">
+                                            </div>
+                                            <!-- ngIf: !noPicture -->
+                                            <i class="ion-ios-close-outline ng-scope" ng-click="removePicture()" ng-if="!noPicture"></i>
+                                            <!-- end ngIf: !noPicture -->
+                                            <a href="" class="change-userpic" ng-click="uploadPicture()">Change
+												Profile Picture</a> <input type="file" ng-show="false" id="uploadFile" ng-file="onFileSelect($files)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row clearfix">
+                                    <label for="inputFirstName" class="col-sm-3 control-label">Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="inputFirstName" ng-model="patients.name" placeholder="">
+                                        <!-- -- value="Anastasiya" -->
+                                    </div>
+                                </div>
+                                <div class="form-group row clearfix">
+                                    <label for="inputLastName" class="col-sm-3 control-label">Gender</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="inputLastName" ng-model="patients.gender" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <!--    <div class="form-group row clearfix">
                            <label for="inputLastName" class="col-sm-3 control-label">Consulting Fees</label>
                            <div class="col-sm-9">
                               <input type="text" class="form-control" id="inputLastName" ng-model="doctors.oneTimeFee" placeholder="">
                               ------- value=""
                            </div>
                         </div> -->
-							</div>
-							<div class="col-md-6">
-								<div class="form-group row clearfix">
-									<label for="inputEmail3" class="col-sm-3 control-label">Email</label>
-									<div class="col-sm-9">
-										<input type="email" class="form-control" id="inputEmail3"
-											ng-model="patients.email" placeholder="">
-									</div>
-									<!--  value="contact@akveo.com"-->
-								</div>
-								<div class="form-group row clearfix">
-									<label for="inputPhone" class="col-sm-3 control-label">Mobile</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="inputPhone"
-											ng-model="patients.mobile" placeholder="">
-									</div>
-									<!-- - value="+1 (23) 456 7890" -->
-								</div>
-							</div>
-						</div>
-						<h3 class="page-header">Change Password</h3>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group row clearfix">
-									<label for="inputPassword" class="col-sm-3 control-label">Password</label>
-									<div class="col-sm-9">
-										<input type="password" class="form-control" id="inputPassword"
-											ng-model="patients.password" placeholder="">
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group row clearfix">
-									<label for="inputConfirmPassword"
-										class="col-sm-3 control-label">Confirm Password</label>
-									<div class="col-sm-9">
-										<input type="password" class="form-control"
-											id="inputConfirmPassword" ng-model="patients.confirmPassward" placeholder="">
-									</div>
-								</div>
-							</div>
-						</div>
-						<h3 class="page-header">Personal Information</h3>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group row clearfix">
-									<label for="inputEmail3" class="col-sm-3 control-label">Adhaar
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row clearfix">
+                                    <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" id="inputEmail3" ng-model="patients.email" placeholder="">
+                                    </div>
+                                    <!--  value="contact@akveo.com"-->
+                                </div>
+                                <div class="form-group row clearfix">
+                                    <label for="inputPhone" class="col-sm-3 control-label">Mobile</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="inputPhone" ng-model="patients.mobile" placeholder="">
+                                    </div>
+                                    <!-- - value="+1 (23) 456 7890" -->
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="page-header">Change Password</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row clearfix">
+                                    <label for="inputPassword" class="col-sm-3 control-label">Password</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" class="form-control" id="inputPassword" ng-model="patients.password" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row clearfix">
+                                    <label for="inputConfirmPassword" class="col-sm-3 control-label">Confirm Password</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" class="form-control" id="inputConfirmPassword" ng-model="patients.confirmPassward" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="page-header">Personal Information</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row clearfix">
+                                    <label for="inputEmail3" class="col-sm-3 control-label">Adhaar
 										Number</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="inputEmail3"
-											ng-model="patients.adhaar" placeholder="">
-									</div>
-									<!-- ----- value="123456789875" -->
-								</div>
-								<div class="form-group row clearfix">
-									<label for="inputPhone" class="col-sm-3 control-label">Home
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="inputEmail3" ng-model="patients.adhaar" placeholder="">
+                                    </div>
+                                    <!-- ----- value="123456789875" -->
+                                </div>
+                                <div class="form-group row clearfix">
+                                    <label for="inputPhone" class="col-sm-3 control-label">Home
 										Address</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="inputPhone"
-											ng-model="patients.homeAddress" placeholder="">
-									</div>
-									<!-- --- value="Delhi" -->
-								</div>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="inputPhone" ng-model="patients.homeAddress" placeholder="">
+                                    </div>
+                                    <!-- --- value="Delhi" -->
+                                </div>
 
-								<div class="form-group row clearfix">
-									<label for="inputRoom" class="col-sm-3 control-label">DOB</label>
-									<div class="col-sm-9">
-										<md-content> <md-datepicker
-											ng-model="patients.dob" md-placeholder="Enter date"></md-datepicker>
-										</md-content>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group row clearfix">
-									<label for="inputPhone" class="col-sm-3 control-label">Age</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="inputPhone"
-											ng-model="patients.age" placeholder="" ng-disabled="true">
-									</div>
-								</div>
+                                <div class="form-group row clearfix">
+                                    <label for="inputRoom" class="col-sm-3 control-label">DOB</label>
+                                    <div class="col-sm-9">
+                                        <md-content>
+                                            <md-datepicker ng-model="patients.dob" md-placeholder="Enter date"></md-datepicker>
+                                        </md-content>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row clearfix">
+                                    <label for="inputPhone" class="col-sm-3 control-label">Age</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="inputPhone" ng-model="patients.age" placeholder="" ng-disabled="true">
+                                    </div>
+                                </div>
 
-								<div class="form-group row clearfix">
-									<label for="inputPhone" class="col-sm-3 control-label">Allergies</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="inputPhone"
-											ng-model="patients.allergies" placeholder="">
-									</div>
-								</div>
-								<div class="form-group row clearfix">
-									<label for="inputRoom" class="col-sm-3 control-label">Description</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="inputRoom"
-											ng-model="patients.description" placeholder="">
-									</div>
-								</div>
-							</div>
-						</div>
+                                <div class="form-group row clearfix">
+                                    <label for="inputPhone" class="col-sm-3 control-label">Allergies</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="inputPhone" ng-model="patients.allergies" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group row clearfix">
+                                    <label for="inputRoom" class="col-sm-3 control-label">Description</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="inputRoom" ng-model="patients.description" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-						<button type="button"
-							class="btn btn-primary btn-with-icon save-profile"
-							ng-click="patientUpdate(patients)">
+                        <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="patientUpdate(patients)">
 							<i class="ion-android-checkmark-circle"></i>Update Profile
 						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

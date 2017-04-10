@@ -1,5 +1,6 @@
-scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, $window, $interval, popUpCalled, ajaxGetResponse) {
+scotchApp.controller('index', function ($scope,$route, $http, $cookieStore, $mdDialog, $window, $interval, popUpCalled, ajaxGetResponse) {
 
+      $scope.$route = $route;
     //For getting current Geo-Coordinates.
     $window.navigator.geolocation.getCurrentPosition(function (position) {
         console.log(position);
