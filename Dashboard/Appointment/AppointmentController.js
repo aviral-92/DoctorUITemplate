@@ -25,17 +25,15 @@ scotchApp.controller('doctorAppointment', function ($scope, $http, $window, $loc
             popUpCalled.popup('Service Down for Maintainance', 'We will be back in a while');
         });
     }
-    var getResponse = ajaxGetResponse.getAppointmentByDoctorId(doctorAppointment.did);
-    $scope.spinner = true;
-    getResponse.success(function (data) {
-        $scope.spinner = false;
-        console.log('success');
-        //            popUpCalled.popup('Appointment Cancel', 'Successfully..!!!!');
-    });
-    getResponse.error(function (data, status, headers, config) {
-        $scope.spinner = false;
-        //            popUpCalled.popup('Service Down for Maintainance', 'We will be back in a while');
-    });
+    /* var getResponse = ajaxGetResponse.getAppointmentByDoctorId(doctorAppointment.did);
+     $scope.spinner = true;
+     getResponse.success(function (data) {
+         $scope.spinner = false;
+         console.log('success');
+     });
+     getResponse.error(function (data, status, headers, config) {
+         $scope.spinner = false;
+     });*/
 });
 
 scotchApp.controller('doctorCancelAppointment', function ($scope, $http, $rootScope, $window, ajaxGetResponse, popUpCalled, $route) {
