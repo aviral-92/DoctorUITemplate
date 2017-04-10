@@ -1,5 +1,6 @@
-scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, $window, $interval, popUpCalled, ajaxGetResponse) {
+scotchApp.controller('index', function ($scope, $route, $http, $cookieStore, $mdDialog, $window, $interval, popUpCalled, ajaxGetResponse) {
 
+    $scope.$route = $route;
     //For getting current Geo-Coordinates.
     $window.navigator.geolocation.getCurrentPosition(function (position) {
         console.log(position);
@@ -104,7 +105,7 @@ scotchApp.controller('index', function ($scope, $http, $cookieStore, $mdDialog, 
     }
 });
 
-scotchApp.controller('patientHome', function ($scope, $window, $cookieStore, popUpCalled, ajaxGetResponse) {
+scotchApp.controller('patientHome', function ($scope, $route, $window, $cookieStore, popUpCalled, ajaxGetResponse) {
 
     $scope.click = function () {
         popUpCalled.popup('Under maintainance', 'Coming Soon');
@@ -123,6 +124,37 @@ scotchApp.controller('patientHome', function ($scope, $window, $cookieStore, pop
     todoServerResponse.error(function (todoData) {
         alert("failure");
     });
+    var getPatients = $cookieStore.get('patientLoginData');
+    if (getPatients != null) {
+        var field = 5;
+        if (getPatients.patientHomeAddress != null &&
+            getPatients.patientHomeAddress != 'NA') {
+            field++;
+        }
+        if (getPatients.dob != null &&
+            getPatients.dob != 'NA') {
+            field++;
+        }
+        if (getPatients.gender != null &&
+            getPatients.gender != 'NA') {
+            field++;
+        }
+        if (getPatients.age != null &&
+            getPatients.age != 'NA') {
+            field++;
+        }
+        if (getPatients.description != null &&
+            getPatients.description != 'NA') {
+            field++;
+        }
+        if (getPatients.allergies != null &&
+            getPatients.allergies != 'NA') {
+            field++;
+        }
+        $scope.percent = parseInt((field / 10) * 100) + '%';
+        //TODO need to change 10 to 11 , if it's necessary...!!!
+    }
+
     $scope.updateTodo = function (todoData) {
 
 
@@ -164,6 +196,10 @@ scotchApp.controller('patientHome', function ($scope, $window, $cookieStore, pop
         });
     }
 
+    //Calling Calendar Service begin
+
+    //Calling Calendar Service ends
+
     //Redirect to View Appointment Page.
     $scope.viewAppointment = function () {
         var serverResponse = ajaxGetResponse.getAppointmentByPatientId($cookieStore.get('patientLoginData').pId);
@@ -182,8 +218,8 @@ scotchApp.controller('patientHome', function ($scope, $window, $cookieStore, pop
     }
 });
 
-scotchApp.controller('patientProfile', function ($scope, $cookieStore, fileReader, $http, $window, $interval, popUpCalled, ajaxGetResponse) {
-
+scotchApp.controller('patientProfile', function ($scope, $route, $cookieStore, fileReader, $http, $window, $interval, popUpCalled, ajaxGetResponse) {
+    $scope.$route = $route;
     $scope.url = "#/patientProfile";
     var getPatients = $cookieStore.get('patientLoginData');
 
@@ -457,7 +493,7 @@ scotchApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig,
 
 });
 
-scotchApp.controller('Error404Controller', function($window){
-   
+scotchApp.controller('Error404Controller', function ($window) {
+
     $window.location.href = '../../ErrorPage.html';
 });

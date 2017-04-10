@@ -6,13 +6,15 @@ scotchApp.config(function ($routeProvider) {
         // route for the home page
         .when('/home', {
             templateUrl: 'Dashboard/pages/home.html',
-            controller: 'home'
+            controller: 'home',
+            activetab: 'docDashboard'
         })
 
         // route for the home page
         .when('/profile', {
             templateUrl: 'Dashboard/pages/profile.html',
-            controller: 'profile'
+            controller: 'profile',
+            activetab: 'docProfile'
         })
 
         /*// route for Calender page
@@ -24,20 +26,23 @@ scotchApp.config(function ($routeProvider) {
         // route for the Angular Calender page
         .when('/docCal', {
             templateUrl: 'Dashboard/calender/DoctorCalender.html',
-            controller: 'KitchenSinkCtrl as vm'
+            controller: 'KitchenSinkCtrl as vm',
+            activetab: 'docCalendar'
         })
 
         // route for the Angular Calender page
         .when('/patientCal', {
             templateUrl: 'Dashboard/calender/PatientCalender.html',
-            controller: 'KitchenSinkCtrl as vm'
+            controller: 'KitchenSinkCtrl as vm',
+            activetab: 'patientCalendar'
         })
 
         // Doctor Dashboard
         // route for the home page
         .when('/patientHome', {
             templateUrl: 'Dashboard/pages/PatientHome.html',
-            controller: 'patientHome'
+            controller: 'patientHome',
+            activetab: 'patientDashboard'
         })
 
         // route for Logout page
@@ -49,13 +54,15 @@ scotchApp.config(function ($routeProvider) {
         // route for the home page
         .when('/patientProfile', {
             templateUrl: 'Dashboard/pages/PatientProfile.html',
-            controller: 'patientProfile'
+            controller: 'patientProfile',
+            activetab: 'patientProfile'
         })
 
         // route for Doctor Appointment
         .when('/doctorAppointment', {
             templateUrl: 'Dashboard/Appointment/DoctorAppointment.html',
-            controller: 'doctorAppointment'
+            controller: 'doctorAppointment',
+            activetab: 'docAppointment'
         })
 
         // route for doctor view patient and cancel Appointment also
@@ -67,7 +74,8 @@ scotchApp.config(function ($routeProvider) {
         // route for Patient Appointment
         .when('/patientAppointment', {
             templateUrl: 'Dashboard/Appointment/PatientBookAppointment.html',
-            controller: 'patientAppointmentBook'
+            controller: 'patientAppointmentBook',
+            activetab: 'patientAppointment'
         })
 
         // route for Patient new appointment page

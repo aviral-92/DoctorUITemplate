@@ -77,7 +77,14 @@
     <script src="Dashboard/Appointment/AppointmentController.js"></script>
     <!-- Angular Calender Closing -->
 
-
+    <!-- Map  -->
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script src="https://rawgit.com/lodash/lodash/2.4.1/dist/lodash.underscore.min.js"></script>
+    <script src="https://rawgit.com/nlaplante/angular-google-maps/1.1.4/dist/angular-google-maps.min.js"></script>
+    <link href="Dashboard/Map/Map.css" rel="stylesheet">
+    <script src="Dashboard/Map/Map.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnhPcXzp60EM1wWnrmxFHKrxZxVX472e8&callback=initMap" type="text/javascript"></script>
+    <!-- Map  -->
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -114,23 +121,9 @@
                                             <a ng-click="getNotofication(notify)"> <i class="fa fa-users text-aqua"></i> {{notify.notiyfMessage}}
                                             </a>
                                         </li>
-
-                                        <!--<li><a href="#"> <i class="fa fa-warning text-yellow"></i>
-												Very long description here that may not fit into the page
-												and may cause design problems
-										</a></li>
-										<li><a href="#"> <i class="fa fa-users text-red"></i>
-												5 new members joined
-										</a></li>
-										<li><a href="#"> <i
-												class="fa fa-shopping-cart text-green"></i> 25 sales made
-										</a></li>
-										<li><a href="#"> <i class="fa fa-user text-red"></i>
-												You changed your username
-										</a></li>-->
                                     </ul>
                                 </li>
-                                <!--								<li class="footer"><a href="#">View all</a></li>-->
+
                             </ul>
                         </li>
                         <!-- Tasks: style can be found in dropdown.less -->
@@ -211,41 +204,24 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
                     <li class="header">MAIN NAVIGATION</li>
-                    <li class="active treeview">
-                        <!--<ul class="treeview-menu">-->
-                        <li class="active"><a href="#/home"><i
-							class="fa fa-circle-o"></i> <span>Dashboard</span></a></li>
-                        <!--<li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>-->
-                        <!--</ul>-->
-                    </li>
+                    <li class="active treeview"></li>
+                        <!--<ul class="treeview-menu"> -->
+                        <li ng-class="{active: $route.current.activetab == 'docDashboard'}"> <a href="#/home"><i class="fa fa-circle-o"></i> <span>Dashboard</span></a>
+                        </li>
+                    
 
-                    <!--<li><a href="Dashboard/pages/CalendarRoute.html"> <i class="fa fa-calendar"></i> <span>Calendar</span>
-							 <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
-              <small class="label pull-right bg-blue">17</small>
-            </span> 
-					</a></li>-->
-
-                    <li>
-                        <a href="#/docCal"> <i class="fa fa-calendar"></i> <span>Angular Calendar</span>
-                            <!-- <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
-              <small class="label pull-right bg-blue">17</small>
-            </span> -->
+                    <li ng-class="{active: $route.current.activetab == 'docCalendar'}">
+                        <a href="#/docCal"> <i class="fa fa-calendar"></i> <span> Calendar</span>
                         </a>
                     </li>
 
-                    <li>
+                    <li ng-class="{active: $route.current.activetab == 'docAppointment'}">
                         <a href="" ng-click="btnClick()"> <i class="fa fa-calendar"></i> <span>Appointment</span>
                         </a>
                     </li>
-                    <li>
+                    <li ng-class="{active: $route.current.activetab == 'docProfile'}">
                         <a href="#/profile"> <i class="fa fa-check-square-o"></i>
                             <span>Profile</span>
-                            <!--  <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
-              <small class="label pull-right bg-blue">17</small>
-            </span> -->
                         </a>
                     </li>
 
@@ -261,7 +237,7 @@
             <div class="pull-right hidden-xs">
                 <b>Version</b> 2.3.8
             </div>
-            <strong>Copyright &copy; 2014-2016 </strong> All rights reserved.
+            <strong>Copyright &copy; 2017 </strong> All rights reserved.
         </footer>
 
         <!-- jQuery 2.2.3 -->
@@ -306,6 +282,7 @@
         <script src="Dashboard/Controller/EditDirective.js"></script>
         <script type="text/javascript" src="Services/AjaxGetServiceResponse.js"></script>
         <script type="text/javascript" src="Services/PopUpAlertService.js"></script>
+    </div>
 </body>
 
 </html>
