@@ -266,7 +266,7 @@ scotchApp.factory('alert', function ($uibModal) {
     };
 });
 
-scotchApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig, $scope, $cookieStore, ajaxGetResponse, popUpCalled) {
+scotchApp.controller('KitchenSinkCtrl', function ($scope, moment, alert, calendarConfig, $scope, $cookieStore, ajaxGetResponse, popUpCalled) {
 
     var vm = this;
     //These variables MUST be set as a minimum for the calendar to work
@@ -348,6 +348,23 @@ scotchApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig,
     //TODO Ajax hit to Save or Update an event.
     vm.save = function (index) {
 
+        // Making Calendar Event object...
+        var doctorCalendarEvent = {
+            "startDate": vm.events[index].startsAt,
+            "endDate": vm.events[index].endsAt,
+            "calendarTitle": vm.events[index].title,
+            "dId": $cookieStore.get('doctorLoginData').did,
+            "calendarEventId": vm.events[index].calendarEventId
+        };
+        var addCalendarEvent = ajaxGetResponse.addCalendarEventByDoctorId(doctorCalendarEvent);
+        addCalendarEvent.success(function (data) {
+            popUpCalled.popup('Calendar Event created....', 'Successfully...!!!');
+        });
+        addCalendarEvent.error(function (updateResponse, status, headers, config) {
+            //TODO need to change in service, response is not coming in JSON format.
+            popUpCalled.popup('Under Maintainance', 'Inconvinence regrected...!!!');
+            /*  alert("failure message: " + updateResponse.message);*/
+        });
         console.log(vm.events[index]);
         console.log($scope.hours);
     }

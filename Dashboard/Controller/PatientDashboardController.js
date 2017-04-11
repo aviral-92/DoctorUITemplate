@@ -21,7 +21,7 @@ scotchApp.controller('index', function ($scope, $route, $http, $cookieStore, $md
         getNotification(getPatients);
         console.log('Calling again and again' + i);
         i++;
-    }, 30000);
+    }, 200000);
     //Calling Ends for every 30 seconds to check whether there is any notification or not.
     getMessages(getPatients);
 
@@ -103,7 +103,7 @@ scotchApp.controller('index', function ($scope, $route, $http, $cookieStore, $md
             $scope.spinner = false;
         });
     }
-    
+
     // TODO list
     var todoServerResponse = ajaxGetResponse.getPatientTodoList($cookieStore.get('patientLoginData').pId);
     todoServerResponse.success(function (todoData) {
@@ -121,14 +121,14 @@ scotchApp.controller('patientHome', function ($scope, $route, $window, $cookieSt
     $scope.click = function () {
         popUpCalled.popup('Under maintainance', 'Coming Soon');
     }
-    
+
     $scope.todoList = JSON.parse($window.localStorage.getItem('patientTodoList'));
-    
+
     $scope.visible = false;
     var index = 0;
     $scope.url = "#/patientHome";
     console.log('data' + $cookieStore.get('patientLoginData').pId);
-    
+
     var getPatients = $cookieStore.get('patientLoginData');
     if (getPatients != null) {
         var field = 5;
@@ -224,7 +224,7 @@ scotchApp.controller('patientHome', function ($scope, $route, $window, $cookieSt
 });
 
 scotchApp.controller('patientProfile', function ($scope, $route, $cookieStore, fileReader, $http, $window, $interval, popUpCalled, ajaxGetResponse) {
-    
+
     $scope.$route = $route;
     $scope.url = "#/patientProfile";
     var getPatients = $cookieStore.get('patientLoginData');
@@ -352,7 +352,7 @@ scotchApp.factory('alert', function ($uibModal) {
     };
 });
 
-scotchApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig, ajaxGetResponse, $cookieStore, popUpCalled) {
+scotchApp.controller('KitchenSinkCtrl', function ($scope, moment, alert, calendarConfig, ajaxGetResponse, $cookieStore, popUpCalled) {
 
     var vm = this;
     //These variables MUST be set as a minimum for the calendar to work
@@ -434,6 +434,23 @@ scotchApp.controller('KitchenSinkCtrl', function (moment, alert, calendarConfig,
 
     //TODO Ajax hit to Save or Update an event.
     vm.save = function (index) {
+        
+        // Making Calendar Event object...
+        var patientCalendarEvent = {
+            "startDate": vm.events[index].startsAt,
+            "endDate": vm.events[index].endsAt,
+            "calendarTitle": vm.events[index].title,
+            "pId": $cookieStore.get('patientLoginData').pId
+        };
+        var addCalendarEvent = ajaxGetResponse.addCalendarEventByPatientId(patientCalendarEvent);
+        addCalendarEvent.success(function (data) {
+            popUpCalled.popup('Calendar Event created....', 'Successfully...!!!');
+        });
+        addCalendarEvent.error(function (updateResponse, status, headers, config) {
+            //TODO need to change in service, response is not coming in JSON format.
+            popUpCalled.popup('Under Maintainance', 'Inconvinence regrected...!!!');
+            /*  alert("failure message: " + updateResponse.message);*/
+        });
 
         console.log(vm.events[index]);
         console.log($scope.hours);
