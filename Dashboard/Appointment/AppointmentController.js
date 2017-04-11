@@ -1,16 +1,10 @@
-scotchApp.controller('doctorAppointment', function ($scope, $http, $window, $location, $rootScope, $location, popUpCalled, ajaxGetResponse) {
+scotchApp.controller('doctorAppointment', function ($scope, $cookieStore, $window, $location, popUpCalled, ajaxGetResponse) {
 
-    //var doctorAppointment = $rootScope.getDoctorAppointment;
-    var doctorAppointment = JSON.parse($window.localStorage.getItem('getDoctorAppointment'));
-    console.log('Appointment Data');
-    console.log(doctorAppointment);
-    $scope.doctorAppointments = doctorAppointment;
+    refreshAppointmentDetails($cookieStore.get('doctorLoginData').did);
 
     $scope.viewPatient = function (doctorAppointment) {
         console.log(doctorAppointment);
-        //$rootScope.patientObj = doctorAppointment;
         $window.localStorage.setItem('patientObj', angular.toJson(doctorAppointment));
-        //cancel appointment ned to check it
         //cancel appointment ned to check it
         $location.path('/doctorCancelAppointment');
     }
@@ -19,26 +13,33 @@ scotchApp.controller('doctorAppointment', function ($scope, $http, $window, $loc
         var responseUpdate = ajaxGetResponse.cancelAppointmentById(PatientDetails.appointmentId);
         responseUpdate.success(function (data) {
             console.log('success');
+            refreshAppointmentDetails($cookieStore.get('doctorLoginData').did);
             popUpCalled.popup('Appointment Cancel', 'Successfully..!!!!');
         });
         responseUpdate.error(function (data, status, headers, config) {
             popUpCalled.popup('Service Down for Maintainance', 'We will be back in a while');
         });
     }
-    /* var getResponse = ajaxGetResponse.getAppointmentByDoctorId(doctorAppointment.did);
-     $scope.spinner = true;
-     getResponse.success(function (data) {
-         $scope.spinner = false;
-         console.log('success');
-     });
-     getResponse.error(function (data, status, headers, config) {
-         $scope.spinner = false;
-     });*/
+
+    function refreshAppointmentDetails(dId) {
+        var getAppointmentResponse = ajaxGetResponse.getAppointmentByDoctorId(dId);
+        //$scope.spinner = true;
+        getAppointmentResponse.success(function (appointment) {
+            //$scope.spinner = false;
+            $window.localStorage.setItem('getDoctorAppointment', angular.toJson(appointment));
+            console.log('success');
+            console.log(appointment);
+            $scope.doctorAppointments = appointment;
+        });
+        getAppointmentResponse.error(function (data, status, headers, config) {
+            //$scope.spinner = false;
+            console.error('Error');
+        });
+    }
 });
 
 scotchApp.controller('doctorCancelAppointment', function ($scope, $http, $rootScope, $window, ajaxGetResponse, popUpCalled, $route) {
 
-    //var getPatient = $rootScope.patientObj;
     var getPatient = JSON.parse($window.localStorage.getItem('patientObj'));
     console.log(getPatient);
     $scope.doctor = getPatient;

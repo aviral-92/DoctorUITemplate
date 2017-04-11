@@ -219,6 +219,7 @@ scotchApp.controller('patientHome', function ($scope, $route, $window, $cookieSt
 });
 
 scotchApp.controller('patientProfile', function ($scope, $route, $cookieStore, fileReader, $http, $window, $interval, popUpCalled, ajaxGetResponse) {
+    
     $scope.$route = $route;
     $scope.url = "#/patientProfile";
     var getPatients = $cookieStore.get('patientLoginData');
