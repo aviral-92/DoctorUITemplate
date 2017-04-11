@@ -103,6 +103,17 @@ scotchApp.controller('index', function ($scope, $route, $http, $cookieStore, $md
             $scope.spinner = false;
         });
     }
+    
+    // TODO list
+    var todoServerResponse = ajaxGetResponse.getPatientTodoList($cookieStore.get('patientLoginData').pId);
+    todoServerResponse.success(function (todoData) {
+        console.log(todoData);
+        $window.localStorage.setItem('patientTodoList', angular.toJson(todoData));
+        //alert("success");
+    });
+    todoServerResponse.error(function (todoData) {
+        alert("failure");
+    });
 });
 
 scotchApp.controller('patientHome', function ($scope, $route, $window, $cookieStore, popUpCalled, ajaxGetResponse) {
@@ -110,20 +121,14 @@ scotchApp.controller('patientHome', function ($scope, $route, $window, $cookieSt
     $scope.click = function () {
         popUpCalled.popup('Under maintainance', 'Coming Soon');
     }
-
+    
+    $scope.todoList = JSON.parse($window.localStorage.getItem('patientTodoList'));
+    
     $scope.visible = false;
     var index = 0;
     $scope.url = "#/patientHome";
     console.log('data' + $cookieStore.get('patientLoginData').pId);
-    var todoServerResponse = ajaxGetResponse.getPatientTodoList($cookieStore.get('patientLoginData').pId);
-    todoServerResponse.success(function (todoData) {
-        console.log(todoData);
-        $scope.todoList = todoData;
-        //alert("success");
-    });
-    todoServerResponse.error(function (todoData) {
-        alert("failure");
-    });
+    
     var getPatients = $cookieStore.get('patientLoginData');
     if (getPatients != null) {
         var field = 5;
@@ -151,7 +156,7 @@ scotchApp.controller('patientHome', function ($scope, $route, $window, $cookieSt
             getPatients.allergies != 'NA') {
             field++;
         }
-        $scope.percent = parseInt((field / 10) * 100) + '%';
+        $scope.percent = parseInt((field / 11) * 100) + '%';
         //TODO need to change 10 to 11 , if it's necessary...!!!
     }
 

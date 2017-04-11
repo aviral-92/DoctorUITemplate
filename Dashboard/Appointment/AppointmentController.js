@@ -204,6 +204,7 @@ scotchApp.controller('patientAppointmentBook', function ($scope, $http, $rootSco
             notifyDoctor(sendNotification);
             addCalendarEvents(calendarEvent);
             popUpCalled.popup('Appointment Booked', 'Your Appointment has been booked');
+             $window.location.href = "#/viewPatientAppointment";
         });
         response.error(function (data, status, headers, config) {
             console.log('Booking appointment failed');
