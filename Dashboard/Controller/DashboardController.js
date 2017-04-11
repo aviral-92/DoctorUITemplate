@@ -105,6 +105,15 @@ scotchApp.controller('index', function ($scope, $route, $cookieStore, $mdDialog,
             });
         }
     }
+    //for todolist
+    var todoServerResponse = ajaxGetResponse.getDoctorTodoList($cookieStore.get('doctorLoginData').did);
+    todoServerResponse.success(function (todoData) {
+        console.log(todoData);
+        $window.localStorage.setItem('doctorToDoList', angular.toJson(todoData));
+    });
+    todoServerResponse.error(function (todoData) {
+        alert("failure");
+    });
 });
 
 scotchApp.controller('home', function ($scope, $route, $cookieStore, $window, ajaxGetResponse, popUpCalled) {
@@ -112,6 +121,8 @@ scotchApp.controller('home', function ($scope, $route, $cookieStore, $window, aj
     $scope.click = function () {
         popUpCalled.popup('Under maintainance', 'Coming Soon');
     }
+    //for todolist
+    $scope.todoList = JSON.parse($window.localStorage.getItem('doctorToDoList'));
 
     if ($cookieStore.get('doctorLoginData') == undefined) {
         $window.location.href = '/index.html#/loginPage';
@@ -177,15 +188,6 @@ scotchApp.controller('home', function ($scope, $route, $cookieStore, $window, aj
         }
         $scope.percent = parseInt((field / 17) * 100) + '%';
     }
-
-    var todoServerResponse = ajaxGetResponse.getDoctorTodoList($cookieStore.get('doctorLoginData').did);
-    todoServerResponse.success(function (todoData) {
-        console.log(todoData);
-        $scope.todoList = todoData;
-    });
-    todoServerResponse.error(function (todoData) {
-        alert("failure");
-    });
 
     $scope.updateTodo = function (todoData) {
         var updateJsonObj = {
