@@ -21,7 +21,7 @@ scotchApp.controller('index', function ($scope, $route, $http, $cookieStore, $md
         getNotification(getPatients);
         console.log('Calling again and again' + i);
         i++;
-    }, 200000);
+    }, 120000);
     //Calling Ends for every 30 seconds to check whether there is any notification or not.
     getMessages(getPatients);
 

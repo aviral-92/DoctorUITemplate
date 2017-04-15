@@ -23,7 +23,7 @@ scotchApp.controller('index', function ($scope, $route, $cookieStore, $mdDialog,
             getNotification(getDoctors);
             console.log('Calling again and again' + i);
             i++;
-        }, 30000);
+        }, 120000);
         getMessages(getDoctors);
 
         $scope.getNotofication = function (notify) {
@@ -438,8 +438,10 @@ scotchApp.controller('profile', function ($scope, $cookieStore, fileReader, $rou
     $scope.$route = $route;
     $scope.url = "#/profile";
     var getDoctors = $cookieStore.get('doctorLoginData');
-    $scope.doctors = getDoctors
+    $scope.doctors = getDoctors;
     $scope.doctors.dob = new Date($scope.doctors.dob);
+    calculateAge();
+    calculatePercentage();
     $scope.uploadPicture = function () {
         var fileInput = document.getElementById('uploadFile');
         fileInput.click();
@@ -452,86 +454,110 @@ scotchApp.controller('profile', function ($scope, $cookieStore, fileReader, $rou
             });
     };
     $scope.doctorUpdate = function (doctorUpdateValue) {
-        console.log(doctorUpdateValue);
 
+        doctorUpdateValue.dId = doctorUpdateValue.did;
+        //delete doctorUpdateValue.did;
+        delete doctorUpdateValue.age;
+        delete doctorUpdateValue.src;
+        var mobile, adhaar, email;
         if (getDoctors.mobile == doctorUpdateValue.mobile) {
+            mobile = doctorUpdateValue.mobile;
             delete doctorUpdateValue.mobile;
         }
         if (getDoctors.email == doctorUpdateValue.email) {
+            email = doctorUpdateValue.email;
             delete doctorUpdateValue.email;
         }
         if (getDoctors.aadhaarNumber == doctorUpdateValue.aadhaarNumber) {
+            adhaar = doctorUpdateValue.aadhaarNumber;
             delete doctorUpdateValue.aadhaarNumber;
         }
-
-        //TODO need to change cookies from loginData to doctorLoginData.
-        var serverResponseUpdateDoctor = ajaxGetResponse.updateDoctorProfile(doctorUpdateValue);
+        var tempDoctorObjJson = JSON.stringify(doctorUpdateValue);
+        console.log(tempDoctorObjJson);
+        var serverResponseUpdateDoctor = ajaxGetResponse.updateDoctorProfile(tempDoctorObjJson);
         serverResponseUpdateDoctor.success(function (updateResponse) {
             $scope.successMessage = "Successfully Updated...!!!";
             popUpCalled.popup('Doctor Updated', 'Doctor updated successfully...!!!');
+            if (mobile != undefined) {
+                getDoctors.mobile = mobile;
+            }
+            if (email != undefined) {
+                getDoctors.email = email;
+            }
+            if (adhaar != undefined) {
+                getDoctors.aadhaarNumber = adhaar;
+            }
+            $cookieStore.remove('doctorLoginData');
+            $cookieStore.put('doctorLoginData',getDoctors);
+            console.log(getDoctors);
+            calculatePercentage();
+            calculateAge();
         });
         serverResponseUpdateDoctor.error(function (updateResponse, status, headers, config) {
-            //            alert("failure message: " + updateResponse.message);
+            // alert("failure message: " + updateResponse.message);
         });
     }
 
     //Calucate Age of Doctor
-    var age = new Date().getYear() - new Date($scope.doctors.dob).getYear();
-    $scope.doctors.age = age;
-
+    function calculateAge() {
+        var age = new Date().getYear() - new Date($scope.doctors.dob).getYear();
+        $scope.doctors.age = age;
+    }
     //Calculate percentage dynamically...
-    if (getDoctors != null) {
-        var field = 5;
-        if (getDoctors.homeAddress != null &&
-            getDoctors.homeAddress != 'NA') {
-            field++;
+    function calculatePercentage() {
+        if (getDoctors != null) {
+            var field = 5;
+            if (getDoctors.homeAddress != null &&
+                getDoctors.homeAddress != 'NA') {
+                field++;
+            }
+            if (getDoctors.highestDegree != null &&
+                getDoctors.highestDegree != 'NA') {
+                field++;
+            }
+            if (getDoctors.expertized != null &&
+                getDoctors.expertized != 'NA') {
+                field++;
+            }
+            if (getDoctors.isGovernmentServent != null &&
+                getDoctors.isGovernmentServent != 'NA') {
+                field++;
+            }
+            if (getDoctors.clinicAddress != null &&
+                getDoctors.clinicAddress != 'NA') {
+                field++;
+            }
+            if (getDoctors.oneTimeFee != null &&
+                getDoctors.oneTimeFee != '' &&
+                getDoctors.oneTimeFee != 'NA') {
+                field++;
+            }
+            if (getDoctors.daysCheckFree != null &&
+                getDoctors.daysCheckFree != 'NA') {
+                field++;
+            }
+            if (getDoctors.clinicName != null &&
+                getDoctors.clinicName != 'NA') {
+                field++;
+            }
+            if (getDoctors.dob != null &&
+                getDoctors.dob != 'NA') {
+                field++;
+            }
+            if (getDoctors.gender != null &&
+                getDoctors.gender != 'NA') {
+                field++;
+            }
+            if (getDoctors.age != null &&
+                getDoctors.age != 'NA') {
+                field++;
+            }
+            if (getDoctors.description != null &&
+                getDoctors.description != 'NA') {
+                field++;
+            }
+            $scope.percent = parseInt((field / 17) * 100) + '%';
         }
-        if (getDoctors.highestDegree != null &&
-            getDoctors.highestDegree != 'NA') {
-            field++;
-        }
-        if (getDoctors.expertized != null &&
-            getDoctors.expertized != 'NA') {
-            field++;
-        }
-        if (getDoctors.isGovernmentServent != null &&
-            getDoctors.isGovernmentServent != 'NA') {
-            field++;
-        }
-        if (getDoctors.clinicAddress != null &&
-            getDoctors.clinicAddress != 'NA') {
-            field++;
-        }
-        if (getDoctors.oneTimeFee != null &&
-            getDoctors.oneTimeFee != '' &&
-            getDoctors.oneTimeFee != 'NA') {
-            field++;
-        }
-        if (getDoctors.daysCheckFree != null &&
-            getDoctors.daysCheckFree != 'NA') {
-            field++;
-        }
-        if (getDoctors.clinicName != null &&
-            getDoctors.clinicName != 'NA') {
-            field++;
-        }
-        if (getDoctors.dob != null &&
-            getDoctors.dob != 'NA') {
-            field++;
-        }
-        if (getDoctors.gender != null &&
-            getDoctors.gender != 'NA') {
-            field++;
-        }
-        if (getDoctors.age != null &&
-            getDoctors.age != 'NA') {
-            field++;
-        }
-        if (getDoctors.description != null &&
-            getDoctors.description != 'NA') {
-            field++;
-        }
-        $scope.percent = parseInt((field / 17) * 100) + '%';
     }
 });
 
