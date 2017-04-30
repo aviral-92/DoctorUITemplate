@@ -1,11 +1,27 @@
 <!DOCTYPE html>
-<html ng-app="myApp" ng-controller="index">
+<html ng-app="myApp">
 
 <head>
     <meta charset="utf-8">
     <title>AasPaasDoctor</title>
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-combined.min.css" media="screen" />
+    <!--<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />-->
+    <!--<link rel="stylesheet" type="text/css" href="css/Loader.css" media="screen" />-->
+    <!--<link rel="stylesheet" type="text/css" href="css/Sidebar.css" media="screen" />-->
+    <!--<link rel="stylesheet" type="text/css" href="css/index.css" media="screen" />-->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!--<link rel="stylesheet" href="css/datepicker.min.css" />
+    <link rel="stylesheet" href="css/datepicker3.min.css" />-->
+    <link rel="stylesheet" type="text/css" href="html/SearchFunctionality/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="html/SearchFunctionality/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="html/SearchFunctionality/css/table.css">
+    <!--<link rel="stylesheet" type="text/css" href="css/massautocomplete.theme.css" media="screen" />-->
+    <link rel="stylesheet" href="css/RegistrationForm.css" />
+    
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="New%20UI/css/bootstrap.css" rel="stylesheet">
     <link href="New%20UI/css/revolution-slider.css" rel="stylesheet">
@@ -17,7 +33,7 @@
     <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
     <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
     <style>
-        input[type=text] {
+        input[type=search] {
             width: 130px;
             box-sizing: border-box;
             border: 2px solid #ccc;
@@ -32,9 +48,10 @@
             transition: width 0.4s ease-in-out;
         }
         
-        input[type=text]:focus {
+        input[type=search]:focus {
             width: 100%;
         }
+
     </style>
 </head>
 
@@ -52,13 +69,14 @@
                             <div class="logo">
                                 <!--<i style="color:red; font-size:255%;" class="fa fa-heartbeat"></i>-->
                                 <div class="inline"><img src="New%20UI/images/logo-heart.png">
-                                    <a style="font-size:150%; font-weight:bolder; " href="index.html"> AAS PAAS DOCTOR</a>
+                                    <a style="font-size:150%; font-weight:bolder; " href="#/"> AAS PAAS DOCTOR</a>
                                 </div>
                             </div>
                         </div>
                         <div class="pull-right upper-right clearfix">
                             <form>
-                                <input type="text" name="search" placeholder="Search..">
+                                <input type="search" name="search" placeholder="Search..">
+                                <input class="btn btn-primary btn-block" type="button" name="Submit" value="Search">
                             </form>
                             <!--<a href="#" class="btn btn-info btn-lg">
                            <span class="glyphicon glyphicon-search"></span> Search
@@ -278,8 +296,29 @@
     <script src="New%20UI/js/jquery.appear.js"></script>
 
     <script src="js/static_js/angular-route-1.4.8.js"></script>
+    
+
+    <script src="js/static_js/angular-animate.min-1.4.8.js"></script>
+    <script src="js/static_js/angular-aria.min-1.4.8.js"></script>
+    <script src="js/static_js/angular-messages.min-1.4.8.js"></script>
+    <script src="js/static_js/angular-material.min-1.4.8.js"></script>
+    <script src="js/static_js/angular-cookies-1.4.8.js"></script>
+    <script type="text/javascript" src="js/static_js/angular-sanitize.js"></script>
+    <script type="text/javascript" src="js/static_js/custom_massautocomplete.js"></script>
+    <script type="text/javascript" src="js/static_js/bootstrap.min-3.3.7.js"></script>
+    <script type="text/javascript" src="js/ImageSlider/ui-bootstrap-tpls-0.6.0.js"></script>
+    <script src="html/SearchFunctionality/lib/dirPagination.js"></script>
+    <script type="text/javascript" src="js/DoctorValidation.js"></script>
+    <script src="Login/js/LoginRouter.js"></script>
+    <script src="Login/js/LoginController.js"></script>
+    <!-- Router for NEW UI -->
     <script src="New%20UI/UiRouter.js"></script>
+    <!-- Controller for NEW UI -->
     <script src="New%20UI/UiController.js"></script>
+    <script src='js/static_js/angular-recaptcha.min.js'></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer></script>
+    <script type="text/javascript" src="Services/AjaxGetServiceResponse.js"></script>
+    <script type="text/javascript" src="Services/PopUpAlertService.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,5 @@
-var app = angular.module('myApp', ['ngRoute']);
-
-app.config(function ($routeProvider) {
+//Already define scotchApp in Login Router, so not require to define it again....
+scotchApp.config(function ($routeProvider) {
     $routeProvider
 
         .when('/', {
