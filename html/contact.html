@@ -28,22 +28,38 @@
                         <form method="post" action="#/contact" id="contact-form">
                             <div class="row clearfix">
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" name="username" value="" placeholder="Your Name *" required>
+                                    <input type="text" ng-model="details.name" name="username" value="" placeholder="Your Name *" required>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6 col-xs-12" ng-class="{'has-success' : contact.email.$dirty && contact.email.$valid , 'has-error' : contact.email.$dirty && contact.email.$invalid}">
+                                    <input type="email" ng-model="details.email" name="email" value="" placeholder="Your Email *" required>
+                                    <div class="help-inline">
+                                        <span ng-show="!!contact.email.$error.isBlank"><b
+											style="color: red;">Email Required.</b></span> <span ng-show="!!contact.email.$error.invalidChars"><b
+											style="color: red;">Email must contain @ & dot(.)
+												.</b></span> <span ng-show="!!contact.email.$error.invalidLen"><b
+											style="color: red;">Email must be use dot(.) &
+												characters.</b></span>
+                                        <div ng-if="contact.email.$invalid == true">
+                                            <span class="glyphicon glyphicon-remove form-control-feedback" style="color: red;" ng-show="!!contact.email.$error.isBlank || !!contact.email.$error.invalidChars || !!contact.email.$error.invalidLen"></span>
+                                        </div>
+                                        <div ng-if="contact.email.$pristine == false">
+                                            <span class="glyphicon glyphicon-ok form-control-feedback" style="color: green;" ng-show="!contact.email.$error.isBlank && !contact.email.$error.invalidChars && !contact.email.$error.invalidLen"></span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                    <input type="email" name="email" value="" placeholder="Your Email *" required>
+                                    <input type="text" ng-model="details.mobile" name="mobile" value="" placeholder="Your mobile *" required>
                                 </div>
-                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" name="phone" value="" placeholder="Your Phone *" required>
-                                </div>
+                                <!--
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" name="subject" value="" placeholder="Your Subject *">
                                 </div>
+-->
                                 <div class="form-group col-md-12 col-sm-8 col-xs-12">
-                                    <textarea name="message" placeholder="Your Requirement" required></textarea>
+                                    <textarea name="message" ng-model="details.message" placeholder="Your Requirement" required></textarea>
                                 </div>
                             </div>
-                            <button type="submit" class="theme-btn btn-style-one">send request</button>
+                            <button type="submit" class="theme-btn btn-style-one" ng-click="submitDetail(details)">send request</button>
                         </form>
                     </div>
                 </div>
