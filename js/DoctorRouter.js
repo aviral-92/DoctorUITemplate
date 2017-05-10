@@ -21,13 +21,13 @@ scotchApp.config(function ($routeProvider) {
 
         // route for the About page
         .when('/about', {
-            templateUrl: '/html/about.html',
+            templateUrl: '/QA/html/about.html',
             controller: 'about'
         })
 
         // route for the Contact page
         .when('/contact', {
-            templateUrl: '/html/contact.html',
+            templateUrl: '/QA/html/contact.html',
             controller: 'contact'
         })
 
